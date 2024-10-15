@@ -2,7 +2,7 @@ import sys
 import pandas as pd
 import sqlite3
 from PyQt6.QtWidgets import (QApplication, QMainWindow, QPushButton, QLabel,
-    QVBoxLayout, QWidget, QFileDialog, QTableView, QMessageBox, QAbstractScrollArea, QProgressBar, QHeaderView)
+    QVBoxLayout, QWidget, QFileDialog, QTableView, QMessageBox, QAbstractScrollArea, QHeaderView)
 from PyQt6.QtCore import Qt
 from PyQt6.QtGui import QStandardItemModel, QStandardItem, QFont
 
@@ -85,13 +85,13 @@ class main_window(QMainWindow):
         if file.endswith(".csv"):
             data = pd.read_csv(file)
             if data.empty:
-                raise ValueError("El archivo CSV está vacío.")
+                raise ValueError("CSV file is empty.")
             return data
 
         elif file.endswith((".xlsx", ".xls")):
             data = pd.read_excel(file)
             if data.empty:
-                raise ValueError("El archivo Excel está vacío.")
+                raise ValueError("Excel file is empty.")
             return data
 
 
@@ -102,14 +102,14 @@ class main_window(QMainWindow):
             cursor.execute(query)
             tablas = cursor.fetchall()
             if len(tablas) == 0:
-                raise ValueError("No se encontraron tablas en la base de datos.")
+                raise ValueError("No tables found in the database.")
             tabla = tablas[0][0]
             data = pd.read_sql_query(f"SELECT * FROM {tabla}", connection)
             connection.close()
             return data
 
         else:
-                raise ValueError("Formato de file no soportado.")
+                raise ValueError("File format not supported.")
 
     def display_data(self, data):
         model = QStandardItemModel()
