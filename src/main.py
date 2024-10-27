@@ -118,9 +118,11 @@ class MainWindow(QMainWindow):
         # Agregar el layout de selección de columnas al grupo
         column_selection_group.setLayout(column_selection_layout)
 
-                # Preprocess side
+        # Preprocess side
         preprocess_group = QGroupBox("Preprocessing Options")
         preprocess_layout = QVBoxLayout()
+        preprocess_group.setFixedWidth(300)
+
 
         # Combobox for Nan
         self.nan_options = QComboBox()
@@ -168,9 +170,42 @@ class MainWindow(QMainWindow):
         # Configurar y agregar el layout de preprocesamiento a su grupo
         preprocess_group.setLayout(preprocess_layout)
 
+        # Model side
+        model_group = QGroupBox("Create model")
+        model_layout = QVBoxLayout()
+        model_group.setFixedWidth(300)
+
+        self.description = QLineEdit()
+        self.description.setPlaceholderText("Create description")
+        self.description.setFixedWidth(200)
+        model_layout.addWidget(self.description)
+
+        # Preprocessing button
+        self.model_button = QPushButton("Create model ⮕")
+        self.model_button.setFixedHeight(40)  # Ajusta la altura
+        self.model_button.setFixedWidth(200)  # Ajusta el ancho
+        self.model_button.setStyleSheet(""" 
+            QPushButton {
+                background-color: #0B1E3E; 
+                color: white;
+                padding: 10px;
+                border-radius: 5px;  /* Cambiado para ser similar */
+                font-weight: bold;  /* Cambiado para ser similar */
+                font-size: 12px;  /* Cambiado para ser similar */
+            }
+            QPushButton:hover {
+                background-color: #F6BE00;
+                color: #0B1E3E;
+            }
+        """)
+        model_layout.addWidget(self.model_button)
+        
+        model_group.setLayout(model_layout)
+
         # Añadir ambos grupos (Preprocessing y Column Selection) al layout horizontal
         horizontal_layout.addWidget(column_selection_group)  # Column Selection a la izquierda
-        horizontal_layout.addWidget(preprocess_group)  # Preprocessing Options a la derecha
+        horizontal_layout.addWidget(preprocess_group)  # Preprocessing Options al centro
+        horizontal_layout.addWidget(model_group)  # Model
 
         # Añadir el layout horizontal al layout principal
         main_layout.addLayout(horizontal_layout)
