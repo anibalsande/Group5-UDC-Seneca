@@ -4,6 +4,11 @@ import sqlite3
 from PyQt6.QtWidgets import *
 from PyQt6.QtCore import *
 from PyQt6.QtGui import *
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+
+#Modules
+from model_results import ModelResultWindow
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -17,6 +22,7 @@ class MainWindow(QMainWindow):
         self.input_columns = []
         self.output_column = None
         self.model = None
+        self.model_description = ""
 
         # Main layout
         main_layout = QVBoxLayout()
@@ -215,6 +221,7 @@ class MainWindow(QMainWindow):
             }
         """)
         model_layout.addWidget(self.model_button)
+        self.model_button.clicked.connect(self.create_model)
         
         self.model_group.setLayout(model_layout)
 
@@ -403,6 +410,54 @@ class MainWindow(QMainWindow):
         remaining_columns = [col for col in self.data.columns if col not in selected_inputs]
         self.output_selector.clear()
         self.output_selector.addItems(remaining_columns)
+
+    def create_model(self):
+        description_text = self.description.toPlainText().strip()
+
+        if not description_text:
+            response = QMessageBox.question(
+                self, "Empty Description",
+                "The model description is empty. Do you want to proceed without a description?",
+                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
+            )
+            # Si el usuario elige "No", detener el proceso para que pueda modificar la descripción
+            if response == QMessageBox.StandardButton.No:
+                return  # Salir de la función sin continuar con la creación del modelo
+
+        # Asignar y confirmar solo después de la decisión del usuario
+        self.model_description = description_text  # Asignar la descripción final
+
+        # Verificar si hay datos y columnas seleccionadas
+        if self.data is None or self.input_columns is None or self.output_column is None:
+            QMessageBox.warning(self, "No Data", "Please load data and select input/output columns before creating a model.")
+            return
+
+        # Preparar los datos para el modelo
+        X = self.data[self.input_columns].values
+        y = self.data[self.output_column].values
+
+        # Crear y entrenar el modelo
+        model = LinearRegression()
+        model.fit(X, y)
+        y_pred = model.predict(X)
+
+        # Calcular métricas
+        r2 = r2_score(y, y_pred)
+        mse = mean_squared_error(y, y_pred)
+
+        # Generar la fórmula del modelo considerando múltiples columnas de entrada
+        coef_str = ' + '.join([f"{model.coef_[i]:.2f} * {self.input_columns[i]}" for i in range(len(self.input_columns))])
+        formula = f"{self.output_column} = {coef_str} + {model.intercept_:.2f}"
+
+        # Mostrar ventana de resultados
+        self.result_window = ModelResultWindow(formula, r2, mse, X, y, y_pred, self.input_columns, self.output_column, self.data)
+        self.result_window.exec()
+
+        # Mensaje de confirmación de creación del modelo
+        QMessageBox.information(
+            self, "Model Creation",
+            f"Model created successfully!\n\nDescription:\n{self.model_description or 'No description provided'}"
+        )
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
