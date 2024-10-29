@@ -70,20 +70,25 @@ class ModelTrainer:
         formula = " + ".join(formula_terms)
         formula_text = f"{self.output_column} = {intercept:.4f} + {formula}"
 
-        # Mensaje informativo del modelo y advertencia de gráfica
+        # Mensaje informativo del modelo y advertencias según el tipo de entrada
         message = (f"Métricas del modelo:\n\n"
                    f"Coeficiente de determinación (R²): {r2:.4f}\n"
                    f"Error Cuadrático Medio (ECM): {mse:.4f}\n\n"
                    f"Fórmula del Modelo:\n{formula_text}")
 
-        if len(self.input_columns) > 1 or any(X_test.dtype.kind == 'O' for col in self.input_columns):
+        # Verifica si no hay ninguna columna de entrada numérica
+        num_inputs = self.data[self.input_columns].select_dtypes(include=[np.number])
+        if num_inputs.empty:
+            message += "\n\nNota: No hay columnas numéricas en los datos de entrada."
+
+        elif len(self.input_columns) > 1 or any(X_test.dtype.kind == 'O' for col in self.input_columns):
             message += "\n\nNota: La gráfica solo se muestra para una columna numérica de entrada."
 
         # Mostrar mensaje combinado en una ventana
         QMessageBox.information(None, "Resultados del Modelo", message)
 
         # Generar gráfica si solo hay una columna numérica
-        if len(self.input_columns) == 1 and X_test.shape[1] == 1:
+        if len(self.input_columns) == 1 and X_test.shape[1] == 1 and not num_inputs.empty:
             self.plot_regression_line(X_test[:, 0], y_test, y_pred)
 
     def plot_regression_line(self, X_test, y_test, y_pred):
