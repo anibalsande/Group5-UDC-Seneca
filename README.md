@@ -27,7 +27,29 @@ This application is designed to facilitate the creation, visualization, and pred
 <!--Does Troubleshooting section need to be added? What about FAQs, Credits, Licence/License?-->
 
 ## 1. Introduction
-<!-- TO DO: Add information about name of the app, motivation for app, the target audience, the problem it solves, what we learned -->
+<!-- TO DO: Add more information about name of the app (LRM App?), motivation for app, the target audience, the problem it solves, what we learned -->
+
+### What is the LRM App? 
+The LRM App is a tool for analyzing data and making predictions from it. 
+
+### How does the LRM App do this?
+Using information from you and the power of artificial intelligence, the LRM App creates and visualizes simple and multiple linear regression models. These linear regression models let you analyze historical data patterns and from them predict future data patterns. 
+
+### What is artificial intelligence?
+Artificial intelligence, or AI, is defined as "a field of science concerned with building computers and machines that can reason, learn, and act in such a way that would normally require human intelligence or that involves data whose scale exceeds what humans can analyze." ([Google Cloud](https://cloud.google.com/learn/what-is-artificial-intelligence#artificial-intelligence-defined))
+
+### What is linear regression? 
+Linear regression is one of the methods, or algorithms (a set of instructions), by which mathematicians can show statistical information and model relationships between variables. AI can perform the linear regression algorithm in a matter of milliseconds, whereas it would take a human significantly longer.  
+
+### Is the LRM App hard to use?
+No. The LRM App has an easy-to-use graphical interface and guides you through the entire data analysis and prection process, including
+  - uploading your dataset from common formats like .CSV, Excel, and SQLite and addressing incomplete information
+  - focusing on the datapoints from your dataset that are important to you
+  - building a visual model and a graph of the data
+  - displaying the mathematical formula and the expected accuracy of predictions
+  - making predictions upon receiving new datapoints
+
+The LRM App also lets you save and reload your models quickly, making it indispensable for your research needs.    
 
 ## 2. Getting started
 
