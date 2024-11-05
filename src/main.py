@@ -6,7 +6,7 @@ from PyQt6.QtCore import *
 from PyQt6.QtGui import *
 
 #Modules
-from model_results import ModelTrainer
+from model_results import ModelTrainer,ResultsWindow
 
 class MainWindow(QMainWindow):
     def __init__(self):
