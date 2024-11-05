@@ -4,8 +4,6 @@ import sqlite3
 from PyQt6.QtWidgets import *
 from PyQt6.QtCore import *
 from PyQt6.QtGui import *
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error, r2_score
 
 #Modules
 from model_results import ModelTrainer
@@ -430,7 +428,6 @@ class MainWindow(QMainWindow):
 
         # Crear una instancia de ModelTrainer y llamar a su método para entrenar y mostrar los resultados
         trainer = ModelTrainer(self.data, self.input_columns, self.output_column, self.model_description)
-        trainer.train_and_show_results()
 
 
 if __name__ == "__main__":

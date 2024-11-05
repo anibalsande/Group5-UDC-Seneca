@@ -1,20 +1,63 @@
 import numpy as np
-import pandas as pd
-from PyQt6.QtWidgets import QMessageBox
+from PyQt6.QtWidgets import *
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder
 import matplotlib.pyplot as plt
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
+from matplotlib.figure import Figure
 
-class ModelTrainer:
+class ResultsWindow(QDialog):
+    def __init__(self, metrics_text, formula_text, plot_data, warning_text=""):
+        super().__init__()
+        self.setWindowTitle("Resultados del Modelo")
+        self.setGeometry(100, 100, 800, 600)
+
+        self.layout = QVBoxLayout()
+
+        self.results_label = QLabel(metrics_text)
+        self.warning_label = QLabel(warning_text) if warning_text else QLabel("")
+
+        self.layout.addWidget(self.results_label)
+        self.layout.addWidget(self.warning_label)
+
+        # Generar y mostrar el gráfico si hay datos para ello
+        if plot_data is not None:
+            self.plot_regression_line(plot_data)
+
+        self.setLayout(self.layout)
+
+    def plot_regression_line(self, plot_data):
+        X_test, y_test, y_pred = plot_data
+        
+        # Crear un nuevo widget para el gráfico
+        figure = Figure()
+        canvas = FigureCanvas(figure)
+        ax = figure.add_subplot(111)
+
+        ax.scatter(X_test, y_test, color="blue", label="Datos reales")
+        ax.plot(X_test, y_pred, color="red", label="Recta de ajuste")
+        ax.set_xlabel("Input Feature")
+        ax.set_ylabel("Output Variable")
+        ax.set_title("Gráfico de Regresión Lineal")
+        ax.legend()
+
+        self.layout.addWidget(canvas)
+        canvas.draw()  # Dibuja el gráfico
+
+class ModelTrainer(QWidget):
     def __init__(self, data, input_columns, output_column, description=""):
+        super().__init__()
         self.data = data
         self.input_columns = input_columns
         self.output_column = output_column
         self.description = description
         self.model = LinearRegression()
 
+        # Llama a la función de entrenamiento directamente en la inicialización
+        self.train_and_show_results()
+    
     def train_and_show_results(self):
         try:
             # Preprocesamiento de las columnas de entrada y salida
@@ -31,18 +74,18 @@ class ModelTrainer:
             mse = mean_squared_error(y_test, y_pred)
             r2 = r2_score(y_test, y_pred)
 
-            # Generar mensaje de resultados, fórmula, y advertencia de gráfica si corresponde
+            # Mostrar resultados combinados
             self.show_combined_results(mse, r2, X_test, y_test, y_pred)
 
         except Exception as e:
-            QMessageBox.critical(None, "Error", f"Error en la creación del modelo:\n{str(e)}")
+            QMessageBox.critical(self, "Error", f"Error en la creación del modelo:\n{str(e)}")
 
     def preprocess_data(self, input_columns, output_column):
-        """Preprocesa las columnas de entrada y salida, manejando variables categóricas con OneHotEncoder."""
+        """Preprocess input and output columns, handling categorical variables with OneHotEncoder."""
         X = self.data[input_columns]
         y = self.data[output_column]
 
-        # Codificación One-Hot para las columnas categóricas
+        # Categorical columns
         categorical_cols = X.select_dtypes(include=['object', 'category']).columns
         if categorical_cols.any():
             encoder = OneHotEncoder(sparse_output=False, drop='first')
@@ -51,7 +94,6 @@ class ModelTrainer:
             # Unir las columnas codificadas con las numéricas
             X_numeric = X.drop(columns=categorical_cols).values
             X = np.hstack((X_numeric, X_encoded))
-
         else:
             # Convertir directamente a valores numpy si no hay variables categóricas
             X = X.values
@@ -70,33 +112,26 @@ class ModelTrainer:
         formula = " + ".join(formula_terms)
         formula_text = f"{self.output_column} = {intercept:.4f} + {formula}"
 
-        # Mensaje informativo del modelo y advertencias según el tipo de entrada
-        message = (f"Métricas del modelo:\n\n"
-                   f"Coeficiente de determinación (R²): {r2:.4f}\n"
-                   f"Error Cuadrático Medio (ECM): {mse:.4f}\n\n"
-                   f"Fórmula del Modelo:\n{formula_text}")
+        # Mensaje informativo del modelo
+        metrics_text = (f"Métricas del modelo:\n\n"
+                        f"Coeficiente de determinación (R²): {r2:.4f}\n"
+                        f"Error Cuadrático Medio (ECM): {mse:.4f}\n\n"
+                        f"Fórmula del Modelo:\n{formula_text}")
 
-        # Verifica si no hay ninguna columna de entrada numérica
+        # Check for numeric input columns
         num_inputs = self.data[self.input_columns].select_dtypes(include=[np.number])
+        warning_text = ""
+        
         if num_inputs.empty:
-            message += "\n\nNota: No hay columnas numéricas en los datos de entrada."
-
+            warning_text += "Nota: No hay columnas numéricas en los datos de entrada.\n"
         elif len(self.input_columns) > 1 or any(X_test.dtype.kind == 'O' for col in self.input_columns):
-            message += "\n\nNota: La gráfica solo se muestra para una columna numérica de entrada."
+            warning_text += "Nota: La gráfica solo se muestra para una columna numérica de entrada."
 
-        # Mostrar mensaje combinado en una ventana
-        QMessageBox.information(None, "Resultados del Modelo", message)
-
-        # Generar gráfica si solo hay una columna numérica
+        # Generar gráfico solo si hay una columna numérica
+        plot_data = None
         if len(self.input_columns) == 1 and X_test.shape[1] == 1 and not num_inputs.empty:
-            self.plot_regression_line(X_test[:, 0], y_test, y_pred)
+            plot_data = (X_test[:, 0], y_test, y_pred)
 
-    def plot_regression_line(self, X_test, y_test, y_pred):
-        """Genera la gráfica de puntos y la línea de regresión si solo hay una variable de entrada numérica."""
-        plt.scatter(X_test, y_test, color="blue", label="Datos reales")
-        plt.plot(X_test, y_pred, color="red", label="Recta de ajuste")
-        plt.xlabel(self.input_columns[0])
-        plt.ylabel(self.output_column)
-        plt.title("Gráfico de Regresión Lineal")
-        plt.legend()
-        plt.show()
+        # Mostrar la ventana de resultados
+        results_window = ResultsWindow(metrics_text, formula_text, plot_data, warning_text)
+        results_window.exec()
