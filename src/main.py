@@ -1,13 +1,12 @@
 import sys
 import pandas as pd
 import sqlite3
-from PyQt6.QtWidgets import (QApplication, QMainWindow, QPushButton, QLabel,
-                             QHBoxLayout, QVBoxLayout, QWidget, QFileDialog,
-                             QTableView, QRadioButton, QMessageBox, QAbstractScrollArea,
-                             QHeaderView, QSizePolicy, QComboBox, QLineEdit,
-                             QGroupBox, QListWidget, QListWidgetItem)
-from PyQt6.QtCore import Qt
-from PyQt6.QtGui import QStandardItemModel, QStandardItem, QFont, QColor
+from PyQt6.QtWidgets import *
+from PyQt6.QtCore import *
+from PyQt6.QtGui import *
+
+#Modules
+from model_results import ModelTrainer
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -16,9 +15,12 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("Preprocessing Dataset")
         self.setGeometry(100, 100, 800, 600)
         self.setFont(QFont("Bahnschrift", 12))
+        #self.setStyleSheet("background-color: white;")
         self.data = None
         self.input_columns = []
         self.output_column = None
+        self.model = None
+        self.model_description = ""
 
         # Main layout
         main_layout = QVBoxLayout()
@@ -30,23 +32,15 @@ class MainWindow(QMainWindow):
         header_widget.setStyleSheet("background-color: #0b5394;")
         header_widget.setFixedHeight(45)
 
-        # App title
-        title_label = QLabel("LINEAR REGRESSION APP")
-        title_label.setFont(QFont("Bahnschrift", 14, QFont.Weight.Bold))
-        title_label.setStyleSheet("color: white; padding-left: 0px;")
-        header_layout.addWidget(title_label)
-
-        header_layout.addStretch()
-
-        # "UPLOAD FILE" Button
-        self.upload_button = QPushButton("UPLOAD FILE")
+        # "OPEN FILE" Button
+        self.upload_button = QPushButton("OPEN FILE")
         self.upload_button.setFixedHeight(28)
         self.upload_button.setFixedWidth(170)
         self.upload_button.setStyleSheet(""" 
             QPushButton {
                 background-color: #F6BE00; 
                 color: #0B1E3E;
-                border-radius: 14px;
+                border-radius: 5px;
                 font-weight: bold;
                 padding-left: 15px;
                 padding-right: 15px;
@@ -71,9 +65,82 @@ class MainWindow(QMainWindow):
         # Middle layout
         horizontal_layout = QHBoxLayout()
 
+        # Configuración de la tabla para mostrar los datos
+        self.table_view = QTableView()
+        self.table_view.setSizeAdjustPolicy(QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
+        self.table_view.setFixedHeight(440)
+        self.table_view.setStyleSheet(""" 
+            QTableView {
+                background-color: #f0f0f0;
+                gridline-color: #d0d0d0;
+                font-size: 12px;
+            }
+            QHeaderView::section {
+                background-color: #dcdcdc;
+                padding: 5px;
+                font-weight: bold;
+                border: 1px solid #b0b0b0;
+            }
+        """)
+        main_layout.addWidget(self.table_view)
+
+        # Column selection side
+        column_selection_group = QGroupBox("Column Selection")
+        column_selection_layout = QHBoxLayout()  # Cambiado a QHBoxLayout para dos columnas
+
+        # Primera columna (Texto y Multiselector)
+        left_column_layout = QVBoxLayout()
+        left_column_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
+        
+        # Features (primera columna)
+        self.input_selector = QListWidget()  # Cambiamos a QListWidget para selección múltiple
+        self.input_selector.setSelectionMode(QListWidget.SelectionMode.MultiSelection)  
+        self.input_selector.setFixedHeight(70) 
+        self.input_selector.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)     
+        left_column_layout.addWidget(QLabel("Select Input Columns (features):"))
+        left_column_layout.addWidget(self.input_selector)
+
+        # Segunda columna (Texto, Dropdown y Botón)
+        right_column_layout = QVBoxLayout()
+        right_column_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
+        # Target (segunda columna)
+        self.output_selector = QComboBox()
+        right_column_layout.addWidget(QLabel("Select Output Column (target):"))
+        right_column_layout.addWidget(self.output_selector)
+
+        # Confirm button (segunda columna)
+        self.confirm_button = QPushButton("Confirm Selection ⮕")
+        self.confirm_button.clicked.connect(self.confirm_selection)
+        self.confirm_button.setFixedHeight(40)  # Ajusta la altura
+        self.confirm_button.setStyleSheet(""" 
+            QPushButton {
+                background-color: #0B1E3E; 
+                color: white;
+                padding: 10px;
+                border-radius: 5px;  /* Cambiado para ser similar */
+                font-weight: bold;  /* Cambiado para ser similar */
+                font-size: 12px;  /* Cambiado para ser similar */
+            }
+            QPushButton:hover {
+                background-color: #F6BE00;
+                color: #0B1E3E;
+            }
+        """)
+        right_column_layout.addWidget(self.confirm_button)
+
+        # Agregar las dos columnas al layout principal
+        column_selection_layout.addLayout(left_column_layout)
+        column_selection_layout.addLayout(right_column_layout)
+
+        # Agregar el layout principal al grupo
+        column_selection_group.setLayout(column_selection_layout)
+
         # Preprocess side
-        preprocess_group = QGroupBox("Preprocessing Options")
+        self.preprocess_group = QGroupBox("Preprocessing Options")
         preprocess_layout = QVBoxLayout()
+        self.preprocess_group.setFixedWidth(300)
+        preprocess_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
+        self.preprocess_group.setEnabled(False)
 
         # Combobox for Nan
         self.nan_options = QComboBox()
@@ -119,40 +186,25 @@ class MainWindow(QMainWindow):
         preprocess_layout.addWidget(self.apply_button)
 
         # Configurar y agregar el layout de preprocesamiento a su grupo
-        preprocess_group.setLayout(preprocess_layout)
+        self.preprocess_group.setLayout(preprocess_layout)
 
-        # Column selection side
-        column_selection_group = QGroupBox("Column Selection")
-        column_selection_layout = QVBoxLayout()
+        # Model side
+        self.model_group = QGroupBox("Create model")
+        model_layout = QVBoxLayout()
+        self.model_group.setFixedWidth(300)
+        self.model_group.setEnabled(False)
 
-        # ComboBox for simple or multiple
-        self.simple_radio = QRadioButton("Simple")
-        self.multiple_radio = QRadioButton("Multiple")
-        
-        # Choose Regresion Type
-        regression_type_layout = QHBoxLayout()
-        regression_type_layout.addWidget(QLabel("Choose Regression Type:"))
-        regression_type_layout.addWidget(self.simple_radio)
-        regression_type_layout.addWidget(self.multiple_radio)
-        column_selection_layout.addLayout(regression_type_layout)
+        self.description = QTextEdit()
+        self.description.setPlaceholderText("Create description")
+        self.description.setFixedWidth(270)
+        self.description.setFixedHeight(40)
+        model_layout.addWidget(self.description)
 
-        # Features
-        self.input_selector = QListWidget()  # Cambiamos a QListWidget para selección múltiple
-        
-        column_selection_layout.addWidget(QLabel("Select Input Columns (features):"))
-        column_selection_layout.addWidget(self.input_selector)
-
-        # Target
-        self.output_selector = QComboBox()
-        column_selection_layout.addWidget(QLabel("Select Output Column (target):"))
-        column_selection_layout.addWidget(self.output_selector)
-
-        # Confirm button
-        self.confirm_button = QPushButton("Confirm Selection ⮕")
-        self.confirm_button.clicked.connect(self.confirm_selection)
-        self.confirm_button.setFixedHeight(40)  # Ajusta la altura
-        self.confirm_button.setFixedWidth(200)  # Ajusta el ancho
-        self.confirm_button.setStyleSheet(""" 
+        # Preprocessing button
+        self.model_button = QPushButton("Create model ⮕")
+        self.model_button.setFixedHeight(40)  # Ajusta la altura
+        self.model_button.setFixedWidth(200)  # Ajusta el ancho
+        self.model_button.setStyleSheet(""" 
             QPushButton {
                 background-color: #0B1E3E; 
                 color: white;
@@ -166,35 +218,18 @@ class MainWindow(QMainWindow):
                 color: #0B1E3E;
             }
         """)
-        column_selection_layout.addWidget(self.confirm_button)
-
-        # Agregar el layout de selección de columnas al grupo
-        column_selection_group.setLayout(column_selection_layout)
+        model_layout.addWidget(self.model_button)
+        self.model_button.clicked.connect(self.create_model)
+        
+        self.model_group.setLayout(model_layout)
 
         # Añadir ambos grupos (Preprocessing y Column Selection) al layout horizontal
         horizontal_layout.addWidget(column_selection_group)  # Column Selection a la izquierda
-        horizontal_layout.addWidget(preprocess_group)  # Preprocessing Options a la derecha
+        horizontal_layout.addWidget(self.preprocess_group)  # Preprocessing Options al centro
+        horizontal_layout.addWidget(self.model_group)  # Model
 
         # Añadir el layout horizontal al layout principal
         main_layout.addLayout(horizontal_layout)
-
-        # Configuración de la tabla para mostrar los datos
-        self.table_view = QTableView()
-        self.table_view.setSizeAdjustPolicy(QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
-        self.table_view.setStyleSheet(""" 
-            QTableView {
-                background-color: #f0f0f0;
-                gridline-color: #d0d0d0;
-                font-size: 12px;
-            }
-            QHeaderView::section {
-                background-color: #dcdcdc;
-                padding: 5px;
-                font-weight: bold;
-                border: 1px solid #b0b0b0;
-            }
-        """)
-        main_layout.addWidget(self.table_view)
 
         # Contenedor principal
         container = QWidget()
@@ -202,8 +237,6 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(container)
 
         # Conectar los cambios en el tipo de regresión a la actualización del selector de entrada
-        self.simple_radio.toggled.connect(self.update_input_selector)
-        self.multiple_radio.toggled.connect(self.update_input_selector)
         self.input_selector.itemSelectionChanged.connect(self.update_output_selector)
 
 
@@ -224,6 +257,7 @@ class MainWindow(QMainWindow):
                 self.input_columns = []  # Atributo para almacenar columnas de entrada
                 self.output_column = None
                 self.show_data()  # Mostrar los datos al cargar el archivo
+                self.populate_columns()
             except Exception as e:
                 self.file_label.setText(f"Error: {str(e)}")
                 self.file_label.setStyleSheet("QLabel {color: red; padding: 5px;}")
@@ -293,6 +327,7 @@ class MainWindow(QMainWindow):
                 raise ValueError("Please select a valid option.")
 
             self.show_data()  # Mostrar los datos preprocesados
+            self.model_group.setEnabled(True)
             QMessageBox.information(self, "Success", "Data preprocessing completed successfully.")
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An error occurred during preprocessing:\n{str(e)}")
@@ -329,8 +364,8 @@ class MainWindow(QMainWindow):
 
         QMessageBox.information(self, "Selection Confirmed",
                                 f"Input Columns: {', '.join(self.input_columns)}\nOutput Column: {self.output_column}")
-
         self.show_data()  # Mostrar la tabla después de confirmar la selección
+        self.preprocess_group.setEnabled(True)
 
     def populate_columns(self):
         """ Llenar los selectores de columnas con nombres de columnas """
@@ -368,24 +403,32 @@ class MainWindow(QMainWindow):
         self.table_view.setModel(model)
         self.table_view.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
 
-    def update_input_selector(self):
-        """ Actualizar el selector de entrada según el tipo de regresión seleccionado """
-        if self.simple_radio.isChecked():
-            # Si es regresión simple, solo permitir una selección
-            self.input_selector.setSelectionMode(QListWidget.SelectionMode.SingleSelection)
-        elif self.multiple_radio.isChecked():
-            # Si es regresión múltiple, permitir selección múltiple
-            self.input_selector.setSelectionMode(QListWidget.SelectionMode.MultiSelection)
-        
-        # Limpiar la selección anterior y repoblar las columnas
-        self.input_selector.clear()
-        self.populate_columns()
-
     def update_output_selector(self):
         selected_inputs = [item.text() for item in self.input_selector.selectedItems()]
         remaining_columns = [col for col in self.data.columns if col not in selected_inputs]
         self.output_selector.clear()
         self.output_selector.addItems(remaining_columns)
+
+    def create_model(self):
+        description_text = self.description.toPlainText().strip()
+
+        # Verificar si la descripción está vacía
+        if not description_text:
+            response = QMessageBox.question(
+                self, "Empty Description",
+                "The model description is empty. Do you want to proceed without a description?",
+                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
+            )
+            # Si el usuario elige "No", detenemos el proceso para que modifique la descripción
+            if response == QMessageBox.StandardButton.No:
+                return  # Salir de la función sin continuar
+
+        # Asignar la descripción final después de la decisión del usuario
+        self.model_description = description_text or "No description provided"
+
+        # Crear una instancia de ModelTrainer y llamar a su método para entrenar y mostrar los resultados
+        trainer = ModelTrainer(self.data, self.input_columns, self.output_column, self.model_description)
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
