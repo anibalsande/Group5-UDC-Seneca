@@ -14,42 +14,52 @@ import os
 import joblib  # Importar joblib para guardar el modelo
 
 class ResultsWindow(QDialog):
-    def __init__(self, description, metrics_text, plot_data, model, input_columns, output_column, warning_text=""):
+    def __init__(self, description, r2, mse, formula, plot_data, coef, intercept, input_columns, output_column, warning_text=""):
         super().__init__()
-        self.setWindowTitle("Resultados del Modelo")
+        self.setWindowTitle("Model Results")
         self.setGeometry(100, 100, 800, 600)
         self.setFont(QFont("Bahnschrift", 12))
         self.input_columns = input_columns
         self.output_column = output_column
         self.description = description
         self.plot_data = plot_data
-        self.metrics_text = metrics_text
+        self.coef = coef
+        self.intercept = intercept
+        self.r2 = r2
+        self.mse = mse
+        self.formula = formula
 
         self.layout = QVBoxLayout()
         self.layout.setContentsMargins(15, 15, 15, 15)
         self.layout.setAlignment(Qt.AlignmentFlag.AlignTop)
 
-        self.title_label = QLabel("Resultados del Modelo")
-        self.title_label.setFont(QFont("Bahnschrift", 16, QFont.Weight.Bold))
-        self.layout.addWidget(self.title_label)
+        self.data_group = QGroupBox("Model Metrics:")
+        self.data_layout = QVBoxLayout()
 
-        self.description_text = QLabel(description)
+        self.description_text = QLabel(f"'{description}'")
         self.description_text.setWordWrap(True)
         self.layout.addWidget(self.description_text)
 
-        # Show metrics in a more robust way
-        metrics_lines = metrics_text.split('\n')
+        metrics_text = (f"Coefficient of determination (R²): {self.r2:.4f}\n"
+                        f"Mean Squared Error (MSE): {self.mse:.4f}\n\n"
+                        f"Model Formula: {self.formula}")
+
         self.results_label = QLabel(metrics_text)
+        self.results_label.setFont(QFont("Bahnschrift", 12))
         self.results_label.setWordWrap(True)
-        self.results_label.setStyleSheet("background-color: #E8F0FE; padding: 10px; border-radius: 5px;")
-        self.layout.addWidget(self.results_label)
+        self.results_label.setStyleSheet("padding: 10px; border-radius: 5px;")
+        self.data_layout.addWidget(self.results_label)  # Cambié self.result_layout por self.layout
+        
+        self.data_group.setLayout(self.data_layout)
+        
+        self.layout.addWidget(self.data_group)
 
         self.warning_label = QLabel(warning_text) if warning_text else QLabel("")
         if warning_text:
             self.warning_label.setStyleSheet("color: red; padding: 10px;")
             self.layout.addWidget(self.warning_label)
 
-        self.save_button = QPushButton("Guardar Modelo")
+        self.save_button = QPushButton("Save model")
         self.save_button.setFixedHeight(28)
         self.save_button.setStyleSheet(""" 
             QPushButton {
@@ -71,8 +81,6 @@ class ResultsWindow(QDialog):
         if plot_data is not None:
             self.plot_regression_line(plot_data)
 
-        self.model = model  # Store the model
-
         self.setLayout(self.layout)
 
     def plot_regression_line(self, plot_data):
@@ -82,12 +90,11 @@ class ResultsWindow(QDialog):
         figure = Figure()
         canvas = FigureCanvas(figure)
         ax = figure.add_subplot(111)
-
-        ax.scatter(X_test, y_test, color="blue", label="Datos reales", alpha=0.7)
-        ax.plot(X_test, y_pred, color="red", label="Recta de ajuste", linewidth=2)
-        ax.set_xlabel("Input Feature")
-        ax.set_ylabel("Output Variable")
-        ax.set_title("Gráfico de Regresión Lineal")
+        ax.scatter(X_test, y_test, color="blue", label="Real Data", alpha=0.7)
+        ax.plot(X_test, y_pred, color="red", label="Fit Line", linewidth=2)
+        ax.set_xlabel("Feature")
+        ax.set_ylabel("Target")
+        ax.set_title("Linear Regression Plot")
         ax.legend()
         ax.grid(True)  # Añadir rejilla al gráfico
 
@@ -109,32 +116,21 @@ class ResultsWindow(QDialog):
             if not file_path.endswith('.joblib'):
                 file_path += '.joblib'
 
-            try:
-                # Extract metrics more safely
-                metrics_lines = self.results_label.text().split('\n')
-                
-                r2_value = 'N/A'
-                mse_value = 'N/A'
-                
-                for line in metrics_lines:
-                    if "Coeficiente de determinación (R²)" in line:
-                        r2_value = line.split(': ')[1] if ': ' in line else 'N/A'
-                    elif "Error Cuadrático Medio (ECM)" in line:
-                        mse_value = line.split(': ')[1] if ': ' in line else 'N/A'
-                
+            try:             
                 model_info = {
                     'description': self.description_text.text(),
                     'metrics': {
-                        'R²': r2_value,
-                        'MSE': mse_value,
+                        'R²': self.r2,
+                        'MSE': self.mse,
                     },
-                    'coefficients': self.model.coef_,
-                    'intercept': self.model.intercept_,
+                    'formula': self.formula,
+                    'coefficients': self.coef,
+                    'intercept': self.intercept,
                     'input_columns': self.input_columns,
                     'output_column': self.output_column
                 }
 
-                joblib.dump(model_info, file_path)  # Guardar el modelo usando joblib
+                joblib.dump(model_info, file_path)  # Save model using joblib
                 QMessageBox.information(self, "Done!", f"Model saved successfully in:\n{file_path}")
 
             except Exception as e:
@@ -168,8 +164,25 @@ class ModelTrainer(QWidget):
             mse = mean_squared_error(y_test, y_pred)
             r2 = r2_score(y_test, y_pred)
 
-            # Mostrar resultados combinados
-            self.show_combined_results(mse, r2, X_test, y_test, y_pred)
+            # Calcular la fórmula del modelo
+            self.coef = self.model.coef_
+            self.intercept = self.model.intercept_
+            formula_terms = [f"{self.coef[i]:.4f} * {col}" for i, col in enumerate(self.input_columns)]
+            formula = f"{self.output_column} = {self.intercept:.4f} + {' + '.join(formula_terms)}"
+
+            # Determinar el mensaje de advertencia y los datos de la gráfica
+            num_inputs = self.data[self.input_columns].select_dtypes(include=[np.number])
+            warning_text = ""
+            if num_inputs.empty:
+                warning_text += "Nota: No hay columnas numéricas en los datos de entrada.\n"
+            elif len(self.input_columns) > 1 or any(X_test.dtype.kind == 'O' for col in self.input_columns):
+                warning_text += "Nota: La gráfica solo se muestra para una columna numérica de entrada."
+
+            plot_data = (X_test[:, 0], y_test, y_pred) if len(self.input_columns) == 1 and X_test.shape[1] == 1 else None
+
+            # Pasar métricas, fórmula, y otros datos a ResultsWindow
+            results_window = ResultsWindow(self.description, r2, mse, formula, plot_data, self.coef, self.intercept, self.input_columns, self.output_column, warning_text)
+            results_window.exec()
 
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Error en la creación del modelo:\n{str(e)}")
@@ -193,34 +206,3 @@ class ModelTrainer(QWidget):
             X = X.values
 
         return X, y.values
-
-    def show_combined_results(self, mse, r2, X_test, y_test, y_pred):
-        coef = self.model.coef_
-        intercept = self.model.intercept_
-
-        formula_terms = []
-        for i, col in enumerate(self.input_columns):
-            formula_terms.append(f"{coef[i]:.4f} * {col}")
-        formula = " + ".join(formula_terms)
-        formula_text = f"{self.output_column} = {intercept:.4f} + {formula}"
-
-        metrics_text = (f"Métricas del modelo:\n\n"
-                        f"Coeficiente de determinación (R²): {r2:.4f}\n"
-                        f"Error Cuadrático Medio (ECM): {mse:.4f}\n\n"
-                        f"Fórmula del Modelo: {formula_text}")
-
-        num_inputs = self.data[self.input_columns].select_dtypes(include=[np.number])
-        warning_text = ""
-
-        if num_inputs.empty:
-            warning_text += "Nota: No hay columnas numéricas en los datos de entrada.\n"
-        elif len(self.input_columns) > 1 or any(X_test.dtype.kind == 'O' for col in self.input_columns):
-            warning_text += "Nota: La gráfica solo se muestra para una columna numérica de entrada."
-
-        plot_data = None
-        if len(self.input_columns) == 1 and X_test.shape[1] == 1 and not num_inputs.empty:
-            plot_data = (X_test[:, 0], y_test, y_pred)
-
-        # Pass the model to the ResultsWindow
-        results_window = ResultsWindow(self.description, metrics_text, plot_data, self.model, self.input_columns, self.output_column, warning_text)
-        results_window.exec()

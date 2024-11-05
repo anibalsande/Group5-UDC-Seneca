@@ -119,15 +119,17 @@ class MainWindow(QMainWindow):
         self.input_selector.setSelectionMode(QListWidget.SelectionMode.MultiSelection)  
         self.input_selector.setFixedHeight(70) 
         self.input_selector.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)     
-        left_column_layout.addWidget(QLabel("Select Input Columns (features):"))
+        left_column_layout.addWidget(QLabel("Features:"))
         left_column_layout.addWidget(self.input_selector)
 
         # Segunda columna (Texto, Dropdown y Botón)
         right_column_layout = QVBoxLayout()
         right_column_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
         # Target (segunda columna)
-        self.output_selector = QComboBox()
-        right_column_layout.addWidget(QLabel("Select Output Column (target):"))
+        self.output_selector = QListWidget()
+        self.output_selector.setFixedHeight(70) 
+        self.output_selector.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)     
+        right_column_layout.addWidget(QLabel("Target:"))
         right_column_layout.addWidget(self.output_selector)
 
         # Confirm button (segunda columna)
@@ -148,11 +150,11 @@ class MainWindow(QMainWindow):
                 color: #0B1E3E;
             }
         """)
-        right_column_layout.addWidget(self.confirm_button)
 
         # Agregar las dos columnas al layout principal
         column_selection_layout.addLayout(left_column_layout)
         column_selection_layout.addLayout(right_column_layout)
+        column_selection_layout.addWidget(self.confirm_button)
 
         # Agregar el layout principal al grupo
         column_selection_group.setLayout(column_selection_layout)
@@ -160,7 +162,7 @@ class MainWindow(QMainWindow):
         # Preprocess side
         self.preprocess_group = QGroupBox("Preprocessing Options")
         preprocess_layout = QVBoxLayout()
-        self.preprocess_group.setFixedWidth(300)
+        self.preprocess_group.setFixedWidth(220)
         preprocess_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
         self.preprocess_group.setEnabled(False)
 
@@ -218,7 +220,7 @@ class MainWindow(QMainWindow):
 
         self.description = QTextEdit()
         self.description.setPlaceholderText("Create description")
-        self.description.setFixedWidth(270)
+        self.description.setFixedWidth(260)
         self.description.setFixedHeight(40)
         model_layout.addWidget(self.description)
 
@@ -375,14 +377,14 @@ class MainWindow(QMainWindow):
             return
 
         selected_inputs = self.input_selector.selectedItems()
-        selected_output = self.output_selector.currentText()
+        selected_output = self.output_selector.selectedItems()
 
         if not selected_inputs or not selected_output:
             QMessageBox.warning(self, "Warning", "Please select input features and output target!")
             return
 
         self.input_columns = [item.text() for item in selected_inputs]
-        self.output_column = selected_output
+        self.output_column = selected_output[0].text()
 
         QMessageBox.information(self, "Selection Confirmed",
                                 f"Input Columns: {', '.join(self.input_columns)}\nOutput Column: {self.output_column}")
@@ -472,6 +474,7 @@ class MainWindow(QMainWindow):
                 metrics = model_info.get('metrics', {})
                 r2 = metrics.get('R²', 'N/A')
                 mse = metrics.get('MSE', 'N/A')
+                formula = model_info.get('formula', 'N/A')
                 input_columns = model_info.get('input_columns', [])
                 output_column = model_info.get('output_column', '')
 
@@ -483,18 +486,21 @@ class MainWindow(QMainWindow):
                 # Preparar datos para la gráfica (esto se puede modificar según tus necesidades)
                 plot_data = None  # Aquí puedes definir datos para graficar si es necesario
 
-                # Pasar los datos a ResultsWindow
+                # Pasar los datos a ResultsWindow con los parámetros correctos
                 results_window = ResultsWindow(
-                    description,
-                    f"Métricas del modelo:\n\nCoeficiente de determinación (R²): {r2}\nError Cuadrático Medio (ECM): {mse}",
-                    plot_data,
-                    model,
-                    input_columns,
-                    output_column
+                    description=description,
+                    r2=r2,
+                    mse=mse,
+                    formula=formula,
+                    plot_data=plot_data,
+                    coef=coefficients,
+                    intercept=intercept,
+                    input_columns=input_columns,
+                    output_column=output_column
                 )
-                results_window.exec()
-
                 QMessageBox.information(self, "Carga Exitosa", "El modelo se ha cargado exitosamente.")
+
+                results_window.exec()
 
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"No se pudo cargar el modelo:\n{str(e)}")
