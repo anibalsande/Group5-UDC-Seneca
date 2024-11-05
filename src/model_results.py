@@ -27,14 +27,11 @@ class ResultsWindow(QDialog):
 
         self.layout = QVBoxLayout()
         self.layout.setContentsMargins(15, 15, 15, 15)
+        self.layout.setAlignment(Qt.AlignmentFlag.AlignTop)
 
         self.title_label = QLabel("Resultados del Modelo")
         self.title_label.setFont(QFont("Bahnschrift", 16, QFont.Weight.Bold))
         self.layout.addWidget(self.title_label)
-
-        self.description_label = QLabel("Descripción del Modelo:")
-        self.description_label.setFont(QFont("Bahnschrift", 14, QFont.Weight.Bold))
-        self.layout.addWidget(self.description_label)
 
         self.description_text = QLabel(description)
         self.description_text.setWordWrap(True)
@@ -53,6 +50,21 @@ class ResultsWindow(QDialog):
             self.layout.addWidget(self.warning_label)
 
         self.save_button = QPushButton("Guardar Modelo")
+        self.save_button.setFixedHeight(28)
+        self.save_button.setStyleSheet(""" 
+            QPushButton {
+                background-color: #F6BE00; 
+                color: #0B1E3E;
+                border-radius: 5px;
+                font-weight: bold;
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            QPushButton:hover {
+                background-color: #0B1E3E;
+                color: white;
+            }
+        """)
         self.save_button.clicked.connect(self.save_model)
         self.layout.addWidget(self.save_button)
 

@@ -4,6 +4,8 @@ import sqlite3
 from PyQt6.QtWidgets import *
 from PyQt6.QtCore import *
 from PyQt6.QtGui import *
+import joblib
+from sklearn.linear_model import LinearRegression
 
 #Modules
 from model_results import ModelTrainer,ResultsWindow
@@ -58,6 +60,26 @@ class MainWindow(QMainWindow):
         self.file_label.setStyleSheet("color: white; padding-left: 10px;")
         self.file_label.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
         header_layout.addWidget(self.file_label)
+
+        self.load_model_button = QPushButton("+ Open Model")
+        self.load_model_button.setFixedHeight(28)
+        self.load_model_button.setFixedWidth(170)
+        self.load_model_button.setStyleSheet(""" 
+            QPushButton {
+                background-color: #F6BE00; 
+                color: #0B1E3E;
+                border-radius: 5px;
+                font-weight: bold;
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+            QPushButton:hover {
+                background-color: #0B1E3E;
+                color: white;
+            }
+        """)
+        self.load_model_button.clicked.connect(self.load_model)
+        header_layout.addWidget(self.load_model_button)
 
         # Add header to layout
         main_layout.addWidget(header_widget)
@@ -429,6 +451,53 @@ class MainWindow(QMainWindow):
         # Crear una instancia de ModelTrainer y llamar a su método para entrenar y mostrar los resultados
         trainer = ModelTrainer(self.data, self.input_columns, self.output_column, self.model_description)
 
+    def load_model(self):
+        # Diálogo para seleccionar el archivo
+        file_path, _ = QFileDialog.getOpenFileName(
+            self,
+            "Cargar Modelo",
+            "",
+            "Joblib (*.joblib);;Pickle (*.pkl);;All Files (*)"
+        )
+
+        if file_path:
+            try:
+                # Cargar el modelo guardado
+                model_info = joblib.load(file_path)
+
+                # Extraer información del modelo
+                description = model_info.get('description', 'Sin descripción')
+                coefficients = model_info.get('coefficients', [])
+                intercept = model_info.get('intercept', 0)
+                metrics = model_info.get('metrics', {})
+                r2 = metrics.get('R²', 'N/A')
+                mse = metrics.get('MSE', 'N/A')
+                input_columns = model_info.get('input_columns', [])
+                output_column = model_info.get('output_column', '')
+
+                # Crear el modelo de regresión lineal utilizando los coeficientes e intercepto del modelo cargado
+                model = LinearRegression()
+                model.coef_ = coefficients
+                model.intercept_ = intercept
+
+                # Preparar datos para la gráfica (esto se puede modificar según tus necesidades)
+                plot_data = None  # Aquí puedes definir datos para graficar si es necesario
+
+                # Pasar los datos a ResultsWindow
+                results_window = ResultsWindow(
+                    description,
+                    f"Métricas del modelo:\n\nCoeficiente de determinación (R²): {r2}\nError Cuadrático Medio (ECM): {mse}",
+                    plot_data,
+                    model,
+                    input_columns,
+                    output_column
+                )
+                results_window.exec()
+
+                QMessageBox.information(self, "Carga Exitosa", "El modelo se ha cargado exitosamente.")
+
+            except Exception as e:
+                QMessageBox.critical(self, "Error", f"No se pudo cargar el modelo:\n{str(e)}")
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
