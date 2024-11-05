@@ -1,4 +1,4 @@
-# Grupo 5 | UDC-Seneca
+# Group 5 | UDC-Seneca
 
 ## Overview
 <!-- TO DO: Add link to accessible PDF of Quick Start Guide-->
