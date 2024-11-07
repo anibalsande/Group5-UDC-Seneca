@@ -52,8 +52,40 @@ No. The LRM App has an easy-to-use graphical interface and guides you through th
 The LRM App also lets you save and reload your models quickly, making it indispensable for your research needs.    
 
 ## 2. Getting started
+Before you can use the LRM App, you will need to have the following software installed on your computer.
+- Windows 10 or 11 operating system
+- Python 3.13.0 or later
+- C++ compiler
+
+For help installing Python and a C++ compiler, see [System requirements](#system-requirements). 
 
 ### System requirements
+If you do not already have Python and a C++ compiler installed on your Windows 10/11 computer, install them first before installing the LRM App.
+
+**To install Python 3.13.0**
+1. Download [Python](https://python.org/downloads/) for Windows from the [Python](https://python.org/downloads/) website.
+2. In the initial installation window, select Customize installation (see Figure 1).
+   Note: You do not need admin privileges when installing.
+![Screenshot of Python installation options](Python_installation_screenshot.jpg)
+*Figure 1. Installation options for Python 3.13.0*
+3. In the Optional Features window, select all features except "for all users" (see Figure 2).
+![Screenshot of Python optional features](Python_optional_features_screenshot.jpg)
+*Figure 2. Python optional features*
+4. Select Next.
+5. In the Advanced Options window, ensure that "Associate files with Python" and "Add Python to environment variables" are checked (see Figure 3).
+![Screenshot of Python advanced options](Python_advanced_screenshot.jpg)
+*Figure 3. Python advanced options
+6. Select Install and wait for the installation to finish.
+
+**To install a C++ compiler**
+1. Install [Build Tools for Visual Studio 2022] (https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022).
+2. Under the heading Desktop & Mobile, select the Desktop development with C++ option on the installation menu (see Figure 2).
+3. Ensure that the C++ CMake tools for Windows component is checked (see Figure 2).
+![Screenshot of installation options for Visual Studio Build Tools 2022](Compiler_installation_screenshot.jpg)
+*Figure 2. Installation options for Visual Studio Build Tools 2022*
+4. Select Install and wait for the installation to finish.
+
+Once you have successfully installed Python and a C++ compiler, you can install and use the LRM App. 
 
 ### Installation
 
