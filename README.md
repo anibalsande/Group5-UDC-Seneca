@@ -74,20 +74,18 @@ If you do not already have the above software installed, use the instructions be
    Note: You do not need admin privileges when installing.
 
    ![Screenshot of Python installation options](/images/Python_installation_screenshot.jpg)
-
-   *Figure 1. Installation options for Python 3.13.0*
+   *Figure 1. Installation options for Python 3.13.0*  
 
 5. In the Optional Features window, select all features except "for all users" (see Figure 2).
 
-   ![Screenshot of Python optional features](/images/Python_optional_features_screenshot.jpg)
-   
-   *Figure 2. Python optional features*
+   ![Screenshot of Python optional features](/images/Python_optional_features_screenshot.jpg)  
+   *Figure 2. Python optional features*  
 
 7. Select Next.
 8. In the Advanced Options window, ensure that "Associate files with Python" and "Add Python to environment variables" are checked (see Figure 3).
 
    ![Screenshot of Python advanced options](/images/Python_advanced_screenshot.jpg)  
-   *Figure 3. Python advanced options  
+   *Figure 3. Python advanced options*  
 
 9. Select Install.
 
