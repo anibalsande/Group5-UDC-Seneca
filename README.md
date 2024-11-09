@@ -46,14 +46,14 @@ The LRM App creates, visualizes, and makes predictions from simple and multiple 
 <details>
     <summary>Is the LRM App hard to use?</summary>    
     No. The LRM App has an easy-to-use graphical interface and guides you through the entire data analysis and prediction process, including    
-    
-        - uploading your dataset from common formats like .CSV, Excel, and SQLite and addressing incomplete information
-        - focusing on the datapoints from your dataset that are important to you
-        - building a visual model and a graph of the data
-        - displaying the mathematical formula and the expected accuracy of predictions
-        - making predictions upon receiving new datapoints.    
+    uploading your dataset    
+    addressing incomplete information    
+    selecting datapoints to focus on    
+    building a visual model and graph    
+    displaying the mathematical formula and expected accuracy    
+    and updating predictions upon receiving new datapoints.    
         
-        The LRM App also lets you save and reload your models quickly, making it indispensable for your research needs.
+    The LRM App also lets you save and reload your models quickly, making it indispensable for your research needs.
 </details>
 
 ## 2. System requirements
