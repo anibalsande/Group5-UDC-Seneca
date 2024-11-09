@@ -133,9 +133,8 @@ Installing the LRM App requires cloning its code repository on GitHub Desktop an
    
    The LRM App opens in a separate window.
    
-   ![Screenshot of VSC Run Python File icon](/images/VSCRunIconScreenshot.jpg)
-
-   *Figure 6. VSC Run Python File icon* 
+   ![Screenshot of VSC Run Python File icon](/images/VSCRunIconScreenshot.jpg)  
+   *Figure 6. VSC Run Python File icon*  
 
 ## 3. User interface
 
