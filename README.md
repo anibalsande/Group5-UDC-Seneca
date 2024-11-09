@@ -44,15 +44,16 @@ The LRM App creates, visualizes, and makes predictions from simple and multiple 
     Linear regression is one of the methods, or algorithms (a set of instructions), by which mathematicians can show statistical information and model relationships between variables. AI can perform the linear regression algorithm in a matter of milliseconds, whereas it would take a human significantly longer.      
 </details>
 <details>
-    <summary>Is the LRM App hard to use?</summary>    
-    No. The LRM App has an easy-to-use graphical interface and guides you through the entire data analysis and prection process, including
-        - uploading your dataset from common formats like .CSV, Excel, and SQLite and addressing incomplete information
-        - focusing on the datapoints from your dataset that are important to you
-        - building a visual model and a graph of the data
-        - displaying the mathematical formula and the expected accuracy of predictions
-        - making predictions upon receiving new datapoints.    
+    <summary>Is the LRM App hard to use?</summary>
     
-  The LRM App also lets you save and reload your models quickly, making it indispensable for your research needs.
+    No. The LRM App has an easy-to-use graphical interface and guides you through the entire data analysis and prection process, including
+    - uploading your dataset from common formats like .CSV, Excel, and SQLite and addressing incomplete information
+    - focusing on the datapoints from your dataset that are important to you
+    - building a visual model and a graph of the data
+    - displaying the mathematical formula and the expected accuracy of predictions
+    - making predictions upon receiving new datapoints.    
+
+    The LRM App also lets you save and reload your models quickly, making it indispensable for your research needs.
 </details>
 
 ## 2. System requirements
