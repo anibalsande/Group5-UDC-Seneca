@@ -93,19 +93,21 @@ If you do not already have the above software installed, use the instructions be
 1. Download [Visual Studio Code](https://code.visualstudio.com/).
 2. Launch the installation file and select Next.
    Note: You must accept the license agreement to continue installation.
-3. In the Select Additional Tasks window, ensure "Register Code as an editor for supported file types" and "Add to PATH" are checked (see Figure 4).
-![Screenshot of Select Additional Tasks window for Visual Studio Code](/images/VSCsetuppagescreenshot.jpg)
-*Figure 4. Select Additional Tasks window for Visual Studio Code setup*
-4. Select **Next > Install > Finish**.
+3. In the Select Additional Tasks window, ensure "Register Code as an editor for supported file types" and "Add to PATH" are checked (see Figure 4).  
+
+   ![Screenshot of Select Additional Tasks window for Visual Studio Code](/images/VSCsetuppagescreenshot.jpg)
+   *Figure 4. Select Additional Tasks window for Visual Studio Code setup*
+5. Select **Next > Install > Finish**.
 
 **To install Visual Studio Build Tools**
 1. Download [Visual Studio Build Tools](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022).
 2. Launch the installation file and select Continue.
 3. Under the heading Desktop & Mobile, select Desktop development with C++ (see Figure 5, box 1).
-4. Under the heading Installation details, ensure the C++ CMake tools for Windows component is checked (see Figure 5, box 2).
-![Screenshot of installation options for Visual Studio Build Tools 2022](/images/Compiler_installation_screenshot.jpg)
-*Figure 5. Installation options for Visual Studio Build Tools 2022*
-5. Select **Install**. 
+4. Under the heading Installation details, ensure the C++ CMake tools for Windows component is checked (see Figure 5, box 2).  
+
+   ![Screenshot of installation options for Visual Studio Build Tools 2022](/images/Compiler_installation_screenshot.jpg)
+   *Figure 5. Installation options for Visual Studio Build Tools 2022*
+6. Select **Install**. 
 
 **To check Visual Studio Code extensions**
 1. Open Visual Studio Code.
@@ -117,12 +119,14 @@ Installing the LRM App requires cloning its code repository on GitHub Desktop an
 
 **To clone the LRM App code repository on GitHub Desktop**
 1. From GitHub Desktop, select **File > Clone a repository**.
-2. In the URL tab, enter the LRM App's GitHub repository URL: https://github.com/anibalsande/Group5-UDC-Seneca/)
+2. In the URL tab, enter the LRM App's GitHub repository URL: https://github.com/anibalsande/Group5-UDC-Seneca/)  
+
    Note: The name of the LRM App's code repository is Group5-UDC-Seneca.
 4. In Path, enter the location on your computer for the cloned repository.
+   
    Note: You need to sign into your GitHub account if you are not already signed in to continue.
-6. Select **Clone**.
-   The Group5-UDC-Seneca repository now appears in GitHub Desktop. 
+6. Select **Clone**.  
+    The Group5-UDC-Seneca repository now appears in GitHub Desktop. 
 
 **To run the LRM App on Visual Studio Code**
 1. From GitHub Desktop, ensure the Group5-UDC-Seneca repository is the Current repository, and select **Open in Visual Studio Code**.
