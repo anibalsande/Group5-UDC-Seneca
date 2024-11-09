@@ -70,19 +70,20 @@ If you do not already have the above software installed, use the instructions be
 2. Launch the installation file.
 3. In the initial installation window, select Customize installation (see Figure 1).  
     Note: You do not need admin privileges when installing.
-       ![Screenshot of Python installation options](/images/Python_installation_screenshot.jpg)
-       *Figure 1. Installation options for Python 3.13.0*  
+   
+    ![Screenshot of Python installation options](/images/Python_installation_screenshot.jpg)
+    *Figure 1. Installation options for Python 3.13.0*  
 
 5. In the Optional Features window, select all features except "for all users" (see Figure 2).
 
-   ![Screenshot of Python optional features](/images/Python_optional_features_screenshot.jpg)  
-   *Figure 2. Python optional features*  
+    ![Screenshot of Python optional features](/images/Python_optional_features_screenshot.jpg)  
+    *Figure 2. Python optional features*  
 
 7. Select Next.
 8. In the Advanced Options window, ensure that "Associate files with Python" and "Add Python to environment variables" are checked (see Figure 3).
 
-   ![Screenshot of Python advanced options](/images/Python_advanced_screenshot.jpg)  
-   *Figure 3. Python advanced options*  
+    ![Screenshot of Python advanced options](/images/Python_advanced_screenshot.jpg)  
+    *Figure 3. Python advanced options*  
 
 9. Select Install.
 
@@ -102,7 +103,7 @@ If you do not already have the above software installed, use the instructions be
 3. Under the heading Desktop & Mobile, select Desktop development with C++ (see Figure 5, box 1).
 4. Under the heading Installation details, ensure the C++ CMake tools for Windows component is checked (see Figure 5, box 2).  
 
-   ![Screenshot of installation options for Visual Studio Build Tools 2022](/images/Compiler_installation_screenshot.jpg)
+    ![Screenshot of installation options for Visual Studio Build Tools 2022](/images/Compiler_installation_screenshot.jpg)
     *Figure 5. Installation options for Visual Studio Build Tools 2022*
 5. Select **Install**. 
 
