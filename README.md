@@ -91,10 +91,10 @@ If you do not already have the above software installed, use the instructions be
 1. Download [Visual Studio Code](https://code.visualstudio.com/).
 2. Launch the installation file and select Next.  
     Note: You must accept the license agreement to continue installation.
-3. In the Select Additional Tasks window, ensure "Register Code as an editor for supported file types" and "Add to PATH" are checked (see Figure 4).  
-
-   ![Screenshot of Select Additional Tasks window for Visual Studio Code](/images/VSCsetuppagescreenshot.jpg)
-   *Figure 4. Select Additional Tasks window for Visual Studio Code setup*
+3. In the Select Additional Tasks window, ensure "Register Code as an editor for supported file types" and "Add to PATH" are checked (see Figure 4).
+   
+    ![Screenshot of Select Additional Tasks window for Visual Studio Code](/images/VSCsetuppagescreenshot.jpg)
+    *Figure 4. Select Additional Tasks window for Visual Studio Code setup*
 5. Select **Next > Install > Finish**.
 
 **To install Visual Studio Build Tools**
@@ -104,8 +104,8 @@ If you do not already have the above software installed, use the instructions be
 4. Under the heading Installation details, ensure the C++ CMake tools for Windows component is checked (see Figure 5, box 2).  
 
    ![Screenshot of installation options for Visual Studio Build Tools 2022](/images/Compiler_installation_screenshot.jpg)
-   *Figure 5. Installation options for Visual Studio Build Tools 2022*
-6. Select **Install**. 
+    *Figure 5. Installation options for Visual Studio Build Tools 2022*
+5. Select **Install**. 
 
 **To check Visual Studio Code extensions**
 1. Open Visual Studio Code.
