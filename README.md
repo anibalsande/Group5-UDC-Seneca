@@ -28,9 +28,7 @@ The LRM App creates, visualizes, and makes predictions from simple and multiple 
 <!-- TO DO: Add more information about name of the app (LRM App?), motivation for app, the target audience, the problem it solves, what we learned -->
 
 <details>
-    <summary>What is the LRM App?</summary>
-
-    ### The LRM App is a tool for analyzing data and making predictions from it.
+    <summary>What is the LRM App?</summary>    
     The LRM App is a tool for analyzing data and making predictions from it.
 </details>
 <details>
