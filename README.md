@@ -28,16 +28,12 @@ The LRM App creates, visualizes, and makes predictions from simple and multiple 
 <!-- TO DO: Add more information about name of the app (LRM App?), motivation for app, the target audience, the problem it solves, what we learned -->
 
 <details>
-    <summary>What is the LRM App?</summary> 
-    
-    
-The LRM App is a tool for analyzing data and making predictions from it.
+    <summary>What is the LRM App?</summary>    
+    The LRM App is a tool for analyzing data and making predictions from it.
 </details>
 <details>
-    <summary>How does the LRM App do this?</summary> 
-    
-    
-Using information from you and the power of artificial intelligence, the LRM App creates and visualizes simple and multiple linear regression models. These linear regression models let you analyze historical data patterns and from them predict future data patterns.
+    <summary>How does the LRM App do this?</summary>    
+    Using information from you and the power of artificial intelligence, the LRM App creates and visualizes simple and multiple linear regression models. These linear regression models let you analyze historical data patterns and from them predict future data patterns.
 </details>
 <details>
     <summary>What is artifical intelligence?</summary>  
@@ -46,8 +42,7 @@ Using information from you and the power of artificial intelligence, the LRM App
     Artificial intelligence, or AI, is defined by [Google Cloud](https://cloud.google.com/learn/what-is-artificial-intelligence/ial-intelligence-defined) as "a field of science concerned with building computers and machines that can reason, learn, and act in such a way that would normally require human intelligence or that involves data whose scale exceeds what humans can analyze." 
 </details>
 <details>
-    <summary>What is linear regression?</summary>  
-    
+    <summary>What is linear regression?</summary>   
     
 Linear regression is one of the methods, or algorithms (a set of instructions), by which mathematicians can show statistical information and model relationships between variables. AI can perform the linear regression algorithm in a matter of milliseconds, whereas it would take a human significantly longer.      
 </details>
