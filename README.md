@@ -27,11 +27,14 @@ The LRM App creates, visualizes, and makes predictions from simple and multiple 
 ## 1. Introduction
 <!-- TO DO: Add more information about name of the app (LRM App?), motivation for app, the target audience, the problem it solves, what we learned -->
 
-### What is the LRM App? 
-The LRM App is a tool for analyzing data and making predictions from it. 
-
-### How does the LRM App do this?
-Using information from you and the power of artificial intelligence, the LRM App creates and visualizes simple and multiple linear regression models. These linear regression models let you analyze historical data patterns and from them predict future data patterns. 
+<details>
+    <summary>What is the LRM App?</summary> 
+The LRM App is a tool for analyzing data and making predictions from it.
+</details>
+<details>
+    <summary>How does the LRM App do this?</summary>
+Using information from you and the power of artificial intelligence, the LRM App creates and visualizes simple and multiple linear regression models. These linear regression models let you analyze historical data patterns and from them predict future data patterns.
+</details>
 
 ### What is artificial intelligence?
 Artificial intelligence, or AI, is defined as "a field of science concerned with building computers and machines that can reason, learn, and act in such a way that would normally require human intelligence or that involves data whose scale exceeds what humans can analyze." ([Google Cloud](https://cloud.google.com/learn/what-is-artificial-intelligence#artificial-intelligence-defined))
