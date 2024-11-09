@@ -9,18 +9,18 @@ The LRM App creates, visualizes, and makes predictions from simple and multiple 
 <!--Finalize TOC at the very end. These are placeholders only at this point. All headings subject to change depending on project progress.--> 
 1. [Introduction](#introduction)
 2. [Getting started](#getting-started)
-  - [System requirements](#system-requirements)
-  - [Installation](#installation)
+    - [System requirements](#system-requirements)
+    - [Installation](#installation)
 3. [User interface](#user-interface)
-  - [Main interface](#main-interface)
-  - [Variable selection](#variable-selection)
-  - [Model creation](#model-creation)
-  - [Save and load models](#save-and-load-models)
+    - [Main interface](#main-interface)
+    - [Variable selection](#variable-selection)
+    - [Model creation](#model-creation)
+    - [Save and load models](#save-and-load-models)
 4. [Usage instructions](#usage-instructions)
-  - [Loading a file](#loading-a-file)
-  - [Selecting variables](#selecting-variables)
-  - [Model creation and prediction](#model-creation-and-prediction)
-  - [Saving and loading models](#saving-and-loading-models)
+    - [Loading a file](#loading-a-file)
+    - [Selecting variables](#selecting-variables)
+    - [Model creation and prediction](#model-creation-and-prediction)
+    - [Saving and loading models](#saving-and-loading-models)
 
 <!--Does Troubleshooting section need to be added? What about FAQs, Credits, Licence/License?-->
 
