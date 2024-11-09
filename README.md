@@ -63,7 +63,7 @@ If you do not already have the above software installed, use the instructions be
 **To install GitHub Desktop**
 1. Download [GitHub Desktop](https://desktop.github.com/download/).
 2. Launch the installation file.
-   The program opens automatically after installation.  
+      The program opens automatically after installation.  
 
 **To install Python 3.13.0**
 1. Download and launch [Python](https://python.org/downloads/) for Windows.
