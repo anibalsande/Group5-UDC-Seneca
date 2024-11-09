@@ -41,7 +41,7 @@ The LRM App creates, visualizes, and makes predictions from simple and multiple 
 </details>
 <details>
     <summary>What is linear regression?</summary>    
-    Linear regression is one of the methods, or algorithms (a set of instructions), by which mathematicians can show statistical information and model relationships between variables. AI can perform the linear regression algorithm in a matter of milliseconds, whereas it would take a human significantly longer.      
+    Linear regression is one of the methods, or algorithms (sets of instructions), by which mathematicians can show statistical information and model relationships between variables. AI can perform the linear regression algorithm in a matter of milliseconds, whereas it would take a human significantly longer.      
 </details>
 <details>
     <summary>Is the LRM App hard to use?</summary>    
