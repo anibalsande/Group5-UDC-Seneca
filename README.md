@@ -28,7 +28,9 @@ The LRM App creates, visualizes, and makes predictions from simple and multiple 
 <!-- TO DO: Add more information about name of the app (LRM App?), motivation for app, the target audience, the problem it solves, what we learned -->
 
 <details>
-    <summary>What is the LRM App?</summary>    
+    <summary>What is the LRM App?</summary>
+
+    ### The LRM App is a tool for analyzing data and making predictions from it.
     The LRM App is a tool for analyzing data and making predictions from it.
 </details>
 <details>
@@ -45,15 +47,7 @@ The LRM App creates, visualizes, and makes predictions from simple and multiple 
 </details>
 <details>
     <summary>Is the LRM App hard to use?</summary>    
-    No. The LRM App has an easy-to-use graphical interface and guides you through the entire data analysis and prediction process, including    
-    uploading your dataset    
-    addressing incomplete information    
-    selecting datapoints to focus on    
-    building a visual model and graph    
-    displaying the mathematical formula and expected accuracy    
-    and updating predictions upon receiving new datapoints.    
-        
-    The LRM App also lets you save and reload your models quickly, making it indispensable for your research needs.
+    No. The LRM App has an easy-to-use graphical interface and guides you through the entire data analysis and prediction process, including uploading your dataset, addressing incomplete information, selecting datapoints to focus on, building a visual model and graph, displaying the mathematical formula and expected accuracy, and updating predictions upon receiving new datapoints. The LRM App also lets you save and reload your models quickly, making it indispensable for your research needs.
 </details>
 
 ## 2. System requirements
