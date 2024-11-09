@@ -29,25 +29,26 @@ The LRM App creates, visualizes, and makes predictions from simple and multiple 
 
 <details>
     <summary>What is the LRM App?</summary>    
+    
     The LRM App is a tool for analyzing data and making predictions from it.
 </details>
 <details>
     <summary>How does the LRM App do this?</summary>    
+    
     Using information from you and the power of artificial intelligence, the LRM App creates and visualizes simple and multiple linear regression models. These linear regression models let you analyze historical data patterns and from them predict future data patterns.
 </details>
 <details>
-    <summary>What is artifical intelligence?</summary>  
-    
+    <summary>What is artifical intelligence?</summary>    
     
     Artificial intelligence, or AI, is defined by [Google Cloud](https://cloud.google.com/learn/what-is-artificial-intelligence/ial-intelligence-defined) as "a field of science concerned with building computers and machines that can reason, learn, and act in such a way that would normally require human intelligence or that involves data whose scale exceeds what humans can analyze." 
 </details>
 <details>
-    <summary>What is linear regression?</summary>   
+    <summary>What is linear regression?</summary>    
     
-Linear regression is one of the methods, or algorithms (a set of instructions), by which mathematicians can show statistical information and model relationships between variables. AI can perform the linear regression algorithm in a matter of milliseconds, whereas it would take a human significantly longer.      
+    Linear regression is one of the methods, or algorithms (a set of instructions), by which mathematicians can show statistical information and model relationships between variables. AI can perform the linear regression algorithm in a matter of milliseconds, whereas it would take a human significantly longer.      
 </details>
 <details>
-    <summary>Is the LRM App hard to use?</summary>  
+    <summary>Is the LRM App hard to use?</summary>    
     
 No. The LRM App has an easy-to-use graphical interface and guides you through the entire data analysis and prection process, including
   - uploading your dataset from common formats like .CSV, Excel, and SQLite and addressing incomplete information
@@ -55,7 +56,6 @@ No. The LRM App has an easy-to-use graphical interface and guides you through th
   - building a visual model and a graph of the data
   - displaying the mathematical formula and the expected accuracy of predictions
   - making predictions upon receiving new datapoints
-    
 
 The LRM App also lets you save and reload your models quickly, making it indispensable for your research needs.
 </details>
