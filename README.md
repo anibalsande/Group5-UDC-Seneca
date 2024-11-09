@@ -52,11 +52,16 @@ The LRM App also lets you save and reload your models quickly, making it indispe
 ## 2. System requirements
 The LRM App is designed for a Windows 11 operating system.
 
-Before you can use the LRM App, you will need to have the following software installed:
+Before you can use the LRM App, you need to have the following software installed:
+- GitHub Desktop
 - Python 3.13.0 or later
-- Visual Studio 2022 or another C++ compiler.
+- Visual Studio Code
+- Visual Studio Build Tools.
    
 If you do not already have the above software installed, use the instructions below to install them first. 
+
+**To install GitHub Desktop**
+1. Download 
 
 **To install Python 3.13.0**
 1. Download [Python](https://python.org/downloads/) for Windows.
@@ -74,21 +79,23 @@ If you do not already have the above software installed, use the instructions be
 *Figure 3. Python advanced options
 7. Select Install and wait for the installation to finish.
 
-**To install Visual Studio**
-1. Install [Visual Studio 2022](https://visualstudio.microsoft.com/downloads/).
+**To install Visual Studio Code**
+1. 
+**To install Visual Studio Build Tools**
+1. Download and launch [Visual Studio Build Tools](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022).
 2. Under the heading Desktop & Mobile, select the Desktop development with C++ option on the installation menu (see Figure 4).
 3. Ensure that the C++ CMake tools for Windows component is checked (see Figure 2).
 ![Screenshot of installation options for Visual Studio Build Tools 2022](Compiler_installation_screenshot.jpg)
 *Figure 4. Installation options for Visual Studio Build Tools 2022*
 4. Select Install and wait for the installation to finish.
 
-**To check Visual Studio extensions**
-1. Open Visual Studio
+**To check Visual Studio Code extensions**
+1. Open Visual Studio Code.
 2. Select **View > Extensions**.
 3. If not already installed, install the Pylance, Python, and Python Debugger extensions.
  
 ### Installation
-Installing the LRM App requires cloning its code repository on GitHub and then running the program on your compiling software.
+Installing the LRM App requires cloning its code repository on GitHub and then running the program through Visual Studio Code. 
 
 **To clone the LRM App code repository on Visual Studio**
 1. Open Visual Studio.
