@@ -77,13 +77,18 @@ If you do not already have the above software installed, use the instructions be
    *Figure 1. Installation options for Python 3.13.0*
 
 5. In the Optional Features window, select all features except "for all users" (see Figure 2).
-![Screenshot of Python optional features](Python_optional_features_screenshot.jpg)
-*Figure 2. Python optional features*
-6. Select Next.
-7. In the Advanced Options window, ensure that "Associate files with Python" and "Add Python to environment variables" are checked (see Figure 3).
-![Screenshot of Python advanced options](Python_advanced_screenshot.jpg)
-*Figure 3. Python advanced options
-8. Select Install.
+
+   ![Screenshot of Python optional features](Python_optional_features_screenshot.jpg)
+   
+   *Figure 2. Python optional features*
+
+7. Select Next.
+8. In the Advanced Options window, ensure that "Associate files with Python" and "Add Python to environment variables" are checked (see Figure 3).
+
+   ![Screenshot of Python advanced options](Python_advanced_screenshot.jpg)  
+   *Figure 3. Python advanced options  
+
+9. Select Install.
 
 **To install Visual Studio Code**
 1. Download [Visual Studio Code](https://code.visualstudio.com/).
