@@ -79,14 +79,14 @@ If you do not already have the above software installed, use the instructions be
 
 5. In the Optional Features window, select all features except "for all users" (see Figure 2).
 
-   ![Screenshot of Python optional features](Python_optional_features_screenshot.jpg)
+   ![Screenshot of Python optional features](/images/Python_optional_features_screenshot.jpg)
    
    *Figure 2. Python optional features*
 
 7. Select Next.
 8. In the Advanced Options window, ensure that "Associate files with Python" and "Add Python to environment variables" are checked (see Figure 3).
 
-   ![Screenshot of Python advanced options](Python_advanced_screenshot.jpg)  
+   ![Screenshot of Python advanced options](/images/Python_advanced_screenshot.jpg)  
    *Figure 3. Python advanced options  
 
 9. Select Install.
@@ -96,7 +96,7 @@ If you do not already have the above software installed, use the instructions be
 2. Launch the installation file and select Next.
    Note: You must accept the license agreement to continue installation.
 3. In the Select Additional Tasks window, ensure "Register Code as an editor for supported file types" and "Add to PATH" are checked (see Figure 4).
-![Screenshot of Select Additional Tasks window for Visual Studio Code](VSCsetuppagescreenshot.jpg)
+![Screenshot of Select Additional Tasks window for Visual Studio Code](/images/VSCsetuppagescreenshot.jpg)
 *Figure 4. Select Additional Tasks window for Visual Studio Code setup*
 4. Select **Next > Install > Finish**.
 
@@ -105,7 +105,7 @@ If you do not already have the above software installed, use the instructions be
 2. Launch the installation file and select Continue.
 3. Under the heading Desktop & Mobile, select Desktop development with C++ (see Figure 5, box 1).
 4. Under the heading Installation details, ensure the C++ CMake tools for Windows component is checked (see Figure 5, box 2).
-![Screenshot of installation options for Visual Studio Build Tools 2022](Compiler_installation_screenshot.jpg)
+![Screenshot of installation options for Visual Studio Build Tools 2022](/images/Compiler_installation_screenshot.jpg)
 *Figure 5. Installation options for Visual Studio Build Tools 2022*
 5. Select **Install**. 
 
@@ -135,7 +135,7 @@ Installing the LRM App requires cloning its code repository on GitHub Desktop an
    
    The LRM App opens in a separate window.
    
-   ![Screenshot of VSC Run Python File icon](VSCRunIconScreenshot.jpg)
+   ![Screenshot of VSC Run Python File icon](/images/VSCRunIconScreenshot.jpg)
 
    *Figure 6. VSC Run Python File icon* 
 
