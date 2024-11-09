@@ -62,16 +62,14 @@ If you do not already have the above software installed, use the instructions be
 
 **To install GitHub Desktop**
 1. Download [GitHub Desktop](https://desktop.github.com/download/).
-2. Launch the installation file.
-
-   The program opens automatically after installation.  
+2. Launch the installation file.  
+    The program opens automatically after installation.  
 
 **To install Python 3.13.0**
 1. Download and launch [Python](https://python.org/downloads/) for Windows.
 2. Launch the installation file.
-3. In the initial installation window, select Customize installation (see Figure 1).
-
-   Note: You do not need admin privileges when installing.
+3. In the initial installation window, select Customize installation (see Figure 1).  
+    Note: You do not need admin privileges when installing.
 
    ![Screenshot of Python installation options](/images/Python_installation_screenshot.jpg)  
    *Figure 1. Installation options for Python 3.13.0*  
@@ -91,8 +89,8 @@ If you do not already have the above software installed, use the instructions be
 
 **To install Visual Studio Code**
 1. Download [Visual Studio Code](https://code.visualstudio.com/).
-2. Launch the installation file and select Next.
-   Note: You must accept the license agreement to continue installation.
+2. Launch the installation file and select Next.  
+    Note: You must accept the license agreement to continue installation.
 3. In the Select Additional Tasks window, ensure "Register Code as an editor for supported file types" and "Add to PATH" are checked (see Figure 4).  
 
    ![Screenshot of Select Additional Tasks window for Visual Studio Code](/images/VSCsetuppagescreenshot.jpg)
@@ -120,22 +118,18 @@ Installing the LRM App requires cloning its code repository on GitHub Desktop an
 **To clone the LRM App code repository on GitHub Desktop**
 1. From GitHub Desktop, select **File > Clone a repository**.
 2. In the URL tab, enter the LRM App's GitHub repository URL: https://github.com/anibalsande/Group5-UDC-Seneca/)  
-
-   Note: The name of the LRM App's code repository is Group5-UDC-Seneca.
-4. In Path, enter the location on your computer for the cloned repository.
-   
-   Note: You need to sign into your GitHub account if you are not already signed in to continue.
-6. Select **Clone**.  
+    Note: The name of the LRM App's code repository is Group5-UDC-Seneca.
+3. In Path, enter the location on your computer for the cloned repository.  
+    Note: You need to sign into your GitHub account if you are not already signed in to continue.
+4. Select **Clone**.  
     The Group5-UDC-Seneca repository now appears in GitHub Desktop. 
 
 **To run the LRM App on Visual Studio Code**
-1. From GitHub Desktop, ensure the Group5-UDC-Seneca repository is the Current repository, and select **Open in Visual Studio Code**.
-   
-   The Group5-UDC-Seneca repository now appears in the Explorer panel of Visual Studio Code.
-3. Navigate to **Group5-UDC-Seneca > src > main.py**.
-4. Select the Run Python File icon (see Figure 6) or select **Run > Run Without Debugging**.
-   
-   The LRM App opens in a separate window.
+1. From GitHub Desktop, ensure the Group5-UDC-Seneca repository is the Current repository, and select **Open in Visual Studio Code**.  
+    The Group5-UDC-Seneca repository now appears in the Explorer panel of Visual Studio Code.
+2. Navigate to **Group5-UDC-Seneca > src > main.py**.
+3. Select the Run Python File icon (see Figure 6) or select **Run > Run Without Debugging**.  
+    The LRM App opens in a separate window.
    
    ![Screenshot of VSC Run Python File icon](/images/VSCRunIconScreenshot.jpg)  
    *Figure 6. VSC Run Python File icon*  
