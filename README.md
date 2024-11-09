@@ -63,23 +63,27 @@ If you do not already have the above software installed, use the instructions be
 **To install GitHub Desktop**
 1. Download [GitHub Desktop](https://desktop.github.com/download/).
 2. Launch the installation file.
-      The program opens automatically after installation.  
+
+   The program opens automatically after installation.  
 
 **To install Python 3.13.0**
 1. Download and launch [Python](https://python.org/downloads/) for Windows.
 2. Launch the installation file.
 3. In the initial installation window, select Customize installation (see Figure 1).
-   Note: You do not need admin privileges when installing.
-![Screenshot of Python installation options](Python_installation_screenshot.jpg)
-*Figure 1. Installation options for Python 3.13.0*
-4. In the Optional Features window, select all features except "for all users" (see Figure 2).
+
+   Note: You do not need admin privileges when installing.  
+   ![Screenshot of Python installation options](Python_installation_screenshot.jpg)
+
+   *Figure 1. Installation options for Python 3.13.0*
+
+5. In the Optional Features window, select all features except "for all users" (see Figure 2).
 ![Screenshot of Python optional features](Python_optional_features_screenshot.jpg)
 *Figure 2. Python optional features*
-5. Select Next.
-6. In the Advanced Options window, ensure that "Associate files with Python" and "Add Python to environment variables" are checked (see Figure 3).
+6. Select Next.
+7. In the Advanced Options window, ensure that "Associate files with Python" and "Add Python to environment variables" are checked (see Figure 3).
 ![Screenshot of Python advanced options](Python_advanced_screenshot.jpg)
 *Figure 3. Python advanced options
-7. Select Install.
+8. Select Install.
 
 **To install Visual Studio Code**
 1. Download [Visual Studio Code](https://code.visualstudio.com/).
