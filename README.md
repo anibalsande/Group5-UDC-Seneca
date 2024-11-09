@@ -23,7 +23,9 @@ The LRM App creates, visualizes, and makes predictions from simple and multiple 
 
 <!--Does Troubleshooting section need to be added? What about FAQs, Credits, Licence/License?-->
 
-## 1. Introduction
+<details>
+    <summary><Introduction></summary>
+        ## 1. Introduction
 <!-- TO DO: Add more information about name of the app (LRM App?), motivation for app, the target audience, the problem it solves, what we learned -->
 
 ### What is the LRM App? 
@@ -46,7 +48,9 @@ No. The LRM App has an easy-to-use graphical interface and guides you through th
   - displaying the mathematical formula and the expected accuracy of predictions
   - making predictions upon receiving new datapoints
 
-The LRM App also lets you save and reload your models quickly, making it indispensable for your research needs.    
+The LRM App also lets you save and reload your models quickly, making it indispensable for your research needs.
+
+</details>
 
 ## 2. System requirements
 The LRM App is designed for a Windows 11 operating system.
