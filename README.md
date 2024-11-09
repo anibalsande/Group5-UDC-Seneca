@@ -8,15 +8,14 @@ The LRM App creates, visualizes, and makes predictions from simple and multiple 
 ## Table of Contents
 <!--Finalize TOC at the very end. These are placeholders only at this point. All headings subject to change depending on project progress.--> 
 1. [Introduction](#introduction)
-2. [Getting started](#getting-started)
-    - [System requirements](#system-requirements)
-    - [Installation](#installation)
-3. [User interface](#user-interface)
+2. [System requirements](#system-requirements)
+3. [Installation](#installation)
+4. [User interface](#user-interface)
     - [Main interface](#main-interface)
     - [Variable selection](#variable-selection)
     - [Model creation](#model-creation)
     - [Save and load models](#save-and-load-models)
-4. [Usage instructions](#usage-instructions)
+5. [Usage instructions](#usage-instructions)
     - [Loading a file](#loading-a-file)
     - [Selecting variables](#selecting-variables)
     - [Model creation and prediction](#model-creation-and-prediction)
@@ -74,18 +73,18 @@ If you do not already have the above software installed, use the instructions be
     ![Screenshot of Python installation options](/images/Python_installation_screenshot.jpg)
     *Figure 1. Installation options for Python 3.13.0*  
 
-5. In the Optional Features window, select all features except "for all users" (see Figure 2).
+4. In the Optional Features window, select all features except "for all users" (see Figure 2).
 
     ![Screenshot of Python optional features](/images/Python_optional_features_screenshot.jpg)  
     *Figure 2. Python optional features*  
 
-7. Select Next.
-8. In the Advanced Options window, ensure that "Associate files with Python" and "Add Python to environment variables" are checked (see Figure 3).
+5. Select Next.
+6. In the Advanced Options window, ensure that "Associate files with Python" and "Add Python to environment variables" are checked (see Figure 3).
 
     ![Screenshot of Python advanced options](/images/Python_advanced_screenshot.jpg)  
     *Figure 3. Python advanced options*  
 
-9. Select Install.
+7. Select Install.
 
 **To install Visual Studio Code**
 1. Download [Visual Studio Code](https://code.visualstudio.com/).
@@ -94,8 +93,9 @@ If you do not already have the above software installed, use the instructions be
 3. In the Select Additional Tasks window, ensure "Register Code as an editor for supported file types" and "Add to PATH" are checked (see Figure 4).
 
     ![Screenshot of Select Additional Tasks window for Visual Studio Code](/images/VSCsetuppagescreenshot.jpg)
-    *Figure 4. Select Additional Tasks window for Visual Studio Code setup*
-5. Select **Next > Install > Finish**.
+    *Figure 4. Select Additional Tasks for VSC setup*
+   
+4. Select **Next > Install > Finish**.
 
 **To install Visual Studio Build Tools**
 1. Download [Visual Studio Build Tools](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022).
@@ -112,7 +112,7 @@ If you do not already have the above software installed, use the instructions be
 2. Select **View > Extensions**.
 3. If not already installed, install the Pylance, Python, and Python Debugger extensions.
  
-### Installation
+### 3. Installation
 Installing the LRM App requires cloning its code repository on GitHub Desktop and then running the program through Visual Studio Code. 
 
 **To clone the LRM App code repository on GitHub Desktop**
@@ -134,7 +134,7 @@ Installing the LRM App requires cloning its code repository on GitHub Desktop an
    ![Screenshot of VSC Run Python File icon](/images/VSCRunIconScreenshot.jpg)  
    *Figure 6. VSC Run Python File icon*  
 
-## 3. User interface
+## 4. User interface
 
 ### Main interface
 
@@ -144,7 +144,7 @@ Installing the LRM App requires cloning its code repository on GitHub Desktop an
 
 ### Save and load models
 
-## 4. Usage instructions
+## 5. Usage instructions
 
 ### Loading a file
 
