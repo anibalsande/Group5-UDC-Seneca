@@ -24,7 +24,7 @@ The LRM App creates, visualizes, and makes predictions from simple and multiple 
 <!--Does Troubleshooting section need to be added? What about FAQs, Credits, Licence/License?-->
 
 <details>
-    <summary><Introduction></summary>
+    <summary>Introduction</summary>
         ## 1. Introduction
 <!-- TO DO: Add more information about name of the app (LRM App?), motivation for app, the target audience, the problem it solves, what we learned -->
 
