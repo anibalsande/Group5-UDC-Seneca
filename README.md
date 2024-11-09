@@ -73,7 +73,7 @@ If you do not already have the above software installed, use the instructions be
 
    Note: You do not need admin privileges when installing.
 
-   ![Screenshot of Python installation options](/images/Python_installation_screenshot.jpg)
+   ![Screenshot of Python installation options](/images/Python_installation_screenshot.jpg)  
    *Figure 1. Installation options for Python 3.13.0*  
 
 5. In the Optional Features window, select all features except "for all users" (see Figure 2).
