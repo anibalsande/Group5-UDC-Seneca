@@ -61,10 +61,12 @@ Before you can use the LRM App, you need to have the following software installe
 If you do not already have the above software installed, use the instructions below to install them first. 
 
 **To install GitHub Desktop**
-1. Download 
+1. Download [GitHub Desktop](https://desktop.github.com/download/).
+2. Launch the installation file.
+   The program opens automatically after installation.
 
 **To install Python 3.13.0**
-1. Download [Python](https://python.org/downloads/) for Windows.
+1. Download and launch [Python](https://python.org/downloads/) for Windows.
 2. Launch the installation file.
 3. In the initial installation window, select Customize installation (see Figure 1).
    Note: You do not need admin privileges when installing.
@@ -77,17 +79,25 @@ If you do not already have the above software installed, use the instructions be
 6. In the Advanced Options window, ensure that "Associate files with Python" and "Add Python to environment variables" are checked (see Figure 3).
 ![Screenshot of Python advanced options](Python_advanced_screenshot.jpg)
 *Figure 3. Python advanced options
-7. Select Install and wait for the installation to finish.
+7. Select Install.
 
 **To install Visual Studio Code**
-1. 
+1. Download [Visual Studio Code](https://code.visualstudio.com/).
+2. Launch the installation file and select Next.
+   Note: You must accept the license agreement to continue installation.
+3. In the Select Additional Tasks window, ensure "Register Code as an editor for supported file types" and "Add to PATH" are checked (see Figure 4).
+![Screenshot of Select Additional Tasks window for Visual Studio Code](VSCsetuppagescreenshot.jpg)
+*Figure 4. Select Additional Tasks window for Visual Studio Code setup*
+4. Select **Next > Install > Finish**.
+
 **To install Visual Studio Build Tools**
-1. Download and launch [Visual Studio Build Tools](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022).
-2. Under the heading Desktop & Mobile, select the Desktop development with C++ option on the installation menu (see Figure 4).
-3. Ensure that the C++ CMake tools for Windows component is checked (see Figure 2).
+1. Download [Visual Studio Build Tools](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022).
+2. Launch the installation file and select Continue.
+3. Under the heading Desktop & Mobile, select Desktop development with C++ (see Figure 5, box 1).
+4. Under the heading Installation details, ensure the C++ CMake tools for Windows component is checked (see Figure 5, box 2).
 ![Screenshot of installation options for Visual Studio Build Tools 2022](Compiler_installation_screenshot.jpg)
-*Figure 4. Installation options for Visual Studio Build Tools 2022*
-4. Select Install and wait for the installation to finish.
+*Figure 5. Installation options for Visual Studio Build Tools 2022*
+5. Select **Install**. 
 
 **To check Visual Studio Code extensions**
 1. Open Visual Studio Code.
@@ -95,21 +105,25 @@ If you do not already have the above software installed, use the instructions be
 3. If not already installed, install the Pylance, Python, and Python Debugger extensions.
  
 ### Installation
-Installing the LRM App requires cloning its code repository on GitHub and then running the program through Visual Studio Code. 
+Installing the LRM App requires cloning its code repository on GitHub Desktop and then running the program through Visual Studio Code. 
 
-**To clone the LRM App code repository on Visual Studio**
-1. Open Visual Studio.
-2. From the opening screen, select Clone a repository (see Figure 5).
-![Screenshot of Visual Studio start page with Clone a repository selected](VisualStudioStartPagescreenshot.jpg)
-3. In Repository location, enter the location of the LRM App's source code on GitHub: https://github.com/anibalsande/Group5-UDC-Seneca/)
+**To clone the LRM App code repository on GitHub Desktop**
+1. From GitHub Desktop, select **File > Clone a repository**.
+2. In the URL tab, enter the LRM App's GitHub repository URL: https://github.com/anibalsande/Group5-UDC-Seneca/)
+   Note: The name of the LRM App's code repository is Group5-UDC-Seneca.
 4. In Path, enter the location on your computer for the cloned repository.
-   Note: You might need to sign into your GitHub account if you are not already signed in.
-6. Select Clone.
-   The LRM App code repository now appears in Visual Studio's Solution Explorer-Folder View.
-   Note: If the Solution Explorer-Folder View does not appear, open it from **View > Solution Explorer** or with **Ctrl+Alt+L**.
+   Note: You need to sign into your GitHub account if you are not already signed in to continue.
+6. Select **Clone**.
+   The Group5-UDC-Seneca repository now appears in GitHub Desktop. 
 
-**To run the LRM App on Visual Studio**
-1. Open 
+**To run the LRM App on Visual Studio Code**
+1. From GitHub Desktop, ensure the Group5-UDC-Seneca repository is the Current repository, and select **Open in Visual Studio Code**.
+   The Group5-UDC-Seneca repository now appears in the Explorer panel of Visual Studio Code.
+2. Navigate to **Group5-UDC-Seneca > src > main.py**.
+3. Select the Run Python File icon (see Figure 6) or select **Run > Run Without Debugging**.
+   The LRM App opens in a separate window. 
+![Screenshot of VSC Run Python File icon](VSCRunIconScreenshot.jpg)
+*Figure 6. VSC Run Python File icon* 
 
 ## 3. User interface
 
