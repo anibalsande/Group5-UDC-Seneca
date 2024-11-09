@@ -92,8 +92,8 @@ If you do not already have the above software installed, use the instructions be
     Note: You must accept the license agreement to continue installation.
 3. In the Select Additional Tasks window, ensure "Register Code as an editor for supported file types" and "Add to PATH" are checked (see Figure 4).
 
-    ![Screenshot of Select Additional Tasks window for Visual Studio Code](/images/VSCsetuppagescreenshot.jpg)
-    *Figure 4. Select Additional Tasks for VSC setup*
+    ![Screenshot of Select Additional Tasks window for Visual Studio Code](/images/VSCsetuppagescreenshot.jpg)  
+    *Figure 4. Select Additional Tasks for VSC setup*  
    
 4. Select **Next > Install > Finish**.
 
