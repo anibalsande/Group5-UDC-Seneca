@@ -60,7 +60,7 @@ Before you can use the LRM App, you will need to have the following software ins
 For help installing Python and a C++ compiler, see [System requirements](#system-requirements). 
 
 ### System requirements
-If you do not already have Python and a C++ compiler installed on your Windows 10/11 computer, install them first before installing the LRM App.
+If you do not already have Python and a C++ compiler installed on your Windows 10/11 computer, install these first using the instructions below before installing the LRM App.
 
 **To install Python 3.13.0**
 1. Download [Python](https://python.org/downloads/) for Windows from the [Python](https://python.org/downloads/) website.
@@ -78,14 +78,12 @@ If you do not already have Python and a C++ compiler installed on your Windows 1
 6. Select Install and wait for the installation to finish.
 
 **To install a C++ compiler**
-1. Install [Build Tools for Visual Studio 2022] (https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022).
+1. Install [Visual Studio 2022](https://visualstudio.microsoft.com/downloads/).
 2. Under the heading Desktop & Mobile, select the Desktop development with C++ option on the installation menu (see Figure 2).
 3. Ensure that the C++ CMake tools for Windows component is checked (see Figure 2).
 ![Screenshot of installation options for Visual Studio Build Tools 2022](Compiler_installation_screenshot.jpg)
 *Figure 2. Installation options for Visual Studio Build Tools 2022*
 4. Select Install and wait for the installation to finish.
-
-Once you have successfully installed Python and a C++ compiler, you can install and use the LRM App. 
 
 ### Installation
 
