@@ -1,0 +1,26 @@
+name: Run Tests  # Nombre del flujo de trabajo
+
+on:
+  push:
+    branches:
+      - main  # Ejecuta la acción en cada push a la rama principal
+  pull_request:
+    branches:
+      - main  # También en las solicitudes de extracción a la rama principal
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest  # Elige el entorno de ejecución
+
+    steps:
+    - uses: actions/checkout@v3  # Paso para clonar tu repositorio
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'  # Versión de Python
+
+    - name: Install dependencies
+      run: pip install -r requirements.txt  # Instala las dependencias
+
+    - name: Run tests
+      run: python -m unittest discover  # Ejecuta las pruebas unitarias
