@@ -5,12 +5,12 @@ on:
     branches:
       - main  # Ejecuta la acción en cada push a la rama principal
       - development
-      - predicition_development
+      - prediction_development
   pull_request:
     branches:
       - main  # También en las solicitudes de extracción a la rama principal
       - development
-      - predicition_development
+      - prediction_development
 
 jobs:
   build-and-test:

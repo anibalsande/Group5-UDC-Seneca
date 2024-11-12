@@ -16,8 +16,10 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle("Preprocessing Dataset")
         self.setGeometry(100, 100, 800, 600)
-        self.setFont(QFont("Bahnschrift", 12))
         #self.setStyleSheet("background-color: white;")
+
+        self.setFont(QFont("Bahnschrift", 12))
+
         self.data = None
         self.input_columns = []
         self.output_column = None
@@ -129,7 +131,11 @@ class MainWindow(QMainWindow):
         self.output_selector = QListWidget()
         self.output_selector.setFixedHeight(70) 
         self.output_selector.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)     
-        right_column_layout.addWidget(QLabel("Target:"))
+        
+        target_label = QLabel("Target:")
+        target_label.setToolTip("The 'Target' is the dependent variable column we aim to predict.")
+        right_column_layout.addWidget(target_label)
+        
         right_column_layout.addWidget(self.output_selector)
 
         # Confirm button (segunda columna)
