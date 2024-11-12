@@ -24,4 +24,4 @@ jobs:
         python-version: '3.x'  # Versión de Python
 
     - name: Run tests
-      run: python -m unittest discover -s .github/src -p "test_model_results.py"
+      run: python -m unittest discover -s /src -p "test_model_results.py"
