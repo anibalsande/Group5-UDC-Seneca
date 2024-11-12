@@ -31,7 +31,6 @@ jobs:
         pip install numpy 
         pip install PyQt6 
         pip install scikit-learn
-        pip install matplotlib
 
     - name: Run tests
       run: |
