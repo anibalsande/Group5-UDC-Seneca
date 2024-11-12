@@ -26,11 +26,6 @@ jobs:
     - name: Install pytest
       run: pip install pytest  # Instalar pytest si no está en requirements.txt
 
-    - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libegl1-mesa libxext6
-
     - name: Install missing dependencies
       run: |
         pip install numpy 
