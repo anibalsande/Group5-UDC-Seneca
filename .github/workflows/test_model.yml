@@ -26,6 +26,9 @@ jobs:
     - name: Install pytest
       run: pip install pytest  # Instalar pytest si no está en requirements.txt
 
+    - name: Install numpy
+      run: pip install numpy
+
     - name: Run tests
       run: |
         export PYTHONPATH=$PYTHONPATH:./src  # Agregar 'src' al PYTHONPATH
