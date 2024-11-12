@@ -26,8 +26,12 @@ jobs:
     - name: Install pytest
       run: pip install pytest  # Instalar pytest si no está en requirements.txt
 
-    - name: Install numpy
-      run: pip install numpy
+    - name: Install missing dependencies
+      run: |
+        pip install numpy 
+        pip install PyQt6 
+        pip install scikit-learn
+        pip install matplotlib
 
     - name: Run tests
       run: |
