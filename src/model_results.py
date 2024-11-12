@@ -121,10 +121,9 @@ class ResultsWindow(QDialog):
         canvas.draw()  # Dibuja el gráfico
 
     def save_model(self):
-        # Cambiar el filtro del diálogo para que solo incluya joblib como opción principal
         file_path, _ = QFileDialog.getSaveFileName(
             self,
-            "Guardar Modelo",
+            "Save Model",
             "",
             "Joblib (*.joblib);;All Files (*)",
             options=QFileDialog.Option.DontConfirmOverwrite
@@ -162,7 +161,7 @@ class ResultsWindow(QDialog):
             for col in self.input_columns:
                 value = self.input_fields[col].text()
                 if value == "":
-                    raise ValueError("Por favor, ingrese todos los valores de entrada.")
+                    raise ValueError("Please, enter all input values.")
                 input_values.append(float(value))
 
             # Calcular predicción usando el modelo
@@ -173,9 +172,9 @@ class ResultsWindow(QDialog):
             self.prediction_output.setStyleSheet("color: green; font-weight: bold;")
 
         except ValueError as ve:
-            QMessageBox.warning(self, "Error de Entrada", str(ve))
+            QMessageBox.warning(self, "Input Error", str(ve))
         except Exception as e:
-            QMessageBox.critical(self, "Error en la Predicción", f"Error inesperado:\n{str(e)}")
+            QMessageBox.critical(self, "Prediction Error", f"Unexpected Error:\n{str(e)}")
 
 class ModelTrainer(QWidget):
     def __init__(self, data, input_columns, output_column, description=""):
@@ -186,15 +185,12 @@ class ModelTrainer(QWidget):
         self.description = description
         self.model = LinearRegression()
 
-        # Llama a la función de entrenamiento directamente en la inicialización
         self.train_and_show_results()
     
     def train_and_show_results(self):
         try:
-            # Preprocesamiento de las columnas de entrada y salida
             X, y = self.preprocess_data(self.input_columns, self.output_column)
 
-            # Dividir en entrenamiento y prueba
             X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
             # Entrenar el modelo de regresión lineal
@@ -215,9 +211,9 @@ class ModelTrainer(QWidget):
             num_inputs = self.data[self.input_columns].select_dtypes(include=[np.number])
             warning_text = ""
             if num_inputs.empty:
-                warning_text += "Nota: No hay columnas numéricas en los datos de entrada.\n"
+                warning_text += "Note: The graph is only displayed for a single numeric input column.\n"
             elif len(self.input_columns) > 1 or any(X_test.dtype.kind == 'O' for col in self.input_columns):
-                warning_text += "Nota: La gráfica solo se muestra para una columna numérica de entrada."
+                warning_text += "Note: The graph is only displayed for a single numeric input column."
 
             plot_data = (X_test[:, 0], y_test, y_pred) if len(self.input_columns) == 1 and X_test.shape[1] == 1 else None
 
