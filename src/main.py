@@ -398,12 +398,13 @@ class MainWindow(QMainWindow):
         self.preprocess_group.setEnabled(True)
 
     def populate_columns(self):
-        """ Llenar los selectores de columnas con nombres de columnas """
+        """ Llenar los selectores de columnas con nombres de columnas numéricas """
         if self.data is not None:
+            numeric_columns = self.data.select_dtypes(include=["number"]).columns.tolist()
             self.input_selector.clear()
-            self.input_selector.addItems(self.data.columns.tolist())
+            self.input_selector.addItems(numeric_columns)
             self.output_selector.clear()
-            self.output_selector.addItems(self.data.columns.tolist())
+            self.output_selector.addItems(numeric_columns)
 
     def show_data(self):
         """ Mostrar los datos en la tabla """
@@ -436,6 +437,14 @@ class MainWindow(QMainWindow):
     def update_output_selector(self):
         selected_inputs = [item.text() for item in self.input_selector.selectedItems()]
         remaining_columns = [col for col in self.data.columns if col not in selected_inputs]
+        self.output_selector.clear()
+        self.output_selector.addItems(remaining_columns)
+
+    def update_output_selector(self):
+        selected_inputs = [item.text() for item in self.input_selector.selectedItems()]
+        numeric_columns = self.data.select_dtypes(include=["number"]).columns
+        remaining_columns = [col for col in numeric_columns if col not in selected_inputs]
+        
         self.output_selector.clear()
         self.output_selector.addItems(remaining_columns)
 

@@ -189,7 +189,8 @@ class ModelTrainer(QWidget):
     
     def train_and_show_results(self):
         try:
-            X, y = self.preprocess_data(self.input_columns, self.output_column)
+            X = self.data[self.input_columns].values
+            y = self.data[self.output_column].values
 
             X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
@@ -208,12 +209,9 @@ class ModelTrainer(QWidget):
             formula = f"{self.output_column} = {self.intercept:.4f} + {' + '.join(formula_terms)}"
 
             # Determinar el mensaje de advertencia y los datos de la gráfica
-            num_inputs = self.data[self.input_columns].select_dtypes(include=[np.number])
             warning_text = ""
-            if num_inputs.empty:
-                warning_text += "Note: The graph is only displayed for a single numeric input column.\n"
-            elif len(self.input_columns) > 1 or any(X_test.dtype.kind == 'O' for col in self.input_columns):
-                warning_text += "Note: The graph is only displayed for a single numeric input column."
+            if len(self.input_columns) > 1:
+                warning_text += "Note: The graph is only displayed for a simple linear regression."
 
             plot_data = (X_test[:, 0], y_test, y_pred) if len(self.input_columns) == 1 and X_test.shape[1] == 1 else None
 
@@ -223,24 +221,3 @@ class ModelTrainer(QWidget):
 
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Error en la creación del modelo:\n{str(e)}")
-
-    def preprocess_data(self, input_columns, output_column):
-        X = self.data[input_columns]
-        y = self.data[output_column]
-
-        # Procesamiento de las columnas de entrada (input_columns)
-        categorical_cols = X.select_dtypes(include=['object', 'category']).columns
-        if categorical_cols.any():
-            encoder = OneHotEncoder(sparse_output=False, drop='first')
-            X_encoded = encoder.fit_transform(X[categorical_cols])
-
-            X_numeric = X.drop(columns=categorical_cols).values
-            X = np.hstack((X_numeric, X_encoded))
-        else:
-            X = X.values
-
-        if y.dtype == 'object' or y.dtype.name == 'category':
-            label_encoder = LabelEncoder()
-            y = label_encoder.fit_transform(y)  # Convertir a valores numéricos si es categórica
-
-        return X, y
