@@ -143,6 +143,14 @@ This section describes each feature of the LRM App.
 ### Main interface
 See Figure 8 for a map and legend explaining what each feature of the LRM App does.  
 
+**Legend**
+1. Open File - Select this button to select your model's dataset from your computer or drive.
+2. Open Model - Select this button to open a previously-saved model you created.
+3. Display Area - The main panel of the interface is where your dataset, graph, model, and equations appear.
+4. Column Selection - The first menu in this panel, Features, is where you select the independent variable(s) for your model. The second menu, Target, is where you select the dependent variable(s).
+5. Preprocessing Options - This panel's menu allows you to confirm what you want the LRM App to do with missing or incomplete information in your dataset. You can remove those rows or fill them with a mean, a median, or a constant.
+6. Create Model - This panel allows you to name your model before creating it. You can also create your model without a specific name.
+    
 ### Variable selection
 
 ### Model creation
