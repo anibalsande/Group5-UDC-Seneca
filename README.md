@@ -138,7 +138,7 @@ Installing the LRM App requires cloning its code repository on GitHub Desktop an
    *Figure 7. LRM App start page*
    
 ## 4. User interface
-This section describes each feature of the LRM App. 
+This section illustrates and describes each feature of the LRM App. 
 
 ### Main interface
 See Figure 8 for a map and legend explaining what each feature of the LRM App does.  
@@ -146,23 +146,47 @@ See Figure 8 for a map and legend explaining what each feature of the LRM App do
 **Legend**
 1. Open File - Select this button to select your model's dataset from your computer or drive.
 2. Open Model - Select this button to open a previously-saved model you created.
-3. Display Area - The main panel of the interface is where your dataset, graph, model, and equations appear.
+3. Display Area - The main panel of the interface is where your dataset appears.
 4. Column Selection - The first menu in this panel, Features, is where you select the independent variable(s) for your model. The second menu, Target, is where you select the dependent variable(s).
 5. Preprocessing Options - This panel's menu allows you to confirm what you want the LRM App to do with missing or incomplete information in your dataset. You can remove those rows or fill them with a mean, a median, or a constant.
 6. Create Model - This panel allows you to name your model before creating it. You can also create your model without a specific name.
     
-### Variable selection
+### Variable selection interface
+Figure 9, box 1 shows an example of variable selection from a housing dataset. The Feature (independent) variable selected is "total_bedrooms." The vertical bar beside the variable marks it as selected. The Target (dependent) variable selected is "median_house_value" and the vertical bar beside the variable marks it as selected. Upon selecting Confirm Selection, the app highlights the columns showing the selected variables in the Display Area.  
 
-### Model creation
-
-### Save and load models
+### Preprocessing options interface
+Figure 9, box 2 shows the preprocessing options available: remove the rows with missing data or NaN (Not a Number) items or fill them with the mean or median value for that column, or fill them with a constant. 
+**Note:** NaN values must either be removed or filled in before you can create a model.
+After selecting an option and, if applicable, entering a constant value, selecting Apply Preprocessing removes or fills in the NaN items.
 
 ## 5. Usage instructions
-This section takes you step by step through the process of creating, naming, saving, and reloading your own linear regression models and graphs.
+This section takes you step by step through the process of creating, naming, saving, and reloading a linear regression model and graph.
 
 ### Select your dataset
-The first step is to select the dataset you will use to make your model. The LRM App 
+The first step is to select the dataset you will use to make your model. The LRM App can utilize data in .csv format, Excel spreadsheets, or SQLite databases. 
+
+**To select dataset**
+1. Select **Open File**.
+2. Navigate to your dataset file.
+3. Double-click the file or select it and then select **Open**.
+   **Note**: If any NaN items are detected, a dialog box opens to inform you (see Figure 10). Select **OK** to continue. 
+
 ### Selecting variables
+After you open a dataset, its columns will appear under the Features and Target menus in the Column Selection panel. 
+You can select single or multiple independent variables for your Feature(s). You can only select one dependent variable for the Target.
+**Note**: The LRM App can provide the model metrics and equation for a multiple-independent-variable linear regression but cannot graph it. The LRM App can only display a graph for a single-independent-variable or simple linear regression.
+
+**To select variables**
+1. Scroll through the column headings in the Features menu.
+2. Select a desired Feature(s) by clicking on it or them.
+   A vertical bar appears beside the Feature(s) selected.
+4. To deselect a Feature, click it again.
+   The vertical bar disappears.
+5. Repeat the selection process with the column headings in the Target menu.
+6. Select Confirm Selection.
+   The Selection Confirmed dialog box opens to summarize your choices for Input Columns (Features) and Output Column (Target).
+7. Select **OK**. 
+   
 
 ### Model creation and prediction
 
