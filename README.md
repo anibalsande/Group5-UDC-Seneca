@@ -155,7 +155,10 @@ See Figure 8 for a map and legend explaining what each feature of the LRM App do
 6. Create Model - This panel allows you to name your model before creating it.
     
 ### Variable selection interface
-Figure 9, box 1 shows an example of variable selection from a housing dataset. The Feature (independent) variable selected is "total_bedrooms." The vertical bar beside the variable marks it as selected. The Target (dependent) variable selected is "median_house_value" and the vertical bar beside the variable marks it as selected. Upon selecting Confirm Selection, the app highlights the columns showing the selected variables in the Display Area.  
+Figure 9, box 1 shows an example of variable selection from a housing dataset. The Feature (independent) variable selected is "total_bedrooms." The vertical bar beside the variable marks it as selected. The Target (dependent) variable selected is "median_house_value" and the vertical bar beside the variable marks it as selected. Upon selecting Confirm Selection, the app highlights the columns showing the selected variables in the Display Area.
+
+   ![Screenshot of variable selection and preprocessing options interfaces](/images/ColumnSelectionPreprocessing.jpg)
+   *Figure 9. Variable selection and preprocessing options interfaces*
 
 ### Preprocessing options interface
 Figure 9, box 2 shows the preprocessing options available: remove the rows with missing data or NaN (Not a Number) items or fill them with the mean or median value for that column, or fill them with a constant. 
