@@ -143,6 +143,9 @@ This section illustrates and describes each feature of the LRM App.
 ### Main interface
 See Figure 8 for a map and legend explaining what each feature of the LRM App does.  
 
+   ![Screenshot of LRM App Main Interface](/images/LRMAppMainInterfaceMap.jpg)  
+   *Figure 8. LRM App Main Interface Map*
+    
 **Legend**
 1. Open File - Select this button to select your model's dataset from your computer or drive.
 2. Open Model - Select this button to open a previously-saved model you created.
