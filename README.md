@@ -149,15 +149,13 @@ See Figure 8 for a map and legend explaining what each feature of the LRM App do
 3. Display Area - The main panel of the interface is where your dataset appears.
 4. Column Selection - The first menu in this panel, Features, is where you select the independent variable(s) for your model. The second menu, Target, is where you select the dependent variable(s).
 5. Preprocessing Options - This panel's menu allows you to confirm what you want the LRM App to do with missing or incomplete information in your dataset. You can remove those rows or fill them with a mean, a median, or a constant.
-6. Create Model - This panel allows you to name your model before creating it. You can also create your model without a specific name.
+6. Create Model - This panel allows you to name your model before creating it.
     
 ### Variable selection interface
 Figure 9, box 1 shows an example of variable selection from a housing dataset. The Feature (independent) variable selected is "total_bedrooms." The vertical bar beside the variable marks it as selected. The Target (dependent) variable selected is "median_house_value" and the vertical bar beside the variable marks it as selected. Upon selecting Confirm Selection, the app highlights the columns showing the selected variables in the Display Area.  
 
 ### Preprocessing options interface
 Figure 9, box 2 shows the preprocessing options available: remove the rows with missing data or NaN (Not a Number) items or fill them with the mean or median value for that column, or fill them with a constant. 
-**Note:** NaN values must either be removed or filled in before you can create a model.
-After selecting an option and, if applicable, entering a constant value, selecting Apply Preprocessing removes or fills in the NaN items.
 
 ## 5. Usage instructions
 This section takes you step by step through the process of creating, naming, saving, and reloading a linear regression model and graph.
@@ -187,9 +185,43 @@ You can select single or multiple independent variables for your Feature(s). You
    The Selection Confirmed dialog box opens to summarize your choices for Input Columns (Features) and Output Column (Target).
 7. Select **OK**. 
    
+### Data Preprocessing
+Before you can create a model, you must remove or fill in missing or unreadable values ("NaN" or "Not a Number" values) in the dataset.
 
+**To preprocess data**
+1. Open the menu under Preprocessing Options by selecting the down arrow.
+2. Select the appropriate option (remove or fill with the mean, median, or a constant) for the NaNs in your dataset.
+3. If you select Fill NaN with a Constant, enter the constant in the field labelled "Enter constant value".
+4. Select Apply Preprocessing.
+   A Success message appears to confirm preprocessing.
+5. Select **OK**.
+    
 ### Model creation and prediction
+You are ready to create your model and view the metrics.
+
+**To create model and prediction**
+1. Name your model in the Create description field.
+   **Note**: You can create a model with no name. A dialog box appears asking if you are sure before you can continue. You can still save the model.
+2. Select Create model.
+   The Model Results appear in a separate window and show the name, coefficient of determination, mean squared error, and model formula (see Figure 10).
+   For a simple (single-independent-variable) linear regression, the app displays a graph (Figure 10).
+   For a multiple linear regression, no graph appears.
 
 ### Saving and loading models
+After creating your model, you can save it from the Model Results window and reload at a later time.
 
+**To save a model**
+1. From the Model Results window, select Save model.
+2. Navigate to the location where you want to save.
+3. Enter your desired file name and select Save.
+   The file saves with a .joblib extension, and a dialog box appears to inform you of the successful save.
+4. Select **OK**.
+
+**To reload a model**
+1. From the Main Interface, select Open Model.
+2. Navigate to the location of your saved model's .joblib file.
+3. Double-click the file or select it and select Open.
+   A dialog box opens to inform you the model has been loaded successfully.
+4. Select **OK**.
+   
 <!--Troubleshooting? FAQs? Credits? Licence/License?-->
