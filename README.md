@@ -211,7 +211,10 @@ You are ready to create your model and view the metrics.
 2. Select Create model.
    The Model Results appear in a separate window and show the name, coefficient of determination, mean squared error, and model formula (see Figure 10).
    For a simple (single-independent-variable) linear regression, the app displays a graph (Figure 10).
-   For a multiple linear regression, no graph appears.
+   **Note**: No graph appears for a multiple linear regression.
+
+   ![Screenshot of Model Results window](/images/ModelResults.jpg)
+   *Figure 10. Model Results window*
 
 ### Saving and loading models
 After creating your model, you can save it from the Model Results window and reload at a later time.
