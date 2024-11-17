@@ -32,7 +32,7 @@ The LRM App creates, visualizes, and makes predictions from simple and multiple 
     The LRM App is a tool for analyzing data and making predictions from it.
 </details>
 <details>
-    <summary>How does the LRM App do this?</summary>    
+    <summary>How does the LRM App analyze data and make predictions?</summary>    
     Using information from you and the power of artificial intelligence, the LRM App creates and visualizes simple and multiple linear regression models. These linear regression models let you analyze historical data patterns and from them predict future data patterns.
 </details>
 <details>
@@ -138,8 +138,10 @@ Installing the LRM App requires cloning its code repository on GitHub Desktop an
    *Figure 7. LRM App start page*
    
 ## 4. User interface
+This section describes each feature of the LRM App. 
 
 ### Main interface
+See Figure 8 for a map and legend explaining what each feature of the LRM App does.  
 
 ### Variable selection
 
@@ -148,9 +150,10 @@ Installing the LRM App requires cloning its code repository on GitHub Desktop an
 ### Save and load models
 
 ## 5. Usage instructions
+This section takes you step by step through the process of creating, naming, saving, and reloading your own linear regression models and graphs.
 
-### Loading a file
-
+### Select your dataset
+The first step is to select the dataset you will use to make your model. The LRM App 
 ### Selecting variables
 
 ### Model creation and prediction
