@@ -5,7 +5,7 @@ from PyQt6.QtGui import *
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import OneHotEncoder
+from sklearn.preprocessing import OneHotEncoder, LabelEncoder
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
@@ -51,7 +51,6 @@ class ResultsWindow(QDialog):
         self.data_layout.addWidget(self.results_label)  # Cambié self.result_layout por self.layout
         
         self.data_group.setLayout(self.data_layout)
-        
         self.layout.addWidget(self.data_group)
 
         self.warning_label = QLabel(warning_text) if warning_text else QLabel("")
@@ -81,6 +80,26 @@ class ResultsWindow(QDialog):
         if plot_data is not None:
             self.plot_regression_line(plot_data)
 
+        self.prediction_group = QGroupBox("Make a Prediction")
+        self.prediction_layout = QFormLayout()
+        self.input_fields = {}
+
+        for col in input_columns:
+            input_field = QLineEdit()
+            input_field.setPlaceholderText(f"Enter value for {col}")
+            self.prediction_layout.addRow(f"{col}:", input_field)
+            self.input_fields[col] = input_field
+
+        self.predict_button = QPushButton("Realizar Predicción")
+        self.predict_button.clicked.connect(self.make_prediction)
+        self.prediction_layout.addRow(self.predict_button)
+
+        self.prediction_output = QLabel("")
+        self.prediction_layout.addRow("Predicción:", self.prediction_output)
+
+        self.prediction_group.setLayout(self.prediction_layout)
+        self.layout.addWidget(self.prediction_group)
+
         self.setLayout(self.layout)
 
     def plot_regression_line(self, plot_data):
@@ -102,10 +121,9 @@ class ResultsWindow(QDialog):
         canvas.draw()  # Dibuja el gráfico
 
     def save_model(self):
-        # Cambiar el filtro del diálogo para que solo incluya joblib como opción principal
         file_path, _ = QFileDialog.getSaveFileName(
             self,
-            "Guardar Modelo",
+            "Save Model",
             "",
             "Joblib (*.joblib);;All Files (*)",
             options=QFileDialog.Option.DontConfirmOverwrite
@@ -136,6 +154,28 @@ class ResultsWindow(QDialog):
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"Model couldn't be saved in:\n{str(e)}")
 
+    def make_prediction(self):
+        try:
+            # Obtener valores de entrada
+            input_values = []
+            for col in self.input_columns:
+                value = self.input_fields[col].text()
+                if value == "":
+                    raise ValueError("Please, enter all input values.")
+                input_values.append(float(value))
+
+            # Calcular predicción usando el modelo
+            input_array = np.array(input_values).reshape(1, -1)
+            prediction = np.dot(input_array, self.coef) + self.intercept
+
+            self.prediction_output.setText(f"{prediction[0]:.4f}")
+            self.prediction_output.setStyleSheet("color: green; font-weight: bold;")
+
+        except ValueError as ve:
+            QMessageBox.warning(self, "Input Error", str(ve))
+        except Exception as e:
+            QMessageBox.critical(self, "Prediction Error", f"Unexpected Error:\n{str(e)}")
+
 class ModelTrainer(QWidget):
     def __init__(self, data, input_columns, output_column, description=""):
         super().__init__()
@@ -145,15 +185,13 @@ class ModelTrainer(QWidget):
         self.description = description
         self.model = LinearRegression()
 
-        # Llama a la función de entrenamiento directamente en la inicialización
         self.train_and_show_results()
     
     def train_and_show_results(self):
         try:
-            # Preprocesamiento de las columnas de entrada y salida
-            X, y = self.preprocess_data(self.input_columns, self.output_column)
+            X = self.data[self.input_columns].values
+            y = self.data[self.output_column].values
 
-            # Dividir en entrenamiento y prueba
             X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
             # Entrenar el modelo de regresión lineal
@@ -171,12 +209,9 @@ class ModelTrainer(QWidget):
             formula = f"{self.output_column} = {self.intercept:.4f} + {' + '.join(formula_terms)}"
 
             # Determinar el mensaje de advertencia y los datos de la gráfica
-            num_inputs = self.data[self.input_columns].select_dtypes(include=[np.number])
             warning_text = ""
-            if num_inputs.empty:
-                warning_text += "Nota: No hay columnas numéricas en los datos de entrada.\n"
-            elif len(self.input_columns) > 1 or any(X_test.dtype.kind == 'O' for col in self.input_columns):
-                warning_text += "Nota: La gráfica solo se muestra para una columna numérica de entrada."
+            if len(self.input_columns) > 1:
+                warning_text += "Note: The graph is only displayed for a simple linear regression."
 
             plot_data = (X_test[:, 0], y_test, y_pred) if len(self.input_columns) == 1 and X_test.shape[1] == 1 else None
 
@@ -186,23 +221,3 @@ class ModelTrainer(QWidget):
 
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Error en la creación del modelo:\n{str(e)}")
-
-    def preprocess_data(self, input_columns, output_column):
-        """Preprocess input and output columns, handling categorical variables with OneHotEncoder."""
-        X = self.data[input_columns]
-        y = self.data[output_column]
-
-        # Categorical columns
-        categorical_cols = X.select_dtypes(include=['object', 'category']).columns
-        if categorical_cols.any():
-            encoder = OneHotEncoder(sparse_output=False, drop='first')
-            X_encoded = encoder.fit_transform(X[categorical_cols])
-
-            # Unir las columnas codificadas con las numéricas
-            X_numeric = X.drop(columns=categorical_cols).values
-            X = np.hstack((X_numeric, X_encoded))
-        else:
-            # Convertir directamente a valores numpy si no hay variables categóricas
-            X = X.values
-
-        return X, y.values
