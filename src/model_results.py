@@ -187,7 +187,7 @@ class ModelTrainer(QWidget):
 
         self.train_and_show_results()
     
-    def train_and_show_results(self):
+    def train_and_show_results(self, show_window = True):
         try:
             X = self.data[self.input_columns].values
             y = self.data[self.output_column].values
@@ -216,8 +216,9 @@ class ModelTrainer(QWidget):
             plot_data = (X_test[:, 0], y_test, y_pred) if len(self.input_columns) == 1 and X_test.shape[1] == 1 else None
 
             # Pasar métricas, fórmula, y otros datos a ResultsWindow
-            results_window = ResultsWindow(self.description, r2, mse, formula, plot_data, self.coef, self.intercept, self.input_columns, self.output_column, warning_text)
-            results_window.exec()
+            if show_window:
+                results_window = ResultsWindow(self.description, r2, mse, formula, plot_data, self.coef, self.intercept, self.input_columns, self.output_column, warning_text)
+                results_window.show()
 
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Error en la creación del modelo:\n{str(e)}")

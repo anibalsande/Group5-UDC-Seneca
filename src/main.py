@@ -467,7 +467,7 @@ class MainWindow(QMainWindow):
         # Crear una instancia de ModelTrainer y llamar a su método para entrenar y mostrar los resultados
         trainer = ModelTrainer(self.data, self.input_columns, self.output_column, self.model_description)
 
-    def load_model(self):
+    def load_model(self, show_window = False):
         # Diálogo para seleccionar el archivo
         file_path, _ = QFileDialog.getOpenFileName(
             self,
@@ -514,8 +514,8 @@ class MainWindow(QMainWindow):
                 )
                 QMessageBox.information(self, "Carga Exitosa", "El modelo se ha cargado exitosamente.")
 
-                results_window.exec()
-
+                if show_window == True:
+                    results_window.exec()
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"No se pudo cargar el modelo:\n{str(e)}")
 

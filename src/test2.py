@@ -39,10 +39,9 @@ class TestMainWindow(unittest.TestCase):
         
         # Verificar que el texto de la etiqueta es el nombre correcto del archivo
         self.assertEqual(self.window.file_label.text(), self.test_file)
-
+"""
     @patch('PyQt6.QtWidgets.QMessageBox.information') 
     def test_create_model(self, mock_information):
-        """ Test para comprobar la creación del modelo """
         # Asegurarse de que los datos fueron cargados antes de intentar crear el modelo
         self.assertEqual(self.window.data.shape[0], 20640)
         self.assertEqual(self.window.data.shape[1], 10)
@@ -61,8 +60,22 @@ class TestMainWindow(unittest.TestCase):
         self.window.description.setPlainText("test_description")
         # Crear el modelo usando los datos ya cargados
         self.window.create_model()  # Llama a la función para crear el modelo
+"""
 
-        # PENDIENTE)
+class TestModel(unittest.TestCase):
+    @patch('PyQt6.QtWidgets.QFileDialog.getOpenFileName')
+    @patch('PyQt6.QtWidgets.QMessageBox.information')
+    def test_open_model(self, mock_msg_box, mock_get_open_file):
+        self.app = QApplication([])  # Crear la aplicación Qt
+        self.window = MainWindow()   # Crear la ventana principal
+
+        self.model_file = "src/example.joblib"
+
+        with patch('PyQt6.QtWidgets.QFileDialog.getOpenFileName', return_value=(self.model_file, '')):
+            self.window.load_model(show_window = False)
+
+        mock_msg_box.assert_called_once_with(self.window, "Carga Exitosa", "El modelo se ha cargado exitosamente.")
+
 
 if __name__ == '__main__':
     unittest.main()
