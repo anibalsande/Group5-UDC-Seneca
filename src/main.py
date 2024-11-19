@@ -8,7 +8,7 @@ import joblib
 from sklearn.linear_model import LinearRegression
 
 #Modules
-from model_results import ModelTrainer,ResultsWindow
+from model_results import ModelTrainer, ResultsWindow, ResultsTab
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -16,8 +16,6 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle("Preprocessing Dataset")
         self.setGeometry(100, 100, 800, 600)
-        #self.setStyleSheet("background-color: white;")
-
         self.setFont(QFont("Bahnschrift", 12))
 
         self.data = None
@@ -25,7 +23,31 @@ class MainWindow(QMainWindow):
         self.output_column = None
         self.model_description = ""
 
-        # Main layout
+        # Main Layout
+        main_layout = QVBoxLayout()
+
+        # Create a Tab Widget
+        self.tabs = QTabWidget()
+        
+        # Add tabs to QTabWidget
+        self.data_tab = QWidget()
+        self.results_tab = ResultsTab()
+
+        self.tabs.addTab(self.data_tab, "Data")
+        self.tabs.addTab(self.results_tab, "Model")
+
+        # Setup Tab Contents
+        self.setup_data_tab()
+
+        # Set the central widget layout
+        container = QWidget()
+        container.setLayout(main_layout)
+        self.setCentralWidget(container)
+
+        # Add tabs to the main layout
+        main_layout.addWidget(self.tabs)
+
+    def setup_data_tab(self):
         main_layout = QVBoxLayout()
 
         # Blue header
@@ -91,7 +113,7 @@ class MainWindow(QMainWindow):
         # Configuración de la tabla para mostrar los datos
         self.table_view = QTableView()
         self.table_view.setSizeAdjustPolicy(QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
-        self.table_view.setFixedHeight(440)
+        self.table_view.setFixedHeight(400)
         self.table_view.setStyleSheet(""" 
             QTableView {
                 background-color: #f0f0f0;
@@ -267,7 +289,7 @@ class MainWindow(QMainWindow):
 
         # Conectar los cambios en el tipo de regresión a la actualización del selector de entrada
         self.input_selector.itemSelectionChanged.connect(self.update_output_selector)
-
+        self.data_tab.setLayout(main_layout)
 
     def toggle_constant_input(self):
         """ Habilitar o deshabilitar el campo de texto para la constante """
@@ -467,7 +489,7 @@ class MainWindow(QMainWindow):
         # Crear una instancia de ModelTrainer y llamar a su método para entrenar y mostrar los resultados
         trainer = ModelTrainer(self.data, self.input_columns, self.output_column, self.model_description)
 
-    def load_model(self, show_window = True):
+    def load_model(self):
         # Diálogo para seleccionar el archivo
         file_path, _ = QFileDialog.getOpenFileName(
             self,
@@ -501,7 +523,7 @@ class MainWindow(QMainWindow):
                 plot_data = None  # Aquí puedes definir datos para graficar si es necesario
 
                 # Pasar los datos a ResultsWindow con los parámetros correctos
-                results_window = ResultsWindow(
+                self.results_tab.update_tab(
                     description=description,
                     r2=r2,
                     mse=mse,
@@ -514,8 +536,6 @@ class MainWindow(QMainWindow):
                 )
                 QMessageBox.information(self, "Carga Exitosa", "El modelo se ha cargado exitosamente.")
 
-                if show_window == True:
-                    results_window.exec()
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"No se pudo cargar el modelo:\n{str(e)}")
 
