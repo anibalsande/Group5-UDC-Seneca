@@ -23,7 +23,6 @@ class MainWindow(QMainWindow):
         self.data = None
         self.input_columns = []
         self.output_column = None
-        self.model = None
         self.model_description = ""
 
         # Main layout
