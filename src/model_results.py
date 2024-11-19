@@ -103,7 +103,7 @@ class ResultsTab(QWidget):
 
         # Habilitar el botón de guardar
         self.save_button.setEnabled(True)
-
+        
     def plot_regression_line(self, plot_data):
         X_test, y_test, y_pred = plot_data
         
@@ -379,8 +379,10 @@ class ModelTrainer(QWidget):
 
             # Pasar métricas, fórmula, y otros datos a ResultsWindow
             if show_window == True:
-                results_window = ResultsWindow(self.description, r2, mse, formula, plot_data, self.coef, self.intercept, self.input_columns, self.output_column, warning_text)
-                results_window.exec()
+                self.r2 = r2
+                self.mse = mse
+                self.formula = formula
+                self.plot_data = plot_data
 
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Error en la creación del modelo:\n{str(e)}")

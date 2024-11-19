@@ -68,14 +68,12 @@ class TestModel(unittest.TestCase):
     def test_open_model(self, mock_msg_box, mock_get_open_file):
         self.app = QApplication([])  # Crear la aplicación Qt
         self.window = MainWindow()   # Crear la ventana principal
-
         self.model_file = "src/test1.joblib"
 
         with patch('PyQt6.QtWidgets.QFileDialog.getOpenFileName', return_value=(self.model_file, '')):
             self.window.load_model(show_window = False)
 
         mock_msg_box.assert_called_once_with(self.window, "Carga Exitosa", "El modelo se ha cargado exitosamente.")
-
 
 if __name__ == '__main__':
     unittest.main()

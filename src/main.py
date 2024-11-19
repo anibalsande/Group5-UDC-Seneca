@@ -471,7 +471,6 @@ class MainWindow(QMainWindow):
 
     def create_model(self):
         description_text = self.description.toPlainText().strip()
-
         # Verificar si la descripción está vacía
         if not description_text:
             response = QMessageBox.question(
@@ -488,8 +487,21 @@ class MainWindow(QMainWindow):
 
         # Crear una instancia de ModelTrainer y llamar a su método para entrenar y mostrar los resultados
         trainer = ModelTrainer(self.data, self.input_columns, self.output_column, self.model_description)
+        print(trainer.r2)
+        self.results_tab.update_tab(
+                        description=self.model_description,
+                        r2=trainer.r2,
+                        mse=trainer.mse,
+                        formula=trainer.formula,
+                        plot_data=trainer.plot_data,
+                        coef=trainer.coef,
+                        intercept=trainer.intercept,
+                        input_columns=trainer.input_columns,
+                        output_column=trainer.output_column
+                    )
+        self.tabs.setCurrentIndex(1)  
 
-    def load_model(self):
+    def load_model(self, show_window = True):
         # Diálogo para seleccionar el archivo
         file_path, _ = QFileDialog.getOpenFileName(
             self,
@@ -524,18 +536,18 @@ class MainWindow(QMainWindow):
 
                 # Pasar los datos a ResultsWindow con los parámetros correctos
                 self.results_tab.update_tab(
-                    description=description,
-                    r2=r2,
-                    mse=mse,
-                    formula=formula,
-                    plot_data=plot_data,
-                    coef=coefficients,
-                    intercept=intercept,
-                    input_columns=input_columns,
-                    output_column=output_column
-                )
+                        description=description,
+                        r2=r2,
+                        mse=mse,
+                        formula=formula,
+                        plot_data=plot_data,
+                        coef=coefficients,
+                        intercept=intercept,
+                        input_columns=input_columns,
+                        output_column=output_column
+                    )
                 QMessageBox.information(self, "Carga Exitosa", "El modelo se ha cargado exitosamente.")
-
+                self.tabs.setCurrentIndex(1)  
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"No se pudo cargar el modelo:\n{str(e)}")
 
