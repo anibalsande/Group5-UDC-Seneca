@@ -69,7 +69,7 @@ class TestModel(unittest.TestCase):
         self.app = QApplication([])  # Crear la aplicación Qt
         self.window = MainWindow()   # Crear la ventana principal
 
-        self.model_file = "src/example.joblib"
+        self.model_file = "src/test1.joblib"
 
         with patch('PyQt6.QtWidgets.QFileDialog.getOpenFileName', return_value=(self.model_file, '')):
             self.window.load_model(show_window = False)

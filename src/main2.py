@@ -7,24 +7,23 @@ from PyQt6.QtGui import *
 import joblib
 from sklearn.linear_model import LinearRegression
 
-#Modules
+from handle_data import DataProcessor
 from model_results import ModelTrainer,ResultsWindow
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-
         self.setWindowTitle("Preprocessing Dataset")
         self.setGeometry(100, 100, 800, 600)
         #self.setStyleSheet("background-color: white;")
-
         self.setFont(QFont("Bahnschrift", 12))
 
-        self.data = None
-        self.input_columns = []
-        self.output_column = None
+        self.data_processor = DataProcessor()  # Instancia de DataProcessor
         self.model_description = ""
 
+        self.init_ui()  # Llamada al método para inicializar la interfaz gráfica
+
+    def init_ui(self):
         # Main layout
         main_layout = QVBoxLayout()
 
@@ -195,7 +194,7 @@ class MainWindow(QMainWindow):
 
         # Preprocessing button
         self.apply_button = QPushButton("Apply Preprocessing ⮕")
-        self.apply_button.clicked.connect(self.apply_preprocessing)
+        self.apply_button.clicked.connect(self.data_processor.apply_preprocessing)
         self.apply_button.setFixedHeight(40)  # Ajusta la altura
         self.apply_button.setFixedWidth(200)  # Ajusta el ancho
         self.apply_button.setStyleSheet(""" 
@@ -266,23 +265,18 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(container)
 
         # Conectar los cambios en el tipo de regresión a la actualización del selector de entrada
-        self.input_selector.itemSelectionChanged.connect(self.update_output_selector)
+        self.input_selector.itemSelectionChanged.connect(self.data_processor.update_output_selector)
 
-
-    def toggle_constant_input(self):
-        """ Habilitar o deshabilitar el campo de texto para la constante """
-        self.constant_input.setDisabled(self.nan_options.currentIndex() != 4)
 
     def select_file(self):
         options = QFileDialog.Option.ReadOnly
-        file_path, _ = QFileDialog.getOpenFileName(
-            self, "Select Dataset", "", "Admitted files (*.csv *.xlsx *.xls *.sqlite *.db)", options=options)
+        file_path, _ = QFileDialog.getOpenFileName(self, "Select Dataset", "", "Admitted files (*.csv *.xlsx *.xls *.sqlite *.db)", options=options)
 
         if file_path:
             try:
                 self.file_label.setText(f"{file_path}")
-                self.data = self.data_import(file_path)  # Cargar los datos
-                self.check_for_nans()  # Comprobar valores NaN
+                self.data_processor.data = self.data_processor.data_import(file_path)  # Uso del método del módulo preprocessor
+                self.data_processor.check_for_nans()  # Comprobar NaNs con el módulo preprocessor
                 self.input_columns = []  # Atributo para almacenar columnas de entrada
                 self.output_column = None
                 self.show_data()  # Mostrar los datos al cargar el archivo
@@ -291,90 +285,10 @@ class MainWindow(QMainWindow):
                 self.file_label.setText(f"Error: {str(e)}")
                 self.file_label.setStyleSheet("QLabel {color: red; padding: 5px;}")
 
-    def data_import(self, file_path):
-        """ Importar los datos desde el archivo """
-        if file_path.endswith('.csv'):
-            return pd.read_csv(file_path)
-        elif file_path.endswith('.xlsx') or file_path.endswith('.xls'):
-            return pd.read_excel(file_path)
-        elif file_path.endswith('.sqlite') or file_path.endswith('.db'):
-            conn = sqlite3.connect(file_path)
-            query = "SELECT * FROM sqlite_master WHERE type='table';"
-            tables = pd.read_sql(query, conn)
-            if not tables.empty:
-                table_name = tables.iloc[0]['name']
-                return pd.read_sql(f"SELECT * FROM {table_name}", conn)
-            else:
-                raise ValueError("No tables found in the SQLite database.")
-        else:
-            raise ValueError("Unsupported file format.")
+    def toggle_constant_input(self):
+        """ Habilitar o deshabilitar el campo de texto para la constante """
+        self.constant_input.setDisabled(self.nan_options.currentIndex() != 4)
 
-    def check_for_nans(self):
-        """Check for NaN or empty values in the DataFrame and display a message to the user"""
-        if self.data is not None:
-            # Summary of NaN values per column
-            nan_summary = self.data.isnull().sum()
-            
-            # Filter columns that contain NaN values
-            nan_columns = nan_summary[nan_summary > 0]
-            
-            if not nan_columns.empty:
-                # Information about columns with NaN and the number of missing values
-                columns_info = ', '.join(nan_columns.index)
-                count_info = ', '.join(f"{col}: {count}" for col, count in nan_columns.items())
-                
-                # Display warning with the information
-                QMessageBox.warning(self, "NaN Values Detected",
-                                    f"Missing (NaN) values were found in the following columns:\n\n"
-                                    f"{columns_info}\n\n"
-                                    f"Number of NaN values per column:\n{count_info}")
-            else:
-                # Inform that no NaN values were found
-                QMessageBox.information(self, "No NaN Values Found",
-                                        "The dataset does not contain any missing (NaN) values.")
-    
-    def apply_preprocessing(self):
-        if self.data is None:
-            QMessageBox.warning(self, "Error", "No dataset loaded.")
-            return
-        option = self.nan_options.currentText()
-
-        # Aplicar el preprocesado seleccionado
-        try:
-            if option == "Remove rows with NaN":
-                self.data = self.data.dropna()
-            elif option == "Fill NaN with Mean":
-                self.data = self.fill_with_statistic(self.data, "mean")
-            elif option == "Fill NaN with Median":
-                self.data = self.fill_with_statistic(self.data, "median")
-            elif option == "Fill NaN with Constant":
-                constant_value = self.constant_input.text()
-                if not constant_value:
-                    raise ValueError("Please enter a constant value.")
-                self.data.fillna(value=float(constant_value), inplace=True)
-            else:
-                raise ValueError("Please select a valid option.")
-
-            self.show_data()  # Mostrar los datos preprocesados
-            self.model_group.setEnabled(True)
-            QMessageBox.information(self, "Success", "Data preprocessing completed successfully.")
-        except Exception as e:
-            QMessageBox.critical(self, "Error", f"An error occurred during preprocessing:\n{str(e)}")
-
-        
-    def fill_with_statistic(self, data, stat_type):
-        if stat_type not in ["mean", "median"]:
-            raise ValueError("Invalid statistic type.")
-
-        for column in data.columns:
-            if data[column].dtype in [int, float]:  # Solo procesar columnas numéricas
-                if stat_type == "mean":
-                    data[column] = data[column].fillna(data[column].mean())
-                elif stat_type == "median":
-                    data[column] = data[column].fillna(data[column].median())
-        return data
-
-        
     def confirm_selection(self):
         """ Confirmar selección de columnas """
         if self.data is None:
@@ -396,128 +310,72 @@ class MainWindow(QMainWindow):
         self.show_data()  # Mostrar la tabla después de confirmar la selección
         self.preprocess_group.setEnabled(True)
 
-    def populate_columns(self):
-        """ Llenar los selectores de columnas con nombres de columnas numéricas """
-        if self.data is not None:
-            numeric_columns = self.data.select_dtypes(include=["number"]).columns.tolist()
-            self.input_selector.clear()
-            self.input_selector.addItems(numeric_columns)
-            self.output_selector.clear()
-            self.output_selector.addItems(numeric_columns)
-
     def show_data(self):
         """ Mostrar los datos en la tabla """
         model = QStandardItemModel()
         model.setHorizontalHeaderLabels(self.data.columns)
-    
+
         input_color = QColor("#FFDDC1")  # Color para columnas de entrada
         output_color = QColor("#D1E8FF")  # Color para la columna de salida
-    
+
         # Iterar sobre las filas de los datos
         for row in self.data.itertuples(index=False):
             items = []
             for col_index, item in enumerate(row):
                 cell_item = QStandardItem(str(item))
-    
-                # Verificar si la columna es de entrada o salida
+
                 column_name = self.data.columns[col_index]
                 if column_name in self.input_columns:
                     cell_item.setBackground(input_color)
                 elif column_name == self.output_column:
                     cell_item.setBackground(output_color)
-    
+
                 items.append(cell_item)
-            
+
             model.appendRow(items)
-    
+
         self.table_view.setModel(model)
         self.table_view.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
-
-    def update_output_selector(self):
-        selected_inputs = [item.text() for item in self.input_selector.selectedItems()]
-        remaining_columns = [col for col in self.data.columns if col not in selected_inputs]
-        self.output_selector.clear()
-        self.output_selector.addItems(remaining_columns)
-
-    def update_output_selector(self):
-        selected_inputs = [item.text() for item in self.input_selector.selectedItems()]
-        numeric_columns = self.data.select_dtypes(include=["number"]).columns
-        remaining_columns = [col for col in numeric_columns if col not in selected_inputs]
-        
-        self.output_selector.clear()
-        self.output_selector.addItems(remaining_columns)
 
     def create_model(self):
         description_text = self.description.toPlainText().strip()
 
-        # Verificar si la descripción está vacía
         if not description_text:
-            response = QMessageBox.question(
-                self, "Empty Description",
+            response = QMessageBox.question(self, "Empty Description",
                 "The model description is empty. Do you want to proceed without a description?",
-                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
-            )
-            # Si el usuario elige "No", detenemos el proceso para que modifique la descripción
+                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
             if response == QMessageBox.StandardButton.No:
-                return  # Salir de la función sin continuar
+                return
 
-        # Asignar la descripción final después de la decisión del usuario
         self.model_description = description_text or "No description provided"
 
-        # Crear una instancia de ModelTrainer y llamar a su método para entrenar y mostrar los resultados
         trainer = ModelTrainer(self.data, self.input_columns, self.output_column, self.model_description)
 
-    def load_model(self, show_window = True):
-        # Diálogo para seleccionar el archivo
-        file_path, _ = QFileDialog.getOpenFileName(
-            self,
-            "Cargar Modelo",
-            "",
-            "Joblib (*.joblib);;Pickle (*.pkl);;All Files (*)"
-        )
+    def load_model(self):
+        file_path, _ = QFileDialog.getOpenFileName(self, "Cargar Modelo", "", "Joblib (*.joblib);;Pickle (*.pkl);;All Files (*)")
 
         if file_path:
             try:
-                # Cargar el modelo guardado
                 model_info = joblib.load(file_path)
 
-                # Extraer información del modelo
                 description = model_info.get('description', 'Sin descripción')
                 coefficients = model_info.get('coefficients', [])
                 intercept = model_info.get('intercept', 0)
                 metrics = model_info.get('metrics', {})
-                r2 = metrics.get('R²', 'N/A')
-                mse = metrics.get('MSE', 'N/A')
-                formula = model_info.get('formula', 'N/A')
-                input_columns = model_info.get('input_columns', [])
-                output_column = model_info.get('output_column', '')
-
-                # Crear el modelo de regresión lineal utilizando los coeficientes e intercepto del modelo cargado
-                model = LinearRegression()
-                model.coef_ = coefficients
-                model.intercept_ = intercept
-
-                # Preparar datos para la gráfica (esto se puede modificar según tus necesidades)
-                plot_data = None  # Aquí puedes definir datos para graficar si es necesario
-
-                # Pasar los datos a ResultsWindow con los parámetros correctos
-                results_window = ResultsWindow(
-                    description=description,
-                    r2=r2,
-                    mse=mse,
-                    formula=formula,
-                    plot_data=plot_data,
-                    coef=coefficients,
-                    intercept=intercept,
-                    input_columns=input_columns,
-                    output_column=output_column
-                )
-                QMessageBox.information(self, "Carga Exitosa", "El modelo se ha cargado exitosamente.")
-
-                if show_window == True:
-                    results_window.exec()
+                r2 = metrics.get('R²', 0)
+                # Continuar con la carga del modelo y su visualización
             except Exception as e:
-                QMessageBox.critical(self, "Error", f"No se pudo cargar el modelo:\n{str(e)}")
+                QMessageBox.critical(self, "Error", f"Error loading model: {str(e)}")
+                
+    def populate_columns(self):
+        """ Llenar los selectores de columnas con las columnas del dataset """
+        self.input_selector.clear()
+        self.output_selector.clear()
+
+        if self.data is not None:
+            for column in self.data.columns:
+                self.input_selector.addItem(column)
+                self.output_selector.addItem(column)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
