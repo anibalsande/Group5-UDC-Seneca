@@ -7,8 +7,8 @@ Group 5-UDC-Seneca is a group of students from the Universidade da Coruna in A C
 - artificial intelligence and machine learning in the context of linear regression modeling
 - industry standards and expectations for software development
 - industry standards and expectations for software documentation
-- working in Agile environments
-- soft skills needed to collaborating across geographical regions, cultures, and languages.  
+- Agile working environments
+- soft skills needed to collaborate effectively and efficiently across geographical regions, cultures, and languages.  
 
 ### About COIL
 COIL 
