@@ -8,7 +8,7 @@ Group 5-UDC-Seneca is a group of students from the Universidade da Coruna in A C
 - industry standards and expectations for software development
 - industry standards and expectations for software documentation
 - Agile working environments
-- soft skills needed to collaborate effectively and efficiently across geographical regions, cultures, and languages.  
+- soft skills needed to collaborate effectively and efficiently despite different geographical regions, cultures, and languages.  
 
 ### About COIL
 COIL 
