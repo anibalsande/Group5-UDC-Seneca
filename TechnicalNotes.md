@@ -14,12 +14,28 @@ Group 5-UDC-Seneca is a group of students from the Universidade da Coruna in A C
 COIL 
 
 
+### Project Purpose and Goals
 
 
-urpose and Scope of LRM App Project
-
-Group 5 is tasked with making an app allowing users
 - to create and visualize simple, and if possible, multiple linear regression models from data stored in .csv, excel and SQLite databases
 - to save the models, load them, and make predictions from them.
 
 The app must have a graphical interface that lets the user do all the above. 
+
+
+
+
+## About Linear Regression
+
+## About Artificial Intelligence (AI) and Machine Learning (ML)
+
+## About Agile
+
+
+## Project-Specific Information
+
+### The Group 5 Team
+
+### Roles and Responsibilities
+
+## 
