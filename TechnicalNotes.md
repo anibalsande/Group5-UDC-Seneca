@@ -2,7 +2,13 @@
 <!--This document contains product development information for stakeholders. Information could include notes about the product design, UX design, software architecture, technical design, source code, quality assurance testing, and APIs.-->
 
 ## Project Overview 
-Group 5-UDC-Seneca is a group of students from the Universidade da Coruna in A Coruna, Spain and Seneca Polytechnic in Toronto, Canada who are working together through the Collaborative Online International Learning (COIL) program. During their collaboration, Group-5-UDC-Seneca develop and document, using the Agile project management approach, an online linear regression software application in GitHub. In doing this, not only are the students learning about industry standards and expectations for software development and documentation, they are also learning the soft skills involved in collaborating across geographical regions, cultures, and languages.  
+Group 5-UDC-Seneca is a group of students from the Universidade da Coruna in A Coruna, Spain and Seneca Polytechnic in Toronto, Canada who are working together through the Collaborative Online International Learning (COIL) program. During their collaboration, Group-5-UDC-Seneca develop and document, using the Agile project management approach, an online linear regression software application in GitHub. In doing this, the students are learning about
+- linear regression modeling
+- artificial intelligence and machine learning in the context of linear regression modeling
+- industry standards and expectations for software development
+- industry standards and expectations for software documentation
+- working in Agile environments
+- soft skills needed to collaborating across geographical regions, cultures, and languages.  
 
 ### About COIL
 COIL 
