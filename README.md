@@ -173,7 +173,10 @@ The first step is to select the dataset you will use to make your model. The LRM
 1. Select **Open File**.
 2. Navigate to your dataset file.
 3. Double-click the file or select it and then select **Open**.
-   **Note**: If any NaN items are detected, a dialog box opens to inform you (see Figure 10). Select **OK** to continue. 
+   **Note**: If any NaN items are detected, a dialog box opens to inform you (see Figure 10). Select **OK** to continue.
+   
+   ![Screenshot of missing NaN information box](/images/Missing_NaN_screenshot)
+   *Figure 10. Missing NaN information box*
 
 ### Selecting variables
 After you open a dataset, its columns will appear under the Features and Target menus in the Column Selection panel. 
@@ -210,11 +213,11 @@ You are ready to create your model and view the metrics.
    **Note**: You can create a model with no name. A dialog box appears asking if you are sure before you can continue. You can still save the model.
 2. Select Create model.
    The Model Results appear in a separate window and show the name, coefficient of determination, mean squared error, and model formula (see Figure 10).
-   For a simple (single-independent-variable) linear regression, the app displays a graph (Figure 10).
+   For a simple (single-independent-variable) linear regression, the app displays a graph (Figure 11).
    **Note**: No graph appears for a multiple linear regression.
 
    ![Screenshot of Model Results window](/images/ModelResults.jpg)
-   *Figure 10. Model Results window*
+   *Figure 11. Model Results window*
 
 ### Saving and loading models
 After creating your model, you can save it from the Model Results window and reload at a later time.
