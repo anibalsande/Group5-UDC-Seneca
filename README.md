@@ -175,7 +175,7 @@ The first step is to select the dataset you will use to make your model. The LRM
 3. Double-click the file or select it and then select **Open**.
    **Note**: If any NaN items are detected, a dialog box opens to inform you (see Figure 10). Select **OK** to continue.
    
-   ![Screenshot of missing NaN information box](/images/Missing_NaN_screenshot)
+   ![Screenshot of missing NaN information box](/images/Missing_NaN_screenshot.jpg)
    *Figure 10. Missing NaN information box*
 
 ### Selecting variables
