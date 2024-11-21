@@ -29,7 +29,14 @@ Also, they wanted to ensure non-technically-proficient users could use the app a
 
 To meet the goal of making the app appropriate and easy to use for as many people as possible, Group 5-UDC-Seneca implemented a simple graphical interface with simple labels and descriptions along with optional tooltips. The simple visuals, labels, and descriptions do not suggest that the app is more suited for any one dataset or another. The tooltips, when activated, display additional information and guidance for less-technically-proficient users but otherwise do not clutter the interface or get in the way of advanced users who do not need that information. 
 
+### Platforms and Technology Used
+The LRM App functions in both Windows and Mac desktop environments. However, as of v.1.0 (26 November 2024), the interface is optimized for a 14-inch Windows display. Slight visual differences on other machines may occur. There is currently no plan to adapt the LRM App for tablets or smartphones. 
 
+### User Flow
+For reference, Figure 1 shows the User Flow created for the LRM App.
+
+![Screenshot of LRM App User Flow diagram](/images/process.jpg)
+*Figure 1. LRM App User Flow*
 
 ## About Linear Regression
 
