@@ -1,6 +1,16 @@
 # Technical Notes
 <!--This document contains product development information for stakeholders. Information could include notes about the product design, UX design, software architecture, technical design, source code, quality assurance testing, and APIs.-->
 
+## Table of Contents
+<!--Finalize TOC at the very end. These are placeholders only at this point. All headings subject to change depending on project progress.--> 
+1. [Project Overview](#project-overview)
+   - [About Collaborative Online International Learning (COIL)](#about-collaborative-online-international-learning-(coil))
+   - [Project Purpose and Goals](#project-purpose-and-goals)
+   - [Target Audience](#target-audience)
+   - [Platforms and Technology Used](#platforms-and-technology-used)
+   - [User Flow](#user-flow)
+2.
+
 ## Project Overview 
 Group 5-UDC-Seneca is a group of students from the Universidade da Coruna in A Coruna, Spain and Seneca Polytechnic in Toronto, Canada who are working together through the Collaborative Online International Learning (COIL) program. During their collaboration, Group-5-UDC-Seneca develop and document, using the Agile project management approach, an online linear regression software application in GitHub. In doing this, the students are learning about
 - linear regression modeling
