@@ -70,18 +70,18 @@ If you do not already have the above software installed, use the instructions be
 3. In the initial installation window, select Customize installation (see Figure 1).  
     Note: You do not need admin privileges when installing.
    
-    ![Screenshot of Python installation options](/images/Python_installation_screenshot.jpg)  
+    ![alt text](/images/Python_installation_screenshot.jpg "Screenshot of Python installation options")  
     *Figure 1. Installation options for Python 3.13.0*  
 
 4. In the Optional Features window, select all features except "for all users" (see Figure 2).
 
-    ![Screenshot of Python optional features](/images/Python_optional_features_screenshot.jpg)  
+    ![alt text](/images/Python_optional_features_screenshot.jpg "Screenshot of Python optional features")  
     *Figure 2. Python optional features*  
 
 5. Select Next.
 6. In the Advanced Options window, ensure that "Associate files with Python" and "Add Python to environment variables" are checked (see Figure 3).
 
-    ![Screenshot of Python advanced options](/images/Python_advanced_screenshot.jpg)  
+    ![alt text](/images/Python_advanced_screenshot.jpg "Screenshot of Python advanced options")  
     *Figure 3. Python advanced options*  
 
 7. Select Install.
@@ -92,7 +92,7 @@ If you do not already have the above software installed, use the instructions be
     Note: You must accept the license agreement to continue installation.
 3. In the Select Additional Tasks window, ensure "Register Code as an editor for supported file types" and "Add to PATH" are checked (see Figure 4).
 
-    ![Screenshot of Select Additional Tasks window for Visual Studio Code](/images/VSCsetuppagescreenshot.jpg)  
+    ![alt text](/images/VSCsetuppagescreenshot.jpg "Screenshot of Select Additional Tasks window for Visual Studio Code")  
     *Figure 4. Select Additional Tasks for VSC setup*  
    
 4. Select **Next > Install > Finish**.
@@ -103,7 +103,7 @@ If you do not already have the above software installed, use the instructions be
 3. Under the heading Desktop & Mobile, select Desktop development with C++ (see Figure 5, box 1).
 4. Under the heading Installation details, ensure the C++ CMake tools for Windows component is checked (see Figure 5, box 2).  
 
-    ![Screenshot of installation options for Visual Studio Build Tools 2022](/images/Compiler_installation_screenshot.jpg)
+    ![alt text](/images/Compiler_installation_screenshot.jpg "Screenshot of installation options for Visual Studio Build Tools 2022")
     *Figure 5. Installation options for Visual Studio Build Tools 2022*
 5. Select **Install**. 
 
@@ -131,10 +131,10 @@ Installing the LRM App requires cloning its code repository on GitHub Desktop an
 3. Select the Run Python File icon (see Figure 6) or select **Run > Run Without Debugging**.  
     The LRM App opens in a separate window (see Figure 7).
    
-   ![Screenshot of VSC Run Python File icon](/images/VSCRunIconScreenshot.jpg)    
+   ![alt text](/images/VSCRunIconScreenshot.jpg "Screenshot of VSC Run Python File icon")    
    *Figure 6. VSC Run Python File icon*
 
-   ![Screenshot of LRM App start page](/images/LRMAppStartPage.jpg)
+   ![alt text](/images/LRMAppStartPage.jpg "Screenshot of LRM App start page")
    *Figure 7. LRM App start page*
    
 ## 4. User interface
@@ -143,7 +143,7 @@ This section illustrates and describes each feature of the LRM App.
 ### Main interface
 See Figure 8 for a map and legend explaining what each feature of the LRM App does.  
 
-   ![Screenshot of LRM App Main Interface](/images/LRMAppMainInterfaceMap.jpg)  
+   ![alt text](/images/LRMAppMainInterfaceMap.jpg "Screenshot of LRM App Main Interface")  
    *Figure 8. LRM App Main Interface Map*
     
 **Legend**
@@ -157,7 +157,7 @@ See Figure 8 for a map and legend explaining what each feature of the LRM App do
 ### Variable selection interface
 Figure 9, box 1 shows an example of variable selection from a housing dataset. The Feature (independent) variable selected is "total_bedrooms." The vertical bar beside the variable marks it as selected. The Target (dependent) variable selected is "median_house_value" and the vertical bar beside the variable marks it as selected. Upon selecting Confirm Selection, the app highlights the columns showing the selected variables in the Display Area.
 
-   ![Screenshot of variable selection and preprocessing options interfaces](/images/ColumnSelectionPreprocessing.jpg)
+   ![alt text](/images/ColumnSelectionPreprocessing.jpg "Screenshot of variable selection and preprocessing options interfaces")
    *Figure 9. Variable selection and preprocessing options interfaces*
 
 ### Preprocessing options interface
@@ -175,7 +175,7 @@ The first step is to select the dataset you will use to make your model. The LRM
 3. Double-click the file or select it and then select **Open**.
    **Note**: If any NaN items are detected, a dialog box opens to inform you (see Figure 10). Select **OK** to continue.
    
-   ![Screenshot of missing NaN information box](/images/Missing_NaN_screenshot.jpg)
+   ![alt text](/images/Missing_NaN_screenshot.jpg "Screenshot of missing NaN information box")
    *Figure 10. Missing NaN information box*
 
 ### Selecting variables
@@ -216,7 +216,7 @@ You are ready to create your model and view the metrics.
    For a simple (single-independent-variable) linear regression, the app displays a graph (Figure 11).
    **Note**: No graph appears for a multiple linear regression.
 
-   ![Screenshot of Model Results window](/images/ModelResults.jpg)
+   ![alt text](/images/ModelResults.jpg "Screenshot of Model Results window")
    *Figure 11. Model Results window*
 
 ### Saving and loading models
