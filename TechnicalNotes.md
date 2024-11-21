@@ -12,7 +12,7 @@
 2.
 
 ## Project Overview 
-Group 5-UDC-Seneca is a group of students from the Universidade da Coruna in A Coruna, Spain and Seneca Polytechnic in Toronto, Canada who are working together through the Collaborative Online International Learning (COIL) program. During their collaboration, Group-5-UDC-Seneca develop and document, using the Agile project management approach, an online linear regression software application in GitHub. In doing this, the students are learning about
+Group 5-UDC-Seneca is a group of students from the Universidade da Coruña in A Coruña, Spain and Seneca Polytechnic in Toronto, Canada who are working together through the Collaborative Online International Learning (COIL) program. During their collaboration, Group-5-UDC-Seneca develop and document, using the Agile project management approach, an online linear regression software application in GitHub. In doing this, the students are learning about
 - linear regression modeling
 - artificial intelligence and machine learning in the context of linear regression modeling
 - industry standards and expectations for software development
