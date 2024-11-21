@@ -53,6 +53,12 @@ For reference, Figure 1 shows the User Flow created for the LRM App.
 
 ### The Group 5 Team
 
+### Roles and Responsibilities
+
+### Developer Considerations
+
+### Testing 
+
 ## About Linear Regression
 
 ## About Artificial Intelligence (AI) and Machine Learning (ML)
@@ -62,6 +68,4 @@ For reference, Figure 1 shows the User Flow created for the LRM App.
 
 
 
-### Roles and Responsibilities
 
-## 
