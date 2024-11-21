@@ -14,13 +14,12 @@ Group 5-UDC-Seneca is a group of students from the Universidade da Coruna in A C
 The COIL approach supports cultural awareness, cultural competency, and globalization in the modern economy. It does this by pairing professors and their classes at two different accredited institutions in two different countries or cultures to work on a collaborative learning project. The professors collaborate on the planning and design of the project. The students then collaborate on organizing, discussing, completing, and presenting their project with the assistance of technology that supports their meeting and communicating virtually. Along the way, the students get to know and trust each other and work together comfortably and effectively even though they are in different geographic locations, may have language barriers and cultural differences, and are often in different time zones. 
 
 ### Project Purpose and Goals
+Group 5-UDC-Seneca received the following instructions for their collaborative learning project:
 
+> A client contacts your development team and tells you:
 
+> "I want to hire you to make an application that allows me to create and visualize simple and multiple linear regression models from data stored in csv, excel, and databases (SQLite) files, and make predictions with them. I also want it to allow me to save the models, load them, and make predictions. The application musth have a graphical interface that allows me to do all of the above."
 
-- to create and visualize simple, and if possible, multiple linear regression models from data stored in .csv, excel and SQLite databases
-- to save the models, load them, and make predictions from them.
-
-The app must have a graphical interface that lets the user do all the above. 
 
 
 
