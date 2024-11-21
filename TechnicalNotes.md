@@ -20,7 +20,14 @@ Group 5-UDC-Seneca received the following instructions for their collaborative l
 
 > "I want to hire you to make an application that allows me to create and visualize simple and multiple linear regression models from data stored in csv, excel, and databases (SQLite) files, and make predictions with them. I also want it to allow me to save the models, load them, and make predictions. The application musth have a graphical interface that allows me to do all of the above."
 
+Group 5-UDC-Seneca understand that besides creating the application (app) described, their goals for the project also include working together to create the app efficiently and in accordance with scheduled project deadlines using Agile development principles, just as they would in real life for a real business client.
 
+### Target Audience
+In planning the app, Group 5-UDC-Seneca decided to target as broad an audience as possible. They wanted to ensure users understood the app was versatile and not limited to certain datasets or certain fields of study. For example, the app can be used to estimate the market price of a house based on number of bedrooms. A realtor could use the app for that purpose. The app can also be used to predict food consumption in a restaurant based on average age of the patrons. A restauranteur could find the app very helpful for that study. 
+
+Also, they wanted to ensure non-technically-proficient users could use the app as easily as users who are very tech-savvy. An app that is complicated to use or assumes prior experience with similar apps would undesirably limit the size of the target audience. 
+
+To meet the goal of making the app appropriate and easy to use for as many people as possible, Group 5-UDC-Seneca implemented a simple graphical interface with simple labels and descriptions along with optional tooltips. The simple visuals, labels, and descriptions do not suggest that the app is more suited for any one dataset or another. The tooltips, when activated, display additional information and guidance for less-technically-proficient users but otherwise do not clutter the interface or get in the way of advanced users who do not need that information. 
 
 
 
