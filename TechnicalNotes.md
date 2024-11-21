@@ -46,7 +46,7 @@ The LRM App functions in both Windows and Mac desktop environments. However, as 
 ### User Flow
 For reference, Figure 1 shows the User Flow created for the LRM App.
 
-![Screenshot of LRM App User Flow diagram](/images/process.jpg)
+![alt text](/images/process.jpg "Screenshot of LRM App User Flow diagram")
 *Figure 1. LRM App User Flow*
 
 ## Project-Specific Information
