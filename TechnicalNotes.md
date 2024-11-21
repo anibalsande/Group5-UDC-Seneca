@@ -9,7 +9,8 @@
    - [Target Audience](#target-audience)
    - [Platforms and Technology Used](#platforms-and-technology-used)
    - [User Flow](#user-flow)
-2.
+2. [Project-Specific Information](#project-specific-information)
+   - [The Group 5-UDC-Seneca Team](#the-group-5-udc-seneca-team)
 
 ## Project Overview 
 Group 5-UDC-Seneca is a group of students from the Universidade da Coruña in A Coruña, Spain and Seneca Polytechnic in Toronto, Canada who are working together through the Collaborative Online International Learning (COIL) program. During their collaboration, Group-5-UDC-Seneca develop and document, using the Agile project management approach, an online linear regression software application in GitHub. In doing this, the students are learning about
@@ -48,6 +49,10 @@ For reference, Figure 1 shows the User Flow created for the LRM App.
 ![Screenshot of LRM App User Flow diagram](/images/process.jpg)
 *Figure 1. LRM App User Flow*
 
+## Project-Specific Information
+
+### The Group 5 Team
+
 ## About Linear Regression
 
 ## About Artificial Intelligence (AI) and Machine Learning (ML)
@@ -55,9 +60,7 @@ For reference, Figure 1 shows the User Flow created for the LRM App.
 ## About Agile
 
 
-## Project-Specific Information
 
-### The Group 5 Team
 
 ### Roles and Responsibilities
 
