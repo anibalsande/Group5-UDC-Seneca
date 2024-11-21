@@ -11,14 +11,10 @@ Group 5-UDC-Seneca is a group of students from the Universidade da Coruna in A C
 - soft skills needed to collaborate effectively and efficiently despite different geographical regions, cultures, and languages.  
 
 ### About Collaborative Online International Learning (COIL)
-The COIL approach supports cultural awareness, cultural competency, and globalization in the modern economy. It does this by pairing professors and their classes at two different accredited institutions in two different cultures. The professors collaborate on the planning and design of a collaborative learning project. The students then collaborate on organizing, discussing, completing, and presenting their project with the assistance of technology that supports their meeting and communicating virtually. Along the way, the students get to know and trust each other and work together comfortably and effectively even though they are in different countries, may have some language barriers and cultural differences, and are often in different time zones. 
-
-
-
-
-
+The COIL approach supports cultural awareness, cultural competency, and globalization in the modern economy. It does this by pairing professors and their classes at two different accredited institutions in two different countries or cultures to work on a collaborative learning project. The professors collaborate on the planning and design of the project. The students then collaborate on organizing, discussing, completing, and presenting their project with the assistance of technology that supports their meeting and communicating virtually. Along the way, the students get to know and trust each other and work together comfortably and effectively even though they are in different geographic locations, may have language barriers and cultural differences, and are often in different time zones. 
 
 ### Project Purpose and Goals
+
 
 
 - to create and visualize simple, and if possible, multiple linear regression models from data stored in .csv, excel and SQLite databases
