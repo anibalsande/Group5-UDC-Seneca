@@ -13,7 +13,7 @@ This document contains product development information for the LRM App including
    - [The Group 5-UDC-Seneca Team](#the-group-5-udc-seneca-team)
 
 ## Project Overview 
-Group 5-UDC-Seneca is a group of students from the Universidade da Coruña in A Coruña, Spain and Seneca Polytechnic in Toronto, Canada who are working together through the Collaborative Online International Learning (COIL) program. During their collaboration, Group-5-UDC-Seneca develop and document, using the Agile project management approach, an online linear regression software application in GitHub. In doing this, the students are learning about
+Group 5-UDC-Seneca is a group of students from the Universidade da Coruña in A Coruña, Spain and Seneca Polytechnic in Toronto, Canada who are working together through the Collaborative Online International Learning (COIL) program. During their collaboration, Group-5-UDC-Seneca develop and document, using the Agile project management approach, the **LRM App**, an online linear regression software application. In doing this, the students learn about
 - linear regression modeling
 - artificial intelligence and machine learning in the context of linear regression modeling
 - industry standards and expectations for software development
@@ -72,13 +72,12 @@ The reason it is called "linear" regression is because the relationship can be i
 
 Because linear regression makes it possible to illustrate a relationship as a graph or a mathematical formula, it also makes it possible, with algebra and sufficient reliable data, to predict the unknown value of Y as long as one knows the value of the other variable(s) in the formula. This is why the X or independent variable is also called the "predictor" variable, and the Y or dependent variable is also called the "response" variable.
 
-### Linear Regression and Artificial Intelligence
-In the 
+## Linear Regression, Artificial Intelligence (AI), and Machine Learning (ML)
+Sir Francis Galton ("Regression analysis,") egressionfirst used the term "regression" in 1885 when describing his research conclusions after examining the relationship between the physical heights of fathers and their sons. He observed that the sons "regress" to the mean of the population instead of conforming to the heights (tall or short) of their fathers. While Galton only used regression in this biological context, statisticians have been using regression ever since in different contexts. 
 
+Since Galton's time, the methods, goals, and possibilities of regression analysis have advanced as technologies, most notably AI and ML, have made it easier and faster to calculate regressions and handle gigantic datasets.
 
-Figure * illustrates the concept of linear regression.  
-
-## About Artificial Intelligence (AI) and Machine Learning (ML)
+### About Artificial Intelligence (AI) and Machine Learning (ML)
 
 ## About Agile
 
