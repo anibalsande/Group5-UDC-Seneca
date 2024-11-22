@@ -7,7 +7,7 @@ This document contains product development information for the LRM App including
    - [About Collaborative Online International Learning (COIL)](#about-collaborative-online-international-learning-(coil))
    - [Project Purpose and Goals](#project-purpose-and-goals)
    - [Target Audience](#target-audience)
-   - [Platforms and Technology Used](#platforms-and-technology-used)
+   - [Intended Platforms and Technology](#intended-platforms-and-technology)
    - [User Flow](#user-flow)
 2. [Project-Specific Information](#project-specific-information)
    - [The Group 5-UDC-Seneca Team, Roles, and Responsibilities](#the-group-5-udc-seneca-team,-roles,-and-responsibilities)
@@ -40,7 +40,7 @@ Also, they wanted to ensure non-technically-proficient users could use the app a
 
 To meet the goal of making the app appropriate and easy to use for as many people as possible, Group 5-UDC-Seneca implemented a simple graphical interface with simple labels and descriptions along with optional tooltips. The simple visuals, labels, and descriptions do not suggest that the app is more suited for any one dataset or another. The tooltips, when activated, display additional information and guidance for less-technically-proficient users but otherwise do not clutter the interface or get in the way of advanced users who do not need that information. 
 
-### Platforms and Technology Used
+### Intended Platforms and Technology
 The LRM App functions in both Windows and Mac desktop environments. However, as of v.1.0 (26 November 2024), the interface is optimized for a 14-inch Windows display. Slight visual differences on other machines may occur. There is currently no plan to adapt the LRM App for tablets or smartphones. 
 
 ### User Flow
@@ -59,7 +59,7 @@ Group 5-UDC-Seneca has five members.  All of them contributed to the development
 - Sofía García Perez (UDC): Researcher and Developer
 - Ann Velez (Seneca): Technical Documentation Writer
   
-All of the UDC students worked on research and development of the LRM App (see [Developers](#Developers) for detailed information), allowing all of them to gain experience in different aspects of the product instead of focusing on a single area. 
+All of the UDC students worked on research and development of the LRM App (see [Developer Notes](#Developer-Notes) for detailed information), allowing all of them to gain experience in different aspects of the product instead of focusing on a single area. 
 
 The Scrum Master had additional responsibilities:
 - assigning tasks to team members, taking into consideration their preferences and skills
@@ -71,28 +71,8 @@ The Scrum Master had additional responsibilities:
 The Technical Documentation Writer prepared a Documentation Plan, interviewed the UDC students as Subject Matter Experts on the app's development, prepared this Technical and Developer Notes document for internal use, and wrote the README file for external users of the LRM App.
 
 
-What was your development process like? For example, how often did you meet, and how did you plan your sprints?
-After the Sprint Review and Retrospective sessions, we conducted Sprint Planning meetings on Tuesdays. During these, we selected tasks based on our availability. When tasks overlapped or required similar actions, we used to choose both to streamline our work.
-Throughout the sprint, we worked individually but ensured regular communication about progress and challenges. Toward the end of each sprint, we reviewed and integrated all components. 
- 
-We also held several collaborative sessions, some focused on working together on the code and others to share research findings, decide on the libraries to use, and align our work.
- 
-How did you manage the GitHub repository and code? Did you establish a particular policy or rules for branches and merges/commits?
-We created a develop branch to work independently from the documentation part. Initially, we committed directly to this branch, as the tasks were straightforward and completed quickly. Later, as tasks became more complex, we created separate branches for new functionalities. Once these were complete, we merged them back into the develop branch.
- 
-Can you give me specific details of any problems you encountered while developing and how you solved them?
-Learning PyQt6
-At the beginning, working with PyQt6 was challenging because it was a new library for us. Translating our "on-paper" layout designs into code required significant effort. PyQt6 has a steeper learning curve than other libraries, but its advanced features made it the best choice. By the end of the first few weeks, we met our expectations and continuously refactored the code to accommodate new functionalities.
-Integrating the Results Window
-In the last sprint, we replaced the results window with a tab integrated into the main application. The challenge was including a layout from a separate module in the primary window while ensuring it updated dynamically with each new model.
-Defining the User Flow
-Initially, it was difficult to outline the app’s flow and provide documentation. However, we made progress by developing the app in a way that minimized the need for refactoring earlier functionalities while optimizing existing features as needed.
-Collaboration in the COIL Project
-The COIL project itself highlights the value of collaborating across different languages, time zones, and disciplines, which can naturally be a challenge. However, we believe we handled it well. The experience has been incredibly positive, and working with you has been seamless. This project will undoubtedly contribute to our academic and professional growth.
 
-### Roles and Responsibilities
-
-### Developer Considerations
+### Developers Considerations
 
 ### Testing 
 
@@ -140,3 +120,22 @@ The app behaves differently in different environments. For example, the dark mod
 Solution: Besides finding ways to standardize behavior across environments, we are overriding default settings where necessary.
 
 
+
+What was your development process like? For example, how often did you meet, and how did you plan your sprints?
+After the Sprint Review and Retrospective sessions, we conducted Sprint Planning meetings on Tuesdays. During these, we selected tasks based on our availability. When tasks overlapped or required similar actions, we used to choose both to streamline our work.
+Throughout the sprint, we worked individually but ensured regular communication about progress and challenges. Toward the end of each sprint, we reviewed and integrated all components. 
+ 
+We also held several collaborative sessions, some focused on working together on the code and others to share research findings, decide on the libraries to use, and align our work.
+ 
+How did you manage the GitHub repository and code? Did you establish a particular policy or rules for branches and merges/commits?
+We created a develop branch to work independently from the documentation part. Initially, we committed directly to this branch, as the tasks were straightforward and completed quickly. Later, as tasks became more complex, we created separate branches for new functionalities. Once these were complete, we merged them back into the develop branch.
+ 
+Can you give me specific details of any problems you encountered while developing and how you solved them?
+Learning PyQt6
+At the beginning, working with PyQt6 was challenging because it was a new library for us. Translating our "on-paper" layout designs into code required significant effort. PyQt6 has a steeper learning curve than other libraries, but its advanced features made it the best choice. By the end of the first few weeks, we met our expectations and continuously refactored the code to accommodate new functionalities.
+Integrating the Results Window
+In the last sprint, we replaced the results window with a tab integrated into the main application. The challenge was including a layout from a separate module in the primary window while ensuring it updated dynamically with each new model.
+Defining the User Flow
+Initially, it was difficult to outline the app’s flow and provide documentation. However, we made progress by developing the app in a way that minimized the need for refactoring earlier functionalities while optimizing existing features as needed.
+Collaboration in the COIL Project
+The COIL project itself highlights the value of collaborating across different languages, time zones, and disciplines, which can naturally be a challenge. However, we believe we handled it well. The experience has been incredibly positive, and working with you has been seamless. This project will undoubtedly contribute to our academic and professional growth.
