@@ -1,5 +1,5 @@
-# Technical Notes
-<!--This document contains product development information for stakeholders. Information could include notes about the product design, UX design, software architecture, technical design, source code, quality assurance testing, and APIs.-->
+# Technical and Developer Notes
+This document contains product development information for the LRM App including product context, purpose, goals, design, quality assurance testing, and reference material for future developers. 
 
 ## Table of Contents
 <!--Finalize TOC at the very end. These are placeholders only at this point. All headings subject to change depending on project progress.--> 
@@ -59,8 +59,8 @@ For reference, Figure 1 shows the User Flow created for the LRM App.
 
 ### Testing 
 
-## About Linear Regression
-**Regression** is a statistical method that mathematically describes the interdependent relationship between, essentially, one number (called the dependent variable or the response variable) and another number or numbers (called the independent or predictor variable(s)). 
+## About Linear Regression Modeling
+**Regression** is a statistical method that mathematically describes the interdependent relationship between, essentially, one numerical value (called the dependent variable or the response variable) and another (called the independent or predictor variable(s)). 
 
 **Linear regression** is the most commonly used form of regression. **Simple linear regression** describes the relationship between one dependent variable and one independent variable. **Multiple linear regression** describes the relationship when there is more than one independent variable. 
 
@@ -70,10 +70,10 @@ The reason it is called "linear" regression is because the relationship can be i
 >
 >Basic multiple linear regression formula (assuming two independent variables): Y = β0 + β1X1 + β2X2, where Y is the dependent variable, β0 is the value of Y when the independent variables are equal to zero), X1 is the first independent variable, X2 is the second independent variable, and β1 and β2 are estimated regression coefficients.
 
-Because linear regression makes it possible to illustrate a relationship as a graph or a mathematical formula, it also makes it possible, using algebra, to predict what the unknown value of Y will be if you know the value of the other variable(s) in the formula. This is why the X or independent variable is also called the "predictor" variable, and the Y or dependent variable is also called the "response" variable.
+Because linear regression makes it possible to illustrate a relationship as a graph or a mathematical formula, it also makes it possible, with algebra and sufficient reliable data, to predict the unknown value of Y as long as one knows the value of the other variable(s) in the formula. This is why the X or independent variable is also called the "predictor" variable, and the Y or dependent variable is also called the "response" variable.
 
-### Assumptions of Linear Regression
-For a prediction made using linear regression to be considered valid and reliable, the data used to make the 
+### Linear Regression and Artificial Intelligence
+In the 
 
 
 Figure * illustrates the concept of linear regression.  
