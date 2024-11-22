@@ -5,11 +5,13 @@ This document contains product development information for the LRM App including
 <!--Finalize TOC at the very end. These are placeholders only at this point. All headings subject to change depending on project progress.--> 
 1. [Project Overview](#project-overview)
    - [About Collaborative Online International Learning (COIL)](#about-collaborative-online-international-learning-(coil))
-   - [Project Purpose and Goals](#project-purpose-and-goals)
+   - [LRM App Project Purpose and Goals](#LRM-App-project-purpose-and-goals)
    - [Target Audience](#target-audience)
    - [Intended Platforms and Technology](#intended-platforms-and-technology)
    - [User Flow](#user-flow)
-2. [Project-Specific Information](#project-specific-information)
+2.[About Linear Regression Modeling](#about-linear-regression-modeling)
+
+3. [Project-Specific Information](#project-specific-information)
    - [The Group 5-UDC-Seneca Team, Roles, and Responsibilities](#the-group-5-udc-seneca-team,-roles,-and-responsibilities)
 
 ## Project Overview 
@@ -24,17 +26,17 @@ Group 5-UDC-Seneca is a group of students from the Universidade da Coruña in A 
 ### About Collaborative Online International Learning (COIL)
 The COIL approach supports cultural awareness, cultural competency, and globalization in the modern economy. It does this by pairing professors and their classes at two different accredited institutions in two different countries or cultures to work on a collaborative learning project. The professors collaborate on the planning and design of the project. The students then collaborate on organizing, discussing, completing, and presenting their project with the assistance of technology that supports their meeting and communicating virtually. Along the way, the students get to know and trust each other and work together comfortably and effectively even though they are in different geographic locations, may have language barriers and cultural differences, and are often in different time zones. 
 
-### Project Purpose and Goals
+### LRM App Project Purpose and Goals
 Group 5-UDC-Seneca received the following instructions for their collaborative learning project:
 
 > A client contacts your development team and tells you:
 
-> "I want to hire you to make an application that allows me to create and visualize simple and multiple linear regression models from data stored in csv, excel, and databases (SQLite) files, and make predictions with them. I also want it to allow me to save the models, load them, and make predictions. The application musth have a graphical interface that allows me to do all of the above."
+> "I want to hire you to make an application that allows me to create and visualize simple and multiple linear regression models from data stored in csv, excel, and databases (SQLite) files, and make predictions with them. I also want it to allow me to save the models, load them, and make predictions. The application must have a graphical interface that allows me to do all of the above."
 
 Group 5-UDC-Seneca understand that besides creating the application (app) described, their goals for the project also include working together to create the app efficiently and in accordance with scheduled project deadlines using Agile development principles, just as they would in real life for a real business client.
 
 ### Target Audience
-In planning the app, Group 5-UDC-Seneca decided to target as broad an audience as possible. They wanted to ensure users understood the app was versatile and not limited to certain datasets or certain fields of study. For example, the app can be used to estimate the market price of a house based on number of bedrooms. A realtor could use the app for that purpose. The app can also be used to predict food consumption in a restaurant based on average age of the patrons. A restauranteur could find the app very helpful for that study. 
+In planning the LRM App, Group 5-UDC-Seneca decided to target as broad an audience as possible. They wanted to ensure users understood the app was versatile and not limited to certain datasets or certain fields of study. For example, the app can be used to estimate the market price of a house based on number of bedrooms. A realtor could use the app for that purpose. The app can also be used to predict food consumption in a restaurant based on average age of the patrons. A restauranteur could find the app very helpful for that study. 
 
 Also, they wanted to ensure non-technically-proficient users could use the app as easily as users who are very tech-savvy. An app that is complicated to use or assumes prior experience with similar apps would undesirably limit the size of the target audience. 
 
@@ -48,6 +50,52 @@ For reference, Figure 1 shows the User Flow created for the LRM App.
 
 ![alt text](/images/process.jpg "Screenshot of LRM App User Flow diagram")
 *Figure 1. LRM App User Flow*
+
+## About Linear Regression Modeling
+**Regression** is a statistical method that mathematically describes the interdependent relationship between, essentially, one numerical value (called the dependent variable) and another (called the independent variable(s)). **Linear regression** is the most commonly used form of regression. **Simple linear regression** describes the relationship between one dependent variable and one independent variable. **Multiple linear regression** describes the relationship when there is more than one independent variable. The reason for the name "linear" regression is because the relationship can be illustrated as a straight line on a graph, also called the line of best fit. It can also be described in a mathematical formula:
+
+>Basic simple linear regression formula: Y = β0 + β1X, where Y is the dependent variable, X is the independent variable, β1 is the slope of the line, and β0 is the intercept (the value of Y when the line crosses the Y axis or the X value is zero).
+>
+>Basic multiple linear regression formula (assuming two independent variables): Y = β0 + β1X1 + β2X2, where Y is the dependent variable, β0 is the value of Y when the independent variables are equal to zero), X1 is the first independent variable, X2 is the second independent variable, and β1 and β2 are estimated regression coefficients.
+
+Because linear regression can illustrate a relationship between variables as a graph or a mathematical formula, it is possible, with algebra and sufficient reliable datapoints, to predict the unknown value of a Y variable as long as one knows the value of the X variable(s). This is why the X or independent variable is also called the "predictor" or "feature" variable, and the Y or dependent variable is also called the "response" or "target" variable.
+
+For a video explanation of the above concepts with graphs and a practical example, see
+
+[![An Introduction to Linear Regression Analysis](https://img.youtube.com/vi/zPG4NjIkCjc/0.jpg)](https://www.youtube.com/watch?v=zPG4NjIkCjc) 
+
+from David Longstreet of StatisticsFun. 
+
+## Linear Regression Modeling, Artifical Intelligence (AI), and Machine Learning (ML)
+Sir Francis Galton ("Regression analysis," 2024) first used the term "regression" in 1885 when describing his research conclusions after examining the relationship between the physical heights of fathers and their sons. He observed that the sons "regress" to the mean of the population instead of conforming to the heights (tall or short) of their fathers. While Galton only used linear regression in this biological context, statisticians have been using regression, mostly linear, ever since in different contexts. 
+
+Since Galton's time, the goals, methods, and possibilities of regression analysis have advanced as technologies, most notably AI and its subset ML, have made it easier and faster to calculate linear regressions, handle gigantic datasets, and train linear regression models to predict a target variable. 
+
+According to Stryker and Kavlakogulu of IBM (2024), AI is "technology that enables computers and machines to simulate human learning, comprehension, problem solving, decision making, creativity and autonomy," and machine learning is a derivative concept that involves training algorithms to create models and make predictions from data. Linear regression is one of the machine learning algorithms available, and it can be trained using **supervised learning**, a process by which it uses labeled data sets to learn how to predict outcomes accurately. The machine learns the mapping between the variables in the training data, and from that, it learns to make informed predictions of the labels of new data. 
+
+
+
+Traditional statistics focuses on using linear regression to test hypotheses and estimate parameters, but AI and ML focus on making predictions from the data. Whereas traditional statistics depends on data meeting certain requirements like normal distribution, independence among observations, constant error variance, and a strictly linear relationship between the dependent and independent variables, AI-powered linear regression models can often handle imperfect data and still make reliable predictions through methods like regularization. Further, AI can quickly process far more complex datasets and algorithms than traditional human-powered statistical approaches ever can (Saragadam, Asim, Etukuru, Stosik, Kulshrestha, and Brewton, 2024).
+
+The result of AI and ML advances 
+The LRM App must create and visualize linear regression models as well as allow the user to make reliable predictions from them. Practical eff 
+
+
+
+Some practical examples of linear regression modeling and prediction include predicting (Baraka, 2024):
+- the sale price of a home based on variables like the age of the house in years, the value of neighbouring homoes, and/or the number of parks or schools nearby
+- the sale price of a stock based on variables like the company's profitability, its costs, the number of competitors, and/or the value of its assets
+- the number of future viral infections based on variables like population size, population density, and/or air temperature
+- the competitive performance of an athlete based on variables like the athlete's age, physical statistics, and/or years of experience
+- the future height of a child based on variables like mother's height, father's height, nutritional factors, and/or environmental factors.
+
+
+## Linear Regression, Artificial Intelligence (AI), and Machine Learning (ML)
+
+
+### About Artificial Intelligence (AI) and Machine Learning (ML)
+
+
 
 ## Project-Specific Information
 Group 5-UDC-Seneca has five members.  All of them contributed to the development and documentation of the LRM App in diverse ways. 
@@ -78,45 +126,7 @@ Group 5-UDC-Seneca found the COIL project positive and enriching both academical
 
 ### Testing 
 
-## About Linear Regression Modeling
-**Regression** is a statistical method that mathematically describes the interdependent relationship between, essentially, one numerical value (called the dependent variable) and another (called the independent variable(s)). 
 
-**Linear regression** is the most commonly used form of regression. **Simple linear regression** describes the relationship between one dependent variable and one independent variable. **Multiple linear regression** describes the relationship when there is more than one independent variable. 
-
-The reason it is called "linear" regression is because the relationship can be illustrated as a straight line on a graph, also called the line of best fit. It can also be illustrated in a mathematical formula:
-
->Basic simple linear regression formula: Y = β0 + β1X, where Y is the dependent variable, X is the independent variable, β1 is the slope of the line, and β0 is the intercept (the value of Y when the line crosses the Y axis or the X value is zero).
->
->Basic multiple linear regression formula (assuming two independent variables): Y = β0 + β1X1 + β2X2, where Y is the dependent variable, β0 is the value of Y when the independent variables are equal to zero), X1 is the first independent variable, X2 is the second independent variable, and β1 and β2 are estimated regression coefficients.
-
-Because linear regression makes it possible to illustrate a relationship as a graph or a mathematical formula, it also makes it possible, with algebra and sufficient reliable datapoints, to predict the unknown value of Y as long as one knows the value of the X variable(s) in the formula. This is why the X or independent variable is also called the "predictor" or "feature" variable, and the Y or dependent variable is also called the "response" or "target" variable.
-
-For a video explanation of the above concepts with graphs and a practical example, see
-
-[![An Introduction to Linear Regression Analysis](https://img.youtube.com/vi/zPG4NjIkCjc/0.jpg)](https://www.youtube.com/watch?v=zPG4NjIkCjc) 
-
-from David Longstreet of StatisticsFun. 
-
-
-### Linear Regression Modeling and the LRM App
-The LRM App 
-
-
-
-Some practical examples of linear regression modeling and prediction include predicting (Baraka, 2024):
-- the sale price of a home based on variables like the age of the house in years, the value of neighbouring homoes, and/or the number of parks or schools nearby
-- the sale price of a stock based on variables like the company's profitability, its costs, the number of competitors, and/or the value of its assets
-- the number of future viral infections based on variables like population size, population density, and/or air temperature
-- the competitive performance of an athlete based on variables like the athlete's age, physical statistics, and/or years of experience
-- the future height of a child based on variables like mother's height, father's height, nutritional factors, and/or environmental factors.
-
-
-## Linear Regression, Artificial Intelligence (AI), and Machine Learning (ML)
-Sir Francis Galton ("Regression analysis,") egressionfirst used the term "regression" in 1885 when describing his research conclusions after examining the relationship between the physical heights of fathers and their sons. He observed that the sons "regress" to the mean of the population instead of conforming to the heights (tall or short) of their fathers. While Galton only used regression in this biological context, statisticians have been using regression ever since in different contexts. 
-
-Since Galton's time, the methods, goals, and possibilities of regression analysis have advanced as technologies, most notably AI and ML, have made it easier and faster to calculate regressions and handle gigantic datasets.
-
-### About Artificial Intelligence (AI) and Machine Learning (ML)
 
 ## About Agile
 
