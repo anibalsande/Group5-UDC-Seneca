@@ -91,6 +91,11 @@ The reason it is called "linear" regression is because the relationship can be i
 
 Because linear regression makes it possible to illustrate a relationship as a graph or a mathematical formula, it also makes it possible, with algebra and sufficient reliable data, to predict the unknown value of Y as long as one knows the value of the other variable(s) in the formula. This is why the X or independent variable is also called the "predictor" variable, and the Y or dependent variable is also called the "response" variable.
 
+Some practical examples of linear regression modeling and prediction are (Baraka, 2024):
+- predicting the sale price of a home based on variables like the age of the house in years, the value of neighbouring homoes, and/or the number of parks or schools nearby
+- predicting the sale price of a stock based on variables like the company's profitability, its costs, the number of competitors, and/or the value of its assets.
+- predicting 
+
 ## Linear Regression, Artificial Intelligence (AI), and Machine Learning (ML)
 Sir Francis Galton ("Regression analysis,") egressionfirst used the term "regression" in 1885 when describing his research conclusions after examining the relationship between the physical heights of fathers and their sons. He observed that the sons "regress" to the mean of the population instead of conforming to the heights (tall or short) of their fathers. While Galton only used regression in this biological context, statisticians have been using regression ever since in different contexts. 
 
@@ -139,3 +144,7 @@ Integrating the Results Window
 In the last sprint, we replaced the results window with a tab integrated into the main application. The challenge was including a layout from a separate module in the primary window while ensuring it updated dynamically with each new model.
 Defining the User Flow
 Initially, it was difficult to outline the app’s flow and provide documentation. However, we made progress by developing the app in a way that minimized the need for refactoring earlier functionalities while optimizing existing features as needed.
+
+## References
+Baraka, S. (2024). Multiple (Linear) Regression: Formula, Examples, and FAQ. ***Indeed.com***. Retrieved from [https://www.indeed.com/career-advice/career-development/multiple-regression](https://www.indeed.com/career-advice/career-development/multiple-regression)
+Regression analysis. (2024, November 21). In ***Wikipedia***. [https://en.wikipedia.org/wiki/Regression_analysis#](https://en.wikipedia.org/wiki/Regression_analysis#) 
