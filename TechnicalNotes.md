@@ -50,8 +50,45 @@ For reference, Figure 1 shows the User Flow created for the LRM App.
 *Figure 1. LRM App User Flow*
 
 ## Project-Specific Information
+Group 5-UDC-Seneca has five members.  All of them contributed to the development and documentation of the LRM App in diverse ways. 
 
-### The Group 5 Team
+### The Group 5 Team, Roles, and Responsibilities
+- Aníbal Sande González (UDC): Scrum Master, Researcher and Developer
+- Carla Vázquez Barreiros (UDC): Researcher and Developer
+- Claudia Fernández Vilela (UDC): Researcher and Developer
+- Sofía García Perez (UDC): Researcher and Developer
+- Ann Velez (Seneca): Technical Documentation Writer
+  
+All of the UDC students worked on research and development of the LRM App (see [Developers](#Developers)), allowing all of them to gain experience in different aspects of the product instead of focusing on a single area. 
+
+The Scrum Master had additional responsibilities:
+- assigning tasks to team members, taking into consideration their preferences and skills
+- ensuring all sprint objectives were met in a timely manner
+- taking initiative on addressing challenges in completing tasks
+- leading communication with the Technical Documentation Writer who was the only team member in a different country and school
+- leading the design arrangement of elements within the LRM App
+
+The Technical Documentation Writer 
+
+
+What was your development process like? For example, how often did you meet, and how did you plan your sprints?
+After the Sprint Review and Retrospective sessions, we conducted Sprint Planning meetings on Tuesdays. During these, we selected tasks based on our availability. When tasks overlapped or required similar actions, we used to choose both to streamline our work.
+Throughout the sprint, we worked individually but ensured regular communication about progress and challenges. Toward the end of each sprint, we reviewed and integrated all components. 
+ 
+We also held several collaborative sessions, some focused on working together on the code and others to share research findings, decide on the libraries to use, and align our work.
+ 
+How did you manage the GitHub repository and code? Did you establish a particular policy or rules for branches and merges/commits?
+We created a develop branch to work independently from the documentation part. Initially, we committed directly to this branch, as the tasks were straightforward and completed quickly. Later, as tasks became more complex, we created separate branches for new functionalities. Once these were complete, we merged them back into the develop branch.
+ 
+Can you give me specific details of any problems you encountered while developing and how you solved them?
+Learning PyQt6
+At the beginning, working with PyQt6 was challenging because it was a new library for us. Translating our "on-paper" layout designs into code required significant effort. PyQt6 has a steeper learning curve than other libraries, but its advanced features made it the best choice. By the end of the first few weeks, we met our expectations and continuously refactored the code to accommodate new functionalities.
+Integrating the Results Window
+In the last sprint, we replaced the results window with a tab integrated into the main application. The challenge was including a layout from a separate module in the primary window while ensuring it updated dynamically with each new model.
+Defining the User Flow
+Initially, it was difficult to outline the app’s flow and provide documentation. However, we made progress by developing the app in a way that minimized the need for refactoring earlier functionalities while optimizing existing features as needed.
+Collaboration in the COIL Project
+The COIL project itself highlights the value of collaborating across different languages, time zones, and disciplines, which can naturally be a challenge. However, we believe we handled it well. The experience has been incredibly positive, and working with you has been seamless. This project will undoubtedly contribute to our academic and professional growth.
 
 ### Roles and Responsibilities
 
