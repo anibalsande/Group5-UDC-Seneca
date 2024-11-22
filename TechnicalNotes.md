@@ -10,7 +10,7 @@ This document contains product development information for the LRM App including
    - [Platforms and Technology Used](#platforms-and-technology-used)
    - [User Flow](#user-flow)
 2. [Project-Specific Information](#project-specific-information)
-   - [The Group 5-UDC-Seneca Team](#the-group-5-udc-seneca-team)
+   - [The Group 5-UDC-Seneca Team, Roles, and Responsibilities](#the-group-5-udc-seneca-team,-roles,-and-responsibilities)
 
 ## Project Overview 
 Group 5-UDC-Seneca is a group of students from the Universidade da Coruña in A Coruña, Spain and Seneca Polytechnic in Toronto, Canada who are working together through the Collaborative Online International Learning (COIL) program. During their collaboration, Group-5-UDC-Seneca develop and document, using the Agile project management approach, the **LRM App**, an online linear regression software application. In doing this, the students learn about
@@ -59,7 +59,7 @@ Group 5-UDC-Seneca has five members.  All of them contributed to the development
 - Sofía García Perez (UDC): Researcher and Developer
 - Ann Velez (Seneca): Technical Documentation Writer
   
-All of the UDC students worked on research and development of the LRM App (see [Developers](#Developers)), allowing all of them to gain experience in different aspects of the product instead of focusing on a single area. 
+All of the UDC students worked on research and development of the LRM App (see [Developers](#Developers) for detailed information), allowing all of them to gain experience in different aspects of the product instead of focusing on a single area. 
 
 The Scrum Master had additional responsibilities:
 - assigning tasks to team members, taking into consideration their preferences and skills
@@ -68,7 +68,7 @@ The Scrum Master had additional responsibilities:
 - leading communication with the Technical Documentation Writer who was the only team member in a different country and school
 - leading the design arrangement of elements within the LRM App
 
-The Technical Documentation Writer 
+The Technical Documentation Writer prepared a Documentation Plan, interviewed the UDC students as Subject Matter Experts on the app's development, prepared this Technical and Developer Notes document for internal use, and wrote the README file for external users of the LRM App.
 
 
 What was your development process like? For example, how often did you meet, and how did you plan your sprints?
