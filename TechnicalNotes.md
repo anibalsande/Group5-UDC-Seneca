@@ -79,22 +79,33 @@ Group 5-UDC-Seneca found the COIL project positive and enriching both academical
 ### Testing 
 
 ## About Linear Regression Modeling
-**Regression** is a statistical method that mathematically describes the interdependent relationship between, essentially, one numerical value (called the dependent variable or the response variable) and another (called the independent or predictor variable(s)). 
+**Regression** is a statistical method that mathematically describes the interdependent relationship between, essentially, one numerical value (called the dependent variable) and another (called the independent variable(s)). 
 
 **Linear regression** is the most commonly used form of regression. **Simple linear regression** describes the relationship between one dependent variable and one independent variable. **Multiple linear regression** describes the relationship when there is more than one independent variable. 
 
 The reason it is called "linear" regression is because the relationship can be illustrated as a straight line on a graph, also called the line of best fit. It can also be illustrated in a mathematical formula:
 
->Basic simple linear regression formula: Y = mX + b, where Y is the dependent variable, X is the independent variable, m is the estimated slope of the line, and b is the estimated intercept (the value of Y when the line crosses the Y axis or the X value is zero).
+>Basic simple linear regression formula: Y = β0 + β1X, where Y is the dependent variable, X is the independent variable, β1 is the slope of the line, and β0 is the intercept (the value of Y when the line crosses the Y axis or the X value is zero).
 >
 >Basic multiple linear regression formula (assuming two independent variables): Y = β0 + β1X1 + β2X2, where Y is the dependent variable, β0 is the value of Y when the independent variables are equal to zero), X1 is the first independent variable, X2 is the second independent variable, and β1 and β2 are estimated regression coefficients.
 
-Because linear regression makes it possible to illustrate a relationship as a graph or a mathematical formula, it also makes it possible, with algebra and sufficient reliable data, to predict the unknown value of Y as long as one knows the value of the other variable(s) in the formula. This is why the X or independent variable is also called the "predictor" variable, and the Y or dependent variable is also called the "response" variable.
+Because linear regression makes it possible to illustrate a relationship as a graph or a mathematical formula, it also makes it possible, with algebra and sufficient reliable datapoints, to predict the unknown value of Y as long as one knows the value of the X variable(s) in the formula. This is why the X or independent variable is also called the "predictor" or "feature" variable, and the Y or dependent variable is also called the "response" or "target" variable.
 
-Some practical examples of linear regression modeling and prediction are (Baraka, 2024):
-- predicting the sale price of a home based on variables like the age of the house in years, the value of neighbouring homoes, and/or the number of parks or schools nearby
-- predicting the sale price of a stock based on variables like the company's profitability, its costs, the number of competitors, and/or the value of its assets.
-- predicting 
+For a video explanation of the above concepts with graphs and a practical example, see [!An Introduction to Linear Regression Analysis](https://img.youtube.com/vi/zPG4NjIkCjc.jpg)](https://www.youtube.com/watch?v=zPG4NjIkCjc) from David Longstreet of StatisticsFun. 
+
+
+### Linear Regression Modeling and the LRM App
+The LRM App 
+
+
+
+Some practical examples of linear regression modeling and prediction include predicting (Baraka, 2024):
+- the sale price of a home based on variables like the age of the house in years, the value of neighbouring homoes, and/or the number of parks or schools nearby
+- the sale price of a stock based on variables like the company's profitability, its costs, the number of competitors, and/or the value of its assets
+- the number of future viral infections based on variables like population size, population density, and/or air temperature
+- the competitive performance of an athlete based on variables like the athlete's age, physical statistics, and/or years of experience
+- the future height of a child based on variables like mother's height, father's height, nutritional factors, and/or environmental factors.
+
 
 ## Linear Regression, Artificial Intelligence (AI), and Machine Learning (ML)
 Sir Francis Galton ("Regression analysis,") egressionfirst used the term "regression" in 1885 when describing his research conclusions after examining the relationship between the physical heights of fathers and their sons. He observed that the sons "regress" to the mean of the population instead of conforming to the heights (tall or short) of their fathers. While Galton only used regression in this biological context, statisticians have been using regression ever since in different contexts. 
