@@ -85,7 +85,7 @@ Some practical examples of multiple linear regression modeling and prediction no
 - the future height of a child based on variables including mother's height, father's height, nutritional factors, and environmental factors.
 
 ### Linear Regression, AI, ML, and the LRM App
-The LRM App is a relatively simple application as of 2024, yet it has only been possible to create it would not have been of , but it iAgainst the backdrop of linear regression 
+The LRM App is a relatively simple application as of 2024, yet it has only been possible to create since the it would not have been of , but it iAgainst the backdrop of linear regression 
 
 
 
@@ -164,5 +164,7 @@ Initially, it was difficult to outline the app’s flow and provide documentatio
 
 ## References
 Baraka, S. (2024). Multiple (Linear) Regression: Formula, Examples, and FAQ. ***Indeed.com***. Retrieved from [https://www.indeed.com/career-advice/career-development/multiple-regression](https://www.indeed.com/career-advice/career-development/multiple-regression)   
+
+Saragadam, H., Asim, U., Etukuru, R.,  Stosik, D.,  Kulshrestha, V., & Brewton, J. (2024). How does AI's linear regression differ from traditional statistics? ***LinkedIn.com***. Retrieved from [https://www.linkedin.com/advice/3/how-does-ais-linear-regression-differ-from-6u77e](https://www.linkedin.com/advice/3/how-does-ais-linear-regression-differ-from-6u77e)
 
 Regression analysis. (2024, November 21). In ***Wikipedia***. [https://en.wikipedia.org/wiki/Regression_analysis#](https://en.wikipedia.org/wiki/Regression_analysis#) 
