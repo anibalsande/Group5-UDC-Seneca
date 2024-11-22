@@ -63,13 +63,15 @@ All of the UDC students worked on research and development of the LRM App (see [
 
 The Scrum Master had additional responsibilities:
 - assigning tasks to team members, taking into consideration their preferences and skills
-- ensuring all sprint objectives were met in a timely manner
-- taking initiative on addressing challenges in completing tasks
+- checking to ensure all sprint objectives were met in a timely manner
+- taking initiative on addressing challenges in completing tasks on time
 - leading communication with the Technical Documentation Writer who was the only team member in a different country and school
 - leading the design arrangement of elements within the LRM App
 
-The Technical Documentation Writer prepared a Documentation Plan, interviewed the UDC students as Subject Matter Experts on the app's development, prepared this Technical and Developer Notes document for internal use, and wrote the README file for external users of the LRM App.
+The Technical Documentation Writer prepared a Documentation Plan, interviewed the UDC students as Subject Matter Experts on the app's development, prepared this Technical and Developer Notes document for internal use, and wrote the README file for external users of the LRM App. To do this the Technical Documentation Writer learned to use Markdown in GitHub and became familiar with the GitHub workflow involving branch management and making pull and push requests for changes to the documentation files in the repository.  
 
+### Group 5 Reflections on Collaboration
+Group 5-UDC-Seneca found the COIL project positive and enriching both academically and professionally. The collaboration required working across different languages (Spanish and English) time zones (a six-hour difference), and disciplines (Artificial Intelligence and Technical Communication), and it worked seamlessly with the help of the shared technologies for communication and project management: Taiga, GitHub, Zoom, MS Teams, and e-mail.
 
 
 ### Developers Considerations
@@ -137,5 +139,3 @@ Integrating the Results Window
 In the last sprint, we replaced the results window with a tab integrated into the main application. The challenge was including a layout from a separate module in the primary window while ensuring it updated dynamically with each new model.
 Defining the User Flow
 Initially, it was difficult to outline the app’s flow and provide documentation. However, we made progress by developing the app in a way that minimized the need for refactoring earlier functionalities while optimizing existing features as needed.
-Collaboration in the COIL Project
-The COIL project itself highlights the value of collaborating across different languages, time zones, and disciplines, which can naturally be a challenge. However, we believe we handled it well. The experience has been incredibly positive, and working with you has been seamless. This project will undoubtedly contribute to our academic and professional growth.
