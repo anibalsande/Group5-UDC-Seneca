@@ -9,8 +9,7 @@ This document contains product development information for the LRM App including
    - [Target Audience](#target-audience)
    - [Intended Platforms and Technology](#intended-platforms-and-technology)
    - [User Flow](#user-flow)
-2.[About Linear Regression Modeling](#about-linear-regression-modeling)
-
+2. [About Linear Regression Modeling](#about-linear-regression-modeling)
 3. [Project-Specific Information](#project-specific-information)
    - [The Group 5-UDC-Seneca Team, Roles, and Responsibilities](#the-group-5-udc-seneca-team,-roles,-and-responsibilities)
 
@@ -52,7 +51,7 @@ For reference, Figure 1 shows the User Flow created for the LRM App.
 *Figure 1. LRM App User Flow*
 
 ## About Linear Regression Modeling
-**Regression** is a statistical method that mathematically describes the interdependent relationship between, essentially, one numerical value (called the dependent variable) and another (called the independent variable(s)). **Linear regression** is the most commonly used form of regression. **Simple linear regression** describes the relationship between one dependent variable and one independent variable. **Multiple linear regression** describes the relationship when there is more than one independent variable. The reason for the name "linear" regression is because the relationship can be illustrated as a straight line on a graph, also called the line of best fit. It can also be described in a mathematical formula:
+**Regression** is a statistical method that mathematically describes the interdependent relationship between, essentially, one numerical value (called the dependent variable) and another (called the independent variable(s)). **Linear regression** is the most commonly used form of regression. **Simple linear regression** describes the relationship between one dependent variable and one independent variable. **Multiple linear regression** describes the relationship when there is more than one independent variable. The reason for the name "linear" regression is because the relationship can be illustrated as a straight line on a graph, also called the line of best fit (for a simple linear regression) or the plane of best fit (for a multiple linear regression). It can also be described in a mathematical formula:
 
 >Basic simple linear regression formula: Y = β0 + β1X, where Y is the dependent variable, X is the independent variable, β1 is the slope of the line, and β0 is the intercept (the value of Y when the line crosses the Y axis or the X value is zero).
 >
@@ -67,33 +66,21 @@ For a video explanation of the above concepts with graphs and a practical exampl
 from David Longstreet of StatisticsFun. 
 
 ### Linear Regression Modeling Past and Present
-Sir Francis Galton ("Regression analysis," 2024) first used the term "regression" in 1885 when describing his research conclusions after examining the relationship between the physical heights of fathers and their sons. He observed that the sons "regress" to the mean of the population instead of conforming to the heights (tall or short) of their fathers. While Galton only used linear regression in this biological context, statisticians have been using regression, mostly linear, ever since in different contexts. 
+Sir Francis Galton ("Regression analysis," 2024) first used the term "regression" in 1885 when describing his research conclusions after examining the relationship between the physical heights of fathers and their sons. He observed that the sons "regress" to the mean of the population instead of conforming to the heights (tall or short) of their fathers. While Galton only used linear regression in this biological context, statisticians have been using regression ever since in different contexts. 
 
-Since Galton's time, the goals, methods, and possibilities of regression analysis have advanced as technologies, most notably AI and its subset ML, have made it easier and faster to calculate linear regressions, handle gigantic datasets, and train linear regression models to predict a target variable. As a point of comparison, economists in the 1960s using electromechanical calculators might need 24 hours to finish calculating the result of one regression ("Regression analysis," 2024), but today, computers routinely perform regression calculations in a matter of seconds or milliseconds.
+Since Galton's time, the goals, methods, and possibilities of regression analysis have advanced as technologies, most notably AI and its subset ML, have made it easier and faster to calculate regressions, handle gigantic datasets, and train models to predict a target variable more accurately than before. As a point of comparison, economists in the 1960s using electromechanical calculators might need 24 hours to finish calculating the result of one regression ("Regression analysis," 2024), but today, computers routinely perform regression calculations in a matter of seconds or milliseconds.
 
-### Understanding AI and ML 
-According to Stryker and Kavlakogulu of IBM (2024), AI is "technology that enables computers and machines to simulate human learning, comprehension, problem solving, decision making, creativity and autonomy," and machine learning is a derivative concept that involves training algorithms to create models and make predictions from data. Linear regression is one of the machine learning algorithms available, and it can be trained using **supervised learning**, a process by which it uses labeled data sets to learn how to predict outcomes accurately. The machine learns the mapping between the variables in the training data, and from that, it learns to make informed predictions of the labels of new data. 
+### AI and ML's Effect on Linear Regression Usage
+According to Stryker and Kavlakogulu of IBM (2024), AI is "technology that enables computers and machines to simulate human learning, comprehension, problem solving, decision making, creativity and autonomy," and machine learning is a derivative concept that involves training algorithms to create models and make predictions from data. Linear regression is one of the machine learning algorithms available, and it can be trained using **supervised learning**, a process by which it uses labeled data sets to learn how to predict outcomes accurately. Through processing many datasets, the machine learns the mapping between the variables in the training data, and from that, it learns to make predictions of the labels of new data. 
 
+AI and ML changed the usage of linear regression models by making them more reliable for predictions and relevant to many more practical applications than in the past. Traditional statistics focused on using linear regression to test hypotheses and estimate parameters. But AI and ML-powered linear regression models focus on making accurate predictions from the data. Whereas traditional statistics required data to meet certain requirements like normal distribution, independence among observations, constant error variance, and a strictly linear relationship between the dependent and independent variables before predictions could be considered reliable, AI-powered linear regression models can often handle imperfect data and still make reliable predictions through methods like regularization. Further, AI can quickly process far more complex datasets and algorithms than traditional human-powered statistical approaches ever can (Saragadam, Asim, Etukuru, Stosik, Kulshrestha, and Brewton, 2024).
 
-Traditional statistics focuses on using linear regression to test hypotheses and estimate parameters, but AI and ML focus on making predictions from the data. Whereas traditional statistics depends on data meeting certain requirements like normal distribution, independence among observations, constant error variance, and a strictly linear relationship between the dependent and independent variables, AI-powered linear regression models can often handle imperfect data and still make reliable predictions through methods like regularization. Further, AI can quickly process far more complex datasets and algorithms than traditional human-powered statistical approaches ever can (Saragadam, Asim, Etukuru, Stosik, Kulshrestha, and Brewton, 2024).
-
-The result of AI and ML advances 
-The LRM App must create and visualize linear regression models as well as allow the user to make reliable predictions from them. Practical eff 
-
-
-
-Some practical examples of linear regression modeling and prediction include predicting (Baraka, 2024):
-- the sale price of a home based on variables like the age of the house in years, the value of neighbouring homoes, and/or the number of parks or schools nearby
-- the sale price of a stock based on variables like the company's profitability, its costs, the number of competitors, and/or the value of its assets
-- the number of future viral infections based on variables like population size, population density, and/or air temperature
-- the competitive performance of an athlete based on variables like the athlete's age, physical statistics, and/or years of experience
-- the future height of a child based on variables like mother's height, father's height, nutritional factors, and/or environmental factors.
-
-
-## Linear Regression, Artificial Intelligence (AI), and Machine Learning (ML)
-
-
-### About Artificial Intelligence (AI) and Machine Learning (ML)
+Some practical examples of multiple linear regression modeling and prediction not easily or reliably available before AI and ML made them possible include predicting (Baraka, 2024):
+- the sale price of a home based on variables including the age of the house in years, the value of neighbouring homes, and the number of parks and/or schools nearby
+- the sale price of a stock based on variables including the company's profitability, its costs, the number of competitors, and the value of its assets
+- the number of future infections from a virus in a city based on variables including population size, population density, and air temperature
+- the future competitive performance of an athlete based on variables including the athlete's age, physical statistics, and years of experience
+- the future height of a child based on variables including mother's height, father's height, nutritional factors, and environmental factors.
 
 
 
