@@ -75,7 +75,7 @@ According to Stryker and Kavlakogulu of IBM (2024), AI is "technology that enabl
 
 AI and ML changed the usage and application of linear regression models by making them more reliable for predictions and relevant to many more practical applications than in the past. Traditional statistics focused on using linear regression to test hypotheses and estimate parameters. Predictions were not the main goal. When predictions were made in traditional statistics, the data had to meet certain requirements like normal distribution, independence among observations, constant error variance, and a strictly linear relationship between the dependent and independent variables before the predictions could be considered reliable and valid. 
 
-AI and ML-powered linear regression models, on the other hand, focus on making accurate predictions from data. Imperfect data is not an obstacle like in traditional statistics; AI and ML-powered linear regression models can often handle imperfect data and still make reliable predictions using statistical methods like regularization. And they can handle massive datasets and complex algorithms with far more speed and far fewer errors than traditional human-powered statistical approaches ever can (Saragadam, Asim, Etukuru, Stosik, Kulshrestha, and Brewton, 2024).
+AI and ML-powered linear regression models, on the other hand, focus on making accurate predictions from data. Imperfect data is not as much of an obstacle like in traditional statistics; AI and ML-powered linear regression models can often handle imperfect data and still make reliable predictions using statistical methods like regularization. And they can process massive datasets and complex algorithms with far more speed and far fewer errors than traditional human-powered statistical approaches ever can (Saragadam, Asim, Etukuru, Stosik, Kulshrestha, and Brewton, 2024).
 
 Some practical examples of multiple linear regression modeling and prediction not easily or reliably available before AI and ML made them so include predicting (Baraka, 2024):
 - the sale price of a home based on variables including the age of the house in years, the value of neighbouring homes, and the number of parks and/or schools nearby
@@ -85,9 +85,7 @@ Some practical examples of multiple linear regression modeling and prediction no
 - the future height of a child based on variables including mother's height, father's height, nutritional factors, and environmental factors.
 
 ### Linear Regression, AI, ML, and the LRM App
-The LRM App is a relatively simple application as of 2024, yet it has only been possible to create since the it would not have been of , but it iAgainst the backdrop of linear regression 
-
-
+The LRM App has an easy-to-use graphical interface and allows users to upload their own datasets, create and visualize complex linear regression models, and then make statistically supportable predictions from them quickly. Only a few decades ago, making, interpreting, and making predictions from such models would have probably required the help of experts and advanced statistical knowledge. But as of 2024, this is a relatively straightforward program that can be used by laypersons with reasonable confidence as long as they have good quality datasets.     
 
 ## Project-Specific Information
 Group 5-UDC-Seneca has five members.  All of them contributed to the development and documentation of the LRM App in diverse ways. 
