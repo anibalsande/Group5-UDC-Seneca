@@ -91,7 +91,7 @@ The reason it is called "linear" regression is because the relationship can be i
 
 Because linear regression makes it possible to illustrate a relationship as a graph or a mathematical formula, it also makes it possible, with algebra and sufficient reliable datapoints, to predict the unknown value of Y as long as one knows the value of the X variable(s) in the formula. This is why the X or independent variable is also called the "predictor" or "feature" variable, and the Y or dependent variable is also called the "response" or "target" variable.
 
-For a video explanation of the above concepts with graphs and a practical example, see [![An Introduction to Linear Regression Analysis](https://img.youtube.com/vi/zPG4NjIkCjc.jpg)](https://www.youtube.com/watch?v=zPG4NjIkCjc) from David Longstreet of StatisticsFun. 
+For a video explanation of the above concepts with graphs and a practical example, see [![An Introduction to Linear Regression Analysis](https://img.youtube.com/vi/zPG4NjIkCjc/0.jpg)](https://www.youtube.com/watch?v=zPG4NjIkCjc) from David Longstreet of StatisticsFun. 
 
 
 ### Linear Regression Modeling and the LRM App
@@ -157,5 +157,6 @@ Defining the User Flow
 Initially, it was difficult to outline the app’s flow and provide documentation. However, we made progress by developing the app in a way that minimized the need for refactoring earlier functionalities while optimizing existing features as needed.
 
 ## References
-Baraka, S. (2024). Multiple (Linear) Regression: Formula, Examples, and FAQ. ***Indeed.com***. Retrieved from [https://www.indeed.com/career-advice/career-development/multiple-regression](https://www.indeed.com/career-advice/career-development/multiple-regression)
+Baraka, S. (2024). Multiple (Linear) Regression: Formula, Examples, and FAQ. ***Indeed.com***. Retrieved from [https://www.indeed.com/career-advice/career-development/multiple-regression](https://www.indeed.com/career-advice/career-development/multiple-regression)   
+
 Regression analysis. (2024, November 21). In ***Wikipedia***. [https://en.wikipedia.org/wiki/Regression_analysis#](https://en.wikipedia.org/wiki/Regression_analysis#) 
