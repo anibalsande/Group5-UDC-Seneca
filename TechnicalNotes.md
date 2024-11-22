@@ -66,13 +66,13 @@ For a video explanation of the above concepts with graphs and a practical exampl
 
 from David Longstreet of StatisticsFun. 
 
-## Linear Regression Modeling, Artifical Intelligence (AI), and Machine Learning (ML)
+### Linear Regression Modeling Past and Present
 Sir Francis Galton ("Regression analysis," 2024) first used the term "regression" in 1885 when describing his research conclusions after examining the relationship between the physical heights of fathers and their sons. He observed that the sons "regress" to the mean of the population instead of conforming to the heights (tall or short) of their fathers. While Galton only used linear regression in this biological context, statisticians have been using regression, mostly linear, ever since in different contexts. 
 
-Since Galton's time, the goals, methods, and possibilities of regression analysis have advanced as technologies, most notably AI and its subset ML, have made it easier and faster to calculate linear regressions, handle gigantic datasets, and train linear regression models to predict a target variable. 
+Since Galton's time, the goals, methods, and possibilities of regression analysis have advanced as technologies, most notably AI and its subset ML, have made it easier and faster to calculate linear regressions, handle gigantic datasets, and train linear regression models to predict a target variable. As a point of comparison, economists in the 1960s using electromechanical calculators might need 24 hours to finish calculating the result of one regression ("Regression analysis," 2024), but today, computers routinely perform regression calculations in a matter of seconds or milliseconds.
 
+### Understanding AI and ML 
 According to Stryker and Kavlakogulu of IBM (2024), AI is "technology that enables computers and machines to simulate human learning, comprehension, problem solving, decision making, creativity and autonomy," and machine learning is a derivative concept that involves training algorithms to create models and make predictions from data. Linear regression is one of the machine learning algorithms available, and it can be trained using **supervised learning**, a process by which it uses labeled data sets to learn how to predict outcomes accurately. The machine learns the mapping between the variables in the training data, and from that, it learns to make informed predictions of the labels of new data. 
-
 
 
 Traditional statistics focuses on using linear regression to test hypotheses and estimate parameters, but AI and ML focus on making predictions from the data. Whereas traditional statistics depends on data meeting certain requirements like normal distribution, independence among observations, constant error variance, and a strictly linear relationship between the dependent and independent variables, AI-powered linear regression models can often handle imperfect data and still make reliable predictions through methods like regularization. Further, AI can quickly process far more complex datasets and algorithms than traditional human-powered statistical approaches ever can (Saragadam, Asim, Etukuru, Stosik, Kulshrestha, and Brewton, 2024).
