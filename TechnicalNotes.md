@@ -154,25 +154,27 @@ This section summarizes the increments of value completed in each sprint from Sp
 
 **Sprint 1 (1 to 8 October 2024)**
 | Increment                                               | Tasks completed                                                                             | Notes                                                       |
-|-------------------------------------------------------  |:-------------------------------------------------------------------------------------------:| -----------------------------------------------------------:|
+|-------------------------------------------------------  |:-------------------------------------------------------------------------------------------:| -----------------------------------------------------------|
 | Create a GitHub repository and bases for documentation  | Create repository, give access to everyone; create Contributing.md, README.md, GitHub Pages |                                                             |
 | Create data import module                               | Develop "Data Import from Files"                                                            |                                                             |
 
 **Sprint 2 (8 to 15 October 2024)**
 | Increment                                               | Tasks completed                                                                             | Notes                                                       |
-|-------------------------------------------------------  |:-------------------------------------------------------------------------------------------:| -----------------------------------------------------------:|
+|-------------------------------------------------------  |:-------------------------------------------------------------------------------------------:| -----------------------------------------------------------|
 | Investigate, test libraries for graphic interfaces (GUI)| Research libraries, develop test                                                            |                                                             |
 | Reading datasets using the GUI                          | Create and design graphical interface; insert datasets into repository                      |                                                             |
 | Interview Subject Matter Experts                        | Prepare questions, schedule & conduct interview, send summary to interviewees for review    |                                                             |
 
 **Sprint 3 (15 to 22 October 2024)**
 | Increment                                               | Tasks completed                                                                             | Notes                                                       |
-|-------------------------------------------------------  |:-------------------------------------------------------------------------------------------:| -----------------------------------------------------------:|
+|-------------------------------------------------------  |:-------------------------------------------------------------------------------------------:| -----------------------------------------------------------|
 | Select model inputs and outputs (data columns) using GUI| Select inputs and outputs                                                                   |                                                             |
 | Data preprocessing before model creation                | Preprocessing code; adjusting interface                                                     |                                                             |
 | Investigate how to create linear models                 | Research scikit-learn; research pandas                                                      |                                                             |
-| Learn PyQt6                                             | Meetings to learn PyQt6                                                                     | Challenge: steep learning curve, new library Solution: persistence and keeping goals in mind (PyQt6 advanced features make it best choice for desired app functionalities)                                                            |
-| Finish Documentation Plan                               | Finish documentation plan and distribute                                                    | Challenge: early in process, not much info on design goals, plan Solution: Plan to revise documentation at future date|
+| Learn PyQt6                                             | Meetings to learn PyQt6                                                                     | Challenge: steep learning curve, new library
+Solution: persistence and keeping goals in mind (PyQt6 advanced features make it best choice for desired app functionalities)                                                            |
+| Finish Documentation Plan                               | Finish documentation plan and distribute                                                    | Challenge: early in process, not much info on design goals, plan
+Solution: Plan to revise documentation at future date|
 
 
 
