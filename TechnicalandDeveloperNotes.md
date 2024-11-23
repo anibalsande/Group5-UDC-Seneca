@@ -1,8 +1,7 @@
 # Technical and Developer Notes
 This document contains product development information for the LRM App including product context, purpose, goals, design, quality assurance testing, and reference material for future developers. 
 
-## Table of Contents
-<!--Finalize TOC at the very end. These are placeholders only at this point. All headings subject to change depending on project progress.--> 
+## Table of Contents 
 1. [Project Overview](#project-overview)
    - [About Collaborative Online International Learning (COIL)](#about-collaborative-online-international-learning-(coil))
    - [LRM App Project Purpose and Goals](#LRM-App-project-purpose-and-goals)
@@ -24,12 +23,11 @@ This document contains product development information for the LRM App including
 5. [References](#references)
 
 ## About the Project
-Group 5-UDC-Seneca is a group of students from the Universidade da Coruña in A Coruña, Spain and Seneca Polytechnic in Toronto, Canada who are working together through the Collaborative Online International Learning (COIL) program. During their collaboration, Group-5-UDC-Seneca develop and document, using the Agile project management approach, the **LRM App**, an online linear regression software application. In doing this, the students learn about
+Group 5-UDC-Seneca is a group of students from the Universidade da Coruña in A Coruña, Spain and Seneca Polytechnic in Toronto, Canada who are working together through the Collaborative Online International Learning (COIL) program. During their collaboration in Fall 2024, Group-5-UDC-Seneca developed and documented, using the Agile project management approach, the **LRM App**, an online linear regression software application. In doing this, the students learned about
 - linear regression modeling
 - artificial intelligence and machine learning in the context of linear regression modeling
-- industry standards and expectations for software development
-- industry standards and expectations for software documentation
-- Agile working environments
+- industry standards and expectations for developing software
+- Agile principles and Scrum methodology for developing software
 - soft skills needed to collaborate effectively and efficiently despite different geographical regions, cultures, and languages.  
 
 ### Collaborative Online International Learning (COIL)
@@ -42,50 +40,52 @@ Group 5-UDC-Seneca received the following instructions for their collaborative l
 
 > "I want to hire you to make an application that allows me to create and visualize simple and multiple linear regression models from data stored in csv, excel, and databases (SQLite) files, and make predictions with them. I also want it to allow me to save the models, load them, and make predictions. The application must have a graphical interface that allows me to do all of the above."
 
-Group 5-UDC-Seneca understand that besides creating the application (app) described, their goals for the project also include working together to create the app efficiently and in accordance with scheduled project deadlines using Agile development principles, just as they would in real life for a real business client.
+Group 5-UDC-Seneca understood that besides creating the application (app) described, their goals for the project also included working together to create the app efficiently and in accordance with scheduled project deadlines using Agile development principles, just as they would in real life for a real business client.
 
 ### Target Audience
-In planning the LRM App, Group 5-UDC-Seneca decided to target as broad an audience as possible. They wanted to ensure users understood the app was versatile and not limited to certain datasets or certain fields of study. For example, the app can be used to estimate the market price of a house based on number of bedrooms. A realtor could use the app for that purpose. The app can also be used to predict food consumption in a restaurant based on average age of the patrons. A restauranteur could find the app very helpful for that study. 
+In planning the LRM App, Group 5-UDC-Seneca decided to target as broad an audience as possible. They wanted to ensure users understood the app was versatile and not limited to certain datasets or certain fields of study. For example, the app can be used to estimate the market price of a house based on number of bedrooms. A realtor could use the app for that purpose. But the app can also be used to predict food consumption in a restaurant based on average age of the patrons. A restauranteur could find the app very helpful for that study. 
 
 Also, they wanted to ensure non-technically-proficient users could use the app as easily as users who are very tech-savvy. An app that is complicated to use or assumes prior experience with similar apps would undesirably limit the size of the target audience. 
 
 To meet the goal of making the app appropriate and easy to use for as many people as possible, Group 5-UDC-Seneca implemented a simple graphical interface with simple labels and descriptions along with optional tooltips. The simple visuals, labels, and descriptions do not suggest that the app is more suited for any one dataset or another. The tooltips, when activated, display additional information and guidance for less-technically-proficient users but otherwise do not clutter the interface or get in the way of advanced users who do not need that information. 
 
 ### Intended Platforms and Technology
-The LRM App functions in both Windows and Mac desktop environments. However, as of v.1.0 (26 November 2024), the interface is optimized for a 14-inch Windows display. Slight visual differences on other machines may occur. There is currently no plan to adapt the LRM App for tablets or smartphones. 
+The LRM App functions in both Windows and Mac desktop environments. However, as of v.1.0, scheduled for release on 3 December 2024, the interface is optimized for a 14-inch Windows display. Slight visual differences on other machines may occur. There is currently no plan to adapt the LRM App for tablets or smartphones. 
 
 ### User Flow
-For reference, Figure 1 shows the User Flow created for the LRM App.
+For reference, Figure 1 shows the User Flow for the LRM App.
 
 ![alt text](/images/process.jpg "Screenshot of LRM App User Flow diagram")
 *Figure 1. LRM App User Flow*
 
 ## About Linear Regression Modeling
-**Regression** is a statistical method that mathematically describes the interdependent relationship between, essentially, one numerical value (called the dependent variable) and another (called the independent variable(s)). **Linear regression** is the most commonly used form of regression. **Simple linear regression** describes the relationship between one dependent variable and one independent variable. **Multiple linear regression** describes the relationship when there is more than one independent variable. The reason for the name "linear" regression is because the relationship can be illustrated as a straight line on a graph, also called the line of best fit (for a simple linear regression) or the plane of best fit (for a multiple linear regression). It can also be described in a mathematical formula:
+**Regression** is a statistical method that mathematically describes the interdependent relationship between one numerical value (called the dependent variable) and one or more other values (called the independent variable(s)). **Linear regression** is the most commonly used form of regression. **Simple** linear regression describes the relationship between one dependent variable and one independent variable. **Multiple** linear regression describes the relationship when there is more than one independent variable. The regression is called "linear" because the relationship can be illustrated as a straight line on a graph, also called the line of best fit (for a simple linear regression) or the plane of best fit (for a multiple linear regression). It can also be described in a mathematical formula:
 
->Basic simple linear regression formula: Y = β0 + β1X, where Y is the dependent variable, X is the independent variable, β1 is the slope of the line, and β0 is the intercept (the value of Y when the line crosses the Y axis or the X value is zero).
+>Basic simple linear regression formula: Y = β0 + β1X
+>where Y is the dependent variable, X is the independent variable, β1 is the slope of the line, and β0 is the intercept (the value of Y when the line crosses the Y axis or the X value is zero).
 >
->Basic multiple linear regression formula (assuming two independent variables): Y = β0 + β1X1 + β2X2, where Y is the dependent variable, β0 is the value of Y when the independent variables are equal to zero), X1 is the first independent variable, X2 is the second independent variable, and β1 and β2 are estimated regression coefficients.
+>Basic multiple linear regression formula (assuming two independent variables): Y = β0 + β1X1 + β2X2
+>where Y is the dependent variable, β0 is the value of Y when the independent variables are equal to zero), X1 is the first independent variable, X2 is the second independent variable, and β1 and β2 are estimated regression coefficients.
 
-Because linear regression can illustrate a relationship between variables as a graph or a mathematical formula, it is possible, with algebra and sufficient reliable datapoints, to predict the unknown value of a Y variable as long as one knows the value of the X variable(s). This is why the X or independent variable is also called the "predictor" or "feature" variable, and the Y or dependent variable is also called the "response" or "target" variable.
+Because linear regression can illustrate a relationship between variables as a graph or a mathematical formula, it is possible, with algebra and a sufficient reliable historical data (also called a "dataset" or a set of "datapoints"), to **predict** the unknown value of a Y variable as long as one knows the value(s) of the X variable(s). This is why the X or independent variable is also called the "predictor" or "feature" variable, and the Y or dependent variable is also called the "response" or "target" variable.
 
-For a video explanation of the above concepts with graphs and a practical example, see
+For a video explanation of the above concepts, see
 
 [![An Introduction to Linear Regression Analysis](https://img.youtube.com/vi/zPG4NjIkCjc/0.jpg)](https://www.youtube.com/watch?v=zPG4NjIkCjc) 
 
 from David Longstreet of StatisticsFun. 
 
 ### Linear Regression Modeling Past and Present
-Sir Francis Galton ("Regression analysis," 2024) first used the term "regression" in 1885 when describing his research conclusions after examining the relationship between the physical heights of fathers and their sons. He observed that the sons "regress" to the mean of the population instead of conforming to the heights (tall or short) of their fathers. While Galton only used linear regression in this biological context, statisticians have been using regression ever since in different contexts. 
+Sir Francis Galton ("Regression analysis," 2024) first used the term "regression" in 1885 when describing his research conclusions after examining the relationship between the physical heights of fathers and their sons. He observed that the sons "regressed" to the mean of the population instead of conforming to the heights (tall or short) of their fathers. While Galton only used regression in this biological context, statisticians have been using regression ever since in different contexts. 
 
-Since Galton's time, the goals, methods, and possibilities of regression analysis have advanced as technologies, most notably AI and its subset ML, have made it easier and faster to calculate regressions and make accurate predictions from data. As a point of comparison, economists in the 1960s using electromechanical calculators might need 24 hours to finish calculating the result of one regression ("Regression analysis," 2024), but today, computers routinely perform regression calculations and generate related analytical insights in a matter of seconds or milliseconds.
+Since Galton's time, the goals, methods, and possibilities of regression analysis have advanced as technologies, most notably artificial intelligence (AI) and its subset, machine learning (ML), have made it easier and faster to calculate regressions and make accurate predictions from data. As a point of comparison, economists in the 1960s using electromechanical calculators might need 24 hours to finish calculating the result of one regression ("Regression analysis," 2024), but today, computers routinely perform regression calculations and generate related analytical insights in a matter of seconds or milliseconds.
 
 ### AI and ML's Effect on Linear Regression Usage and Application
-According to Stryker and Kavlakogulu of IBM (2024), AI is "technology that enables computers and machines to simulate human learning, comprehension, problem solving, decision making, creativity and autonomy," and ML is a derivative concept that involves training algorithms to create models and make predictions from data. Linear regression is one of the ML algorithms available, and it can be trained using **supervised learning**, a process by which the machine uses labeled data sets to learn how to predict outcomes accurately. Through processing many datasets, the machine learns the mapping between the variables in the training data, and from that, it learns to make predictions of the labels of new data. 
+According to Stryker and Kavlakogulu of IBM (2024), AI is "technology that enables computers and machines to simulate human learning, comprehension, problem solving, decision making, creativity and autonomy," and ML is a derivative concept that involves training algorithms to create models and make predictions from data. Linear regression is one of the ML algorithms available, and it can be trained using **supervised learning**, a process by which the machine uses labeled data sets to learn how to predict outcomes accurately. Through processing many datasets, the machine "learns" the mapping between the variables in the training data, and from that, it learns to make predictions of the labels of new data. 
 
-AI and ML changed the usage and application of linear regression models by making them more reliable for predictions and relevant to many more practical applications than in the past. Traditional statistics focused on using linear regression to test hypotheses and estimate parameters. Predictions were not the main goal. When predictions were made in traditional statistics, the data had to meet certain requirements like normal distribution, independence among observations, constant error variance, and a strictly linear relationship between the dependent and independent variables before the predictions could be considered reliable and valid. 
+ML changed the usage and application of linear regression models by making them more reliable for predictions and relevant to many more practical applications than in the past. Traditional statistics focused on using linear regression to test hypotheses, estimate parameters, and make inferences about causation. Predictions were not the main goal. When predictions were made in traditional statistics, the data had to meet certain requirements like normal distribution, independence among observations, constant error variance, and a strictly linear relationship between the dependent and independent variables before the predictions could be considered reliable and valid. 
 
-AI and ML-powered linear regression models, on the other hand, focus on making accurate predictions from data. Imperfect data is not as much of an obstacle like in traditional statistics; AI and ML-powered linear regression models can often handle imperfect data and still make reliable predictions using statistical methods like regularization. And they can process massive datasets and complex algorithms with far more speed and far fewer errors than traditional human-powered statistical approaches ever can (Saragadam, Asim, Etukuru, Stosik, Kulshrestha, and Brewton, 2024).
+Unlike in traditional statistics, ML-powered linear regression models focus on making accurate predictions from data. Imperfect data is not as much of an obstacle to predictions as in traditional statistics; ML-powered linear regression models can be given imperfect data and still make reliable predictions using statistical methods like normalization (adjusting values of features to a common scale) or regularization (preventing the model from becoming too fixed or "overfitted" to its training data). And ML-powered models can process massive datasets and complex algorithms with far more speed and far fewer errors than traditional human-powered statistical approaches ever can (Saragadam, Asim, Etukuru, Stosik, Kulshrestha, and Brewton, 2024).
 
 Some practical examples of multiple linear regression modeling and prediction not easily or reliably available before AI and ML made them so include predicting (Baraka, 2024):
 - the sale price of a home based on variables including the age of the house in years, the value of neighbouring homes, and the number of parks and/or schools nearby
@@ -95,9 +95,9 @@ Some practical examples of multiple linear regression modeling and prediction no
 - the future height of a child based on variables including mother's height, father's height, nutritional factors, and environmental factors.
 
 ### The LRM App in Context
-The LRM App has an easy-to-use graphical interface and allows users across different fields with varying levels of technical knowledge to upload their own datasets, create and visualize complex linear regression models, and then make statistically supportable predictions from them quickly. 
+The LRM App has an easy-to-use graphical interface and allows users across different fields with varying levels of technical knowledge to upload their own datasets, process the data to handle create and visualize complex linear regression models, and then make statistically supportable predictions from them quickly. 
 
-To put this in historical context, it was only a few decades ago that making, interpreting, and making predictions from such models would have required advanced statistical knowledge as well as the help of expert computer programmers. But as of 2024, with the power of AI and ML, the LRM App represents a relatively straightforward program that can be used by laypersons with reasonable confidence as long as they have good quality datasets for the predictions they want to make.     
+To put this in historical context, it was only a few decades ago that a layperson could never have done these tasks without the help of an expert statistician, a specialized computer, and a significant investment of time. But as of 2024, the LRM App represents a relatively straightforward computer program that can be used by laypersons with reasonable confidence as long as they have good quality datasets for the predictions they want to make.     
 
 ## About the Team and the Development Process
 Group 5-UDC-Seneca has five student members and two faculty members. 
