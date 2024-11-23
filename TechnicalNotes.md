@@ -90,7 +90,7 @@ Some practical examples of multiple linear regression modeling and prediction no
 ### The LRM App in Context
 The LRM App has an easy-to-use graphical interface and allows users across different fields with varying levels of technical knowledge to upload their own datasets, create and visualize complex linear regression models, and then make statistically supportable predictions from them quickly. 
 
-To put this in context, considering the history of linear regression, AI, and ML, it was only a few decades ago that making, interpreting, and making predictions from such models would have required advanced statistical knowledge as well as the help of expert computer programmers. But as of 2024, the LRM App represents a relatively straightforward program that can be used by laypersons with reasonable confidence as long as they have good quality datasets for the predictions they want to make.     
+To put this in historical context, it was only a few decades ago that making, interpreting, and making predictions from such models would have required advanced statistical knowledge as well as the help of expert computer programmers. But as of 2024, with the power of AI and ML, the LRM App represents a relatively straightforward program that can be used by laypersons with reasonable confidence as long as they have good quality datasets for the predictions they want to make.     
 
 ## About the Team and the Development Process
 Group 5-UDC-Seneca has five student members and two faculty members. 
@@ -101,7 +101,7 @@ The student members of Group 5-UDC-Seneca and their roles in the project are
 - Carla Vázquez Barreiros (UDC): Software Researcher and Developer
 - Claudia Fernández Vilela (UDC): Software Researcher and Developer
 - Sofía García Perez (UDC): Software Researcher and Developer
-- Ann Velez (Seneca): Technical Documentation Researcher and Developer
+- Ann Velez (Seneca): Technical Documentation Writer (Developer)
 
 The faculty members are
 - Alberto Alvarellos González (UDC): Product Owner
@@ -112,7 +112,7 @@ Group 5-UDC-Seneca followed the Agile Scrum methodology to complete the project.
 ### About Agile and Scrum
 **Agile** is a software project management approach or philosophy that emphasizes early and continuous delivery of software to the customer and values "individuals and interactions over processes and tools, working software over comprehensive documentation, customer collaboration over contract negotiation, and responding to change over following a plan" (Beck et al, 2001). The Agile approach involves completing chunks of work in short phases often called "sprints," responding to change quickly, and collaborating and improving on the product throughout. This is in contrast to the **Waterfall** approach where one component or phase of the project must be finished before another one can be started and consequently is not often able to respond to change quickly or deviate from a set plan. 
 
-There are different methods that follow Agile principles, and Group 5-UDC-Seneca followed **Scrum**, a common one.   
+There are different methodologies that follow Agile principles, and Group 5-UDC-Seneca followed **Scrum**, a common one.   
 
 In Scrum:
 - sprints are short - in this project, they were just one week long
@@ -122,41 +122,34 @@ In Scrum:
 - the Scrum Master is accountable for making sure the task goals for the sprint are met and thereby produce an "increment" of value for the project for that sprint
 - the Product Owner manages the backlog of tasks for the project and looks to maximize value from the scrum team's work
 - the Documentation Manager ensures documentation meets the project's needs 
-- the Developers are responsible for creating the product. Developers include software developers as well as documentation writers since both create or develop the overall product.
+- the Developers are responsible for creating the product.
 
-In the aThe Scrum Master had additional responsibilities:
-- assigning tasks to team members, taking into consideration their preferences and skills
-- checking to ensure all sprint objectives were met in a timely manner
-- taking initiative on addressing challenges in completing tasks on time
-- leading communication with the Technical Documentation Writer who was the only team member in a different country and school
-- leading the design arrangement of elements within the LRM App
+**Note: In the Scrum context, developers include documentation writers as well as software developers since both create or develop the overall product.**
 
-The Technical Documentation Writer prepared a Documentation Plan, interviewed the UDC students as Subject Matter Experts on the app's development, prepared this Technical and Developer Notes document for internal use, and wrote the README file for external users of the LRM App. To do this the Technical Documentation Writer learned to use Markdown in GitHub and became familiar with the GitHub workflow involving branch management and making pull and push requests for changes to the documentation files in the repository.  
-
-For further information on Agile project management, visit the [Agile Alliance](https://www.agilealliance.org/the-alliance/)
+For further information on Agile project management, visit the [Agile Alliance](https://www.agilealliance.org/the-alliance/).
 
 For further information on the Scrum methodology, visit [Scrum.org](https://www.scrum.org/).
 
-
-### The Team's COIL Experience 
-Group 5-UDC-Seneca found the COIL project positive and enriching both academically and professionally. The collaboration required working across different languages (Spanish and English) time zones (a six-hour difference), and disciplines (Artificial Intelligence and Technical Communication), and it worked seamlessly with the help of the shared technologies for communication and project management: Taiga, GitHub, Zoom, MS Teams, and e-mail.
-
 ## Developer Notes
-This section contain the UDC developers' summaries of their work process and how they solved problems in coding the LRM App. It serves as a reference for future developers working on the LRM App so they understand the original developers' thought process and work strategy. 
+This section contain the LRM App developers' summaries of their work process and how they solved problems in creating and documenting the LRM App. It serves as a reference for future developers working on the LRM App so they understand the original developers' thought process and work strategy. 
 
+**All developers across both schools** found the COIL project positive and enriching both academically and professionally. The collaboration required working across different languages (Spanish and English) time zones (a six-hour difference), and disciplines (Artificial Intelligence and Technical Communication), and it worked seamlessly with the help of the shared technologies for communication and project management: Taiga, GitHub, Zoom, MS Teams, and e-mail.
 
+**The Scrum Master** found that in addition to leading the assignment of tasks for sprints, he rose to the challenge of taking on a leadership role across the entire project. He took initiative in addressing challenges in completing sprint tasks, led timely communication with the Technical Documentation Writer who was in a different country and time zone, explained details of the functions and programming of the LRM App to the Technical Documentation Writer, and led the design and arrangement of elements within the LRM App, and updated .  
 
-### Group 5-UDC-Seneca Development Process 
-What was your development process like? For example, how often did you meet, and how did you plan your sprints?
-After the Sprint Review and Retrospective sessions, we conducted Sprint Planning meetings on Tuesdays. During these, we selected tasks based on our availability. When tasks overlapped or required similar actions, we used to choose both to streamline our work.
-Throughout the sprint, we worked individually but ensured regular communication about progress and challenges. Toward the end of each sprint, we reviewed and integrated all components. 
- 
-We also held several collaborative sessions, some focused on working together on the code and others to share research findings, decide on the libraries to use, and align our work.
- 
-How did you manage the GitHub repository and code? Did you establish a particular policy or rules for branches and merges/commits?
+**The Technical Documentation Writer** prepared a Documentation Plan, interviewed UDC students as Subject Matter Experts on the app's development, prepared this Technical and Developer Notes document for internal use, and wrote the README file for external users of the LRM App. To do this the Technical Documentation Writer learned to use Markdown in GitHub and became familiar with the GitHub workflow involving branch management and making pull and push requests for changes to the documentation files in the repository.  
+
+**The Software Researchers and Developers** purposefully chose to take on both research and programming tasks, which allowed all of them to gain experience in different roles and not just single aspects of the LRM App.
+
+### Sprint Reviews, Retrospectives, and Planning
+For Group 5-UDC-Seneca, Tuesdays marked the end and beginning of each sprint. On Tuesdays, we would have hold our Sprint Review and Retrospective session virtually during our online class time, and Professor Alberto González assisted the team by interpreting our feedback into Spanish or English as necessary so everyone could understand. The team would then conduct its Sprint Planning meeting. The UDC members planned their tasks for the sprint based on their availability and how efficiently they judged they could complete the work. During the sprint, the UDC members mostly worked individually and communicated regularly about progresss and challenges, and before the Sprint Review, they would review and integrate the programming components. They also held several collaborative work sessions where some focused on working together on the code and others shared their research findings, decided on the libraries to use, and all aligned their work product for the software.
+
+The Seneca member planned documentation tasks separately from UDC and could not attend the Sprint Planning live due to the language barrier and logistical issues with the timing of the UDC class coinciding with a separate Seneca class or scheduled break. However, through Taiga, email, MS Teams, and Zoom, all team members were able to communicate about tasks and answer questions in a transparent and timely way. 
+
+### Software Development in GitHub
 We created a develop branch to work independently from the documentation part. Initially, we committed directly to this branch, as the tasks were straightforward and completed quickly. Later, as tasks became more complex, we created separate branches for new functionalities. Once these were complete, we merged them back into the develop branch.
 
-## Developer Notes
+###
 
 
 
