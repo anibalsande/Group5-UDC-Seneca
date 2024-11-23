@@ -16,7 +16,7 @@ This document contains product development information for the LRM App including
 3. [About the Team](#about-the-team)
    - [Team Members, Roles, and Responsibilities](#team-members,-roles,-and-responsibilities)
 
-## Project Overview 
+## About the Project
 Group 5-UDC-Seneca is a group of students from the Universidade da Coruña in A Coruña, Spain and Seneca Polytechnic in Toronto, Canada who are working together through the Collaborative Online International Learning (COIL) program. During their collaboration, Group-5-UDC-Seneca develop and document, using the Agile project management approach, the **LRM App**, an online linear regression software application. In doing this, the students learn about
 - linear regression modeling
 - artificial intelligence and machine learning in the context of linear regression modeling
@@ -25,7 +25,7 @@ Group 5-UDC-Seneca is a group of students from the Universidade da Coruña in A 
 - Agile working environments
 - soft skills needed to collaborate effectively and efficiently despite different geographical regions, cultures, and languages.  
 
-### About Collaborative Online International Learning (COIL)
+### Collaborative Online International Learning (COIL)
 The COIL approach supports cultural awareness, cultural competency, and globalization in the modern economy. It does this by pairing professors and their classes at two different accredited institutions in two different countries or cultures to work on a collaborative learning project. The professors collaborate on the planning and design of the project. The students then collaborate on organizing, discussing, completing, and presenting their project with the assistance of technology that supports their meeting and communicating virtually. Along the way, the students get to know and trust each other and work together comfortably and effectively even though they are in different geographic locations, may have language barriers and cultural differences, and are often in different time zones. 
 
 ### LRM App Project Purpose and Goals
@@ -115,19 +115,22 @@ The Scrum Master had additional responsibilities:
 
 The Technical Documentation Writer prepared a Documentation Plan, interviewed the UDC students as Subject Matter Experts on the app's development, prepared this Technical and Developer Notes document for internal use, and wrote the README file for external users of the LRM App. To do this the Technical Documentation Writer learned to use Markdown in GitHub and became familiar with the GitHub workflow involving branch management and making pull and push requests for changes to the documentation files in the repository.  
 
-### About the Team's COIL Experience 
+### The Team's COIL Experience 
 Group 5-UDC-Seneca found the COIL project positive and enriching both academically and professionally. The collaboration required working across different languages (Spanish and English) time zones (a six-hour difference), and disciplines (Artificial Intelligence and Technical Communication), and it worked seamlessly with the help of the shared technologies for communication and project management: Taiga, GitHub, Zoom, MS Teams, and e-mail.
 
 ## About Agile and the Development Process
-Agile is a 
-
-
-## About Agile
-
+Agile is an approach to project management emphasizing completing chunks of work across the project in weekly or biweekly **sprints**, with continuous collaboration and improvement throughout. This is in contrast to the Waterfall approach where one component or phase of the project must be finished before another one can be started. There are different manifestations of the Agile methodology. The UDC-Seneca COIL project followed the **Scrum** method, which is characterized by
+- frequent, often daily, meetings by the team to discuss active tasks and any challenges
+- a sprint planning meeting at the beginning of each sprint to plan and assign tasks for that sprint
+- a sprint retrospective at the end of each sprint to reflect on what was learned, what went well, and what could be improved for the future. 
 
 
 ## Developer Notes
-The Developer Notes contain the devs' summaries of their work process and how they solved problems in coding the app. It can include Agile product roadmaps, backlogs, standards, plans, estimates, schedules, test strategy, release checklist, working papers, reports.
+This section contain the UDC developers' summaries of their work process and how they solved problems in coding the LRM App. It serves as a reference for future developers working on the LRM App so they understand the original developers' thought process and work strategy. 
+
+
+
+It can include Agile product roadmaps, backlogs, standards, plans, estimates, schedules, test strategy, release checklist, working papers, reports.
 
 
 This document contains summaries of the developers' work process and details as to how they solved problems in coding the app.
