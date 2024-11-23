@@ -19,7 +19,7 @@ This document contains product development information for the LRM App including
 4. [Developer Notes](#developer-notes)
    - [Software Development in GitHub](#software-development-in-github)
    - [Sprint Reviews, Retrospectives, and Planning](#sprint-reviews,-retrospectives,-and-planning)
-   - [Sprint Increment Summaries])#sprint-increment-summaries)
+   - [Sprint Increment Summaries](#sprint-increment-summaries)
    - [Functional Test Plan](#functional-test-plan)
 5. [References](#references)
 
