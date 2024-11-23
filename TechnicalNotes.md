@@ -13,8 +13,8 @@ This document contains product development information for the LRM App including
    - [Linear Regression Modeling Past and Present](#linear-regression-modeling-past-and-present)
    - [AI and ML's Effect on Linear Regression Usage and Application](#AI-and-ML's-effect-on-linear-regression-usage-and-application)
    - [The LRM App in Context](#the-LRM-app-in-context)
-4. [Project-Specific Information](#project-specific-information)
-   - [The Group 5-UDC-Seneca Team, Roles, and Responsibilities](#the-group-5-udc-seneca-team,-roles,-and-responsibilities)
+3. [About the Team](#about-the-team)
+   - [Team Members, Roles, and Responsibilities](#team-members,-roles,-and-responsibilities)
 
 ## Project Overview 
 Group 5-UDC-Seneca is a group of students from the Universidade da Coruña in A Coruña, Spain and Seneca Polytechnic in Toronto, Canada who are working together through the Collaborative Online International Learning (COIL) program. During their collaboration, Group-5-UDC-Seneca develop and document, using the Agile project management approach, the **LRM App**, an online linear regression software application. In doing this, the students learn about
@@ -88,12 +88,16 @@ Some practical examples of multiple linear regression modeling and prediction no
 - the future height of a child based on variables including mother's height, father's height, nutritional factors, and environmental factors.
 
 ### The LRM App in Context
-The LRM App has an easy-to-use graphical interface and allows users to upload their own datasets, create and visualize complex linear regression models, and then make statistically supportable predictions from them quickly. Only a few decades ago, making, interpreting, and making predictions from such models would have probably required the help of experts and advanced statistical knowledge. But as of 2024, this is a relatively straightforward program that can be used by laypersons with reasonable confidence as long as they have good quality datasets.     
+The LRM App has an easy-to-use graphical interface and allows users across different fields with varying levels of technical knowledge to upload their own datasets, create and visualize complex linear regression models, and then make statistically supportable predictions from them quickly. 
 
-## Project-Specific Information
+To put this in context, considering the history of linear regression, AI, and ML, it was only a few decades ago that making, interpreting, and making predictions from such models would have required advanced statistical knowledge as well as the help of expert computer programmers. But as of 2024, the LRM App represents a relatively straightforward program that can be used by laypersons with reasonable confidence as long as they have good quality datasets for the predictions they want to make.     
+
+## About the Team
 Group 5-UDC-Seneca has five members.  All of them contributed to the development and documentation of the LRM App in diverse ways. 
 
-### The Group 5 Team, Roles, and Responsibilities
+### Team Members, Roles, and Responsibilities
+The members of Group 5-UDC-Seneca and their roles are
+
 - Aníbal Sande González (UDC): Scrum Master, Researcher and Developer
 - Carla Vázquez Barreiros (UDC): Researcher and Developer
 - Claudia Fernández Vilela (UDC): Researcher and Developer
@@ -111,21 +115,18 @@ The Scrum Master had additional responsibilities:
 
 The Technical Documentation Writer prepared a Documentation Plan, interviewed the UDC students as Subject Matter Experts on the app's development, prepared this Technical and Developer Notes document for internal use, and wrote the README file for external users of the LRM App. To do this the Technical Documentation Writer learned to use Markdown in GitHub and became familiar with the GitHub workflow involving branch management and making pull and push requests for changes to the documentation files in the repository.  
 
-### Group 5 Reflections on Collaboration
+### About the Team's COIL Experience 
 Group 5-UDC-Seneca found the COIL project positive and enriching both academically and professionally. The collaboration required working across different languages (Spanish and English) time zones (a six-hour difference), and disciplines (Artificial Intelligence and Technical Communication), and it worked seamlessly with the help of the shared technologies for communication and project management: Taiga, GitHub, Zoom, MS Teams, and e-mail.
 
-
-### Developers Considerations
-
-### Testing 
-
+## About Agile and the Development Process
+Agile is a 
 
 
 ## About Agile
 
 
 
-# Developer Notes
+## Developer Notes
 The Developer Notes contain the devs' summaries of their work process and how they solved problems in coding the app. It can include Agile product roadmaps, backlogs, standards, plans, estimates, schedules, test strategy, release checklist, working papers, reports.
 
 
