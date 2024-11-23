@@ -141,15 +141,29 @@ This section contain the LRM App developers' summaries of their work process and
 
 **The Software Researchers and Developers** purposefully chose to take on both research and programming tasks, which allowed all of them to gain experience in different roles and not just single aspects of the LRM App.
 
+### Software Development in GitHub
+Following best practices in programming, the team created a separate **develop** branch from the main branch in their GitHub repository to contain their code. Anoter separate branch contained the documentation. The software developers found that as programming tasks became more complex, they created more branches for new functionalities and then merged them with the develop branch when they were complete. All separate branches will be merged with the **main** branch by the time of the LRM App version 1.0 release scheduled for 3 December 2024.  
+
 ### Sprint Reviews, Retrospectives, and Planning
 For Group 5-UDC-Seneca, Tuesdays marked the end and beginning of each sprint. On Tuesdays, we would have hold our Sprint Review and Retrospective session virtually during our online class time, and Professor Alberto González assisted the team by interpreting our feedback into Spanish or English as necessary so everyone could understand. The team would then conduct its Sprint Planning meeting. The UDC members planned their tasks for the sprint based on their availability and how efficiently they judged they could complete the work. During the sprint, the UDC members mostly worked individually and communicated regularly about progresss and challenges, and before the Sprint Review, they would review and integrate the programming components. They also held several collaborative work sessions where some focused on working together on the code and others shared their research findings, decided on the libraries to use, and all aligned their work product for the software.
 
 The Seneca member planned documentation tasks separately from UDC and could not attend the Sprint Planning live due to the language barrier and logistical issues with the timing of the UDC class coinciding with a separate Seneca class or scheduled break. However, through Taiga, email, MS Teams, and Zoom, all team members were able to communicate about tasks and answer questions in a transparent and timely way. 
 
-### Software Development in GitHub
-We created a develop branch to work independently from the documentation part. Initially, we committed directly to this branch, as the tasks were straightforward and completed quickly. Later, as tasks became more complex, we created separate branches for new functionalities. Once these were complete, we merged them back into the develop branch.
+### Sprint Increment Summaries
+This section summarizes the increments of value completed in each sprint from Sprint 1 commencing on 1 October 2024 to Sprint 8 ending on 26 November 2024 and notes challenges and solutions when applicable.
 
-###
+**Sprint 1 (1 to 8 October 2024)**
+| Increment                                               | Tasks completed                                                                             | Notes |
+|-------------------------------------------------------  |:-------------------------------------------------------------------------------------------:| ------:|
+| Create a GitHub repository and bases for documentation  | Create repository, give access to everyone; create Contributing.md, README.md, GitHub Pages |        |
+| Create data import module                               | Develop "Data Import from Files"                                                            |        |
+
+**Sprint 2 (8 to 15 October 2024)**
+| Increment                                               | Tasks completed                                                                             | Notes |
+|-------------------------------------------------------  |:-------------------------------------------------------------------------------------------:| ------:|
+| Investigate, test libraries for graphic interfaces (GUI)| Research libraries, develop test                                                            |        |
+| Reading datasets using the GUI                          | Create and design graphical interface; insert datasets into repository                      |        |
+| Interview Subject Matter Experts                        | Prepare questions, schedule & conduct interview, send summary to interviewees for review    |        |
 
 
 
@@ -188,8 +202,6 @@ Initially, it was difficult to outline the app’s flow and provide documentatio
 Baraka, S. (2024). Multiple (Linear) Regression: Formula, Examples, and FAQ. ***Indeed.com***. Retrieved from [https://www.indeed.com/career-advice/career-development/multiple-regression](https://www.indeed.com/career-advice/career-development/multiple-regression)   
 
 Beck et al. (2001). Manifesto for Agile Software Development. Retrieved from [https://agilemanifesto.org](https://agilemanifesto.org/)
-
-Beck et al.
 
 Saragadam, H., Asim, U., Etukuru, R.,  Stosik, D.,  Kulshrestha, V., & Brewton, J. (2024). How does AI's linear regression differ from traditional statistics? ***LinkedIn.com***. Retrieved from [https://www.linkedin.com/advice/3/how-does-ais-linear-regression-differ-from-6u77e](https://www.linkedin.com/advice/3/how-does-ais-linear-regression-differ-from-6u77e)
 
