@@ -10,7 +10,10 @@ This document contains product development information for the LRM App including
    - [Intended Platforms and Technology](#intended-platforms-and-technology)
    - [User Flow](#user-flow)
 2. [About Linear Regression Modeling](#about-linear-regression-modeling)
-3. [Project-Specific Information](#project-specific-information)
+   - [Linear Regression Modeling Past and Present](#linear-regression-modeling-past-and-present)
+   - [AI and ML's Effect on Linear Regression Usage and Application](#AI-and-ML's-effect-on-linear-regression-usage-and-application)
+   - [The LRM App in Context](#the-LRM-app-in-context)
+4. [Project-Specific Information](#project-specific-information)
    - [The Group 5-UDC-Seneca Team, Roles, and Responsibilities](#the-group-5-udc-seneca-team,-roles,-and-responsibilities)
 
 ## Project Overview 
@@ -84,7 +87,7 @@ Some practical examples of multiple linear regression modeling and prediction no
 - the future competitive performance of an athlete based on variables including the athlete's age, physical statistics, and years of experience
 - the future height of a child based on variables including mother's height, father's height, nutritional factors, and environmental factors.
 
-### Linear Regression, AI, ML, and the LRM App
+### The LRM App in Context
 The LRM App has an easy-to-use graphical interface and allows users to upload their own datasets, create and visualize complex linear regression models, and then make statistically supportable predictions from them quickly. Only a few decades ago, making, interpreting, and making predictions from such models would have probably required the help of experts and advanced statistical knowledge. But as of 2024, this is a relatively straightforward program that can be used by laypersons with reasonable confidence as long as they have good quality datasets.     
 
 ## Project-Specific Information
