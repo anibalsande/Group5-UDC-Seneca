@@ -93,20 +93,36 @@ The LRM App has an easy-to-use graphical interface and allows users across diffe
 To put this in context, considering the history of linear regression, AI, and ML, it was only a few decades ago that making, interpreting, and making predictions from such models would have required advanced statistical knowledge as well as the help of expert computer programmers. But as of 2024, the LRM App represents a relatively straightforward program that can be used by laypersons with reasonable confidence as long as they have good quality datasets for the predictions they want to make.     
 
 ## About the Team
-Group 5-UDC-Seneca has five members.  All of them contributed to the development and documentation of the LRM App in diverse ways. 
+Group 5-UDC-Seneca has five student members and two faculty members. 
 
-### Team Members, Roles, and Responsibilities
-The members of Group 5-UDC-Seneca and their roles are
+The student members of Group 5-UDC-Seneca and their roles in the project are
 
-- Aníbal Sande González (UDC): Scrum Master, Researcher and Developer
-- Carla Vázquez Barreiros (UDC): Researcher and Developer
-- Claudia Fernández Vilela (UDC): Researcher and Developer
-- Sofía García Perez (UDC): Researcher and Developer
-- Ann Velez (Seneca): Technical Documentation Writer
-  
-All of the UDC students worked on research and development of the LRM App (see [Developer Notes](#Developer-Notes) for detailed information), allowing all of them to gain experience in different aspects of the product instead of focusing on a single area. 
+- Aníbal Sande González (UDC): Scrum Master, Software Researcher and Developer
+- Carla Vázquez Barreiros (UDC): Software Researcher and Developer
+- Claudia Fernández Vilela (UDC): Software Researcher and Developer
+- Sofía García Perez (UDC): Software Researcher and Developer
+- Ann Velez (Seneca): Technical Documentation Researcher and Developer
 
-The Scrum Master had additional responsibilities:
+The faculty members are
+- Alberto Alvarellos González (UDC): Product Owner
+- Amy Briggs (Seneca): Documentation Manager
+
+### About Agile and Scrum
+**Agile** is an approach to project management emphasizing completing chunks of work across the project in weekly or biweekly "sprints" with continuous collaboration and improvement throughout. This is in contrast to the **Waterfall** approach where one component or phase of the project must be finished before another one can be started. 
+
+There are different manifestations of the Agile methodology. The UDC-Seneca COIL project followed the **Scrum** method. 
+
+In Scrum:
+- sprints are short - in this project, they were just one week long
+- team members hold frequent (often daily) meetings ("scrums") where they discuss their work activities and problem-solve around challenges
+- team members have a sprint planning meeting at the beginning of each sprint to plan and assign tasks for that sprint
+- team members have a sprint retrospective at the end of each sprint to reflect on what was learned, what went well, and what could be improved for the future
+- the Scrum Master is accountable for making sure the task goals for the sprint are met and thereby produce an "increment" of value for the project for that sprint
+- the Product Owner manages the backlog of tasks for the project and looks to maximize value from the scrum team's work
+- the Documentation Manager ensures documentation meets the project's needs 
+- the Developers are responsible for creating the product. Developers include software developers as well as documentation writers since both create or develop the overall product.
+
+In the aThe Scrum Master had additional responsibilities:
 - assigning tasks to team members, taking into consideration their preferences and skills
 - checking to ensure all sprint objectives were met in a timely manner
 - taking initiative on addressing challenges in completing tasks on time
@@ -115,31 +131,18 @@ The Scrum Master had additional responsibilities:
 
 The Technical Documentation Writer prepared a Documentation Plan, interviewed the UDC students as Subject Matter Experts on the app's development, prepared this Technical and Developer Notes document for internal use, and wrote the README file for external users of the LRM App. To do this the Technical Documentation Writer learned to use Markdown in GitHub and became familiar with the GitHub workflow involving branch management and making pull and push requests for changes to the documentation files in the repository.  
 
+For further information on Agile project management, visit the [Agile Alliance](https://www.agilealliance.org/the-alliance/)
+
+For further information on the Scrum methodology, visit [Scrum.org](https://www.scrum.org/).
+
+
 ### The Team's COIL Experience 
 Group 5-UDC-Seneca found the COIL project positive and enriching both academically and professionally. The collaboration required working across different languages (Spanish and English) time zones (a six-hour difference), and disciplines (Artificial Intelligence and Technical Communication), and it worked seamlessly with the help of the shared technologies for communication and project management: Taiga, GitHub, Zoom, MS Teams, and e-mail.
 
 ## Developer Notes
-
-
-
 This section contain the UDC developers' summaries of their work process and how they solved problems in coding the LRM App. It serves as a reference for future developers working on the LRM App so they understand the original developers' thought process and work strategy. 
 
 
-### About Agile and Scrum
-Agile is an approach to project management emphasizing completing chunks of work across the project in weekly or biweekly **sprints**, with continuous collaboration and improvement throughout. This is in contrast to the Waterfall approach where one component or phase of the project must be finished before another one can be started. 
-
-There are different manifestations of the Agile methodology. The UDC-Seneca COIL project followed the **Scrum** method, which is characterized by
-- short sprints - in this project, they were just one week long
-- daily or almost-daily meetings or "scrums" where team members discussed their work activities and problem-solved around challenges
-- a sprint planning meeting at the beginning of each sprint to plan and assign tasks for that sprint
-- a sprint retrospective at the end of each sprint to reflect on what was learned, what went well, and what could be improved for the future
-- a Scrum Master who is accountable for making sure the task goals for the sprint are met and thereby produce an "increment" of value for the project for that sprint
-- a Product Owner who manages the backlog of tasks for the project and is accountable for maximizing value from the scrum team's work
-- Developers who create the product and include software developers as well as documentation writers since both create or develop the overall product.
-
-For further information on Agile project management, visit the [Agile Alliance](https://www.agilealliance.org/the-alliance/)
-
-For further information on the Scrum methodology, visit [Scrum.org](https://www.scrum.org/).
 
 ### Group 5-UDC-Seneca Development Process 
 What was your development process like? For example, how often did you meet, and how did you plan your sprints?
