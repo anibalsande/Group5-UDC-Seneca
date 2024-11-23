@@ -92,7 +92,7 @@ The LRM App has an easy-to-use graphical interface and allows users across diffe
 
 To put this in context, considering the history of linear regression, AI, and ML, it was only a few decades ago that making, interpreting, and making predictions from such models would have required advanced statistical knowledge as well as the help of expert computer programmers. But as of 2024, the LRM App represents a relatively straightforward program that can be used by laypersons with reasonable confidence as long as they have good quality datasets for the predictions they want to make.     
 
-## About the Team
+## About the Team and the Development Process
 Group 5-UDC-Seneca has five student members and two faculty members. 
 
 The student members of Group 5-UDC-Seneca and their roles in the project are
@@ -107,10 +107,12 @@ The faculty members are
 - Alberto Alvarellos González (UDC): Product Owner
 - Amy Briggs (Seneca): Documentation Manager
 
-### About Agile and Scrum
-**Agile** is an approach to project management emphasizing completing chunks of work across the project in weekly or biweekly "sprints" with continuous collaboration and improvement throughout. This is in contrast to the **Waterfall** approach where one component or phase of the project must be finished before another one can be started. 
+Group 5-UDC-Seneca followed the Agile Scrum methodology to complete the project. 
 
-There are different manifestations of the Agile methodology. The UDC-Seneca COIL project followed the **Scrum** method. 
+### About Agile and Scrum
+**Agile** is a software project management approach or philosophy that emphasizes early and continuous delivery of software to the customer and values "individuals and interactions over processes and tools, working software over comprehensive documentation, customer collaboration over contract negotiation, and responding to change over following a plan" (Beck et al, 2001). The Agile approach involves completing chunks of work in short phases often called "sprints," responding to change quickly, and collaborating and improving on the product throughout. This is in contrast to the **Waterfall** approach where one component or phase of the project must be finished before another one can be started and consequently is not often able to respond to change quickly or deviate from a set plan. 
+
+There are different methods that follow Agile principles, and Group 5-UDC-Seneca followed **Scrum**, a common one.   
 
 In Scrum:
 - sprints are short - in this project, they were just one week long
@@ -191,6 +193,10 @@ Initially, it was difficult to outline the app’s flow and provide documentatio
 
 ## References
 Baraka, S. (2024). Multiple (Linear) Regression: Formula, Examples, and FAQ. ***Indeed.com***. Retrieved from [https://www.indeed.com/career-advice/career-development/multiple-regression](https://www.indeed.com/career-advice/career-development/multiple-regression)   
+
+Beck et al. (2001). Manifesto for Agile Software Development. Retrieved from [https://agilemanifesto.org](https://agilemanifesto.org/)
+
+Beck et al.
 
 Saragadam, H., Asim, U., Etukuru, R.,  Stosik, D.,  Kulshrestha, V., & Brewton, J. (2024). How does AI's linear regression differ from traditional statistics? ***LinkedIn.com***. Retrieved from [https://www.linkedin.com/advice/3/how-does-ais-linear-regression-differ-from-6u77e](https://www.linkedin.com/advice/3/how-does-ais-linear-regression-differ-from-6u77e)
 
