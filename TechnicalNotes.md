@@ -171,10 +171,8 @@ This section summarizes the increments of value completed in each sprint from Sp
 | Select model inputs and outputs (data columns) using GUI| Select inputs and outputs                                                                   |                                                             |
 | Data preprocessing before model creation                | Preprocessing code; adjusting interface                                                     |                                                             |
 | Investigate how to create linear models                 | Research scikit-learn; research pandas                                                      |                                                             |
-| Learn PyQt6                                             | Meetings to learn PyQt6                                                                     | Challenge: steep learning curve, new library
-Solution: persistence and keeping goals in mind (PyQt6 advanced features make it best choice for desired app functionalities)                                                            |
-| Finish Documentation Plan                               | Finish documentation plan and distribute                                                    | Challenge: early in process, not much info on design goals, plan
-Solution: Plan to revise documentation at future date|
+| Learn PyQt6                                             | Meetings to learn PyQt6                                                                     | Challenge: steep learning curve, new library; Solution: persistence and keeping goals in mind (PyQt6 advanced features make it best choice for desired app functionalities)                                                            |
+| Finish Documentation Plan                               | Finish documentation plan and distribute                                                    | Challenge: early in process, not much info on design goals, sparse on this point; Solution: Plan to revise documentation at future date|
 
 
 
