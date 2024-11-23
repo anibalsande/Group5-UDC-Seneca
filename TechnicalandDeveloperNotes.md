@@ -13,8 +13,15 @@ This document contains product development information for the LRM App including
    - [Linear Regression Modeling Past and Present](#linear-regression-modeling-past-and-present)
    - [AI and ML's Effect on Linear Regression Usage and Application](#AI-and-ML's-effect-on-linear-regression-usage-and-application)
    - [The LRM App in Context](#the-LRM-app-in-context)
-3. [About the Team](#about-the-team)
-   - [Team Members, Roles, and Responsibilities](#team-members,-roles,-and-responsibilities)
+3. [About the Team and the Development Process](#about-the-team-and-the-development-process)
+   - [Team Members and Roles](#team-members-and-roles)
+   - [Agile and Scrum Methodology](#agile-and-scrum-methodology)
+4. [Developer Notes](#developer-notes)
+   - [Software Development in GitHub](#software-development-in-github)
+   - [Sprint Reviews, Retrospectives, and Planning](#sprint-reviews,-retrospectives,-and-planning)
+   - [Sprint Increment Summaries])#sprint-increment-summaries)
+   - [Functional Test Plan](#functional-test-plan)
+5. [References](#references)
 
 ## About the Project
 Group 5-UDC-Seneca is a group of students from the Universidade da Coruña in A Coruña, Spain and Seneca Polytechnic in Toronto, Canada who are working together through the Collaborative Online International Learning (COIL) program. During their collaboration, Group-5-UDC-Seneca develop and document, using the Agile project management approach, the **LRM App**, an online linear regression software application. In doing this, the students learn about
@@ -95,6 +102,8 @@ To put this in historical context, it was only a few decades ago that making, in
 ## About the Team and the Development Process
 Group 5-UDC-Seneca has five student members and two faculty members. 
 
+### Team Members and Roles
+
 The student members of Group 5-UDC-Seneca and their roles in the project are
 
 - Aníbal Sande González (UDC): Scrum Master, Software Researcher and Developer
@@ -109,7 +118,7 @@ The faculty members are
 
 Group 5-UDC-Seneca followed the Agile Scrum methodology to complete the project. 
 
-### About Agile and Scrum
+### Agile and Scrum Methodology
 **Agile** is a software project management approach or philosophy that emphasizes early and continuous delivery of software to the customer and values "individuals and interactions over processes and tools, working software over comprehensive documentation, customer collaboration over contract negotiation, and responding to change over following a plan" (Beck et al, 2001). The Agile approach involves completing chunks of work in short phases often called "sprints," responding to change quickly, and collaborating and improving on the product throughout. This is in contrast to the **Waterfall** approach where one component or phase of the project must be finished before another one can be started and consequently is not often able to respond to change quickly or deviate from a set plan. 
 
 There are different methodologies that follow Agile principles, and Group 5-UDC-Seneca followed **Scrum**, a common one.   
