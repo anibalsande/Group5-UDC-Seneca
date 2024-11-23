@@ -174,10 +174,24 @@ This section summarizes the increments of value completed in each sprint from Sp
 | Learn PyQt6                                             | Meetings to learn PyQt6                                                                     | Challenge: steep learning curve, new library; Solution: persistence and keeping goals in mind (PyQt6 advanced features make it best choice for desired app functionalities)                                                            |
 | Finish Documentation Plan                               | Finish documentation plan and distribute                                                    | Challenge: early in process, not much info on design goals, sparse on this point; Solution: Plan to revise documentation at future date|
 
+**Sprint 4 (22 to 29 October 2024)**
+| Increment                                               | Tasks completed                                                                             | Notes                                                       |
+|-------------------------------------------------------  |:-------------------------------------------------------------------------------------------:| -----------------------------------------------------------|
+| Improve the graphical interface                         | Restructure code, adjust GUI                                                                |  Getting better with PyQt6                            |
+| Research on model persistence                           | Research model persistence                                                                  |                                                             |
+| Creation of linear models for prediction using GUI      | Create layout, create model                                                                 |                                                             |
+| Add model description in graphical interface            | Implement description functionality                                                         |                                                             |
 
-
+**Sprint 5 (29 October to 5 November 2024)** 
 
 It can include Agile product roadmaps, backlogs, standards, plans, estimates, schedules, test strategy, release checklist, working papers, reports.
+| Increment                                               | Tasks completed                                                                             | Notes                                                       |
+|-------------------------------------------------------  |:-------------------------------------------------------------------------------------------:| -----------------------------------------------------------|
+| Save model to disk with file selection dialog           | Save model coding, share information about this research                                    |                                                            |
+| Recover previously saved model                          | Plan development, select file, update model coding                                          |                                                             |
+| Training on Good Programming Practices                  | New module: Model results                                                                   |                                                             |
+| Improved graphical interface (UX)                       | GUI update, buttons, layouts, etc.                                                          | Time consuming, all UDC team members worked on this      |
+| Prepare README.md outline                               | Prepare README.md outline; consider separate Quick Start Guide                              | Did not continue separate Quick Start Guide - not necessary   |
 
 
 This document contains summaries of the developers' work process and details as to how they solved problems in coding the app.
