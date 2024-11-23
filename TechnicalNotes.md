@@ -118,15 +118,41 @@ The Technical Documentation Writer prepared a Documentation Plan, interviewed th
 ### The Team's COIL Experience 
 Group 5-UDC-Seneca found the COIL project positive and enriching both academically and professionally. The collaboration required working across different languages (Spanish and English) time zones (a six-hour difference), and disciplines (Artificial Intelligence and Technical Communication), and it worked seamlessly with the help of the shared technologies for communication and project management: Taiga, GitHub, Zoom, MS Teams, and e-mail.
 
-## About Agile and the Development Process
-Agile is an approach to project management emphasizing completing chunks of work across the project in weekly or biweekly **sprints**, with continuous collaboration and improvement throughout. This is in contrast to the Waterfall approach where one component or phase of the project must be finished before another one can be started. There are different manifestations of the Agile methodology. The UDC-Seneca COIL project followed the **Scrum** method, which is characterized by
-- frequent, often daily, meetings by the team to discuss active tasks and any challenges
-- a sprint planning meeting at the beginning of each sprint to plan and assign tasks for that sprint
-- a sprint retrospective at the end of each sprint to reflect on what was learned, what went well, and what could be improved for the future. 
+## Developer Notes
 
+
+
+This section contain the UDC developers' summaries of their work process and how they solved problems in coding the LRM App. It serves as a reference for future developers working on the LRM App so they understand the original developers' thought process and work strategy. 
+
+
+### About Agile and Scrum
+Agile is an approach to project management emphasizing completing chunks of work across the project in weekly or biweekly **sprints**, with continuous collaboration and improvement throughout. This is in contrast to the Waterfall approach where one component or phase of the project must be finished before another one can be started. 
+
+There are different manifestations of the Agile methodology. The UDC-Seneca COIL project followed the **Scrum** method, which is characterized by
+- short sprints - in this project, they were just one week long
+- daily or almost-daily meetings or "scrums" where team members discussed their work activities and problem-solved around challenges
+- a sprint planning meeting at the beginning of each sprint to plan and assign tasks for that sprint
+- a sprint retrospective at the end of each sprint to reflect on what was learned, what went well, and what could be improved for the future
+- a Scrum Master who is accountable for making sure the task goals for the sprint are met and thereby produce an "increment" of value for the project for that sprint
+- a Product Owner who manages the backlog of tasks for the project and is accountable for maximizing value from the scrum team's work
+- Developers who create the product and include software developers as well as documentation writers since both create or develop the overall product.
+
+For further information on Agile project management, visit the [Agile Alliance](https://www.agilealliance.org/the-alliance/)
+
+For further information on the Scrum methodology, visit [Scrum.org](https://www.scrum.org/).
+
+### Group 5-UDC-Seneca Development Process 
+What was your development process like? For example, how often did you meet, and how did you plan your sprints?
+After the Sprint Review and Retrospective sessions, we conducted Sprint Planning meetings on Tuesdays. During these, we selected tasks based on our availability. When tasks overlapped or required similar actions, we used to choose both to streamline our work.
+Throughout the sprint, we worked individually but ensured regular communication about progress and challenges. Toward the end of each sprint, we reviewed and integrated all components. 
+ 
+We also held several collaborative sessions, some focused on working together on the code and others to share research findings, decide on the libraries to use, and align our work.
+ 
+How did you manage the GitHub repository and code? Did you establish a particular policy or rules for branches and merges/commits?
+We created a develop branch to work independently from the documentation part. Initially, we committed directly to this branch, as the tasks were straightforward and completed quickly. Later, as tasks became more complex, we created separate branches for new functionalities. Once these were complete, we merged them back into the develop branch.
 
 ## Developer Notes
-This section contain the UDC developers' summaries of their work process and how they solved problems in coding the LRM App. It serves as a reference for future developers working on the LRM App so they understand the original developers' thought process and work strategy. 
+
 
 
 
@@ -150,14 +176,7 @@ Solution: Besides finding ways to standardize behavior across environments, we a
 
 
 
-What was your development process like? For example, how often did you meet, and how did you plan your sprints?
-After the Sprint Review and Retrospective sessions, we conducted Sprint Planning meetings on Tuesdays. During these, we selected tasks based on our availability. When tasks overlapped or required similar actions, we used to choose both to streamline our work.
-Throughout the sprint, we worked individually but ensured regular communication about progress and challenges. Toward the end of each sprint, we reviewed and integrated all components. 
- 
-We also held several collaborative sessions, some focused on working together on the code and others to share research findings, decide on the libraries to use, and align our work.
- 
-How did you manage the GitHub repository and code? Did you establish a particular policy or rules for branches and merges/commits?
-We created a develop branch to work independently from the documentation part. Initially, we committed directly to this branch, as the tasks were straightforward and completed quickly. Later, as tasks became more complex, we created separate branches for new functionalities. Once these were complete, we merged them back into the develop branch.
+
  
 Can you give me specific details of any problems you encountered while developing and how you solved them?
 Learning PyQt6
