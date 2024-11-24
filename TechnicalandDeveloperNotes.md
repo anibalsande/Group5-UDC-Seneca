@@ -222,7 +222,7 @@ This section summarizes the increments of value completed in each sprint from Sp
  up to December 3, 2024 as LRM App will still be improved to then                                                              |
 
 ### Functional Test Plan
-For reference, the [Functional Test Plan for the LRM App](/images/Pruebas_Manuales_22NOV2024.pdf) as of 22 November 2024 (in the original Spanish) is included with these notes. 
+For reference, the [Functional Test Plan for the LRM App](/images/Pruebas_Manuales_22NOV2024.pdf) as of 25 November 2024 (in the original Spanish) is included with these notes. 
 
 ## References
 Baraka, S. (2024). Multiple (Linear) Regression: Formula, Examples, and FAQ. *Indeed.com*. Retrieved from [https://www.indeed.com/career-advice/career-development/multiple-regression](https://www.indeed.com/career-advice/career-development/multiple-regression)   
