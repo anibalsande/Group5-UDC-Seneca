@@ -172,7 +172,7 @@ This section summarizes the increments of value completed in each sprint from Sp
 
 **Sprint 3 (15 to 22 October 2024)**
 | Increment                                               | Tasks completed                                                                             | Notes                                                      |
-|-------------------------------------------------------  |:-------------------------------------------------------------------------------------------:| -----------------------------------------------------------|
+|:-------------------------------------------------------:|:-------------------------------------------------------------------------------------------:|:----------------------------------------------------------:
 | Select model inputs and outputs (data columns) using GUI| Select inputs and outputs                                                                   |                                                            |
 | Data preprocessing before model creation                | Preprocessing code; adjusting interface                                                     |                                                            |
 | Investigate how to create linear models                 | Research scikit-learn; research pandas                                                      |                                                            |
@@ -181,7 +181,7 @@ This section summarizes the increments of value completed in each sprint from Sp
 
 **Sprint 4 (22 to 29 October 2024)**
 | Increment                                               | Tasks completed                                                                             | Notes                                                      |
-|-------------------------------------------------------  |:-------------------------------------------------------------------------------------------:| -----------------------------------------------------------|
+|:-------------------------------------------------------:|:-------------------------------------------------------------------------------------------:|:----------------------------------------------------------:|
 | Improve the graphical interface                         | Restructure code, adjust GUI                                                                |                                                            |
 | Research on model persistence                           | Research model persistence                                                                  |                                                            |
 | Creation of linear models for prediction using GUI      | Create layout, create model                                                                 |                                                            |
@@ -189,36 +189,36 @@ This section summarizes the increments of value completed in each sprint from Sp
 
 **Sprint 5 (29 October to 5 November 2024)** 
 | Increment                                               | Tasks completed                                                                             | Notes                                                      |
-|-------------------------------------------------------  |:-------------------------------------------------------------------------------------------:| -----------------------------------------------------------|
+|:-------------------------------------------------------:|:-------------------------------------------------------------------------------------------:|:----------------------------------------------------------:|
 | Save model to disk with file selection dialog           | Save model coding, share information about this research                                    |                                                            |
 | Recover previously saved model                          | Plan development, select file, update model coding                                          |                                                            |
 | Training on Good Programming Practices                  | New module: Model results                                                                   |                                                            |
 | Improved graphical interface (UX)                       | GUI update, buttons, layouts, etc.                                                          | Time consuming, all UDC team members worked on this. Challenges: some unexpected dark backgrounds in different environments like Windows dark mode. Solution: overriding default settings where necessary and looking for other ways to standardize behavior across environments      |
-| Prepare README.md outline                               | Prepare README.md outline; consider separate Quick Start Guide                              | Did not continue separate Quick Start Guide - not necessary   |
+| Prepare README.md outline                               | Prepare README.md outline; consider separate Quick Start Guide                              | Did not continue separate Quick Start Guide - not necessary|
 
 **Sprint 6 (5 to 12 November 2024)**
 | Increment                                               | Tasks completed                                                                             | Notes                                                       |
-|-------------------------------------------------------  |:-------------------------------------------------------------------------------------------:| -----------------------------------------------------------|
-| Make predictions with a created or loaded model         | Create text box; create predictions; handling every situation                                | Multiple regression functionality challenges: handling Features as a list; regression line plotting, model training, and output visualization                                                |
+|:-------------------------------------------------------:|:-------------------------------------------------------------------------------------------:|:-----------------------------------------------------------:|
+| Make predictions with a created or loaded model         | Create text box; create predictions; handling every situation                                | Multiple regression functionality challenges: handling Features as a list; regression line plotting, model training, and output visualization                                               |
 | Continue README document - installation                 | Drafted installation instructions with images                                               |                                                             |
-| Walkthrough with Technical Documentation Writer         | Scrum Master walked Technical Documentation Writer through LRM App                          | Very helpful walkthrough session, exchanged feedback on software and documentation        |
+| Walkthrough with Technical Documentation Writer         | Scrum Master walked Technical Documentation Writer through LRM App                          | Very helpful walkthrough session, exchanged feedback on software and documentation       |
 | Start Technical and Developer Notes                     | Start draft Technical and Developer Notes and discuss contents with team, request info      |                                                             |
 
 **Sprint 7 (12 to 19 November 2024)**
 | Increment                                               | Tasks completed                                                                             | Notes                                                       |
-|-------------------------------------------------------  |:-------------------------------------------------------------------------------------------:| -----------------------------------------------------------|
-| Automated testing                                       | Test create model, fixing automated tests, test loading model, test predictions, test saved |                                                            |
+|:-------------------------------------------------------:|:-------------------------------------------------------------------------------------------:|:-----------------------------------------------------------:|
+| Automated testing                                       | Test create model, fixing automated tests, test loading model, test predictions, test saved |                                                             |
 | Individual project reports                              | Scrum Master individual report                                                              |                                                             |
-| Modularize and organize interface                       | Adjust interface and modularize                                                             | After replacing results window with tab integrated into main application, the challenge was including a layout from a separate module in the primary window while ensuring it updated dynamically with each new model.                                                     |
-| Continue README - usage and interface                   | Drafted usage and interface sections                                                        |                                                              |  
-| Continue Technical and Developer Notes                  | Continue Technical and Developer Notes and request further info from team                   | Information received from Scrum Master to allow completion of Technical and Developer Notes                       |
+| Modularize and organize interface                       | Adjust interface and modularize                                                             | After replacing results window with tab integrated into main application, the challenge was including a layout from a separate module in the primary window while ensuring it updated dynamically with each new model.                                                    |
+| Continue README - usage and interface                   | Drafted usage and interface sections                                                        |                                                             |  
+| Continue Technical and Developer Notes                  | Continue Technical and Developer Notes and request further info from team                   | Information received from Scrum Master to allow completion of Technical and Developer Notes                      |
 
 **Sprint 8 (19 to 26 November 2024)**
 | Increment                                               | Tasks completed                                                                             | Notes                                                       |
-|-------------------------------------------------------  |:-------------------------------------------------------------------------------------------:| -----------------------------------------------------------|
-| Creation of a Functional Test plan before release       | Create spreadsheet for functional test plan                                                 | See linked image of functional test plan as of 22 November 2024. Can be updated prior to LRM App v.1.0 release on 3 December 2024                                                           |
+|:-------------------------------------------------------:|:-------------------------------------------------------------------------------------------:|:-----------------------------------------------------------:|
+| Creation of a Functional Test plan before release       | Create spreadsheet for functional test plan                                                 | See linked image of functional test plan as of 22 November 2024. Can be updated prior to LRM App v.1.0 release on 3 December 2024                                                          |
 | Improve interface                                       |                                                                                             |                                                             |
-| Finish Technical and Developer Notes to November 26     | Finished Technical and Developer Notes to November 26, 2024                                 | This documentation is due at Seneca on November 26; Developer Notes can be continued to December 3, 2024 as LRM App will still be improved until then                                                               |
+| Finish Technical and Developer Notes to November 26     | Finished Technical and Developer Notes to November 26, 2024                                 | This documentation is due at Seneca on November 26; Developer Notes can be continued to December 3, 2024 as LRM App will still be improved until then                                                              |
 
 ### Functional Test Plan
 For reference, the [Functional Test Plan for the LRM App](/images/Pruebas_Manuales_22NOV2024.pdf) as of 22 November 2024 (in the original Spanish) is included with these notes. 
