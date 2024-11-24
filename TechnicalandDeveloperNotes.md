@@ -69,11 +69,9 @@ For reference, Figure 1 shows the User Flow for the LRM App.
 
 Because linear regression can illustrate a relationship between variables as a graph or a mathematical formula, it is possible, with algebra and a sufficient reliable historical data (also called a "dataset" or a set of "datapoints"), to **predict** the unknown value of a Y variable as long as one knows the value(s) of the X variable(s). This is why the X or independent variable is also called the "predictor" or "feature" variable, and the Y or dependent variable is also called the "response" or "target" variable.
 
-For a video explanation of the above concepts, see
+For a video explanation of the above concepts, see the following YouTube video, An Introduction to Linear Regression Analysis, from David Longstreet of StatisticsFun:
 
 [![An Introduction to Linear Regression Analysis](https://img.youtube.com/vi/zPG4NjIkCjc/0.jpg)](https://www.youtube.com/watch?v=zPG4NjIkCjc) 
-
-from David Longstreet of StatisticsFun. 
 
 ### Linear Regression Modeling Past and Present
 Sir Francis Galton ("Regression analysis," 2024) first used the term "regression" in 1885 when describing his research conclusions after examining the relationship between the physical heights of fathers and their sons. He observed that the sons "regressed" to the mean of the population instead of conforming to the heights (tall or short) of their fathers. While Galton only used regression in this biological context, statisticians have been using regression ever since in different contexts. 
@@ -95,9 +93,7 @@ Some practical examples of multiple linear regression modeling and prediction no
 - the future height of a child based on variables including mother's height, father's height, nutritional factors, and environmental factors.
 
 ### The LRM App in Context
-The LRM App has an easy-to-use graphical interface and allows users across different fields with varying levels of technical knowledge to upload their own datasets, process the data to handle create and visualize complex linear regression models, and then make statistically supportable predictions from them quickly. 
-
-To put this in historical context, it was only a few decades ago that a layperson could never have done these tasks without the help of an expert statistician, a specialized computer, and a significant investment of time. But as of 2024, the LRM App represents a relatively straightforward computer program that can be used by laypersons with reasonable confidence as long as they have good quality datasets for the predictions they want to make.     
+The LRM App has an easy-to-use graphical interface and allows users across different fields with varying levels of technical knowledge to upload their own datasets, process the data to handle create and visualize complex linear regression models, and then make statistically supportable predictions from them quickly. To put this in historical context, it was only a few decades ago that a layperson could not have accomplished these tasks without the help of an expert statistician, a specialized computer, and a significant investment of time and effort. But as of 2024, as long as they have good quality datasets, a layperson with a basic knowledge of statistics can use the LRM App and feel confident in the predictions.     
 
 ## About the Team and the Development Process
 Group 5-UDC-Seneca has five student members and two faculty members. 
@@ -151,52 +147,52 @@ This section contain the LRM App developers' summaries of their work process and
 **The Software Researchers and Developers** purposefully chose to take on both research and programming tasks, which allowed all of them to gain experience in different roles and not just single aspects of the LRM App.
 
 ### Software Development in GitHub
-Following best practices in programming, the team created a separate **develop** branch from the main branch in their GitHub repository to contain their code. Anoter separate branch contained the documentation. The software developers found that as programming tasks became more complex, they created more branches for new functionalities and then merged them with the develop branch when they were complete. All separate branches will be merged with the **main** branch by the time of the LRM App version 1.0 release scheduled for 3 December 2024.  
+Following best practices in programming, the team created a separate **develop** branch from the main branch in their GitHub repository to contain their code. Another branch contained the documentation. The software developers found that as programming tasks became more complex, they created more branches for new functionalities and then merged them with the develop branch when they were complete. All separate branches will be merged with the **main** branch by the time of the LRM App version 1.0 release scheduled for 3 December 2024.  
 
 ### Sprint Reviews, Retrospectives, and Planning
-For Group 5-UDC-Seneca, Tuesdays marked the end and beginning of each sprint. On Tuesdays, we would have hold our Sprint Review and Retrospective session virtually during our online class time, and Professor Alberto González assisted the team by interpreting our feedback into Spanish or English as necessary so everyone could understand. The team would then conduct its Sprint Planning meeting. The UDC members planned their tasks for the sprint based on their availability and how efficiently they judged they could complete the work. During the sprint, the UDC members mostly worked individually and communicated regularly about progresss and challenges, and before the Sprint Review, they would review and integrate the programming components. They also held several collaborative work sessions where some focused on working together on the code and others shared their research findings, decided on the libraries to use, and all aligned their work product for the software.
+For Group 5-UDC-Seneca, Tuesdays marked the end and beginning of each sprint. On Tuesdays, they held their Sprint Review and Retrospective session virtually during scheduled online class time. Professor Alberto González assisted the team by interpreting feedback into Spanish or English as necessary so everyone could understand. The team would then conduct its Sprint Planning meeting. The UDC members planned their tasks for the sprint based on their availability and how efficiently they judged they could complete the work. During the sprint, the UDC members mostly worked individually and communicated regularly about progress and challenges, and before the Sprint Review, they would review and integrate the programming components. They also held several collaborative work sessions where some focused on working together on the code and others shared their research findings, decided on the libraries to use, and all aligned their work product for the software.
 
-The Seneca member planned documentation tasks separately from UDC and could not attend the Sprint Planning live due to the language barrier and logistical issues with the timing of the UDC class coinciding with a separate Seneca class or scheduled break. However, through Taiga, email, MS Teams, and Zoom, all team members were able to communicate about tasks and answer questions in a transparent and timely way. 
+The Seneca member planned documentation tasks separately from UDC and could not attend the Sprint Planning live due to the language barrier and the timing of the UDC Sprint Planning session coinciding with a separate Seneca class. However, through Taiga, email, MS Teams, and Zoom, all team members were able to communicate about tasks, answer questions, and share information in a transparent and timely way. 
 
 ### Sprint Increment Summaries
 This section summarizes the increments of value completed in each sprint from Sprint 1 commencing on 1 October 2024 to Sprint 8 ending on 26 November 2024 and notes challenges and solutions when applicable.
 
 **Sprint 1 (1 to 8 October 2024)**
-| Increment                                               | Tasks completed                                                                             | Notes                                                       |
-|-------------------------------------------------------  |:-------------------------------------------------------------------------------------------:| -----------------------------------------------------------|
-| Create a GitHub repository and bases for documentation  | Create repository, give access to everyone; create Contributing.md, README.md, GitHub Pages |                                                             |
-| Create data import module                               | Develop "Data Import from Files"                                                            |                                                             |
+| Increment                                               | Tasks completed                                                                             | Notes                                                      |
+|:-------------------------------------------------------:|:-------------------------------------------------------------------------------------------:|:----------------------------------------------------------:|
+| Create a GitHub repository and bases for documentation  | Create repository, give access to everyone; create Contributing.md, README.md, GitHub Pages |                                                            |
+| Create data import module                               | Develop "Data Import from Files"                                                            |                                                            |
 
 **Sprint 2 (8 to 15 October 2024)**
-| Increment                                               | Tasks completed                                                                             | Notes                                                       |
-|-------------------------------------------------------  |:-------------------------------------------------------------------------------------------:| -----------------------------------------------------------|
-| Investigate, test libraries for graphic interfaces (GUI)| Research libraries, develop test                                                            |                                                             |
-| Reading datasets using the GUI                          | Create and design graphical interface; insert datasets into repository                      |  Challenge: designing app flow; Solution: choosing to develop app in a way that minimizes need for refactoring earlier functionalities while allowing optimization of existing features as needed                             |
-| Interview Subject Matter Experts                        | Prepare questions, schedule & conduct interview, send summary to interviewees for review    |                                                             |
+| Increment                                               | Tasks completed                                                                             | Notes                                                      |
+|:-------------------------------------------------------:|:-------------------------------------------------------------------------------------------:|:----------------------------------------------------------:|
+| Investigate, test libraries for graphic interfaces (GUI)| Research libraries, develop test                                                            |                                                            |
+| Reading datasets using the GUI                          | Create and design graphical interface; insert datasets into repository                      |  Challenge: designing app flow; Solution: choosing to develop app in a way that minimizes need for refactoring earlier functionalities while allowing optimization of existing features as needed                            |
+| Interview Subject Matter Experts                        | Prepare questions, schedule & conduct interview, send summary to interviewees for review    |                                                            |
 
 **Sprint 3 (15 to 22 October 2024)**
-| Increment                                               | Tasks completed                                                                             | Notes                                                       |
+| Increment                                               | Tasks completed                                                                             | Notes                                                      |
 |-------------------------------------------------------  |:-------------------------------------------------------------------------------------------:| -----------------------------------------------------------|
-| Select model inputs and outputs (data columns) using GUI| Select inputs and outputs                                                                   |                                                             |
-| Data preprocessing before model creation                | Preprocessing code; adjusting interface                                                     |                                                             |
-| Investigate how to create linear models                 | Research scikit-learn; research pandas                                                      |                                                             |
-| Learn PyQt6                                             | Meetings to learn PyQt6                                                                     | Challenge: steep learning curve, new library; Solution: persistence and keeping goals in mind (PyQt6 advanced features make it best choice for desired app functionalities)                                                            |
+| Select model inputs and outputs (data columns) using GUI| Select inputs and outputs                                                                   |                                                            |
+| Data preprocessing before model creation                | Preprocessing code; adjusting interface                                                     |                                                            |
+| Investigate how to create linear models                 | Research scikit-learn; research pandas                                                      |                                                            |
+| Learn PyQt6                                             | Meetings to learn PyQt6                                                                     | Challenge: steep learning curve, new library; Solution: persistence and keeping goals in mind (PyQt6 advanced features make it best choice for desired app functionalities)                                                           |
 | Finish Documentation Plan                               | Finish documentation plan and distribute                                                    | Challenge: early in process, not much info on design; Solution: Plan to revise documentation plan at future date|
 
 **Sprint 4 (22 to 29 October 2024)**
-| Increment                                               | Tasks completed                                                                             | Notes                                                       |
+| Increment                                               | Tasks completed                                                                             | Notes                                                      |
 |-------------------------------------------------------  |:-------------------------------------------------------------------------------------------:| -----------------------------------------------------------|
-| Improve the graphical interface                         | Restructure code, adjust GUI                                                                |  Challenge: designing app flowGetting better with PyQt6                            |
-| Research on model persistence                           | Research model persistence                                                                  |                                                             |
-| Creation of linear models for prediction using GUI      | Create layout, create model                                                                 |                                                             |
-| Add model description in graphical interface            | Implement description functionality                                                         |                                                             |
+| Improve the graphical interface                         | Restructure code, adjust GUI                                                                |                                                            |
+| Research on model persistence                           | Research model persistence                                                                  |                                                            |
+| Creation of linear models for prediction using GUI      | Create layout, create model                                                                 |                                                            |
+| Add model description in graphical interface            | Implement description functionality                                                         |                                                            |
 
 **Sprint 5 (29 October to 5 November 2024)** 
-| Increment                                               | Tasks completed                                                                             | Notes                                                       |
+| Increment                                               | Tasks completed                                                                             | Notes                                                      |
 |-------------------------------------------------------  |:-------------------------------------------------------------------------------------------:| -----------------------------------------------------------|
 | Save model to disk with file selection dialog           | Save model coding, share information about this research                                    |                                                            |
-| Recover previously saved model                          | Plan development, select file, update model coding                                          |                                                             |
-| Training on Good Programming Practices                  | New module: Model results                                                                   |                                                             |
+| Recover previously saved model                          | Plan development, select file, update model coding                                          |                                                            |
+| Training on Good Programming Practices                  | New module: Model results                                                                   |                                                            |
 | Improved graphical interface (UX)                       | GUI update, buttons, layouts, etc.                                                          | Time consuming, all UDC team members worked on this. Challenges: some unexpected dark backgrounds in different environments like Windows dark mode. Solution: overriding default settings where necessary and looking for other ways to standardize behavior across environments      |
 | Prepare README.md outline                               | Prepare README.md outline; consider separate Quick Start Guide                              | Did not continue separate Quick Start Guide - not necessary   |
 
