@@ -2,8 +2,8 @@
 This document contains product development information for the LRM App including product context, purpose, goals, design, quality assurance testing, and reference material for future developers. 
 
 ## Table of Contents 
-1. [Project Overview](#project-overview)
-   - [About Collaborative Online International Learning (COIL)](#about-collaborative-online-international-learning-(coil))
+1. [About the Project](#about-the-project)
+   - [Collaborative Online International Learning (COIL)](#about-collaborative-online-international-learning-(coil))
    - [LRM App Project Purpose and Goals](#LRM-App-project-purpose-and-goals)
    - [Target Audience](#target-audience)
    - [Intended Platforms and Technology](#intended-platforms-and-technology)
