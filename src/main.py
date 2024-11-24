@@ -9,13 +9,14 @@ from sklearn.linear_model import LinearRegression
 
 #Modules
 from model_results import ModelTrainer, ResultsWindow, ResultsTab
+from help import HelpTab
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        self.setWindowTitle("Preprocessing Dataset")
-        self.setGeometry(100, 100, 800, 600)
+        self.setWindowTitle("LMR APP · GROUP 5")
+        self.setGeometry(100, 100, 700, 500)
         self.setFont(QFont("Bahnschrift", 12))
         self.setWindowIcon(QIcon("src/image/icon.png"))
 
@@ -29,34 +30,44 @@ class MainWindow(QMainWindow):
 
         # Create a Tab Widget
         self.tabs = QTabWidget()
+        #self.tabs.setTabPosition(QTabWidget.TabPosition.West)
         
         # Add tabs to QTabWidget
         self.data_tab = QWidget()
         self.results_tab = ResultsTab()
+        self.help_tab = HelpTab()
 
-        self.tabs.addTab(self.data_tab, "Data")
-        self.tabs.addTab(self.results_tab, "Model")
+        self.tabs.addTab(self.data_tab, QIcon("src/image/database.png"), "DATA")
+        self.tabs.addTab(self.results_tab, QIcon("src/image/model.png"), "MODEL")
+        self.tabs.addTab(self.help_tab, QIcon("src/image/help.png"), "HELP")
+
+        self.tabs.setTabEnabled(1, False)
 
         # Setup Tab Contents
         self.setup_data_tab()
 
         # Set the central widget layout
         container = QWidget()
+
         container.setLayout(main_layout)
         self.setCentralWidget(container)
 
         # Add tabs to the main layout
         main_layout.addWidget(self.tabs)
+        main_layout.setContentsMargins(0, 0, 0, 0)
+
 
     def setup_data_tab(self):
         main_layout = QVBoxLayout()
-
+        main_layout.setContentsMargins(0, 0, 0, 0)
         # Blue header
         header_widget = QWidget()
         header_layout = QHBoxLayout()
+        header_layout.setContentsMargins(10, 0, 10, 0)
+        header_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
         header_widget.setLayout(header_layout)
         header_widget.setStyleSheet("background-color: #0b5394;")
-        header_widget.setFixedHeight(45)
+        header_widget.setFixedHeight(35)
 
         # "OPEN FILE" Button
         self.upload_button = QPushButton("OPEN FILE")
@@ -81,7 +92,8 @@ class MainWindow(QMainWindow):
 
         # File name
         self.file_label = QLabel("No file selected")
-        self.file_label.setStyleSheet("color: white; padding-left: 10px;")
+        self.file_label.setStyleSheet("color: white; font-family: 'Bahnschrift'; font-size: 16px;")
+        self.file_label.setAlignment(Qt.AlignmentFlag.AlignBottom | Qt.AlignmentFlag.AlignHCenter)
         self.file_label.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
         header_layout.addWidget(self.file_label)
 
@@ -169,9 +181,9 @@ class MainWindow(QMainWindow):
                 background-color: #0B1E3E; 
                 color: white;
                 padding: 10px;
-                border-radius: 5px;  /* Cambiado para ser similar */
-                font-weight: bold;  /* Cambiado para ser similar */
-                font-size: 12px;  /* Cambiado para ser similar */
+                border-radius: 5px;
+                font-weight: bold;
+                font-size: 12px;
             }
             QPushButton:hover {
                 background-color: #F6BE00;
@@ -500,7 +512,9 @@ class MainWindow(QMainWindow):
                         input_columns=trainer.input_columns,
                         output_column=trainer.output_column
                     )
-        self.tabs.setCurrentIndex(1)  
+        self.tabs.setCurrentIndex(1)
+        self.tabs.setTabEnabled(1, True)
+
 
     def load_model(self, show_window = True):
         # Diálogo para seleccionar el archivo
@@ -555,5 +569,52 @@ class MainWindow(QMainWindow):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = MainWindow()
+
+    # Aplicar el estilo CSS correctamente
+    window.setStyleSheet("""
+        QMainWindow {
+            background-color: #0b5394;
+        }
+
+        QTabWidget::tab-bar {
+            alignment: center;
+        }
+
+        QTabBar::tab:selected {
+            background: #0B1E3E; /* Fondo para la pestaña activa */
+        }
+
+        QTabBar::tab {
+            background: lightblue;
+            font-family: 'Bahnschrift';
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+            height: 20px;
+            width: 150px;
+            padding: 5px;
+            margin: 0px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        QTabBar::tab:hover {
+            background: darkblue;
+        }
+        
+        QTabWidget::pane {
+            border: none;
+            background: white; /* Fondo blanco para el contenido de las pestañas */
+        }
+
+        /* Estilo para las pestañas deshabilitadas */
+        QTabBar::tab:disabled {
+            background: #d3d3d3;  /* Fondo gris claro */
+            color: #a9a9a9;  /* Texto gris claro */
+        }
+    """)
+
     window.show()
     sys.exit(app.exec())
