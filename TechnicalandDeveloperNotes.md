@@ -225,10 +225,10 @@ This section summarizes the increments of value completed in each sprint from Sp
 For reference, the [Functional Test Plan for the LRM App](/images/Pruebas_Manuales_22NOV2024.pdf) as of 22 November 2024 (in the original Spanish) is included with these notes. 
 
 ## References
-Baraka, S. (2024). Multiple (Linear) Regression: Formula, Examples, and FAQ. ***Indeed.com***. Retrieved from [https://www.indeed.com/career-advice/career-development/multiple-regression](https://www.indeed.com/career-advice/career-development/multiple-regression)   
+Baraka, S. (2024). Multiple (Linear) Regression: Formula, Examples, and FAQ. *Indeed.com*. Retrieved from [https://www.indeed.com/career-advice/career-development/multiple-regression](https://www.indeed.com/career-advice/career-development/multiple-regression)   
 
 Beck et al. (2001). Manifesto for Agile Software Development. Retrieved from [https://agilemanifesto.org](https://agilemanifesto.org/)
 
-Saragadam, H., Asim, U., Etukuru, R.,  Stosik, D.,  Kulshrestha, V., & Brewton, J. (2024). How does AI's linear regression differ from traditional statistics? ***LinkedIn.com***. Retrieved from [https://www.linkedin.com/advice/3/how-does-ais-linear-regression-differ-from-6u77e](https://www.linkedin.com/advice/3/how-does-ais-linear-regression-differ-from-6u77e)
+Saragadam, H., Asim, U., Etukuru, R.,  Stosik, D.,  Kulshrestha, V., & Brewton, J. (2024). How does AI's linear regression differ from traditional statistics? *LinkedIn.com*. Retrieved from [https://www.linkedin.com/advice/3/how-does-ais-linear-regression-differ-from-6u77e](https://www.linkedin.com/advice/3/how-does-ais-linear-regression-differ-from-6u77e)
 
-Regression analysis. (2024, November 21). In ***Wikipedia***. [https://en.wikipedia.org/wiki/Regression_analysis#](https://en.wikipedia.org/wiki/Regression_analysis#) 
+Regression analysis. (2024, November 21). In *Wikipedia*. [https://en.wikipedia.org/wiki/Regression_analysis#](https://en.wikipedia.org/wiki/Regression_analysis#) 
