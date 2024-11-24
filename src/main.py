@@ -17,6 +17,7 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("Preprocessing Dataset")
         self.setGeometry(100, 100, 800, 600)
         self.setFont(QFont("Bahnschrift", 12))
+        self.setWindowIcon(QIcon("src/image/icon.png"))
 
         self.data = None
         self.input_columns = []
