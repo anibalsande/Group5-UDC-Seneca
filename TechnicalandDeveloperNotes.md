@@ -218,7 +218,8 @@ This section summarizes the increments of value completed in each sprint from Sp
 |:-------------------------------------------------------:|:-------------------------------------------------------------------------------------------:|:-----------------------------------------------------------:|
 | Creation of a Functional Test plan before release       | Create spreadsheet for functional test plan                                                 | See linked image of functional test plan as of 22 November 2024. Can be updated prior to LRM App v.1.0 release on 3 December 2024                                                          |
 | Improve interface                                       |                                                                                             |                                                             |
-| Finish Technical and Developer Notes to November 26     | Finished Technical and Developer Notes to November 26, 2024                                 | This documentation is due at Seneca on November 26; Developer Notes can be continued to December 3, 2024 as LRM App will still be improved until then                                                              |
+| Finish Technical and Developer Notes to November 26     | Finished Technical and Developer Notes to November 26, 2024                                 | This documentation is due at Seneca on November 26; can be revised 
+ up to December 3, 2024 as LRM App will still be improved to then                                                              |
 
 ### Functional Test Plan
 For reference, the [Functional Test Plan for the LRM App](/images/Pruebas_Manuales_22NOV2024.pdf) as of 22 November 2024 (in the original Spanish) is included with these notes. 
