@@ -1,6 +1,8 @@
 from PyQt6.QtWidgets import *
 from PyQt6.QtCore import *
 from PyQt6.QtGui import *
+from PyQt6.QtSvg import QSvgRenderer
+
 
 class HelpTab(QWidget):
     def __init__(self):
@@ -40,7 +42,7 @@ class HelpTab(QWidget):
         instructions_widget = QWidget()
         instructions_layout = QVBoxLayout()
         instructions_widget.setLayout(instructions_layout)
-
+        
         # Add each step as a box with title and description
         for step_title, step_description in self.steps:
             # Step box widget
@@ -48,8 +50,8 @@ class HelpTab(QWidget):
             step_box_widget.setStyleSheet("""
                 background-color: #f0f0f0;
                 border-radius: 10px;
-                margin-top: 15px;
-                padding: 10px;
+                margin-top: 5px;
+                padding: 5px;
             """)
 
             # Step title and number (e.g., "STEP 1")

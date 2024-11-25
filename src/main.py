@@ -122,8 +122,25 @@ class MainWindow(QMainWindow):
 
         # Middle layout
         horizontal_layout = QHBoxLayout()
+        horizontal_layout.setContentsMargins(10,0,10,0)
+        
+        self.table_widget = QStackedWidget()
 
         # Configuración de la tabla para mostrar los datos
+        self.welcome_label = QLabel("Welcome! No data available.\nPlease import database or an existing model.")
+        self.welcome_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.welcome_label.setStyleSheet("""
+            QLabel {
+                font-size: 16px;
+                font-family: 'Bahnschrift';
+                font-weight: semi-bold;
+                color: #333;
+                padding: 20px;
+                background-color: #e0e0e0;
+                border: 1px solid #b0b0b0;
+            }
+        """)
+
         self.table_view = QTableView()
         self.table_view.setSizeAdjustPolicy(QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
         self.table_view.setFixedHeight(400)
@@ -140,10 +157,15 @@ class MainWindow(QMainWindow):
                 border: 1px solid #b0b0b0;
             }
         """)
-        main_layout.addWidget(self.table_view)
+        
+        self.table_widget.addWidget(self.welcome_label)
+        self.table_widget.addWidget(self.table_view)
+
+        main_layout.addWidget(self.table_widget)
 
         # Column selection side
-        column_selection_group = QGroupBox("Column Selection")
+        self.column_selection_group = QGroupBox("Column Selection")
+        self.column_selection_group.setEnabled(False)
         column_selection_layout = QHBoxLayout()  # Cambiado a QHBoxLayout para dos columnas
 
         # Primera columna (Texto y Multiselector)
@@ -197,7 +219,7 @@ class MainWindow(QMainWindow):
         column_selection_layout.addWidget(self.confirm_button)
 
         # Agregar el layout principal al grupo
-        column_selection_group.setLayout(column_selection_layout)
+        self.column_selection_group.setLayout(column_selection_layout)
 
         # Preprocess side
         self.preprocess_group = QGroupBox("Preprocessing Options")
@@ -288,7 +310,7 @@ class MainWindow(QMainWindow):
         self.model_group.setLayout(model_layout)
 
         # Añadir ambos grupos (Preprocessing y Column Selection) al layout horizontal
-        horizontal_layout.addWidget(column_selection_group)  # Column Selection a la izquierda
+        horizontal_layout.addWidget(self.column_selection_group)  # Column Selection a la izquierda
         horizontal_layout.addWidget(self.preprocess_group)  # Preprocessing Options al centro
         horizontal_layout.addWidget(self.model_group)  # Model
 
@@ -310,18 +332,24 @@ class MainWindow(QMainWindow):
 
     def select_file(self):
         options = QFileDialog.Option.ReadOnly
+        self.welcome_label.setText("Importing data...")
+        self.table_widget.setCurrentWidget(self.welcome_label)
         file_path, _ = QFileDialog.getOpenFileName(
             self, "Select Dataset", "", "Admitted files (*.csv *.xlsx *.xls *.sqlite *.db)", options=options)
-
         if file_path:
             try:
+                self.welcome_label.setText("Checking NaNs...")
                 self.file_label.setText(f"{file_path}")
                 self.data = self.data_import(file_path)  # Cargar los datos
+                self.welcome_label.setText("Showing Data...")
                 self.check_for_nans()  # Comprobar valores NaN
                 self.input_columns = []  # Atributo para almacenar columnas de entrada
                 self.output_column = None
                 self.show_data()  # Mostrar los datos al cargar el archivo
                 self.populate_columns()
+                self.table_widget.setCurrentWidget(self.table_view)
+                self.column_selection_group.setEnabled(True)
+
             except Exception as e:
                 self.file_label.setText(f"Error: {str(e)}")
                 self.file_label.setStyleSheet("QLabel {color: red; padding: 5px;}")
@@ -367,6 +395,8 @@ class MainWindow(QMainWindow):
                 # Inform that no NaN values were found
                 QMessageBox.information(self, "No NaN Values Found",
                                         "The dataset does not contain any missing (NaN) values.")
+                self.model_group.setEnabled(True)
+
     
     def apply_preprocessing(self):
         if self.data is None:
@@ -409,7 +439,6 @@ class MainWindow(QMainWindow):
                     data[column] = data[column].fillna(data[column].median())
         return data
 
-        
     def confirm_selection(self):
         """ Confirmar selección de columnas """
         if self.data is None:
