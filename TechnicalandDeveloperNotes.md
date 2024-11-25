@@ -217,7 +217,7 @@ This section summarizes the increments of value completed in each sprint from Sp
 | Increment                                               | Tasks completed                                                                             | Notes                                                       |
 |:-------------------------------------------------------:|:-------------------------------------------------------------------------------------------:|:-----------------------------------------------------------:|
 | Creation of a Functional Test plan before release       | Create spreadsheet for functional test plan                                                 | See linked image of functional test plan as of 22 November 2024. Can be updated prior to LRM App v.1.0 release on 3 December 2024                                                          |
-| Improve interface                                       |                                                                                             |                                                             |
+| Improve interface                                       | Create Help tab; manage model tab layout                                                    |                                                             |
 | Finish Technical and Developer Notes to November 25     | Finished Technical and Developer Notes to November 25, 2024                                 | This documentation is due at Seneca on November 26; can be revised 
  up to December 3, 2024 as LRM App will still be improved to then                                                              |
 
