@@ -8,7 +8,7 @@ import joblib
 from sklearn.linear_model import LinearRegression
 
 #Modules
-from model_results import ModelTrainer, ResultsWindow, ResultsTab
+from model_results import ModelTrainer, ResultsTab
 from help import HelpTab
 
 class MainWindow(QMainWindow):
@@ -30,7 +30,6 @@ class MainWindow(QMainWindow):
 
         # Create a Tab Widget
         self.tabs = QTabWidget()
-        #self.tabs.setTabPosition(QTabWidget.TabPosition.West)
         
         # Add tabs to QTabWidget
         self.data_tab = QWidget()
@@ -126,6 +125,7 @@ class MainWindow(QMainWindow):
         horizontal_layout.setContentsMargins(10,0,10,0)
         
         self.table_widget = QStackedWidget()
+        self.table_widget.setFixedHeight(430)
 
         # Configuración de la tabla para mostrar los datos
         self.welcome_label = QLabel("Welcome! No data available.\nPlease import database or an existing model.")
@@ -144,7 +144,6 @@ class MainWindow(QMainWindow):
 
         self.table_view = QTableView()
         self.table_view.setSizeAdjustPolicy(QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
-        self.table_view.setFixedHeight(400)
         self.table_view.setStyleSheet(""" 
             QTableView {
                 background-color: #f0f0f0;
@@ -612,6 +611,7 @@ class MainWindow(QMainWindow):
                         output_column=output_column
                     )
                 QMessageBox.information(self, "Carga Exitosa", "El modelo se ha cargado exitosamente.")
+                self.tabs.setTabEnabled(1, True)
                 self.tabs.setCurrentIndex(1)  
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"No se pudo cargar el modelo:\n{str(e)}")

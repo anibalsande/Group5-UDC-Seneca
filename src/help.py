@@ -8,18 +8,85 @@ class HelpTab(QWidget):
         super().__init__()
         self.setContentsMargins(0, 0, 0, 0)  # Set margins to 0
         self.steps_text = [
-            "1. **Select Your Dataset**\n\nThe first step is to select the dataset...",
-            "2. **Selecting Variables**\n\nAfter you open a dataset, its columns...",
-            "3. **Data Preprocessing**\n\nBefore creating a model, you must handle missing or unreadable values...",
-            "4. **Model Creation and Prediction**\n\nTo create your model: Name your model...",
-            "5. **Saving and Loading Models**\n\nTo save a model, from the Model Results window..."
+            """<b>The first step is to select the dataset you will use to make your model.</b> 
+            The LRM App can utilize data in <i>.csv</i> format, <i>Excel</i> spreadsheets, or <i>SQLite</i> databases.
+
+            <b>To select dataset:</b>
+            <ul>
+                <li>Select <b>Open File</b>.</li>
+                <li>Navigate to your dataset file.</li>
+                <li>Double-click the file or select it and then select <b>Open</b>.</li>
+            </ul>
+            
+            <i>Note:</i> If any <b>NaN</b> items are detected, a dialog box opens to inform you (see Figure 10). Select <b>OK</b> to continue.
+            """,
+
+            """<b>After you open a dataset, its columns will appear under the Features and Target menus in the Column Selection panel.</b> 
+            You can select single or multiple independent variables for your Feature(s). 
+            You can only select one dependent variable for the Target.
+
+            <i>Note:</i> The LRM App can provide the model metrics and equation for a multiple-independent-variable linear regression but cannot graph it. 
+            The LRM App can only display a graph for a <b>single-independent-variable</b> or simple linear regression.
+
+            <b>To select variables:</b>
+            <ul>
+                <li>Scroll through the column headings in the <b>Features</b> menu.</li>
+                <li>Select a desired <b>Feature(s)</b> by clicking on it or them. A vertical bar appears beside the <b>Feature(s)</b> selected.</li>
+                <li>To deselect a Feature, click it again. The vertical bar disappears.</li>
+                <li>Repeat the selection process with the column headings in the <b>Target</b> menu.</li>
+                <li>Select <b>Confirm Selection</b>. The Selection Confirmed dialog box opens to summarize your choices for Input Columns (Features) and Output Column (Target).</li>
+                <li>Select <b>OK</b>.</li>
+            </ul>
+            """,
+
+            """<b>Before you can create a model, you must remove or fill in missing or unreadable values ("NaN" or "Not a Number" values) in the dataset.</b>
+
+            <b>To preprocess data:</b>
+            <ul>
+                <li>Open the menu under <b>Preprocessing Options</b> by selecting the down arrow.</li>
+                <li>Select the appropriate option (remove or fill with the <i>mean</i>, <i>median</i>, or a constant) for the NaNs in your dataset.</li>
+                <li>If you select <b>Fill NaN with a Constant</b>, enter the constant in the field labelled "<b>Enter constant value</b>".</li>
+                <li>Select <b>Apply Preprocessing</b>. A <i>Success</i> message appears to confirm preprocessing.</li>
+                <li>Select <b>OK</b>.</li>
+            </ul>
+            """,
+
+            """<b>You are ready to create your model and view the metrics.</b>
+
+            <b>To create model and prediction:</b>
+            <ul>
+                <li>Name your model in the <b>Create description</b> field. <i>Note:</i> You can create a model with no name. A dialog box appears asking if you are sure before you can continue. You can still save the model.</li>
+                <li>Select <b>Create model</b>. The Model Results appear in a separate window and show the name, coefficient of determination, mean squared error, and model formula (see Figure 10). 
+                For a simple (single-independent-variable) linear regression, the app displays a graph (Figure 11). 
+                <i>Note:</i> No graph appears for a multiple linear regression.</li>
+            </ul>
+            """,
+
+            """<b>After creating your model, you can save it from the Model Results window and reload it at a later time.</b>
+
+            <b>To save a model:</b>
+            <ul>
+                <li>From the Model Results window, select <b>Save model</b>.</li>
+                <li>Navigate to the location where you want to save.</li>
+                <li>Enter your desired file name and select <b>Save</b>. The file saves with a .joblib extension, and a dialog box appears to inform you of the successful save.</li>
+                <li>Select <b>OK</b>.</li>
+            </ul>
+
+            <b>To reload a model:</b>
+            <ul>
+                <li>From the Main Interface, select <b>Open Model</b>.</li>
+                <li>Navigate to the location of your saved model's .joblib file.</li>
+                <li>Double-click the file or select it and select <b>Open</b>. A dialog box opens to inform you the model has been loaded successfully.</li>
+                <li>Select <b>OK</b>.</li>
+            </ul>
+            """
         ]
         self.steps_titles = [
             "SELECT YOUR DATASET",
             "SELECTING VARIABLES",
             "DATA PREPROCESSING",
             "MODEL CREATION",
-            "SAVING & LOADING"
+            "SAVING AND LOADING"
         ]
         self.current_step = 0  # Tracks the current step
         self.ui()  # Call the function to set up the UI
@@ -64,7 +131,7 @@ class HelpTab(QWidget):
         # Description area
         self.description_label = QLabel(self.steps_text[self.current_step])
         self.description_label.setWordWrap(True)
-        self.description_label.setStyleSheet("color: black; font-size: 14px; padding: 10px;")
+        self.description_label.setStyleSheet("color: black; font-family: 'Bahnschrift'; font-weight: 500; font-size: 16px; padding: 10px;")
         self.description_label.setAlignment(Qt.AlignmentFlag.AlignTop)
 
         # Add widgets to main layout
