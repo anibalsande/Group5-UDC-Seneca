@@ -59,6 +59,7 @@ class ResultsTab(QWidget):
 
         self.save_button = QPushButton("Save model")
         self.save_button.setFixedHeight(28)
+        self.save_button.setToolTip("Click to save the trained model to a .joblib file.")
         self.save_button.setStyleSheet(""" 
             QPushButton {
                 background-color: #F6BE00; 
@@ -121,6 +122,8 @@ class ResultsTab(QWidget):
 
         self.layout.addWidget(canvas)
         canvas.draw()  # Dibuja el gráfico
+        canvas.setToolTip("Displays a graph of the regression line and the actual data if the model has a single numerical feature.")
+
 
     def save_model(self):
         file_path, _ = QFileDialog.getSaveFileName(

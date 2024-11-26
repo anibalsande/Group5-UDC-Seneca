@@ -73,6 +73,7 @@ class MainWindow(QMainWindow):
         self.upload_button = QPushButton("OPEN FILE")
         self.upload_button.setFixedHeight(28)
         self.upload_button.setFixedWidth(170)
+        self.upload_button.setToolTip("Click to upload a data file in CSV, Excel, or SQLite format.")
         self.upload_button.setStyleSheet(""" 
             QPushButton {
                 background-color: #F6BE00; 
@@ -179,6 +180,8 @@ class MainWindow(QMainWindow):
         self.input_selector.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)     
         left_column_layout.addWidget(QLabel("Features:"))
         left_column_layout.addWidget(self.input_selector)
+        self.input_selector.setToolTip("Select the columns that will be used as input features for the model.")
+
 
         # Segunda columna (Texto, Dropdown y Botón)
         right_column_layout = QVBoxLayout()
@@ -187,7 +190,9 @@ class MainWindow(QMainWindow):
         self.output_selector = QListWidget()
         self.output_selector.setFixedHeight(70) 
         self.output_selector.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)     
-        
+        self.output_selector.setToolTip("Select the column that will be used as the target variable.")
+
+
         target_label = QLabel("Target:")
         target_label.setToolTip("The 'Target' is the dependent variable column we aim to predict.")
         right_column_layout.addWidget(target_label)
@@ -198,6 +203,7 @@ class MainWindow(QMainWindow):
         self.confirm_button = QPushButton("Confirm Selection ⮕")
         self.confirm_button.clicked.connect(self.confirm_selection)
         self.confirm_button.setFixedHeight(40)  # Ajusta la altura
+        self.confirm_button.setToolTip("Confirms the selected columns as input and output characteristics.")
         self.confirm_button.setStyleSheet(""" 
             QPushButton {
                 background-color: #0B1E3E; 
@@ -239,6 +245,8 @@ class MainWindow(QMainWindow):
         ])
         self.nan_options.setFixedWidth(200)
         preprocess_layout.addWidget(self.nan_options)
+        self.nan_options.setToolTip("Select an option to handle missing values ​​(NaN) in the dataset.")
+
 
         # Input constant
         self.constant_input = QLineEdit()
@@ -246,6 +254,8 @@ class MainWindow(QMainWindow):
         self.constant_input.setFixedWidth(200)
         self.constant_input.setDisabled(True)
         preprocess_layout.addWidget(self.constant_input)
+        self.constant_input.setToolTip("Enter a constant value to replace the NaN values ​​in the columns.")
+
 
         # Enable constant input
         self.nan_options.currentIndexChanged.connect(self.toggle_constant_input)
@@ -255,6 +265,7 @@ class MainWindow(QMainWindow):
         self.apply_button.clicked.connect(self.apply_preprocessing)
         self.apply_button.setFixedHeight(40)  # Ajusta la altura
         self.apply_button.setFixedWidth(200)  # Ajusta el ancho
+        self.apply_button.setToolTip("Applies selected preprocessing options for NaN values.")
         self.apply_button.setStyleSheet(""" 
             QPushButton {
                 background-color: #0B1E3E; 
@@ -290,6 +301,7 @@ class MainWindow(QMainWindow):
         self.model_button = QPushButton("Create model ⮕")
         self.model_button.setFixedHeight(40)  # Ajusta la altura
         self.model_button.setFixedWidth(200)  # Ajusta el ancho
+        self.model_button.setToolTip("Create a regression model based on the data and selected columns.")
         self.model_button.setStyleSheet(""" 
             QPushButton {
                 background-color: #0B1E3E; 
