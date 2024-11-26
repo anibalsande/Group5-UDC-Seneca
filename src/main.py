@@ -119,13 +119,9 @@ class MainWindow(QMainWindow):
 
         # Add header to layout
         main_layout.addWidget(header_widget)
-
-        # Middle layout
-        horizontal_layout = QHBoxLayout()
-        horizontal_layout.setContentsMargins(10,0,10,0)
         
         self.table_widget = QStackedWidget()
-        self.table_widget.setFixedHeight(430)
+        self.table_widget.setFixedHeight(420)
 
         # Configuración de la tabla para mostrar los datos
         self.welcome_label = QLabel("Welcome! No data available.\nPlease import database or an existing model.")
@@ -163,39 +159,37 @@ class MainWindow(QMainWindow):
 
         main_layout.addWidget(self.table_widget)
 
+        # Middle layout
+        horizontal_layout = QHBoxLayout()
+        horizontal_layout.setContentsMargins(10,10,10,10)
+
         # Column selection side
         self.column_selection_group = QGroupBox("Column Selection")
         self.column_selection_group.setEnabled(False)
-        column_selection_layout = QHBoxLayout()  # Cambiado a QHBoxLayout para dos columnas
+        column_selection_layout = QHBoxLayout()
+        column_selection_layout.setAlignment(Qt.AlignmentFlag.AlignBottom)
 
         # Primera columna (Texto y Multiselector)
         left_column_layout = QVBoxLayout()
-        left_column_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
         
         # Features (primera columna)
         self.input_selector = QListWidget()  # Cambiamos a QListWidget para selección múltiple
         self.input_selector.setSelectionMode(QListWidget.SelectionMode.MultiSelection)  
-        self.input_selector.setFixedHeight(70) 
-        self.input_selector.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)     
+        self.input_selector.setSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
         left_column_layout.addWidget(QLabel("Features:"))
         left_column_layout.addWidget(self.input_selector)
         self.input_selector.setToolTip("Select the columns that will be used as input features for the model.")
 
 
-        # Segunda columna (Texto, Dropdown y Botón)
+        # Segunda columna (Texto, Dropdown)
         right_column_layout = QVBoxLayout()
-        right_column_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
-        # Target (segunda columna)
-        self.output_selector = QListWidget()
-        self.output_selector.setFixedHeight(70) 
-        self.output_selector.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)     
-        self.output_selector.setToolTip("Select the column that will be used as the target variable.")
-
-
         target_label = QLabel("Target:")
         target_label.setToolTip("The 'Target' is the dependent variable column we aim to predict.")
         right_column_layout.addWidget(target_label)
-        
+
+        self.output_selector = QListWidget()
+        self.output_selector.setSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)    
+        self.output_selector.setToolTip("Select the column that will be used as the target variable.")
         right_column_layout.addWidget(self.output_selector)
 
         # Confirm button (segunda columna)
@@ -222,6 +216,10 @@ class MainWindow(QMainWindow):
         column_selection_layout.addLayout(left_column_layout)
         column_selection_layout.addLayout(right_column_layout)
         column_selection_layout.addWidget(self.confirm_button)
+        column_selection_layout.setAlignment(self.confirm_button, Qt.AlignmentFlag.AlignBottom)
+
+        column_selection_layout.setStretchFactor(left_column_layout, 1)
+        column_selection_layout.setStretchFactor(right_column_layout, 1)  
 
         # Agregar el layout principal al grupo
         self.column_selection_group.setLayout(column_selection_layout)
@@ -230,7 +228,7 @@ class MainWindow(QMainWindow):
         self.preprocess_group = QGroupBox("Preprocessing Options")
         preprocess_layout = QVBoxLayout()
         self.preprocess_group.setFixedWidth(220)
-        preprocess_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
+        preprocess_layout.setAlignment(Qt.AlignmentFlag.AlignBottom)
         self.preprocess_group.setEnabled(False)
 
         # Combobox for Nan
@@ -287,13 +285,14 @@ class MainWindow(QMainWindow):
         # Model side
         self.model_group = QGroupBox("Create model")
         model_layout = QVBoxLayout()
+        model_layout.setAlignment(Qt.AlignmentFlag.AlignBottom)
         self.model_group.setFixedWidth(300)
         self.model_group.setEnabled(False)
 
         self.description = QTextEdit()
         self.description.setPlaceholderText("Create description")
-        self.description.setFixedWidth(260)
-        self.description.setFixedHeight(40)
+        self.description.setFixedWidth(280)
+        self.output_selector.setSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)    
         model_layout.addWidget(self.description)
 
         # Preprocessing button
@@ -396,17 +395,16 @@ class MainWindow(QMainWindow):
             nan_columns = nan_summary[nan_summary > 0]
 
             if not nan_columns.empty:
-                # Build a list with column information
-                columns_info = '\n'.join(f"- {col}: {count}" for col, count in nan_columns.items())
+                # Construir la lista con la información de las columnas, usando <br> para saltos de línea
+                columns_info = '<br>'.join(f"· {col}: {count}" for col, count in nan_columns.items())
                 
-                # Display warning with concise information
+                # Mostrar el mensaje con formato HTML para incluir la línea horizontal
                 QMessageBox.warning(
-                self,
-                "Missing Data (NaN) Detected",
-                f"The following columns contain missing values:<br><br>"
-                f"{columns_info}<br><br>"
-                f"<hr>"  # Horizontal line
-                f"<b>Please review and fill in the missing data.</b>")
+                    self,
+                    "Missing Data (NaN) Detected",
+                    f"The following columns contain missing values:<br>{columns_info}<hr>"
+                    "Please review and fill in the missing data."
+                )
 
             else:
                 # Inform that no NaN values were found
@@ -666,8 +664,6 @@ if __name__ == "__main__":
         }
                          
         QMessageBox {
-        font-family: 'Bahnschrift';
-        font-size: 14px;
         color: #0A4B85;  /* Texto en azul oscuro */
     }
 

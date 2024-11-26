@@ -25,31 +25,46 @@ class ResultsTab(QWidget):
         """Configura la UI del modelo con todos los elementos gráficos básicos."""
         self.layout = QVBoxLayout()  # Se crea el layout dentro de la función
         self.layout.setAlignment(Qt.AlignmentFlag.AlignTop)
+        self.layout.setContentsMargins(0, 0, 0, 0)
+
         self.setLayout(self.layout)
 
-        # Se configuran los widgets que no cambian
-        self.data_group = QGroupBox("Model Metrics:")
-        self.data_layout = QVBoxLayout()
+        header_widget = QWidget()
+        header_layout = QHBoxLayout()
+        header_layout.setContentsMargins(10, 0, 10, 0)
+        header_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
+        header_widget.setLayout(header_layout)
+        header_widget.setStyleSheet("background-color: #0b5394;")
+        header_widget.setFixedHeight(35)
 
-        self.description_text = QLabel("")
-        self.description_text.setWordWrap(True)
-        self.layout.addWidget(self.description_text)
+        # "OPEN FILE" Button
+        self.upload_button = QPushButton("CHANGE DESCRIPTION")
+        self.upload_button.setFixedHeight(28)
+        self.upload_button.setFixedWidth(170)
+        self.upload_button.setStyleSheet(""" 
+        QPushButton {
+            background-color: transparent; 
+            color: white;
+            border: 2px solid #F6BE00;
+            border-radius: 5px;
+            font-weight: bold;
+            padding-left: 15px;
+            padding-right: 15px;   
+            }
+        """)
+        #self.upload_button.clicked.connect(self.select_file)
+        header_layout.addWidget(self.upload_button)
 
-        self.results_label = QLabel("")
-        self.results_label.setFont(QFont("Bahnschrift", 12))
-        self.results_label.setWordWrap(True)
-        self.results_label.setStyleSheet("padding: 10px; border-radius: 5px;")
-        self.data_layout.addWidget(self.results_label)
+        # File name
+        self.description_text = QLabel("No file selected")
+        self.description_text.setStyleSheet("color: white; font-family: 'Bahnschrift'; font-size: 16px;")
+        self.description_text.setAlignment(Qt.AlignmentFlag.AlignBottom | Qt.AlignmentFlag.AlignHCenter)
+        self.description_text.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
+        header_layout.addWidget(self.description_text)
 
-        self.data_group.setLayout(self.data_layout)
-        self.layout.addWidget(self.data_group)
-
-        self.warning_label = QLabel("")
-        self.warning_label.setStyleSheet("color: red; padding: 10px;")
-        self.layout.addWidget(self.warning_label)
-
-        self.save_button = QPushButton("Save model")
+        self.save_button = QPushButton("SAVE MODEL")
         self.save_button.setFixedHeight(28)
+        self.save_button.setFixedWidth(170)
         self.save_button.setToolTip("Click to save the trained model to a .joblib file.")
         self.save_button.setStyleSheet(""" 
             QPushButton {
@@ -66,7 +81,27 @@ class ResultsTab(QWidget):
             }
         """)
         self.save_button.clicked.connect(self.save_model)
-        self.layout.addWidget(self.save_button)
+        header_layout.addWidget(self.save_button)
+
+        # Add header to layout
+        self.layout.addWidget(header_widget)
+
+        # Se configuran los widgets que no cambian
+        self.data_group = QGroupBox("Model Metrics:")
+        self.data_layout = QVBoxLayout()
+
+        self.results_label = QLabel("")
+        self.results_label.setFont(QFont("Bahnschrift", 12))
+        self.results_label.setWordWrap(True)
+        self.results_label.setStyleSheet("padding: 10px; border-radius: 5px;")
+        self.data_layout.addWidget(self.results_label)
+
+        self.data_group.setLayout(self.data_layout)
+        self.layout.addWidget(self.data_group)
+
+        self.warning_label = QLabel("")
+        self.warning_label.setStyleSheet("color: red; padding: 10px;")
+        self.layout.addWidget(self.warning_label)
 
         self.prediction_group = QGroupBox("Make a Prediction")
         self.prediction_layout = QFormLayout()

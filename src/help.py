@@ -131,7 +131,7 @@ class HelpTab(QWidget):
         # Description area
         self.description_label = QLabel(self.steps_text[self.current_step])
         self.description_label.setWordWrap(True)
-        self.description_label.setStyleSheet("color: black; font-family: 'Bahnschrift'; font-weight: 500; font-size: 16px; padding: 10px;")
+        self.description_label.setStyleSheet("color: black; font-family: 'Open Sans'; font-weight: 500; font-size: 16px; padding: 10px; margin-left: 10px; margin-right: 10px;")
         self.description_label.setAlignment(Qt.AlignmentFlag.AlignTop)
 
         # Add widgets to main layout
