@@ -353,6 +353,9 @@ class MainWindow(QMainWindow):
             except Exception as e:
                 self.file_label.setText(f"Error: {str(e)}")
                 self.file_label.setStyleSheet("QLabel {color: red; padding: 5px;}")
+        else:
+            self.welcome_label.setText("No file was not selected. \nPlease import database or an existing model.")
+            
 
     def data_import(self, file_path):
         """ Importar los datos desde el archivo """
@@ -373,28 +376,34 @@ class MainWindow(QMainWindow):
             raise ValueError("Unsupported file format.")
 
     def check_for_nans(self):
-        """Check for NaN or empty values in the DataFrame and display a message to the user"""
+        """Check for NaN or empty values in the DataFrame and display a message to the user."""
         if self.data is not None:
             # Summary of NaN values per column
             nan_summary = self.data.isnull().sum()
-            
+
             # Filter columns that contain NaN values
             nan_columns = nan_summary[nan_summary > 0]
-            
+
             if not nan_columns.empty:
-                # Information about columns with NaN and the number of missing values
-                columns_info = ', '.join(nan_columns.index)
-                count_info = ', '.join(f"{col}: {count}" for col, count in nan_columns.items())
+                # Build a list with column information
+                columns_info = '\n'.join(f"- {col}: {count}" for col, count in nan_columns.items())
                 
-                # Display warning with the information
-                QMessageBox.warning(self, "NaN Values Detected",
-                                    f"Missing (NaN) values were found in the following columns:\n\n"
-                                    f"{columns_info}\n\n"
-                                    f"Number of NaN values per column:\n{count_info}")
+                # Display warning with concise information
+                QMessageBox.warning(
+                self,
+                "Missing Data (NaN) Detected",
+                f"The following columns contain missing values:<br><br>"
+                f"{columns_info}<br><br>"
+                f"<hr>"  # Horizontal line
+                f"<b>Please review and fill in the missing data.</b>")
+
             else:
                 # Inform that no NaN values were found
-                QMessageBox.information(self, "No NaN Values Found",
-                                        "The dataset does not contain any missing (NaN) values.")
+                QMessageBox.information(
+                    self,
+                    "Data is Complete",
+                    "No missing values (NaN) were found in the dataset."
+                )
                 self.model_group.setEnabled(True)
 
     
@@ -610,11 +619,11 @@ if __name__ == "__main__":
         }
 
         QTabBar::tab:selected {
-            background: #0B1E3E; /* Fondo para la pestaña activa */
+            background: #073763; /* Fondo para la pestaña activa */
         }
 
         QTabBar::tab {
-            background: lightblue;
+            background: #0A4B85;
             font-family: 'Bahnschrift';
             border-bottom-left-radius: 10px;
             border-bottom-right-radius: 10px;
@@ -630,7 +639,7 @@ if __name__ == "__main__":
         }
 
         QTabBar::tab:hover {
-            background: darkblue;
+            background: #0B1E3E;
         }
         
         QTabWidget::pane {
@@ -643,6 +652,13 @@ if __name__ == "__main__":
             background: #d3d3d3;  /* Fondo gris claro */
             color: #a9a9a9;  /* Texto gris claro */
         }
+                         
+        QMessageBox {
+        font-family: 'Bahnschrift';
+        font-size: 14px;
+        color: #0A4B85;  /* Texto en azul oscuro */
+    }
+
     """)
 
     window.show()

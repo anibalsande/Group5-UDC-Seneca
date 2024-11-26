@@ -1,23 +1,31 @@
 from PyQt6.QtWidgets import *
 from PyQt6.QtCore import *
 from PyQt6.QtGui import *
-from PyQt6.QtSvg import QSvgRenderer
 
 
 class HelpTab(QWidget):
     def __init__(self):
         super().__init__()
         self.setContentsMargins(0, 0, 0, 0)  # Set margins to 0
-        self.steps = [
-            ("1 ) SELECT FILE", "Open a file by clicking the 'OPEN FILE' button. This will open a file dialog to select your file."),
-            ("2 ) SELECT INPUT / OUTPUT COLUMNS", "Select the column(s) you want to use as features, and a single one to predict. Only numerical columns are shown"),
-            ("3 ) APPLY PREPROCESSING", "Apply preprocessing options to handle missing values or outliers. It will be applied for every column"),
-            ("4 ) GENERATE MODEL", "Write a description (optional) and click 'Create model' to build the model and see the results.")
+        self.steps_text = [
+            "1. **Select Your Dataset**\n\nThe first step is to select the dataset...",
+            "2. **Selecting Variables**\n\nAfter you open a dataset, its columns...",
+            "3. **Data Preprocessing**\n\nBefore creating a model, you must handle missing or unreadable values...",
+            "4. **Model Creation and Prediction**\n\nTo create your model: Name your model...",
+            "5. **Saving and Loading Models**\n\nTo save a model, from the Model Results window..."
         ]
+        self.steps_titles = [
+            "SELECT YOUR DATASET",
+            "SELECTING VARIABLES",
+            "DATA PREPROCESSING",
+            "MODEL CREATION",
+            "SAVING & LOADING"
+        ]
+        self.current_step = 0  # Tracks the current step
         self.ui()  # Call the function to set up the UI
 
     def ui(self):
-        # Main layout
+        # Main layout (vertical layout)
         layout = QVBoxLayout()
         layout.setAlignment(Qt.AlignmentFlag.AlignTop)
         layout.setContentsMargins(0, 0, 0, 0)
@@ -31,58 +39,80 @@ class HelpTab(QWidget):
         header_widget.setFixedHeight(35)
 
         # Title in the header
-
         title_label = QLabel("Follow the app usage instructions")
         title_label.setStyleSheet("color: white; font-family: 'Bahnschrift'; font-size: 16px;")
         title_label.setAlignment(Qt.AlignmentFlag.AlignBottom | Qt.AlignmentFlag.AlignHCenter)
         title_label.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
         header_layout.addWidget(title_label)
 
-        # Instructions area (with static text)
-        instructions_widget = QWidget()
-        instructions_layout = QVBoxLayout()
-        instructions_widget.setLayout(instructions_layout)
-        
-        # Add each step as a box with title and description
-        for step_title, step_description in self.steps:
-            # Step box widget
-            step_box_widget = QWidget()
-            step_box_widget.setStyleSheet("""
-                background-color: #f0f0f0;
-                border-radius: 10px;
-                margin-top: 5px;
-                padding: 5px;
-            """)
+        # Tab buttons area
+        tabs_widget = QWidget()
+        tabs_layout = QHBoxLayout()
+        tabs_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        tabs_widget.setLayout(tabs_layout)
 
-            # Step title and number (e.g., "STEP 1")
-            step_title_label = QLabel(f"<b>{step_title}</b>")
-            step_title_label.setStyleSheet("""
-                color: #0B1E3E;
-                font-size: 16px;
-                font-weight: bold;
-                padding: 5px 0;
-            """)
-            
-            # Step description (text explaining the step)
-            step_description_label = QLabel(step_description)
-            step_description_label.setStyleSheet("""
-                color: black;
-                font-size: 12px;
-                padding-left: 10px;
-            """)
+        # Create tab buttons
+        self.tab_buttons = []
+        for i, title in enumerate(self.steps_titles):
+            button = QPushButton(title)
+            button.setFixedSize(200, 40)
+            button.setStyleSheet(self.get_tab_style(i))  # Apply style based on state
+            button.clicked.connect(self.update_step(i))
+            self.tab_buttons.append(button)
+            tabs_layout.addWidget(button)
 
-            # Layout for the step box
-            step_layout = QVBoxLayout()
-            step_layout.addWidget(step_title_label)
-            step_layout.addWidget(step_description_label)
-            step_box_widget.setLayout(step_layout)
+        # Description area
+        self.description_label = QLabel(self.steps_text[self.current_step])
+        self.description_label.setWordWrap(True)
+        self.description_label.setStyleSheet("color: black; font-size: 14px; padding: 10px;")
+        self.description_label.setAlignment(Qt.AlignmentFlag.AlignTop)
 
-            # Add the step box to the main layout
-            instructions_layout.addWidget(step_box_widget)
+        # Add widgets to main layout
+        layout.addWidget(header_widget)
+        layout.addWidget(tabs_widget) 
+        layout.addWidget(self.description_label)
 
-        # Add the instructions area to the main layout
-        layout.addWidget(header_widget)  # Header
-        layout.addWidget(instructions_widget)  # Instructions steps
-
-        # Set the layout for the widget
+        # Set the layout
         self.setLayout(layout)
+
+    def get_tab_style(self, index):
+        """Return style for a tab based on its state."""
+        if index < self.current_step:
+            # Past steps (blue and completed)
+            return """
+                background-color: #0b5394;  /* Blue */
+                color: white;
+                font-weight: bold;
+                border: none;
+                border-bottom: 2px solid #073763;
+            """
+        elif index == self.current_step:
+            # Current step (yellow highlight)
+            return """
+                background-color: #ffd966;  /* Yellow */
+                color: black;
+                font-weight: bold;
+                border: none;
+                border-bottom: 2px solid #f1c232;
+            """
+        else:
+            # Future steps (gray and inactive)
+            return """
+                background-color: #f0f0f0;
+                color: #b0b0b0;
+                font-weight: normal;
+                border: none;
+                border-bottom: 2px solid #d0d0d0;
+            """
+
+    def update_step(self, step_index):
+        """Return a lambda function to update the current step."""
+        return lambda: self.set_current_step(step_index)
+
+    def set_current_step(self, step_index):
+        """Update the current step and refresh styles."""
+        self.current_step = step_index
+        self.description_label.setText(self.steps_text[self.current_step])
+        # Update tab styles
+        for i, button in enumerate(self.tab_buttons):
+            button.setStyleSheet(self.get_tab_style(i))
