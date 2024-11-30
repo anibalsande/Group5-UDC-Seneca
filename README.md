@@ -175,9 +175,12 @@ The first step is to select the dataset you will use to make your model. The LMR
    *Figure 10. Missing NaN information box*
 
 ### Selecting variables
-After you open a dataset, its columns will appear under the Features and Target menus in the Column Selection panel. 
-You can select single or multiple independent variables for your Feature(s). You can only select one dependent variable for the Target.
+After you open a dataset, its columns will appear under the Features and Target menus in the Column Selection panel (Figure 11, Boxes 1 and 2).
+You can select single or multiple independent variables for your Feature(s). You can only select one dependent variable for the Target.     
 **Note**: The LMR App can provide the model metrics and equation for a multiple-independent-variable linear regression but cannot graph it. The LMR App can only display a graph for a single-independent-variable or simple linear regression.
+ 
+   ![alt text](/images/VariablesPreprocessingModelMap.jpg "Screenshot with highlighted Column Selection, Preprocessing Options, and Create model panels")     
+   *Figure 11. Column selection, Preprocessing options, and Create model panels*
 
 **To select variables**
 1. Scroll through the column headings in the Features menu.
@@ -209,23 +212,23 @@ You are ready to create your model, view the metrics, and make predictions.
    **Note**: You can create a model with no name. A dialog box appears asking if you are sure before you can continue. You can still save the model.
 2. Select **Create model**.     
    The model results appear in the Display Area under the Model tab.     
-   The Model Metrics box (Figure 11, Box 1) shows the name, coefficient of determination, mean squared error, and model formula.     
-   For a simple (single-independent-variable) linear regression, the model results also display a graph (Figure 11, Box 2).     
+   The Model Metrics box (Figure 12, Box 1) shows the name, coefficient of determination, mean squared error, and model formula.     
+   For a simple (single-independent-variable) linear regression, the model results also display a graph (Figure 12, Box 2).     
    **Note**: No graph appears for a multiple linear regression.
 
    ![alt text](/images/ModelResults.jpg "Screenshot of model results")
-   *Figure 11. Model results*
+   *Figure 12. Model results*
 
 **To make a prediction**
-1. In the Make a Prediction panel (Figure 11, Box 3), enter the Feature value you wish to use to make a prediction.
+1. In the Make a Prediction panel (Figure 12, Box 3), enter the Feature value you wish to use to make a prediction.
 2. Select **Realizar Predicción**.     
-   The predicted Target value appears in the **Predicción** field (Figure 11, Box 4).
+   The predicted Target value appears in the **Predicción** field (Figure 12, Box 4).
 
 ### Saving and loading models
 After creating your model, you can save it from the Model tab and reload at a later time.
 
 **To save a model**
-1. From the Model tab, select **Save model** (Figure 11, Box 5).
+1. From the Model tab, select **Save model** (Figure 12, Box 5).
 2. Navigate to the location where you want to save.
 3. Enter your desired file name and select **Save**.
    The file saves with a .joblib extension, and a dialog box appears to inform you of the successful save.
@@ -239,7 +242,7 @@ After creating your model, you can save it from the Model tab and reload at a la
 4. Select **OK**.
 
 ### Additional help
-For a quick summary of the LMR App's usage instructions, click the **Help** tab at any time while using the app (Figure 12). 
+For a quick summary of the LMR App's usage instructions, click the **Help** tab at any time while using the app (Figure 13). 
 
 ![alt text](/images/HelpTab.jpg "Screenshot of help tab contents")     
-   *Figure 12. Help tab display*
+   *Figure 13. Help tab display*
