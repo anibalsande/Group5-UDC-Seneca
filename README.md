@@ -141,12 +141,13 @@ See Figure 8 for a map and legend explaining what each feature of the LMR App do
    *Figure 8. LMR App Main Interface Map*
     
 **Legend**
-1. Open File - Select this button to select your model's dataset from your computer or drive.
-2. Open Model - Select this button to open a previously-saved model you created.
-3. Display Area - The main panel of the interface is where your dataset appears.
-4. Column Selection - The first menu in this panel, Features, is where you select the independent variable(s) for your model. The second menu, Target, is where you select the dependent variable(s).
-5. Preprocessing Options - This panel's menu allows you to confirm what you want the LMR App to do with missing or incomplete information in your dataset. You can remove those rows or fill them with a mean, a median, or a constant.
-6. Create Model - This panel allows you to name your model before creating it.
+1. Open File Button - Select this button to select your model's dataset from your computer or drive.
+2. Display Area Tabs - Selecting these tabs toggles between displaying the data, model, or help page in the Display Area.
+3. Open Model Button - Select this button to open a previously-saved model you created.
+4. Display Area - The main panel of the interface is where your dataset appears.
+5. Column Selection Panel - The first menu in this panel, Features, is where you select the independent variable(s) for your model. The second menu, Target, is where you select the dependent variable(s).
+6. Preprocessing Options Panel - This panel's menu allows you to confirm what you want the LMR App to do with missing or incomplete information in your dataset. You can remove those rows or fill them with a mean, a median, or a constant.
+7. Create Model Panel - This panel allows you to name your model before creating it.
     
 ### Variable selection interface
 Figure 9, box 1 shows an example of variable selection from a housing dataset. The Feature (independent) variable selected is "total_bedrooms." The vertical bar beside the variable marks it as selected. The Target (dependent) variable selected is "median_house_value" and the vertical bar beside the variable marks it as selected. Upon selecting Confirm Selection, the app highlights the columns showing the selected variables in the Display Area.
