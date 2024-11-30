@@ -185,7 +185,7 @@ You can select single or multiple independent variables for your Feature(s). You
 4. To deselect a Feature, click it again.
    The vertical bar disappears.
 5. Repeat the selection process with the column headings in the Target menu.
-6. Select Confirm Selection.
+6. Select Confirm Selection.     
    The Selection Confirmed dialog box opens to summarize your choices for Input Columns (Features) and Output Column (Target).
 7. Select **OK**. 
    
@@ -196,7 +196,7 @@ Before you can create a model, you must remove or fill in missing or unreadable 
 1. Open the menu under Preprocessing Options by selecting the down arrow.
 2. Select the appropriate option (remove or fill with the mean, median, or a constant) for the NaNs in your dataset.
 3. If you select Fill NaN with a Constant, enter the constant in the field labelled "Enter constant value".
-4. Select Apply Preprocessing.
+4. Select Apply Preprocessing.     
    A Success message appears to confirm preprocessing.
 5. Select **OK**.
     
@@ -206,7 +206,7 @@ You are ready to create your model and view the metrics.
 **To create model and prediction**
 1. Name your model in the Create description field.
    **Note**: You can create a model with no name. A dialog box appears asking if you are sure before you can continue. You can still save the model.
-2. Select Create model.
+2. Select Create model.     
    The Model Results appear in a separate window and show the name, coefficient of determination, mean squared error, and model formula (see Figure 10).
    For a simple (single-independent-variable) linear regression, the app displays a graph (Figure 11).
    **Note**: No graph appears for a multiple linear regression.
