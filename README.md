@@ -18,6 +18,7 @@ The LMR App creates, visualizes, and makes predictions from simple and multiple 
     - [Selecting variables](#selecting-variables)
     - [Model creation, metrics, and prediction](#model-creation,-metrics,-and-prediction)
     - [Saving and loading models](#saving-and-loading-models)
+6. [Additional help](#additional-help)
 
 
 ## 1. Introduction
@@ -231,8 +232,14 @@ After creating your model, you can save it from the Model tab and reload at a la
 4. Select **OK**.
 
 **To reload a model**
-1. From the Main Interface, select Open Model.
+1. From the Data tab, select **Open Model**.
 2. Navigate to the location of your saved model's .joblib file.
-3. Double-click the file or select it and select Open.
+3. Double-click the file or select it and select **Open**.
    A dialog box opens to inform you the model has been loaded successfully.
 4. Select **OK**.
+
+### Additional help
+For a quick summary of the LMR App's usage instructions, click the **Help** tab at any time while using the app (Figure 12). 
+
+![alt text](/images/HelpTab.jpg "Screenshot of help tab contents")     
+   *Figure 12. Help tab display*
