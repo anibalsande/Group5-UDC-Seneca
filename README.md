@@ -208,12 +208,12 @@ You are ready to create your model, view the metrics, and make predictions.
    **Note**: You can create a model with no name. A dialog box appears asking if you are sure before you can continue. You can still save the model.
 2. Select **Create model**.     
    The model results appear in the Display Area under the Model tab.     
-   The Model Metrics box (Figure 11, Box 1) shows the name, coefficient of determination, mean squared error, and model formula.
+   The Model Metrics box (Figure 11, Box 1) shows the name, coefficient of determination, mean squared error, and model formula.     
    For a simple (single-independent-variable) linear regression, the model results also display a graph (Figure 11, Box 2).     
    **Note**: No graph appears for a multiple linear regression.
 
-   ![alt text](/images/ModelResults.jpg "Screenshot of Model Results window")
-   *Figure 11. Model Results window*
+   ![alt text](/images/ModelResults.jpg "Screenshot of model results")
+   *Figure 11. Model results*
 
 **To make a prediction**
 1. In the Make a Prediction panel (Figure 11, Box 3), enter the Feature value you wish to use to make a prediction.
@@ -221,12 +221,12 @@ You are ready to create your model, view the metrics, and make predictions.
    The predicted Target value appears in the **Predicción** field (Figure 11, Box 4).
 
 ### Saving and loading models
-After creating your model, you can save it from the Model Results window and reload at a later time.
+After creating your model, you can save it from the Model tab and reload at a later time.
 
 **To save a model**
-1. From the Model Results window, select Save model.
+1. From the Model tab, select **Save model** (Figure 11, Box 5).
 2. Navigate to the location where you want to save.
-3. Enter your desired file name and select Save.
+3. Enter your desired file name and select **Save**.
    The file saves with a .joblib extension, and a dialog box appears to inform you of the successful save.
 4. Select **OK**.
 
