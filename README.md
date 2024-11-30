@@ -16,7 +16,7 @@ The LMR App creates, visualizes, and makes predictions from simple and multiple 
 5. [Usage instructions](#usage-instructions)
     - [Loading a file](#loading-a-file)
     - [Selecting variables](#selecting-variables)
-    - [Model creation and prediction](#model-creation-and-prediction)
+    - [Model creation, metrics, and prediction](#model-creation,-metrics,-and-prediction)
     - [Saving and loading models](#saving-and-loading-models)
 
 
@@ -200,19 +200,25 @@ Before you can create a model, you must remove or fill in missing or unreadable 
    A Success message appears to confirm preprocessing.
 5. Select **OK**.
     
-### Model creation and prediction
-You are ready to create your model and view the metrics.
+### Model creation, metrics, and prediction
+You are ready to create your model, view the metrics, and make predictions.
 
-**To create model and prediction**
-1. Name your model in the Create description field.
+**To create model and view metrics**
+1. Name your model in the **Create description** field.
    **Note**: You can create a model with no name. A dialog box appears asking if you are sure before you can continue. You can still save the model.
-2. Select Create model.     
-   The Model Results appear in a separate window and show the name, coefficient of determination, mean squared error, and model formula (see Figure 10).
-   For a simple (single-independent-variable) linear regression, the app displays a graph (Figure 11).
+2. Select **Create model**.     
+   The model results appear in the Display Area under the Model tab.     
+   The Model Metrics box (Figure 11, Box 1) shows the name, coefficient of determination, mean squared error, and model formula.
+   For a simple (single-independent-variable) linear regression, the model results also display a graph (Figure 11, Box 2).     
    **Note**: No graph appears for a multiple linear regression.
 
    ![alt text](/images/ModelResults.jpg "Screenshot of Model Results window")
    *Figure 11. Model Results window*
+
+**To make a prediction**
+1. In the Make a Prediction panel (Figure 11, Box 3), enter the Feature value you wish to use to make a prediction.
+2. Select **Realizar Predicción**.     
+   The predicted Target value appears in the **Predicción** field (Figure 11, Box 4).
 
 ### Saving and loading models
 After creating your model, you can save it from the Model Results window and reload at a later time.
