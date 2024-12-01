@@ -1,4 +1,3 @@
-import numpy as np
 from PyQt6.QtWidgets import *
 from PyQt6.QtCore import *
 from PyQt6.QtGui import *
@@ -8,7 +7,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder, LabelEncoder
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas, NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure
-import joblib
 
 class ModelTrainer(QWidget):
     def __init__(self, data, input_columns, output_column, description=""):
@@ -18,6 +16,7 @@ class ModelTrainer(QWidget):
         self.output_column = output_column
         self.description = description
         self.model = LinearRegression()
+        self.warning_text = ""
 
         self.train_and_show_results()
     
@@ -43,9 +42,8 @@ class ModelTrainer(QWidget):
             formula = f"{self.output_column} = {self.intercept:.4f} + {' + '.join(formula_terms)}"
 
             # Determinar el mensaje de advertencia y los datos de la gráfica
-            warning_text = ""
             if len(self.input_columns) > 1:
-                warning_text += "Note: The graph is only displayed for a simple linear regression."
+                self.warning_text = "The graph is only displayed for simple linear regression."
 
             plot_data = (X_test[:, 0], y_test, y_pred) if len(self.input_columns) == 1 and X_test.shape[1] == 1 else None
 

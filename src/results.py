@@ -2,10 +2,8 @@ import numpy as np
 from PyQt6.QtWidgets import *
 from PyQt6.QtCore import *
 from PyQt6.QtGui import *
-from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import OneHotEncoder, LabelEncoder
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas, NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure
 import joblib
@@ -90,44 +88,73 @@ class ResultsTab(QWidget):
         self.left_column_layout = QStackedWidget()
         self.graph_widget = self.create_graph_widget()
         self.warning_label = QLabel("No data to display.")
-        self.warning_label.setStyleSheet("color: red; padding: 10px;")
+        self.warning_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.warning_label.setStyleSheet("font-size: 16px;font-family: 'Bahnschrift';font-weight: semi-bold;color: #333;padding: 10px;background-color: #e0e0e0;border-radius: 5px;")
+
         self.left_column_layout.addWidget(self.warning_label)  # Warning
         self.left_column_layout.addWidget(self.graph_widget)  # Graph
         self.side_layout.addWidget(self.left_column_layout)
 
         # Right column: Prediction GroupBox
-        self.prediction_group = QGroupBox("Make a Prediction")
-        self.prediction_layout = QVBoxLayout()
-        self.dynamic_inputs_layout = QFormLayout()
-        self.input_fields = {}
+        self.prediction_group = QGroupBox("Prediction")
+        self.prediction_layout = QVBoxLayout()  # Diseño principal vertical
+        self.dynamic_inputs_layout = QFormLayout()  # Diseño para entradas dinámicas
+        self.input_fields = {}  # Diccionario para almacenar campos dinámicos
 
-        # Add sub-layouts
+        # Agregar el diseño de entradas dinámicas al diseño principal
         self.prediction_layout.addLayout(self.dynamic_inputs_layout)
+
+        # Botón de predicción con tamaño fijo
         self.predict_button = QPushButton("Make Prediction")
-        self.predict_button.setFixedHeight(28)
-        self.predict_button.setStyleSheet("""                                                         
+        self.predict_button.setFixedHeight(28)  # Altura fija
+        self.predict_button.setFixedWidth(170)  # Ancho fijo
+        self.predict_button.setStyleSheet("""
             QPushButton {
                 background-color: #0B1E3E; 
                 color: white;
                 border-radius: 5px;
                 font-weight: bold;
-                font-size: 12px;}
+                font-size: 12px;
+                padding: 0px;
+            }
             QPushButton:hover {
                 background-color: #F6BE00;
-                color: #0B1E3E;}""")
-
+                color: #0B1E3E;
+            }
+        """)
         self.predict_button.clicked.connect(self.make_prediction)
 
-        self.prediction_output = QLabel("")
-        self.prediction_output.setStyleSheet("font-weight: bold; color: green;")
+        # Etiqueta de salida
+        self.output_label = QLabel("Output:")
+        self.output_label.setAlignment(Qt.AlignmentFlag.AlignCenter)  # Centrar texto
+        self.output_label.setStyleSheet("font-weight: bold; font-size: 14px;")
 
-        self.prediction_layout.addWidget(self.predict_button)
-        self.prediction_layout.addWidget(self.prediction_output)
+        # Campo de salida
+        self.prediction_output = QLabel("")  # Texto vacío por defecto
+        self.prediction_output.setAlignment(Qt.AlignmentFlag.AlignCenter)  # Centrar texto de salida
+        self.prediction_output.setStyleSheet("font-weight: bold; color: green; font-size: 14px;")
 
+        # Contenedor inferior para los widgets (botón y etiquetas de salida)
+        self.bottom_container = QWidget()
+        self.bottom_container.setContentsMargins(0, 0, 0, 0)
+        self.bottom_container.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)  # Ajustar solo el alto
+        self.bottom_container.setStyleSheet("background-color: #CCE4F6; border-radius: 8px; padding: 10px;")
+        self.bottom_layout = QVBoxLayout(self.bottom_container)  # Diseño vertical para el contenedor
+        self.bottom_layout.addWidget(self.predict_button, alignment=Qt.AlignmentFlag.AlignCenter)
+        self.bottom_layout.addWidget(self.output_label, alignment=Qt.AlignmentFlag.AlignCenter)
+        self.bottom_layout.addWidget(self.prediction_output, alignment=Qt.AlignmentFlag.AlignCenter)
+
+        # Agregar el contenedor inferior al diseño principal
+        self.prediction_layout.addStretch()  # Empuja widgets hacia abajo
+        self.prediction_layout.addWidget(self.bottom_container)
+
+        # Configurar el diseño en el grupo de predicción
         self.prediction_group.setLayout(self.prediction_layout)
+
+        # Agregar el grupo al diseño lateral
         self.side_layout.addWidget(self.prediction_group)
 
-        # Adjust columns
+        # Ajuste de las columnas
         self.side_layout.setStretch(0, 4)  # Graphic
         self.side_layout.setStretch(1, 1)  # Prediction
 
@@ -175,11 +202,16 @@ class ResultsTab(QWidget):
         for col in self.input_columns:
             input_field = QLineEdit()
             input_field.setPlaceholderText(f"Enter value for {col}")
+            input_field.setStyleSheet("font-family: Bahnschrift;")
             self.dynamic_inputs_layout.addRow(f"{col}:", input_field)  # Añadir al layout dinámico
             self.input_fields[col] = input_field  # Guardar referencia en el diccionario
 
         # Limpiar predicción previa
         self.prediction_output.setText("")
+
+        self.output_label.setText(f"{output_column}:")
+        self.prediction_output.setText("")
+
 
     def plot_regression(self, plot_data, input, output):
         """Generate or update the regression graph."""
@@ -223,11 +255,23 @@ class ResultsTab(QWidget):
     def make_prediction(self):
         """Generate predictions based on input."""
         try:
-            input_values = [float(self.input_fields[col].text()) for col in self.input_columns]
+            # Comprobar si todos los campos de entrada están llenos
+            input_values = []
+            for col in self.input_columns:
+                text = self.input_fields[col].text().strip()
+                if not text:  # Si el campo está vacío
+                    raise ValueError(f"Input for '{col}' is missing.")
+                try:
+                    input_values.append(float(text)) 
+                except ValueError:
+                    raise ValueError(f"Input for '{col}' must be a numeric value.")  
+
             input_array = np.array(input_values).reshape(1, -1)
             prediction = np.dot(input_array, self.coef) + self.intercept
             self.prediction_output.setText(f"{prediction[0]:.4f}")
+        
         except ValueError as ve:
             QMessageBox.warning(self, "Input Error", str(ve))
         except Exception as e:
-            QMessageBox.critical(self, "Prediction Error", f"Unexpected Error:\n{str(e)}")
+            QMessageBox.critical(self, "Prediction Error", f"Unexpected Error:\n{str(e)}") 
+
