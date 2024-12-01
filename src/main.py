@@ -73,7 +73,6 @@ class MainWindow(QMainWindow):
         self.upload_button = QPushButton("OPEN FILE")
         self.upload_button.setFixedHeight(28)
         self.upload_button.setFixedWidth(170)
-        self.upload_button.setToolTip("Click to upload a data file in CSV, Excel, or SQLite format.")
         self.upload_button.setStyleSheet(""" 
             QPushButton {
                 background-color: #F6BE00; 
@@ -553,17 +552,11 @@ class MainWindow(QMainWindow):
                         coef=trainer.coef,
                         intercept=trainer.intercept,
                         input_columns=trainer.input_columns,
-                        output_column=trainer.output_column
-                    )
+                        output_column=trainer.output_column,
+                        warning_text=trainer.warning_text)
+        QMessageBox.information(self, "Successful Load", "The model has been successfully generated.")
         self.tabs.setCurrentIndex(1)
         self.tabs.setTabEnabled(1, True)
-        QMessageBox.information(self, "Successful Load", "The model has been successfully generated.")
-
-
-
-
-
-
 
 
     def load_model(self, show_window = True):
@@ -609,11 +602,12 @@ class MainWindow(QMainWindow):
                         coef=coefficients,
                         intercept=intercept,
                         input_columns=input_columns,
-                        output_column=output_column
+                        output_column=output_column,
+                        warning_text = "The graph is not displayed for uploaded models."
                     )
+                QMessageBox.information(self, "Successful Load", "The model has been uploaded successfully.")
                 self.tabs.setTabEnabled(1, True)
                 self.tabs.setCurrentIndex(1)
-                QMessageBox.information(self, "Successful Load", "The model has been uploaded successfully.")
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"No se pudo cargar el modelo:\n{str(e)}")
 
