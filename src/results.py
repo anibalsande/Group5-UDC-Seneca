@@ -10,7 +10,6 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 import joblib
 
-
 class ResultsTab(QWidget):
     def __init__(self):
         super().__init__()
@@ -34,24 +33,8 @@ class ResultsTab(QWidget):
         header_widget.setFixedHeight(35)
 
         # Header buttons
-        self.change_description_button = QPushButton("CHANGE DESCRIPTION")
-        self.change_description_button.setFixedHeight(28)
-        self.change_description_button.setFixedWidth(170)
-        self.change_description_button.setStyleSheet(""" 
-        QPushButton {
-            background-color: transparent; 
-            color: white;
-            border: 2px solid #F6BE00;
-            border-radius: 5px;
-            font-weight: bold;
-            padding-left: 15px;
-            padding-right: 15px;   
-        }
-        """)
-        header_layout.addWidget(self.change_description_button)
-
         self.description_text = QLabel("No description available")
-        self.description_text.setStyleSheet("color: white; font-family: 'Bahnschrift'; font-size: 16px;")
+        self.description_text.setStyleSheet("color: white; font-family: 'Bahnschrift'; font-size: 16px;margin-left: 170px;")
         self.description_text.setAlignment(Qt.AlignmentFlag.AlignBottom | Qt.AlignmentFlag.AlignHCenter)
         self.description_text.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
         header_layout.addWidget(self.description_text)
@@ -79,19 +62,29 @@ class ResultsTab(QWidget):
 
         self.layout.addWidget(header_widget)
 
+        # Main content container
+        main_content_widget = QWidget()
+        main_content_layout = QVBoxLayout()
+        main_content_layout.setContentsMargins(10, 0, 10, 10)  # Márgenes uniformes
+        main_content_widget.setLayout(main_content_layout)
+        self.layout.addWidget(main_content_widget)
+
         # Model metrics
-        self.data_group = QGroupBox("Model Metrics:")
+        self.data_group = QGroupBox("Model Metrics")
         self.data_layout = QVBoxLayout()
+        self.data_group.setContentsMargins(0, 0, 0, 0)
+        self.data_group.setLayout(self.data_layout)
+
         self.results_label = QLabel("")
         self.results_label.setFont(QFont("Bahnschrift", 12))
         self.results_label.setWordWrap(True)
         self.results_label.setStyleSheet("padding: 10px; border-radius: 5px;")
         self.data_layout.addWidget(self.results_label)
-        self.data_group.setLayout(self.data_layout)
-        self.layout.addWidget(self.data_group)
+        main_content_layout.addWidget(self.data_group)
 
-        # ** Side Layout (Graphic and Prediction) **
+        # Side Layout (Graphic and Prediction)
         self.side_layout = QHBoxLayout()
+        self.side_layout.setContentsMargins(0, 0, 0, 0)
 
         # Left column: Alternate between Graphic and Message
         self.left_column_layout = QStackedWidget()
@@ -104,42 +97,48 @@ class ResultsTab(QWidget):
 
         # Right column: Prediction GroupBox
         self.prediction_group = QGroupBox("Make a Prediction")
-        self.prediction_layout = QVBoxLayout()  # Cambiar el layout principal a QVBoxLayout
-        self.dynamic_inputs_layout = QFormLayout()  # Layout para los campos dinámicos
-        self.input_fields = {}  # Diccionario para almacenar referencias a los campos
+        self.prediction_layout = QVBoxLayout()
+        self.dynamic_inputs_layout = QFormLayout()
+        self.input_fields = {}
 
-        # Añadir el sublayout de campos dinámicos al layout principal
+        # Add sub-layouts
         self.prediction_layout.addLayout(self.dynamic_inputs_layout)
-
-        # Botón de predicción (estático)
         self.predict_button = QPushButton("Make Prediction")
-        self.predict_button.setStyleSheet("font-weight: bold; color: #0B5394;")
+        self.predict_button.setFixedHeight(28)
+        self.predict_button.setStyleSheet("""                                                         
+            QPushButton {
+                background-color: #0B1E3E; 
+                color: white;
+                border-radius: 5px;
+                font-weight: bold;
+                font-size: 12px;}
+            QPushButton:hover {
+                background-color: #F6BE00;
+                color: #0B1E3E;}""")
+
         self.predict_button.clicked.connect(self.make_prediction)
 
-        # Salida de predicción (estática)
         self.prediction_output = QLabel("")
         self.prediction_output.setStyleSheet("font-weight: bold; color: green;")
 
-        # Añadir el botón y la salida como elementos estáticos
         self.prediction_layout.addWidget(self.predict_button)
         self.prediction_layout.addWidget(self.prediction_output)
 
-        # Configurar el diseño del grupo de predicción
         self.prediction_group.setLayout(self.prediction_layout)
         self.side_layout.addWidget(self.prediction_group)
 
         # Adjust columns
-        self.side_layout.setStretch(0, 3)  # Graphic
-        self.side_layout.setStretch(1, 2)  # Prediction
+        self.side_layout.setStretch(0, 4)  # Graphic
+        self.side_layout.setStretch(1, 1)  # Prediction
 
-        self.layout.addLayout(self.side_layout)
+        main_content_layout.addLayout(self.side_layout)
 
     def create_graph_widget(self):
         """Create interactive graph widget."""
         container = QWidget()
         container_layout = QVBoxLayout(container)
 
-        self.figure = Figure()
+        self.figure = Figure(tight_layout=True)  
         self.canvas = FigureCanvas(self.figure)
         self.toolbar = NavigationToolbar(self.canvas, self)
 
@@ -160,7 +159,7 @@ class ResultsTab(QWidget):
 
         # Update left column
         if plot_data:
-            self.plot_regression(plot_data)
+            self.plot_regression(plot_data, input_columns, output_column)
             self.left_column_layout.setCurrentWidget(self.graph_widget)
         else:
             self.warning_label.setText(warning_text)
@@ -182,7 +181,7 @@ class ResultsTab(QWidget):
         # Limpiar predicción previa
         self.prediction_output.setText("")
 
-    def plot_regression(self, plot_data):
+    def plot_regression(self, plot_data, input, output):
         """Generate or update the regression graph."""
         self.figure.clear()
         ax = self.figure.add_subplot(111)
@@ -190,9 +189,8 @@ class ResultsTab(QWidget):
 
         ax.scatter(X_test, y_test, label="Actual Data", color="blue", alpha=0.7)
         ax.plot(X_test, y_pred, label="Regression Line", color="red", linewidth=2)
-        ax.set_title("Regression Plot")
-        ax.set_xlabel("Feature")
-        ax.set_ylabel("Target")
+        ax.set_xlabel(input[0])
+        ax.set_ylabel(output)
         ax.legend()
         ax.grid(True)
 

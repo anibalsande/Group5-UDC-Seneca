@@ -16,7 +16,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        self.setWindowTitle("LMR APP · GROUP 5")
+        self.setWindowTitle("LRM APP · GROUP 5")
         self.setGeometry(100, 100, 700, 500)
         self.setFont(QFont("Bahnschrift", 12))
         self.setWindowIcon(QIcon("src/image/icon.png"))
@@ -83,6 +83,7 @@ class MainWindow(QMainWindow):
                 padding-left: 15px;
                 padding-right: 15px;
             }
+                                         
             QPushButton:hover {
                 background-color: #0B1E3E;
                 color: white;
@@ -109,6 +110,7 @@ class MainWindow(QMainWindow):
                 font-weight: bold;
                 padding-left: 15px;
                 padding-right: 15px;
+
             }
             QPushButton:hover {
                 background-color: #0B1E3E;
@@ -542,7 +544,6 @@ class MainWindow(QMainWindow):
 
         # Crear una instancia de ModelTrainer y llamar a su método para entrenar y mostrar los resultados
         trainer = ModelTrainer(self.data, self.input_columns, self.output_column, self.model_description)
-        print(trainer.r2)
         self.results_tab.update_tab(
                         description=self.model_description,
                         r2=trainer.r2,
@@ -556,6 +557,13 @@ class MainWindow(QMainWindow):
                     )
         self.tabs.setCurrentIndex(1)
         self.tabs.setTabEnabled(1, True)
+        QMessageBox.information(self, "Successful Load", "The model has been successfully generated.")
+
+
+
+
+
+
 
 
     def load_model(self, show_window = True):
@@ -603,9 +611,9 @@ class MainWindow(QMainWindow):
                         input_columns=input_columns,
                         output_column=output_column
                     )
-                QMessageBox.information(self, "Carga Exitosa", "El modelo se ha cargado exitosamente.")
                 self.tabs.setTabEnabled(1, True)
-                self.tabs.setCurrentIndex(1)  
+                self.tabs.setCurrentIndex(1)
+                QMessageBox.information(self, "Successful Load", "The model has been uploaded successfully.")
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"No se pudo cargar el modelo:\n{str(e)}")
 
@@ -660,8 +668,7 @@ if __name__ == "__main__":
                          
         QMessageBox {
         color: #0A4B85;  /* Texto en azul oscuro */
-    }
-
+        }
     """)
 
     window.show()
