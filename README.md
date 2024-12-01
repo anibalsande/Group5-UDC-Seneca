@@ -152,9 +152,10 @@ Before you can create a model, you must remove or fill in missing or unreadable 
 You are ready to create your model, view the metrics, and make predictions.
 
 **To create model and view metrics**
-1. Name your model in the **Create description** field.
+1. Name your model in the **Create description** field.     
    **Note**: You can create a model with no name. A dialog box appears asking if you are sure before you can continue. You can still save the model.
-3. Select **Create model**.     
+   
+2. Select **Create model**.     
    The model results appear in the Display Area under the Model tab.     
    The Model Metrics box (Figure 7, Box 1) shows the name, coefficient of determination, mean squared error, and model formula.     
    For a simple (single-independent-variable) linear regression, the model results also display a graph (Figure 7, Box 2).     
@@ -193,7 +194,7 @@ After creating your model, you can save it from the Model tab and reload at a la
    *Figure 9. Successful model reload message*
 
 ### Additional help
-You can access these usage instructions at any time while using the LRM App by selecting the Help tab (Figure 11). 
+You can access these usage instructions at any time while using the LRM App by selecting the Help tab (Figure 10). 
 
 ![alt text](/images/HelpTab.jpg "Screenshot of help tab contents")     
    *Figure 10. Help tab display*
