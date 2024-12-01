@@ -7,18 +7,19 @@ The LMR App creates, visualizes, and makes predictions from simple and multiple 
 ## Table of Contents
 1. [Introduction](#introduction)
 2. [System requirements](#system-requirements)
-3. [Installation](#installation)
-4. [User interface](#user-interface)
+    - [Display settings](#display-settings) 
+4. [Installation](#installation)
+5. [User interface](#user-interface)
     - [Main interface](#main-interface)
     - [Variable selection](#variable-selection)
     - [Model creation](#model-creation)
     - [Save and load models](#save-and-load-models)
-5. [Usage instructions](#usage-instructions)
+6. [Usage instructions](#usage-instructions)
     - [Loading a file](#loading-a-file)
     - [Selecting variables](#selecting-variables)
     - [Model creation, metrics, and prediction](#model-creation,-metrics,-and-prediction)
     - [Saving and loading models](#saving-and-loading-models)
-6. [Additional help](#additional-help)
+7. [Additional help](#additional-help)
 
 
 ## 1. Introduction
@@ -46,69 +47,11 @@ The LMR App creates, visualizes, and makes predictions from simple and multiple 
 ## 2. System requirements
 The LMR App is designed for a Windows 11 operating system.
 
-Before you can use the LMR App, you need to have the following software installed:
-- GitHub Desktop
-- Python 3.13.0 or later
-- Visual Studio Code
-- Visual Studio Build Tools.
-   
-If you do not already have the above software installed, use the instructions below to install them first. 
+### Display settings
+For maximum readability and contrast between elements, use the Windows Light mode setting. The LMR App is currently optimized for Light mode.    
 
-**To install GitHub Desktop**
-1. Download [GitHub Desktop](https://desktop.github.com/download/).
-2. Launch the installation file.  
-    The program opens automatically after installation.  
-
-**To install Python 3.13.0**
-1. Download and launch [Python](https://python.org/downloads/) for Windows.
-2. Launch the installation file.
-3. In the initial installation window, select Customize installation (see Figure 1).  
-    Note: You do not need admin privileges when installing.
-   
-    ![alt text](/images/Python_installation_screenshot.jpg "Screenshot of Python installation options")  
-    *Figure 1. Installation options for Python 3.13.0*  
-
-4. In the Optional Features window, select all features except "for all users" (see Figure 2).
-
-    ![alt text](/images/Python_optional_features_screenshot.jpg "Screenshot of Python optional features")  
-    *Figure 2. Python optional features*  
-
-5. Select Next.
-6. In the Advanced Options window, ensure that "Associate files with Python" and "Add Python to environment variables" are checked (see Figure 3).
-
-    ![alt text](/images/Python_advanced_screenshot.jpg "Screenshot of Python advanced options")  
-    *Figure 3. Python advanced options*  
-
-7. Select Install.
-
-**To install Visual Studio Code**
-1. Download [Visual Studio Code](https://code.visualstudio.com/).
-2. Launch the installation file and select Next.  
-    Note: You must accept the license agreement to continue installation.
-3. In the Select Additional Tasks window, ensure "Register Code as an editor for supported file types" and "Add to PATH" are checked (see Figure 4).
-
-    ![alt text](/images/VSCsetuppagescreenshot.jpg "Screenshot of Select Additional Tasks window for Visual Studio Code")  
-    *Figure 4. Select Additional Tasks for VSC setup*  
-   
-4. Select **Next > Install > Finish**.
-
-**To install Visual Studio Build Tools**
-1. Download [Visual Studio Build Tools](https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2022).
-2. Launch the installation file and select Continue.
-3. Under the heading Desktop & Mobile, select Desktop development with C++ (see Figure 5, box 1).
-4. Under the heading Installation details, ensure the C++ CMake tools for Windows component is checked (see Figure 5, box 2).  
-
-    ![alt text](/images/Compiler_installation_screenshot.jpg "Screenshot of installation options for Visual Studio Build Tools 2022")
-    *Figure 5. Installation options for Visual Studio Build Tools 2022*
-5. Select **Install**. 
-
-**To check Visual Studio Code extensions**
-1. Open Visual Studio Code.
-2. Select **View > Extensions**.
-3. If not already installed, install the Pylance, Python, and Python Debugger extensions.
- 
-### 3. Installation
-Installing the LMR App requires cloning its code repository on GitHub Desktop and then running the program through Visual Studio Code. 
+## 3. Installation
+Follow these steps to installg the LMR App is earequires cloning its code repository on GitHub Desktop and then running the program through Visual Studio Code. 
 
 **To clone the LMR App code repository on GitHub Desktop**
 1. From GitHub Desktop, select **File > Clone a repository**.
