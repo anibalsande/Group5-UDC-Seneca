@@ -8,7 +8,8 @@ import joblib
 from sklearn.linear_model import LinearRegression
 
 #Modules
-from model_results import ModelTrainer, ResultsTab
+from model_results import ModelTrainer
+from results import ResultsTab
 from help import HelpTab
 
 class MainWindow(QMainWindow):
@@ -517,12 +518,6 @@ class MainWindow(QMainWindow):
 
     def update_output_selector(self):
         selected_inputs = [item.text() for item in self.input_selector.selectedItems()]
-        remaining_columns = [col for col in self.data.columns if col not in selected_inputs]
-        self.output_selector.clear()
-        self.output_selector.addItems(remaining_columns)
-
-    def update_output_selector(self):
-        selected_inputs = [item.text() for item in self.input_selector.selectedItems()]
         numeric_columns = self.data.select_dtypes(include=["number"]).columns
         remaining_columns = [col for col in numeric_columns if col not in selected_inputs]
         
@@ -619,7 +614,7 @@ if __name__ == "__main__":
     window = MainWindow()
 
     # Aplicar el estilo CSS correctamente
-    window.setStyleSheet("""
+    app.setStyleSheet("""
         QMainWindow {
             background-color: #0b5394;
         }
