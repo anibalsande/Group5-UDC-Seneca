@@ -109,15 +109,15 @@ The first step is to select the dataset for your model. The LRM App can utilize 
 **To select dataset**
 1. Select **Open File**.
 2. Navigate to your dataset file.
-3. Double-click the file or select it and then select **Open**.
+3. Double-click the file or select it and then select **Open**.          
    **Note**: If any NaN items are detected, a dialog box opens to inform you (Figure 4). Select **OK** to continue.
    
    ![alt text](/images/Missing_NaN_screenshot.jpg "Screenshot of missing NaN information box")     
    *Figure 4. Missing NaN information box*
 
 ### Selecting variables
-After you open a dataset, its columns will appear under the Features and Target menus in the Column Selection panel (Figure 5, Boxes 1 and 2).
-You can select single or multiple independent variables for your Feature(s). You can only select one dependent variable for the Target.     
+After you open a dataset, its columns will appear under the Features and Target menus in the Column Selection panel (Figure 5, Boxes 1 and 2).        
+You can select single or multiple independent variables for your Feature(s). You can only select one dependent variable for the Target.        
 **Note**: The LRM App can provide the model metrics and equation for a multiple-independent-variable linear regression but cannot graph it. The LRM App can only display a graph for a single-independent-variable or simple linear regression.
  
    ![alt text](/images/VariablesPreprocessingModelMap.jpg "Screenshot with highlighted Column Selection, Preprocessing Options, and Create model panels")     
