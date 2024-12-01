@@ -51,29 +51,25 @@ The LRM App is designed for a Windows 11 operating system.
 For maximum readability and contrast between elements, use the Windows Light mode setting. The LRM App is currently optimized for Light mode.    
 
 ## 3. Installation
-Follow these steps to installg the LRM App is earequires cloning its code repository on GitHub Desktop and then running the program through Visual Studio Code. 
+Follow these steps to download and install the LRM App on your Windows computer. 
 
-**To clone the LRM App code repository on GitHub Desktop**
-1. From GitHub Desktop, select **File > Clone a repository**.
-2. In the URL tab, enter the LRM App's GitHub repository URL: https://github.com/anibalsande/Group5-UDC-Seneca/)  
-    Note: The name of the LRM App's code repository is Group5-UDC-Seneca.
-3. In Path, enter the location on your computer for the cloned repository.  
-    Note: You need to sign into your GitHub account if you are not already signed in to continue.
-4. Select **Clone**.  
-    The Group5-UDC-Seneca repository now appears in GitHub Desktop. 
+**To download the LRM App's latest release**
+1. In your Web browser, enter the URL for the latest release: https://github.com/anibalsande/Group5-UDC-Seneca/releases/latest/download/LRM-App.zip.
+2. If the download does not start automatically, select **Download** from the preview dialog box that appears to download LRM-App.zip.
 
-**To run the LRM App on Visual Studio Code**
-1. From GitHub Desktop, ensure the Group5-UDC-Seneca repository is the Current repository, and select **Open in Visual Studio Code**.  
-    The Group5-UDC-Seneca repository now appears in the Explorer panel of Visual Studio Code.
-2. Navigate to **Group5-UDC-Seneca > src > main.py**.
-3. Select the Run Python File icon (see Figure 6) or select **Run > Run Without Debugging**.  
-    The LRM App opens in a separate window (see Figure 7).
+**To install the LRM App**
+1. Create a new folder for your LRM App on your computer.
+2. Extract the contents of LRM-App.zip to your new folder:
+   (a)  Right-click on the LRM-App.zip folder.
+   (b) Select **Extract All**.
+   (c) Select your destination folder.
+   (d) Select **Extract**.  
+4. Navigate to your new folder and locate the file LRM-App.exe.
+5. Launch LRM-App.exe.
+   LRM-App.exe installs all components and libraries necessary to run the LRM App on your computer and then starts the application in a new window (Figure 1).
    
-   ![alt text](/images/VSCRunIconScreenshot.jpg "Screenshot of VSC Run Python File icon")    
-   *Figure 6. VSC Run Python File icon*
-
    ![alt text](/images/LRMAppStartPage.jpg "Screenshot of LRM App start page")
-   *Figure 7. LRM App start page*
+   *Figure 1. LRM App start page*
    
 ## 4. User interface
 This section illustrates and describes each feature of the LRM App. 
