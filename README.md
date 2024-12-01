@@ -156,7 +156,7 @@ You are ready to create your model, view the metrics, and make predictions.
 **To create model and view metrics**
 1. Name your model in the **Create description** field.
    **Note**: You can create a model with no name. A dialog box appears asking if you are sure before you can continue. You can still save the model.
-2. Select **Create model**.     
+3. Select **Create model**.     
    The model results appear in the Display Area under the Model tab.     
    The Model Metrics box (Figure 8, Box 1) shows the name, coefficient of determination, mean squared error, and model formula.     
    For a simple (single-independent-variable) linear regression, the model results also display a graph (Figure 8, Box 2).     
@@ -178,9 +178,9 @@ After creating your model, you can save it from the Model tab and reload at a la
 2. Navigate to the location where you want to save.
 3. Enter your desired file name and select **Save**.
    The file saves with a .joblib extension, and a dialog box appears to inform you of the successful save (Figure 9).
-4. Select **OK**.
+5. Select **OK**.
 
-   ![alt text](/images/Save_message.jpg "Screenshot of successful save message")
+   ![alt text](/images/Saved_message.jpg "Screenshot of successful save message")
    *Figure 9. Successful save message*
 
 **To reload a model**
@@ -188,15 +188,14 @@ After creating your model, you can save it from the Model tab and reload at a la
 2. Navigate to the location of your saved model's .joblib file.
 3. Double-click the file or select it and select **Open**.
    A dialog box opens to inform you the model has been loaded successfully (Figure 10).
-4. Select **OK**.
- 
+4. Select **OK**. 
 
    ![alt text](/images/Load_model.jpg "Screenshot of successful model reload message")
-   *Figure 9. Successful model reload message*
+   *Figure 10. Successful model reload message*
    
 
 ### Additional help
-For a quick summary of the LRM App's usage instructions, click the **Help** tab at any time while using the app (Figure 10). 
+For a quick summary of the LRM App's usage instructions, click the **Help** tab at any time while using the app (Figure 11). 
 
 ![alt text](/images/HelpTab.jpg "Screenshot of help tab contents")     
-   *Figure 10. Help tab display*
+   *Figure 11. Help tab display*
