@@ -165,16 +165,16 @@ You are ready to create your model, view the metrics, and make predictions.
    *Figure 7. Model results*
 
 **To make a prediction**
-1. In the Make a Prediction panel (Figure 7, Box 3), enter the Feature value you wish to use to make a prediction.
+1. In the Prediction panel (Figure 7, Box 3), enter your value(s) for the Feature variable(s) from which you want to make a prediction.
  
 2. Select **Make Prediction**.     
-   The predicted Target value appears in the Prediction field (Figure 7, Box 4).
+   The predicted value for the Target variable appears.
 
 ### Saving and loading models
 After creating your model, you can save it from the Model tab and reload at a later time.
 
 **To save a model**
-1. From the Model tab, select **Save model** (Figure 7, Box 5).
+1. From the Model tab, select **Save model** (Figure 7, Box 4).
 2. Navigate to the location where you want to save.
 3. Enter your desired file name and select **Save**.
    The file saves with a .joblib extension, and a dialog box appears to inform you of the successful save (Figure 8).
