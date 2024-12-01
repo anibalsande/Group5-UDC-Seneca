@@ -104,7 +104,7 @@ class ResultsTab(QWidget):
         # Agregar el diseño de entradas dinámicas al diseño principal
         self.prediction_layout.addLayout(self.dynamic_inputs_layout)
 
-        # Botón de predicción con tamaño fijo
+        # Prediction button
         self.predict_button = QPushButton("Make Prediction")
         self.predict_button.setFixedHeight(28)  # Altura fija
         self.predict_button.setFixedWidth(170)  # Ancho fijo

@@ -40,7 +40,6 @@ class MainWindow(QMainWindow):
         self.tabs.addTab(self.data_tab, QIcon("src/image/database.png"), "DATA")
         self.tabs.addTab(self.results_tab, QIcon("src/image/model.png"), "MODEL")
         self.tabs.addTab(self.help_tab, QIcon("src/image/help.png"), "HELP")
-
         self.tabs.setTabEnabled(1, False)
 
         # Setup Tab Contents

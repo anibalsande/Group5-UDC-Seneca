@@ -144,7 +144,7 @@ class HelpTab(QWidget):
     def get_tab_style(self, index):
         """Return style for a tab based on its state."""
         if index < self.current_step:
-            # Past steps (blue and completed)
+            # Past steps (blue = completed)
             return """
                 background-color: #0b5394;  /* Blue */
                 color: white;

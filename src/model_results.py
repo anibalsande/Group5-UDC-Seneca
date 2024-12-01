@@ -35,7 +35,7 @@ class ModelTrainer(QWidget):
             mse = mean_squared_error(y_test, y_pred)
             r2 = r2_score(y_test, y_pred)
 
-            # Calcular la fórmula del modelo
+            # Calculate formula
             self.coef = self.model.coef_
             self.intercept = self.model.intercept_
             formula_terms = [f"{self.coef[i]:.4f} * {col}" for i, col in enumerate(self.input_columns)]
