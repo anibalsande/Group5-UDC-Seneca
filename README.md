@@ -29,7 +29,7 @@ The LRM App creates, visualizes, and makes predictions from simple and multiple 
 </details>
 <details>
     <summary>How does the LRM App analyze data and make predictions?</summary>    
-    Using information from you and the power of artificial intelligence, the LRM App creates and visualizes simple and multiple linear regression models. These linear regression models let you analyze historical data patterns and from them predict future data patterns.
+    Using information from you and the power of artificial intelligence, the LRM App creates and visualizes simple and multiple linear regression models. These linear regression models let you analyze historical data patterns and use them to predict future data patterns.
 </details>
 <details>
     <summary>What is artifical intelligence?</summary>    
