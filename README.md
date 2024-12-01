@@ -116,13 +116,10 @@ The first step is to select the dataset for your model. The LRM App can utilize 
    *Figure 4. Missing NaN information box*
 
 ### Selecting variables
-After you open a dataset, its columns will appear under the Features and Target menus in the Column Selection panel (Figure 5, Boxes 1 and 2).        
+After you open a dataset, its columns will appear under the Features and Target menus in the Column Selection panel.        
 You can select single or multiple independent variables for your Feature(s). You can only select one dependent variable for the Target.        
 **Note**: The LRM App can provide the model metrics and equation for a multiple-independent-variable linear regression but cannot graph it. The LRM App can only display a graph for a single-independent-variable or simple linear regression.
  
-   ![alt text](/images/VariablesPreprocessingModelMap.jpg "Screenshot with highlighted Column Selection, Preprocessing Options, and Create model panels")     
-   *Figure 5. Column selection, Preprocessing options, and Create model panels*
-
 **To select variables**
 1. Scroll through the column headings in the Features menu.
 2. Select a desired Feature(s) by clicking on it or them.
@@ -131,11 +128,11 @@ You can select single or multiple independent variables for your Feature(s). You
    The vertical bar disappears.
 5. Repeat the selection process with the column headings in the Target menu.
 6. Select **Confirm Selection**.     
-   The Selection Confirmed dialog box opens to summarize your choices for Input Columns (Features) and Output Column (Target) (Figure 6).
+   The Selection Confirmed dialog box opens to summarize your choices for Input Columns (Features) and Output Column (Target) (Figure 5).
 7. Select **OK**.
 
    ![alt text](/images/Selection_confirmed.jpg "Screenshot of variable selection confirmation dialog box")     
-   *Figure 6. Variable selection confirmed dialog box*
+   *Figure 5. Variable selection confirmed dialog box*
    
 ### Data Preprocessing
 Before you can create a model, you must remove or fill in missing or unreadable values ("NaN" or "Not a Number" values) in the dataset.
@@ -145,11 +142,11 @@ Before you can create a model, you must remove or fill in missing or unreadable 
 2. Select the appropriate option (remove or fill with the mean, median, or a constant) for the NaNs in your dataset.
 3. If you select Fill NaN with a Constant, enter the constant in the field labelled "Enter constant value".
 4. Select Apply Preprocessing.     
-   A Success message appears to confirm preprocessing (Figure 7).
+   A Success message appears to confirm preprocessing (Figure 6).
 5. Select **OK**.
 
     ![alt text](/images/Data_preprocessing_success.jpg "Screenshot of data preprocessing success dialog box")     
-   *Figure 7. Data preprocessing success dialog box*   
+   *Figure 6. Data preprocessing success dialog box*   
     
 ### Model creation, metrics, and prediction
 You are ready to create your model, view the metrics, and make predictions.
@@ -159,44 +156,44 @@ You are ready to create your model, view the metrics, and make predictions.
    **Note**: You can create a model with no name. A dialog box appears asking if you are sure before you can continue. You can still save the model.
 3. Select **Create model**.     
    The model results appear in the Display Area under the Model tab.     
-   The Model Metrics box (Figure 8, Box 1) shows the name, coefficient of determination, mean squared error, and model formula.     
-   For a simple (single-independent-variable) linear regression, the model results also display a graph (Figure 8, Box 2).     
+   The Model Metrics box (Figure 7, Box 1) shows the name, coefficient of determination, mean squared error, and model formula.     
+   For a simple (single-independent-variable) linear regression, the model results also display a graph (Figure 7, Box 2).     
    **Note**: No graph appears for a multiple linear regression.
 
    ![alt text](/images/ModelResults.jpg "Screenshot of model results")
-   *Figure 8. Model results*
+   *Figure 7. Model results*
 
 **To make a prediction**
-1. In the Make a Prediction panel (Figure 8, Box 3), enter the Feature value you wish to use to make a prediction.
+1. In the Make a Prediction panel (Figure 7, Box 3), enter the Feature value you wish to use to make a prediction.
  
 2. Select **Make Prediction**.     
-   The predicted Target value appears in the Prediction field (Figure 8, Box 4).
+   The predicted Target value appears in the Prediction field (Figure 7, Box 4).
 
 ### Saving and loading models
 After creating your model, you can save it from the Model tab and reload at a later time.
 
 **To save a model**
-1. From the Model tab, select **Save model** (Figure 8, Box 5).
+1. From the Model tab, select **Save model** (Figure 7, Box 5).
 2. Navigate to the location where you want to save.
 3. Enter your desired file name and select **Save**.
-   The file saves with a .joblib extension, and a dialog box appears to inform you of the successful save (Figure 9).
+   The file saves with a .joblib extension, and a dialog box appears to inform you of the successful save (Figure 8).
 5. Select **OK**.
 
    ![alt text](/images/Saved_message.jpg "Screenshot of successful save message")     
-   *Figure 9. Successful save message*
+   *Figure 8. Successful save message*
 
 **To reload a model**
-1. From the Data tab, select **Open Model** (Figure 2, Box 3).
+1. From the Data tab, select **Open Model**.
 2. Navigate to the location of your saved model's .joblib file.
 3. Double-click the file or select it and select **Open**.
-   A dialog box opens to inform you the model has been loaded successfully (Figure 10).
+   A dialog box opens to inform you the model has been loaded successfully (Figure 9).
 4. Select **OK**. 
 
    ![alt text](/images/Load_model.jpg "Screenshot of successful model reload message")       
-   *Figure 10. Successful model reload message*
+   *Figure 9. Successful model reload message*
 
 ### Additional help
-For a quick summary of the LRM App's usage instructions, click the **Help** tab at any time while using the app (Figure 11). 
+You can access these usage instructions at any time while using the LRM App by selecting the Help tab (Figure 11). 
 
 ![alt text](/images/HelpTab.jpg "Screenshot of help tab contents")     
-   *Figure 11. Help tab display*
+   *Figure 10. Help tab display*
