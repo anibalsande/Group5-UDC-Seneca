@@ -54,7 +54,7 @@ For maximum readability and contrast between elements, use the Windows Light mod
 Follow these steps to download and install the LRM App on your Windows computer. 
 
 **To download the LRM App's latest release**
-1. In your Web browser, enter the URL for the latest release: https://github.com/anibalsande/Group5-UDC-Seneca/releases/latest/download/LRM-App.zip.
+1. In your Web browser, enter the URL for the latest release: https://github.com/anibalsande/Group5-UDC-Seneca/releases/latest/download/LRM-App.zip.      
 2. If the download does not start automatically, select **Download** from the preview dialog box that appears.
 
 **To install the LRM App**
@@ -166,7 +166,7 @@ You are ready to create your model, view the metrics, and make predictions.
    *Figure 8. Model results*
 
 **To make a prediction**
-1. In the Make a Prediction panel (Figure 8, Box 3), enter the Feature value you wish to use to make a prediction.
+1. In the Make a Prediction panel (Figure 8, Box 3), enter the Feature value you wish to use to make a prediction.      
 2. Select **Make Prediction**.     
    The predicted Target value appears in the Prediction field (Figure 8, Box 4).
 
@@ -180,7 +180,7 @@ After creating your model, you can save it from the Model tab and reload at a la
    The file saves with a .joblib extension, and a dialog box appears to inform you of the successful save (Figure 9).
 5. Select **OK**.
 
-   ![alt text](/images/Saved_message.jpg "Screenshot of successful save message")
+   ![alt text](/images/Saved_message.jpg "Screenshot of successful save message")     
    *Figure 9. Successful save message*
 
 **To reload a model**
@@ -190,9 +190,8 @@ After creating your model, you can save it from the Model tab and reload at a la
    A dialog box opens to inform you the model has been loaded successfully (Figure 10).
 4. Select **OK**. 
 
-   ![alt text](/images/Load_model.jpg "Screenshot of successful model reload message")
+   ![alt text](/images/Load_model.jpg "Screenshot of successful model reload message")       
    *Figure 10. Successful model reload message*
-   
 
 ### Additional help
 For a quick summary of the LRM App's usage instructions, click the **Help** tab at any time while using the app (Figure 11). 
