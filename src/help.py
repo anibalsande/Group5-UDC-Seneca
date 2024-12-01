@@ -7,7 +7,7 @@ class HelpTab(QWidget):
         super().__init__()
         self.setContentsMargins(0, 0, 0, 0)  # Set margins to 0
         self.steps_text = [
-            """<b>The first step is to select the dataset you will use to make your model.</b> 
+            """<b>The first step is to select the dataset for your model.</b> 
             The LRM App can utilize data in <i>.csv</i> format, <i>Excel</i> spreadsheets, or <i>SQLite</i> databases.
 
             <b>To select dataset:</b>
@@ -16,13 +16,12 @@ class HelpTab(QWidget):
                 <li>Navigate to your dataset file.</li>
                 <li>Double-click the file or select it and then select <b>Open</b>.</li>
             </ul>
-            
-            <i>Note:</i> If any <b>NaN</b> items are detected, a dialog box opens to inform you (see Figure 10). Select <b>OK</b> to continue.
+
+            <i>Note:</i> If any <b>NaN</b> items are detected, a dialog box opens to inform you. Select <b>OK</b> to continue.
             """,
 
             """<b>After you open a dataset, its columns will appear under the Features and Target menus in the Column Selection panel.</b> 
-            You can select single or multiple independent variables for your Feature(s). 
-            You can only select one dependent variable for the Target.
+            You can select single or multiple independent variables for your Feature(s). You can only select one dependent variable for the Target.
 
             <i>Note:</i> The LRM App can provide the model metrics and equation for a multiple-independent-variable linear regression but cannot graph it. 
             The LRM App can only display a graph for a <b>single-independent-variable</b> or simple linear regression.
@@ -50,22 +49,28 @@ class HelpTab(QWidget):
             </ul>
             """,
 
-            """<b>You are ready to create your model and view the metrics.</b>
+            """<b>You are ready to create your model, view the metrics, and make predictions.</b>
 
-            <b>To create model and prediction:</b>
+            <b>To create model and view metrics:</b>
             <ul>
                 <li>Name your model in the <b>Create description</b> field. <i>Note:</i> You can create a model with no name. A dialog box appears asking if you are sure before you can continue. You can still save the model.</li>
-                <li>Select <b>Create model</b>. The Model Results appear in a separate window and show the name, coefficient of determination, mean squared error, and model formula (see Figure 10). 
-                For a simple (single-independent-variable) linear regression, the app displays a graph (Figure 11). 
+                <li>Select <b>Create model</b>. The model results appear in the Display Area under the Model tab. The Model Metrics box shows the name, coefficient of determination, mean squared error, and model formula.</li>
+                <li>For a simple (single-independent-variable) linear regression, the model results also display a graph. 
                 <i>Note:</i> No graph appears for a multiple linear regression.</li>
+            </ul>
+
+            <b>To make a prediction:</b>
+            <ul>
+                <li>In the <b>Make a Prediction</b> panel, enter the Feature value you wish to use to make a prediction.</li>
+                <li>Select <b>Make Prediction</b>. The predicted Target value appears in the <b>Prediction</b> field.</li>
             </ul>
             """,
 
-            """<b>After creating your model, you can save it from the Model Results window and reload it at a later time.</b>
+            """<b>After creating your model, you can save it from the Model tab and reload it at a later time.</b>
 
             <b>To save a model:</b>
             <ul>
-                <li>From the Model Results window, select <b>Save model</b>.</li>
+                <li>From the Model tab, select <b>Save model</b>.</li>
                 <li>Navigate to the location where you want to save.</li>
                 <li>Enter your desired file name and select <b>Save</b>. The file saves with a .joblib extension, and a dialog box appears to inform you of the successful save.</li>
                 <li>Select <b>OK</b>.</li>
@@ -73,20 +78,22 @@ class HelpTab(QWidget):
 
             <b>To reload a model:</b>
             <ul>
-                <li>From the Main Interface, select <b>Open Model</b>.</li>
+                <li>From the Data tab, select <b>Open Model</b>.</li>
                 <li>Navigate to the location of your saved model's .joblib file.</li>
                 <li>Double-click the file or select it and select <b>Open</b>. A dialog box opens to inform you the model has been loaded successfully.</li>
                 <li>Select <b>OK</b>.</li>
             </ul>
-            """
+            """,
         ]
+
         self.steps_titles = [
             "SELECT YOUR DATASET",
             "SELECTING VARIABLES",
             "DATA PREPROCESSING",
-            "MODEL CREATION",
-            "SAVING AND LOADING"
+            "CREATE AND VIEW MODEL",
+            "SAVING AND LOADING MODELS"
         ]
+
         self.current_step = 0  # Tracks the current step
         self.ui()  # Call the function to set up the UI
 
@@ -130,7 +137,7 @@ class HelpTab(QWidget):
         # Description area
         self.description_label = QLabel(self.steps_text[self.current_step])
         self.description_label.setWordWrap(True)
-        self.description_label.setStyleSheet("color: black; font-family: 'Open Sans'; font-weight: 500; font-size: 16px; padding: 10px; margin-left: 10px; margin-right: 10px;")
+        self.description_label.setStyleSheet("color: black; font-family: 'Open Sans'; font-weight: 500; font-size: 15px; padding: 10px; margin-left: 10px; margin-right: 10px;")
         self.description_label.setAlignment(Qt.AlignmentFlag.AlignTop)
 
         # Add widgets to main layout
