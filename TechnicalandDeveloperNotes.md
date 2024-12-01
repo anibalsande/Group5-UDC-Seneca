@@ -1,17 +1,17 @@
 # Technical and Developer Notes
-This document contains product development information for the LMR App including product context, purpose, goals, design, quality assurance testing, and reference material for future developers. 
+This document contains product development information for the LRM App including product context, purpose, goals, design, quality assurance testing, and reference material for future developers. 
 
 ## Table of Contents 
 1. [About the Project](#about-the-project)
    - [Collaborative Online International Learning (COIL)](#about-collaborative-online-international-learning-(coil))
-   - [LMR App Project Purpose and Goals](#LMR-App-project-purpose-and-goals)
+   - [LRM App Project Purpose and Goals](#LRM-App-project-purpose-and-goals)
    - [Target Audience](#target-audience)
    - [Intended Platforms and Technology](#intended-platforms-and-technology)
    - [User Flow](#user-flow)
 2. [About Linear Regression Modeling](#about-linear-regression-modeling)
    - [Linear Regression Modeling Past and Present](#linear-regression-modeling-past-and-present)
    - [AI and ML's Effect on Linear Regression Usage and Application](#AI-and-ML's-effect-on-linear-regression-usage-and-application)
-   - [The LMR App in Context](#the-LMR-app-in-context)
+   - [The LRM App in Context](#the-LRM-app-in-context)
 3. [About the Team and the Development Process](#about-the-team-and-the-development-process)
    - [Team Members and Roles](#team-members-and-roles)
    - [Agile and Scrum Methodology](#agile-and-scrum-methodology)
@@ -23,7 +23,7 @@ This document contains product development information for the LMR App including
 5. [References](#references)
 
 ## About the Project
-Group 5-UDC-Seneca is a group of students from the Universidade da Coruña in A Coruña, Spain and Seneca Polytechnic in Toronto, Canada who are working together through the Collaborative Online International Learning (COIL) program. During their collaboration in Fall 2024, Group-5-UDC-Seneca developed and documented, using the Agile project management approach, the **LMR App**, an online linear regression software application. In doing this, the students learned about
+Group 5-UDC-Seneca is a group of students from the Universidade da Coruña in A Coruña, Spain and Seneca Polytechnic in Toronto, Canada who are working together through the Collaborative Online International Learning (COIL) program. During their collaboration in Fall 2024, Group-5-UDC-Seneca developed and documented, using the Agile project management approach, the **LRM App**, an online linear regression software application. In doing this, the students learned about
 - linear regression modeling
 - artificial intelligence and machine learning in the context of linear regression modeling
 - industry standards and expectations for developing software
@@ -33,7 +33,7 @@ Group 5-UDC-Seneca is a group of students from the Universidade da Coruña in A 
 ### Collaborative Online International Learning (COIL)
 The COIL approach supports cultural awareness, cultural competency, and globalization in the modern economy. It does this by pairing professors and their classes at two different accredited institutions in two different countries or cultures to work on a collaborative learning project. The professors collaborate on the planning and design of the project. The students then collaborate on organizing, discussing, completing, and presenting their project with the assistance of technology that supports their meeting and communicating virtually. Along the way, the students get to know and trust each other and work together comfortably and effectively even though they are in different geographic locations, may have language barriers and cultural differences, and are often in different time zones. 
 
-### LMR App Project Purpose and Goals
+### LRM App Project Purpose and Goals
 Group 5-UDC-Seneca received the following instructions for their collaborative learning project:
 
 > A client contacts your development team and tells you:
@@ -43,20 +43,20 @@ Group 5-UDC-Seneca received the following instructions for their collaborative l
 Group 5-UDC-Seneca understood that besides creating the application (app) described, their goals for the project also included working together to create the app efficiently and in accordance with scheduled project deadlines using Agile development principles, just as they would in real life for a real business client.
 
 ### Target Audience
-In planning the LMR App, Group 5-UDC-Seneca decided to target as broad an audience as possible. They wanted to ensure users understood the app was versatile and not limited to certain datasets or certain fields of study. For example, the app can be used to estimate the market price of a house based on number of bedrooms. A realtor could use the app for that purpose. But the app can also be used to predict food consumption in a restaurant based on average age of the patrons. A restauranteur could find the app very helpful for that study. 
+In planning the LRM App, Group 5-UDC-Seneca decided to target as broad an audience as possible. They wanted to ensure users understood the app was versatile and not limited to certain datasets or certain fields of study. For example, the app can be used to estimate the market price of a house based on number of bedrooms. A realtor could use the app for that purpose. But the app can also be used to predict food consumption in a restaurant based on average age of the patrons. A restauranteur could find the app very helpful for that study. 
 
 Also, they wanted to ensure non-technically-proficient users could use the app as easily as users who are very tech-savvy. An app that is complicated to use or assumes prior experience with similar apps would undesirably limit the size of the target audience. 
 
 To meet the goal of making the app appropriate and easy to use for as many people as possible, Group 5-UDC-Seneca implemented a simple graphical interface with simple labels and descriptions along with optional tooltips. The simple visuals, labels, and descriptions do not suggest that the app is more suited for any one dataset or another. The tooltips, when activated, display additional information and guidance for less-technically-proficient users but otherwise do not clutter the interface or get in the way of advanced users who do not need that information. 
 
 ### Intended Platforms and Technology
-The LMR App functions in both Windows and Mac desktop environments. However, as of v.1.0, scheduled for release on 3 December 2024, the interface is optimized for a 14-inch Windows display. Slight visual differences on other machines may occur. There is currently no plan to adapt the LMR App for tablets or smartphones. 
+The LRM App functions in both Windows and Mac desktop environments. However, as of v.1.0, scheduled for release on 3 December 2024, the interface is optimized for a 14-inch Windows display. Slight visual differences on other machines may occur. There is currently no plan to adapt the LRM App for tablets or smartphones. 
 
 ### User Flow
-For reference, Figure 1 shows the User Flow for the LMR App.
+For reference, Figure 1 shows the User Flow for the LRM App.
 
-![alt text](/images/process.jpg "Screenshot of LMR App User Flow diagram")
-*Figure 1. LMR App User Flow*
+![alt text](/images/process.jpg "Screenshot of LRM App User Flow diagram")
+*Figure 1. LRM App User Flow*
 
 ## About Linear Regression Modeling
 **Regression** is a statistical method that mathematically describes the interdependent relationship between one numerical value (called the dependent variable) and one or more other values (called the independent variable(s)). **Linear regression** is the most commonly used form of regression. **Simple linear regression** describes the relationship between one dependent variable and one independent variable. **Multiple linear regression** describes the relationship when there is more than one independent variable. The regression is called "linear" because the relationship can be illustrated as a straight line on a graph, also called the line of best fit (for a simple linear regression) or the plane of best fit (for a multiple linear regression). It can also be described in a mathematical formula:
