@@ -55,17 +55,17 @@ Follow these steps to download and install the LRM App on your Windows computer.
 
 **To download the LRM App's latest release**
 1. In your Web browser, enter the URL for the latest release: https://github.com/anibalsande/Group5-UDC-Seneca/releases/latest/download/LRM-App.zip.
-2. If the download does not start automatically, select **Download** from the preview dialog box that appears to download LRM-App.zip.
+2. If the download does not start automatically, select **Download** from the preview dialog box that appears.
 
 **To install the LRM App**
 1. Create a new folder for your LRM App on your computer.
-2. Extract the contents of LRM-App.zip to your new folder:
+2. Extract the contents of LRM-App.zip to your new folder.
    (a)  Right-click on the LRM-App.zip folder.
    (b) Select **Extract All**.
    (c) Select your destination folder.
-   (d) Select **Extract**.  
-4. Navigate to your new folder and locate the file LRM-App.exe.
-5. Launch LRM-App.exe.
+   (d) Select **Extract**.
+3. Navigate to your new folder and locate the file LRM-App.exe.
+4. Launch LRM-App.exe.
    LRM-App.exe installs all components and libraries necessary to run the LRM App on your computer and then starts the application in a new window (Figure 1).
    
    ![alt text](/images/LRMAppStartPage.jpg "Screenshot of LRM App start page")
