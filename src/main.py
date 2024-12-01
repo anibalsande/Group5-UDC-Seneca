@@ -397,14 +397,13 @@ class MainWindow(QMainWindow):
 
             if not nan_columns.empty:
                 # Construir la lista con la información de las columnas, usando <br> para saltos de línea
-                columns_info = '<br>'.join(f"· {col}: {count}" for col, count in nan_columns.items())
+                columns_info = '<br>'.join(f"{col}: {count}" for col, count in nan_columns.items())
                 
                 # Mostrar el mensaje con formato HTML para incluir la línea horizontal
                 QMessageBox.warning(
                     self,
                     "Missing Data (NaN) Detected",
-                    f"The following columns contain missing values:<br>{columns_info}<hr>"
-                    "Please review and fill in the missing data."
+                    f"The following columns contain missing values:<br>{columns_info}"
                 )
 
             else:
