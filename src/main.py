@@ -8,14 +8,15 @@ import joblib
 from sklearn.linear_model import LinearRegression
 
 #Modules
-from model_results import ModelTrainer, ResultsWindow, ResultsTab
+from model_results import ModelTrainer
+from results import ResultsTab
 from help import HelpTab
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        self.setWindowTitle("LMR APP · GROUP 5")
+        self.setWindowTitle("LRM APP · GROUP 5")
         self.setGeometry(100, 100, 700, 500)
         self.setFont(QFont("Bahnschrift", 12))
         self.setWindowIcon(QIcon("src/image/icon.png"))
@@ -30,7 +31,6 @@ class MainWindow(QMainWindow):
 
         # Create a Tab Widget
         self.tabs = QTabWidget()
-        #self.tabs.setTabPosition(QTabWidget.TabPosition.West)
         
         # Add tabs to QTabWidget
         self.data_tab = QWidget()
@@ -40,7 +40,6 @@ class MainWindow(QMainWindow):
         self.tabs.addTab(self.data_tab, QIcon("src/image/database.png"), "DATA")
         self.tabs.addTab(self.results_tab, QIcon("src/image/model.png"), "MODEL")
         self.tabs.addTab(self.help_tab, QIcon("src/image/help.png"), "HELP")
-
         self.tabs.setTabEnabled(1, False)
 
         # Setup Tab Contents
@@ -82,6 +81,7 @@ class MainWindow(QMainWindow):
                 padding-left: 15px;
                 padding-right: 15px;
             }
+                                         
             QPushButton:hover {
                 background-color: #0B1E3E;
                 color: white;
@@ -108,6 +108,7 @@ class MainWindow(QMainWindow):
                 font-weight: bold;
                 padding-left: 15px;
                 padding-right: 15px;
+
             }
             QPushButton:hover {
                 background-color: #0B1E3E;
@@ -119,14 +120,27 @@ class MainWindow(QMainWindow):
 
         # Add header to layout
         main_layout.addWidget(header_widget)
-
-        # Middle layout
-        horizontal_layout = QHBoxLayout()
+        
+        self.table_widget = QStackedWidget()
+        self.table_widget.setFixedHeight(420)
 
         # Configuración de la tabla para mostrar los datos
+        self.welcome_label = QLabel("Welcome! No data available.\nPlease import database or an existing model.")
+        self.welcome_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.welcome_label.setStyleSheet("""
+            QLabel {
+                font-size: 16px;
+                font-family: 'Bahnschrift';
+                font-weight: semi-bold;
+                color: #333;
+                padding: 20px;
+                background-color: #e0e0e0;
+                border: 1px solid #b0b0b0;
+            }
+        """)
+
         self.table_view = QTableView()
         self.table_view.setSizeAdjustPolicy(QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
-        self.table_view.setFixedHeight(400)
         self.table_view.setStyleSheet(""" 
             QTableView {
                 background-color: #f0f0f0;
@@ -140,42 +154,50 @@ class MainWindow(QMainWindow):
                 border: 1px solid #b0b0b0;
             }
         """)
-        main_layout.addWidget(self.table_view)
+        
+        self.table_widget.addWidget(self.welcome_label)
+        self.table_widget.addWidget(self.table_view)
+
+        main_layout.addWidget(self.table_widget)
+
+        # Middle layout
+        horizontal_layout = QHBoxLayout()
+        horizontal_layout.setContentsMargins(10,10,10,10)
 
         # Column selection side
-        column_selection_group = QGroupBox("Column Selection")
-        column_selection_layout = QHBoxLayout()  # Cambiado a QHBoxLayout para dos columnas
+        self.column_selection_group = QGroupBox("Column Selection")
+        self.column_selection_group.setEnabled(False)
+        column_selection_layout = QHBoxLayout()
+        column_selection_layout.setAlignment(Qt.AlignmentFlag.AlignBottom)
 
         # Primera columna (Texto y Multiselector)
         left_column_layout = QVBoxLayout()
-        left_column_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
         
         # Features (primera columna)
         self.input_selector = QListWidget()  # Cambiamos a QListWidget para selección múltiple
         self.input_selector.setSelectionMode(QListWidget.SelectionMode.MultiSelection)  
-        self.input_selector.setFixedHeight(70) 
-        self.input_selector.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)     
+        self.input_selector.setSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
         left_column_layout.addWidget(QLabel("Features:"))
         left_column_layout.addWidget(self.input_selector)
+        self.input_selector.setToolTip("Select the columns that will be used as input features for the model.")
 
-        # Segunda columna (Texto, Dropdown y Botón)
+
+        # Segunda columna (Texto, Dropdown)
         right_column_layout = QVBoxLayout()
-        right_column_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
-        # Target (segunda columna)
-        self.output_selector = QListWidget()
-        self.output_selector.setFixedHeight(70) 
-        self.output_selector.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)     
-        
         target_label = QLabel("Target:")
         target_label.setToolTip("The 'Target' is the dependent variable column we aim to predict.")
         right_column_layout.addWidget(target_label)
-        
+
+        self.output_selector = QListWidget()
+        self.output_selector.setSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)    
+        self.output_selector.setToolTip("Select the column that will be used as the target variable.")
         right_column_layout.addWidget(self.output_selector)
 
         # Confirm button (segunda columna)
         self.confirm_button = QPushButton("Confirm Selection ⮕")
         self.confirm_button.clicked.connect(self.confirm_selection)
         self.confirm_button.setFixedHeight(40)  # Ajusta la altura
+        self.confirm_button.setToolTip("Confirms the selected columns as input and output characteristics.")
         self.confirm_button.setStyleSheet(""" 
             QPushButton {
                 background-color: #0B1E3E; 
@@ -195,15 +217,19 @@ class MainWindow(QMainWindow):
         column_selection_layout.addLayout(left_column_layout)
         column_selection_layout.addLayout(right_column_layout)
         column_selection_layout.addWidget(self.confirm_button)
+        column_selection_layout.setAlignment(self.confirm_button, Qt.AlignmentFlag.AlignBottom)
+
+        column_selection_layout.setStretchFactor(left_column_layout, 1)
+        column_selection_layout.setStretchFactor(right_column_layout, 1)  
 
         # Agregar el layout principal al grupo
-        column_selection_group.setLayout(column_selection_layout)
+        self.column_selection_group.setLayout(column_selection_layout)
 
         # Preprocess side
         self.preprocess_group = QGroupBox("Preprocessing Options")
         preprocess_layout = QVBoxLayout()
         self.preprocess_group.setFixedWidth(220)
-        preprocess_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
+        preprocess_layout.setAlignment(Qt.AlignmentFlag.AlignBottom)
         self.preprocess_group.setEnabled(False)
 
         # Combobox for Nan
@@ -217,6 +243,8 @@ class MainWindow(QMainWindow):
         ])
         self.nan_options.setFixedWidth(200)
         preprocess_layout.addWidget(self.nan_options)
+        self.nan_options.setToolTip("Select an option to handle missing values ​​(NaN) in the dataset.")
+
 
         # Input constant
         self.constant_input = QLineEdit()
@@ -224,6 +252,8 @@ class MainWindow(QMainWindow):
         self.constant_input.setFixedWidth(200)
         self.constant_input.setDisabled(True)
         preprocess_layout.addWidget(self.constant_input)
+        self.constant_input.setToolTip("Enter a constant value to replace the NaN values ​​in the columns.")
+
 
         # Enable constant input
         self.nan_options.currentIndexChanged.connect(self.toggle_constant_input)
@@ -233,6 +263,7 @@ class MainWindow(QMainWindow):
         self.apply_button.clicked.connect(self.apply_preprocessing)
         self.apply_button.setFixedHeight(40)  # Ajusta la altura
         self.apply_button.setFixedWidth(200)  # Ajusta el ancho
+        self.apply_button.setToolTip("Applies selected preprocessing options for NaN values.")
         self.apply_button.setStyleSheet(""" 
             QPushButton {
                 background-color: #0B1E3E; 
@@ -255,19 +286,21 @@ class MainWindow(QMainWindow):
         # Model side
         self.model_group = QGroupBox("Create model")
         model_layout = QVBoxLayout()
+        model_layout.setAlignment(Qt.AlignmentFlag.AlignBottom)
         self.model_group.setFixedWidth(300)
         self.model_group.setEnabled(False)
 
         self.description = QTextEdit()
         self.description.setPlaceholderText("Create description")
-        self.description.setFixedWidth(260)
-        self.description.setFixedHeight(40)
+        self.description.setFixedWidth(280)
+        self.output_selector.setSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)    
         model_layout.addWidget(self.description)
 
         # Preprocessing button
         self.model_button = QPushButton("Create model ⮕")
         self.model_button.setFixedHeight(40)  # Ajusta la altura
         self.model_button.setFixedWidth(200)  # Ajusta el ancho
+        self.model_button.setToolTip("Create a regression model based on the data and selected columns.")
         self.model_button.setStyleSheet(""" 
             QPushButton {
                 background-color: #0B1E3E; 
@@ -288,7 +321,7 @@ class MainWindow(QMainWindow):
         self.model_group.setLayout(model_layout)
 
         # Añadir ambos grupos (Preprocessing y Column Selection) al layout horizontal
-        horizontal_layout.addWidget(column_selection_group)  # Column Selection a la izquierda
+        horizontal_layout.addWidget(self.column_selection_group)  # Column Selection a la izquierda
         horizontal_layout.addWidget(self.preprocess_group)  # Preprocessing Options al centro
         horizontal_layout.addWidget(self.model_group)  # Model
 
@@ -310,21 +343,30 @@ class MainWindow(QMainWindow):
 
     def select_file(self):
         options = QFileDialog.Option.ReadOnly
+        self.welcome_label.setText("Importing data...")
+        self.table_widget.setCurrentWidget(self.welcome_label)
         file_path, _ = QFileDialog.getOpenFileName(
             self, "Select Dataset", "", "Admitted files (*.csv *.xlsx *.xls *.sqlite *.db)", options=options)
-
         if file_path:
             try:
+                self.welcome_label.setText("Checking NaNs...")
                 self.file_label.setText(f"{file_path}")
                 self.data = self.data_import(file_path)  # Cargar los datos
+                self.welcome_label.setText("Showing Data...")
                 self.check_for_nans()  # Comprobar valores NaN
                 self.input_columns = []  # Atributo para almacenar columnas de entrada
                 self.output_column = None
                 self.show_data()  # Mostrar los datos al cargar el archivo
                 self.populate_columns()
+                self.table_widget.setCurrentWidget(self.table_view)
+                self.column_selection_group.setEnabled(True)
+
             except Exception as e:
                 self.file_label.setText(f"Error: {str(e)}")
                 self.file_label.setStyleSheet("QLabel {color: red; padding: 5px;}")
+        else:
+            self.welcome_label.setText("No file was not selected. \nPlease import database or an existing model.")
+            
 
     def data_import(self, file_path):
         """ Importar los datos desde el archivo """
@@ -345,28 +387,35 @@ class MainWindow(QMainWindow):
             raise ValueError("Unsupported file format.")
 
     def check_for_nans(self):
-        """Check for NaN or empty values in the DataFrame and display a message to the user"""
+        """Check for NaN or empty values in the DataFrame and display a message to the user."""
         if self.data is not None:
             # Summary of NaN values per column
             nan_summary = self.data.isnull().sum()
-            
+
             # Filter columns that contain NaN values
             nan_columns = nan_summary[nan_summary > 0]
-            
+
             if not nan_columns.empty:
-                # Information about columns with NaN and the number of missing values
-                columns_info = ', '.join(nan_columns.index)
-                count_info = ', '.join(f"{col}: {count}" for col, count in nan_columns.items())
+                # Construir la lista con la información de las columnas, usando <br> para saltos de línea
+                columns_info = '<br>'.join(f"· {col}: {count}" for col, count in nan_columns.items())
                 
-                # Display warning with the information
-                QMessageBox.warning(self, "NaN Values Detected",
-                                    f"Missing (NaN) values were found in the following columns:\n\n"
-                                    f"{columns_info}\n\n"
-                                    f"Number of NaN values per column:\n{count_info}")
+                # Mostrar el mensaje con formato HTML para incluir la línea horizontal
+                QMessageBox.warning(
+                    self,
+                    "Missing Data (NaN) Detected",
+                    f"The following columns contain missing values:<br>{columns_info}<hr>"
+                    "Please review and fill in the missing data."
+                )
+
             else:
                 # Inform that no NaN values were found
-                QMessageBox.information(self, "No NaN Values Found",
-                                        "The dataset does not contain any missing (NaN) values.")
+                QMessageBox.information(
+                    self,
+                    "Data is Complete",
+                    "No missing values (NaN) were found in the dataset."
+                )
+                self.model_group.setEnabled(True)
+
     
     def apply_preprocessing(self):
         if self.data is None:
@@ -409,7 +458,6 @@ class MainWindow(QMainWindow):
                     data[column] = data[column].fillna(data[column].median())
         return data
 
-        
     def confirm_selection(self):
         """ Confirmar selección de columnas """
         if self.data is None:
@@ -470,12 +518,6 @@ class MainWindow(QMainWindow):
 
     def update_output_selector(self):
         selected_inputs = [item.text() for item in self.input_selector.selectedItems()]
-        remaining_columns = [col for col in self.data.columns if col not in selected_inputs]
-        self.output_selector.clear()
-        self.output_selector.addItems(remaining_columns)
-
-    def update_output_selector(self):
-        selected_inputs = [item.text() for item in self.input_selector.selectedItems()]
         numeric_columns = self.data.select_dtypes(include=["number"]).columns
         remaining_columns = [col for col in numeric_columns if col not in selected_inputs]
         
@@ -500,7 +542,6 @@ class MainWindow(QMainWindow):
 
         # Crear una instancia de ModelTrainer y llamar a su método para entrenar y mostrar los resultados
         trainer = ModelTrainer(self.data, self.input_columns, self.output_column, self.model_description)
-        print(trainer.r2)
         self.results_tab.update_tab(
                         description=self.model_description,
                         r2=trainer.r2,
@@ -510,8 +551,9 @@ class MainWindow(QMainWindow):
                         coef=trainer.coef,
                         intercept=trainer.intercept,
                         input_columns=trainer.input_columns,
-                        output_column=trainer.output_column
-                    )
+                        output_column=trainer.output_column,
+                        warning_text=trainer.warning_text)
+        QMessageBox.information(self, "Successful Load", "The model has been successfully generated.")
         self.tabs.setCurrentIndex(1)
         self.tabs.setTabEnabled(1, True)
 
@@ -559,10 +601,12 @@ class MainWindow(QMainWindow):
                         coef=coefficients,
                         intercept=intercept,
                         input_columns=input_columns,
-                        output_column=output_column
+                        output_column=output_column,
+                        warning_text = "The graph is not displayed for uploaded models."
                     )
-                QMessageBox.information(self, "Carga Exitosa", "El modelo se ha cargado exitosamente.")
-                self.tabs.setCurrentIndex(1)  
+                QMessageBox.information(self, "Successful Load", "The model has been uploaded successfully.")
+                self.tabs.setTabEnabled(1, True)
+                self.tabs.setCurrentIndex(1)
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"No se pudo cargar el modelo:\n{str(e)}")
 
@@ -571,7 +615,7 @@ if __name__ == "__main__":
     window = MainWindow()
 
     # Aplicar el estilo CSS correctamente
-    window.setStyleSheet("""
+    app.setStyleSheet("""
         QMainWindow {
             background-color: #0b5394;
         }
@@ -581,11 +625,11 @@ if __name__ == "__main__":
         }
 
         QTabBar::tab:selected {
-            background: #0B1E3E; /* Fondo para la pestaña activa */
+            background: #073763; /* Fondo para la pestaña activa */
         }
 
         QTabBar::tab {
-            background: lightblue;
+            background: #0A4B85;
             font-family: 'Bahnschrift';
             border-bottom-left-radius: 10px;
             border-bottom-right-radius: 10px;
@@ -601,7 +645,7 @@ if __name__ == "__main__":
         }
 
         QTabBar::tab:hover {
-            background: darkblue;
+            background: #0B1E3E;
         }
         
         QTabWidget::pane {
@@ -613,6 +657,10 @@ if __name__ == "__main__":
         QTabBar::tab:disabled {
             background: #d3d3d3;  /* Fondo gris claro */
             color: #a9a9a9;  /* Texto gris claro */
+        }
+                         
+        QMessageBox {
+        color: #0A4B85;  /* Texto en azul oscuro */
         }
     """)
 
