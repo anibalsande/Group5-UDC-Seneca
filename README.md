@@ -60,10 +60,10 @@ Follow these steps to download and install the LRM App on your Windows computer.
 **To install the LRM App**
 1. Create a new folder for your LRM App on your computer.
 2. Extract the contents of LRM-App.zip to your new folder.
-   (a)  Right-click on the LRM-App.zip folder.
-   (b) Select **Extract All**.
-   (c) Select your destination folder.
-   (d) Select **Extract**.
+    - (a)  Right-click on the LRM-App.zip folder.
+    - (b) Select **Extract All**.
+    - (c) Select your destination folder.
+    - (d) Select **Extract**.
 3. Navigate to your new folder and locate the file LRM-App.exe.
 4. Launch LRM-App.exe.
    LRM-App.exe installs all components and libraries necessary to run the LRM App on your computer and then starts the application in a new window (Figure 1).
