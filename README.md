@@ -180,7 +180,7 @@ After creating your model, you can save it from the Model tab and reload at a la
    The file saves with a .joblib extension, and a dialog box appears to inform you of the successful save (Figure 9).
 4. Select **OK**.
 
-    ![alt text](/images/Save_message.jpg "Screenshot of successful save message")
+   ![alt text](/images/Save_message.jpg "Screenshot of successful save message")
    *Figure 9. Successful save message*
 
 **To reload a model**
@@ -189,11 +189,14 @@ After creating your model, you can save it from the Model tab and reload at a la
 3. Double-click the file or select it and select **Open**.
    A dialog box opens to inform you the model has been loaded successfully (Figure 10).
 4. Select **OK**.
+ 
 
+   ![alt text](/images/Load_model.jpg "Screenshot of successful model reload message")
+   *Figure 9. Successful model reload message*
    
 
 ### Additional help
-For a quick summary of the LRM App's usage instructions, click the **Help** tab at any time while using the app (Figure 13). 
+For a quick summary of the LRM App's usage instructions, click the **Help** tab at any time while using the app (Figure 10). 
 
 ![alt text](/images/HelpTab.jpg "Screenshot of help tab contents")     
-   *Figure 13. Help tab display*
+   *Figure 10. Help tab display*
