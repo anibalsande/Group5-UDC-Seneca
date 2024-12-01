@@ -2,7 +2,7 @@
 
 ## Overview
 
-The LRM App creates, visualizes, and makes predictions from simple and multiple linear regression models. It provides a graphical interface that allows users to easily interact with the models, using data from various sources, including CSV files, Excel files, and SQLite databases.
+The LRM App creates, visualizes, and makes predictions from simple and multiple linear regression models. It provides a graphical interface that allows users to easily interact with the models using data from various sources, including CSV files, Excel files, and SQLite databases.
 
 ## Table of Contents
 1. [Introduction](#introduction)
