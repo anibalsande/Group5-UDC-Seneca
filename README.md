@@ -141,7 +141,7 @@ Before you can create a model, you must remove or fill in missing or unreadable 
 1. Open the menu under Preprocessing Options by selecting the down arrow.
 2. Select the appropriate option (remove or fill with the mean, median, or a constant) for the NaNs in your dataset.
 3. If you select Fill NaN with a Constant, enter the constant in the field labelled "Enter constant value".
-4. Select Apply Preprocessing.     
+4. Select **Apply Preprocessing**.     
    A Success message appears to confirm preprocessing (Figure 6).
 5. Select **OK**.
 
