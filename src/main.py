@@ -367,7 +367,7 @@ class MainWindow(QMainWindow):
                 self.file_label.setText(f"Error: {str(e)}")
                 self.file_label.setStyleSheet("QLabel {color: red; padding: 5px;}")
         else:
-            self.welcome_label.setText("No file was not selected. \nPlease import database or an existing model.")
+            self.welcome_label.setText("No file was selected. \nPlease import database or an existing model.")
             
 
     def data_import(self, file_path):
