@@ -174,10 +174,14 @@ class ResultsTab(QWidget):
         return container
 
     def update_tab(self, description, r2, mse, formula, plot_data, coef, intercept, input_columns, output_column, warning_text=""):
-        """Update values in the UI with provided information."""
-        self.input_columns = input_columns
+        """Update values in the UI with provided information."""   
+        self.r2 = r2
+        self.mse = mse
+        self.formula = formula
         self.coef = coef
         self.intercept = intercept
+        self.input_columns = input_columns
+        self.output_column = output_column
         self.description_text.setText(description)
         metrics_text = (f"Coefficient of determination (R²): {r2:.4f}\n"
                         f"Mean Squared Error (MSE): {mse:.4f}\n\n"

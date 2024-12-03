@@ -360,6 +360,8 @@ class MainWindow(QMainWindow):
                 self.populate_columns()
                 self.table_widget.setCurrentWidget(self.table_view)
                 self.column_selection_group.setEnabled(True)
+                self.preprocess_group.setEnabled(False)
+                self.model_group.setEnabled(False)
 
             except Exception as e:
                 self.file_label.setText(f"Error: {str(e)}")
