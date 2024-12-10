@@ -166,11 +166,9 @@ class MainWindow(QMainWindow):
         # Features (first column)
         self.input_selector = QListWidget()  # Cambiamos a QListWidget para selección múltiple
         self.input_selector.setSelectionMode(QListWidget.SelectionMode.MultiSelection)  
-        self.input_selector.setSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
         left_column_layout.addWidget(QLabel("Features:"))
         left_column_layout.addWidget(self.input_selector)
         self.input_selector.setToolTip("Select the columns that will be used as input features for the model.")
-
 
         # Second column (Text, Dropdown)
         right_column_layout = QVBoxLayout()
@@ -179,7 +177,6 @@ class MainWindow(QMainWindow):
         right_column_layout.addWidget(target_label)
 
         self.output_selector = QListWidget()
-        self.output_selector.setSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)    
         self.output_selector.setToolTip("Select the column that will be used as the target variable.")
         right_column_layout.addWidget(self.output_selector)
 
@@ -222,6 +219,21 @@ class MainWindow(QMainWindow):
         preprocess_layout.setAlignment(Qt.AlignmentFlag.AlignBottom)
         self.preprocess_group.setEnabled(False)
 
+        self.error_label = QLabel("No empty values detected.\nProceed to the next step.")
+        self.error_label.setStyleSheet("""
+            color: #333;
+            font-weight: semi-bold;
+            font-size: 15px;
+            font-family: 'Bahnschrift';
+            padding: 5px; 
+            border-radius: 5px;                                        
+            background-color: #e0e0e0;
+        """)
+        self.error_label.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
+        self.error_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.error_label.setVisible(False)  # Ocultarlo inicialmente
+        preprocess_layout.addWidget(self.error_label)
+
         # Combobox for Nan
         self.nan_options = QComboBox()
         self.nan_options.addItems([
@@ -243,7 +255,6 @@ class MainWindow(QMainWindow):
         self.constant_input.setDisabled(True)
         preprocess_layout.addWidget(self.constant_input)
         self.constant_input.setToolTip("Enter a constant value to replace the NaN values ​​in the columns.")
-
 
         # Enable constant input
         self.nan_options.currentIndexChanged.connect(self.toggle_constant_input)
@@ -389,6 +400,10 @@ class MainWindow(QMainWindow):
 
             if not nan_columns.empty:
                 self.nans = True
+                self.error_label.setVisible(False)
+                self.apply_button.setVisible(True)
+                self.constant_input.setVisible(True)
+                self.nan_options.setVisible(True)
 
                 # Build the list with the column information, using <br> for line breaks
                 columns_info = '<br>'.join(f"{col}: {count}" for col, count in nan_columns.items())
@@ -402,13 +417,18 @@ class MainWindow(QMainWindow):
 
             else:
                 self.nans = False
+                self.error_label.setVisible(True)
+                self.apply_button.setVisible(False)
+                self.constant_input.setVisible(False)
+                self.nan_options.setVisible(False)
+
+
                 # Inform that no NaN values were found
                 QMessageBox.information(
                     self,
                     "Data is Complete",
                     "No missing values (NaN) were found in the dataset."
                 )
-                self.model_group.setEnabled(True)
 
     
     def apply_preprocessing(self):
