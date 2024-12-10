@@ -550,7 +550,7 @@ class MainWindow(QMainWindow):
                 model.intercept_ = intercept
 
                 # Prepare the data for the graph (this can be modified according to your needs).
-                plot_data = None  # Here you can define data to plot if necessary.
+                plot_data = None 
 
                 # Pass the data to the ResultsWindow with the correct parameters.
                 self.results_tab.update_tab(
@@ -586,7 +586,7 @@ if __name__ == "__main__":
         }
 
         QTabBar::tab:selected {
-            background: #073763; /* Fondo para la pestaña activa */
+            background: #073763; 
         }
 
         QTabBar::tab {
@@ -611,17 +611,16 @@ if __name__ == "__main__":
         
         QTabWidget::pane {
             border: none;
-            background: white; /* Fondo blanco para el contenido de las pestañas */
+            background: white; 
         }
 
-        /* Estilo para las pestañas deshabilitadas */
         QTabBar::tab:disabled {
-            background: #d3d3d3;  /* Fondo gris claro */
-            color: #a9a9a9;  /* Texto gris claro */
+            background: #d3d3d3;  
+            color: #a9a9a9; 
         }
                          
         QMessageBox {
-        color: #0A4B85;  /* Texto en azul oscuro */
+        color: #0A4B85;  
         }
     """)
 
