@@ -2,7 +2,7 @@ import unittest
 import os
 from PyQt6.QtWidgets import QApplication
 from unittest.mock import patch
-from main import MainWindow  # Cambia el nombre si tu clase o archivo tiene otro nombre
+from main import MainWindow  
 import pandas as pd
 
 class TestMainWindow(unittest.TestCase):
@@ -28,8 +28,8 @@ class TestMainWindow(unittest.TestCase):
         self.assertEqual(self.window.data.shape[1], 10) 
 
         # Check if some columns from the dataset were correctly imported 
-        self.assertTrue('housing_median_age' in self.window.data.columns)  # Verifica que 'col1' está en las columnas
-        self.assertTrue('median_income' in self.window.data.columns)  # Verifica que 'col2' está en las columnas
+        self.assertTrue('housing_median_age' in self.window.data.columns)  
+        self.assertTrue('median_income' in self.window.data.columns)  
 
         # Check if data is correct
         self.assertEqual(self.window.data.loc[0, 'latitude'], 37.88)
@@ -49,16 +49,16 @@ class TestMainWindow(unittest.TestCase):
         self.window.nan_options.setCurrentText("Fill NaN with Mean")
         self.window.apply_preprocessing()
 
-        # Crear el modelo usando los datos ya cargados
+        # Create the model using the already loaded data.
         self.window.create_model()
 
         # Check if model is not empty
         self.assertIsNotNone(self.window.model)
 
-        # Verificar que el modelo prediga correctamente (por ejemplo, con la primera fila de datos)
-        X_test = self.window.data[self.window.input_columns].iloc[0:1]  # Primera fila de datos
+        # Verify that the model predicts correctly (for example, with the first row of data).
+        X_test = self.window.data[self.window.input_columns].iloc[0:1]  
         y_pred = self.window.model.predict(X_test)
-        self.assertEqual(len(y_pred), 1)  # Asegúrate de que haya una predicción para esa fila
+        self.assertEqual(len(y_pred), 1) 
 
 
 if __name__ == '__main__':

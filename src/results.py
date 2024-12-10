@@ -15,7 +15,7 @@ class ResultsTab(QWidget):
         self.init_ui()
 
     def init_ui(self):
-        """Configura la UI del modelo con todos los elementos gráficos básicos."""
+        """Set up the model UI with all the basic graphical elements"""
         self.layout = QVBoxLayout()
         self.layout.setAlignment(Qt.AlignmentFlag.AlignTop)
         self.layout.setContentsMargins(0, 0, 0, 0)
@@ -63,7 +63,7 @@ class ResultsTab(QWidget):
         # Main content container
         main_content_widget = QWidget()
         main_content_layout = QVBoxLayout()
-        main_content_layout.setContentsMargins(10, 0, 10, 10)  # Márgenes uniformes
+        main_content_layout.setContentsMargins(10, 0, 10, 10)  
         main_content_widget.setLayout(main_content_layout)
         self.layout.addWidget(main_content_widget)
 
@@ -91,23 +91,23 @@ class ResultsTab(QWidget):
         self.warning_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.warning_label.setStyleSheet("font-size: 16px;font-family: 'Bahnschrift';font-weight: semi-bold;color: #333;padding: 10px;background-color: #e0e0e0;border-radius: 5px;")
 
-        self.left_column_layout.addWidget(self.warning_label)  # Warning
-        self.left_column_layout.addWidget(self.graph_widget)  # Graph
+        self.left_column_layout.addWidget(self.warning_label)  
+        self.left_column_layout.addWidget(self.graph_widget)  
         self.side_layout.addWidget(self.left_column_layout)
 
         # Right column: Prediction GroupBox
         self.prediction_group = QGroupBox("Prediction")
-        self.prediction_layout = QVBoxLayout()  # Diseño principal vertical
-        self.dynamic_inputs_layout = QFormLayout()  # Diseño para entradas dinámicas
-        self.input_fields = {}  # Diccionario para almacenar campos dinámicos
+        self.prediction_layout = QVBoxLayout()  # Vertical main layout
+        self.dynamic_inputs_layout = QFormLayout()  # Layout for dynamic inputs
+        self.input_fields = {}  # Dictionary to store dynamic fields
 
-        # Agregar el diseño de entradas dinámicas al diseño principal
+        # Add the dynamic input layout to the main layout
         self.prediction_layout.addLayout(self.dynamic_inputs_layout)
 
         # Prediction button
         self.predict_button = QPushButton("Make Prediction")
-        self.predict_button.setFixedHeight(28)  # Altura fija
-        self.predict_button.setFixedWidth(170)  # Ancho fijo
+        self.predict_button.setFixedHeight(28)  
+        self.predict_button.setFixedWidth(170)  
         self.predict_button.setStyleSheet("""
             QPushButton {
                 background-color: #0B1E3E; 
@@ -124,37 +124,37 @@ class ResultsTab(QWidget):
         """)
         self.predict_button.clicked.connect(self.make_prediction)
 
-        # Etiqueta de salida
+        # Output label
         self.output_label = QLabel("Output:")
-        self.output_label.setAlignment(Qt.AlignmentFlag.AlignCenter)  # Centrar texto
+        self.output_label.setAlignment(Qt.AlignmentFlag.AlignCenter)  
         self.output_label.setStyleSheet("font-weight: bold; font-size: 14px;")
 
-        # Campo de salida
-        self.prediction_output = QLabel("")  # Texto vacío por defecto
-        self.prediction_output.setAlignment(Qt.AlignmentFlag.AlignCenter)  # Centrar texto de salida
+        # Output field
+        self.prediction_output = QLabel("")  
+        self.prediction_output.setAlignment(Qt.AlignmentFlag.AlignCenter)  
         self.prediction_output.setStyleSheet("font-weight: bold; color: green; font-size: 14px;")
 
-        # Contenedor inferior para los widgets (botón y etiquetas de salida)
+        # Bottom container for widgets (button and output labels)
         self.bottom_container = QWidget()
         self.bottom_container.setContentsMargins(0, 0, 0, 0)
-        self.bottom_container.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)  # Ajustar solo el alto
+        self.bottom_container.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)  
         self.bottom_container.setStyleSheet("background-color: #CCE4F6; border-radius: 8px; padding: 10px;")
-        self.bottom_layout = QVBoxLayout(self.bottom_container)  # Diseño vertical para el contenedor
+        self.bottom_layout = QVBoxLayout(self.bottom_container)  
         self.bottom_layout.addWidget(self.predict_button, alignment=Qt.AlignmentFlag.AlignCenter)
         self.bottom_layout.addWidget(self.output_label, alignment=Qt.AlignmentFlag.AlignCenter)
         self.bottom_layout.addWidget(self.prediction_output, alignment=Qt.AlignmentFlag.AlignCenter)
 
-        # Agregar el contenedor inferior al diseño principal
-        self.prediction_layout.addStretch()  # Empuja widgets hacia abajo
+        # Add the bottom container to the main layout
+        self.prediction_layout.addStretch()  # Push widgets down
         self.prediction_layout.addWidget(self.bottom_container)
 
-        # Configurar el diseño en el grupo de predicción
+        # Set up the layout in the prediction group
         self.prediction_group.setLayout(self.prediction_layout)
 
-        # Agregar el grupo al diseño lateral
+        # Add the group to the side layout
         self.side_layout.addWidget(self.prediction_group)
 
-        # Ajuste de las columnas
+        # Adjust the columns
         self.side_layout.setStretch(0, 4)  # Graphic
         self.side_layout.setStretch(1, 1)  # Prediction
 
@@ -169,8 +169,8 @@ class ResultsTab(QWidget):
         self.canvas = FigureCanvas(self.figure)
         self.toolbar = NavigationToolbar(self.canvas, self)
 
-        container_layout.addWidget(self.toolbar)  # Toolbar on top
-        container_layout.addWidget(self.canvas)  # Graph below
+        container_layout.addWidget(self.toolbar)  
+        container_layout.addWidget(self.canvas)  
         return container
 
     def update_tab(self, description, r2, mse, formula, plot_data, coef, intercept, input_columns, output_column, warning_text=""):
@@ -199,18 +199,18 @@ class ResultsTab(QWidget):
         for i in reversed(range(self.dynamic_inputs_layout.count())):
             widget = self.dynamic_inputs_layout.itemAt(i).widget()
             if widget:
-                widget.deleteLater()  # Elimina el widget de la memoria
+                widget.deleteLater()  # Remove the widget from memory
 
-        # Regenerar campos dinámicos
-        self.input_fields.clear()  # Reiniciar el diccionario
+        # Regenerate dynamic fields
+        self.input_fields.clear()  # Reset the dictionary
         for col in self.input_columns:
             input_field = QLineEdit()
             input_field.setPlaceholderText(f"Enter value for {col}")
             input_field.setStyleSheet("font-family: Bahnschrift;")
-            self.dynamic_inputs_layout.addRow(f"{col}:", input_field)  # Añadir al layout dinámico
-            self.input_fields[col] = input_field  # Guardar referencia en el diccionario
+            self.dynamic_inputs_layout.addRow(f"{col}:", input_field)  # Add to the dynamic layout
+            self.input_fields[col] = input_field  # Save reference in the dictionary
 
-        # Limpiar predicción previa
+        # Clear previous prediction
         self.prediction_output.setText("")
 
         self.output_label.setText(f"{output_column}:")
@@ -259,11 +259,11 @@ class ResultsTab(QWidget):
     def make_prediction(self):
         """Generate predictions based on input."""
         try:
-            # Comprobar si todos los campos de entrada están llenos
+            # Check if all input fields are filled
             input_values = []
             for col in self.input_columns:
                 text = self.input_fields[col].text().strip()
-                if not text:  # Si el campo está vacío
+                if not text:  
                     raise ValueError(f"Input for '{col}' is missing.")
                 try:
                     input_values.append(float(text)) 
