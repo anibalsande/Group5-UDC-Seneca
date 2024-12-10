@@ -125,6 +125,7 @@ class MainWindow(QMainWindow):
         main_layout.addWidget(header_widget)
         
         self.table_widget = QStackedWidget()
+        self.table_widget.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.table_widget.setFixedHeight(420)
 
         # Table configuration to display data
@@ -156,6 +157,7 @@ class MainWindow(QMainWindow):
 
         # Column selection side
         self.column_selection_group = QGroupBox("Column Selection")
+        
         self.column_selection_group.setEnabled(False)
         column_selection_layout = QHBoxLayout()
         column_selection_layout.setAlignment(Qt.AlignmentFlag.AlignBottom)
