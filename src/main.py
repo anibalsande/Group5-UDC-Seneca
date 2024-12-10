@@ -25,7 +25,9 @@ class MainWindow(QMainWindow):
         self.data = None
         self.input_columns = []
         self.output_column = None
+        self.nans = None
         self.model_description = ""
+
 
         # Main Layout
         main_layout = QVBoxLayout()
@@ -386,6 +388,8 @@ class MainWindow(QMainWindow):
             nan_columns = nan_summary[nan_summary > 0]
 
             if not nan_columns.empty:
+                self.nans = True
+
                 # Build the list with the column information, using <br> for line breaks
                 columns_info = '<br>'.join(f"{col}: {count}" for col, count in nan_columns.items())
                 
@@ -397,6 +401,7 @@ class MainWindow(QMainWindow):
                 )
 
             else:
+                self.nans = False
                 # Inform that no NaN values were found
                 QMessageBox.information(
                     self,
@@ -466,7 +471,10 @@ class MainWindow(QMainWindow):
         QMessageBox.information(self, "Selection Confirmed",
                                 f"Input Columns: {', '.join(self.input_columns)}\nOutput Column: {self.output_column}")
         self.table_view.update_table(self.data, self.input_columns, self.output_column)  # Display the table after confirming the selection
-        self.preprocess_group.setEnabled(True)
+        if self.nans:
+            self.preprocess_group.setEnabled(True)
+        else:
+            self.model_group.setEnabled(True)
 
     def populate_columns(self):
         """ Fill the column selectors with the names of numeric columns """
