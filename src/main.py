@@ -124,7 +124,7 @@ class MainWindow(QMainWindow):
         self.table_widget = QStackedWidget()
         self.table_widget.setFixedHeight(420)
 
-        # Configuración de la tabla para mostrar los datos
+        # Table configuration to display data
         self.welcome_label = QLabel("Welcome! No data available.\nPlease import database or an existing model.")
         self.welcome_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.welcome_label.setStyleSheet("""
@@ -170,10 +170,10 @@ class MainWindow(QMainWindow):
         column_selection_layout = QHBoxLayout()
         column_selection_layout.setAlignment(Qt.AlignmentFlag.AlignBottom)
 
-        # Primera columna (Texto y Multiselector)
+        # First column (Text and Multi-Selector)
         left_column_layout = QVBoxLayout()
         
-        # Features (primera columna)
+        # Features (first column)
         self.input_selector = QListWidget()  # Cambiamos a QListWidget para selección múltiple
         self.input_selector.setSelectionMode(QListWidget.SelectionMode.MultiSelection)  
         self.input_selector.setSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
@@ -182,7 +182,7 @@ class MainWindow(QMainWindow):
         self.input_selector.setToolTip("Select the columns that will be used as input features for the model.")
 
 
-        # Segunda columna (Texto, Dropdown)
+        # Second column (Text, Dropdown)
         right_column_layout = QVBoxLayout()
         target_label = QLabel("Target:")
         target_label.setToolTip("The 'Target' is the dependent variable column we aim to predict.")
@@ -193,10 +193,10 @@ class MainWindow(QMainWindow):
         self.output_selector.setToolTip("Select the column that will be used as the target variable.")
         right_column_layout.addWidget(self.output_selector)
 
-        # Confirm button (segunda columna)
+        # Confirm button (second column)
         self.confirm_button = QPushButton("Confirm Selection ⮕")
         self.confirm_button.clicked.connect(self.confirm_selection)
-        self.confirm_button.setFixedHeight(40)  # Ajusta la altura
+        self.confirm_button.setFixedHeight(40) 
         self.confirm_button.setToolTip("Confirms the selected columns as input and output characteristics.")
         self.confirm_button.setStyleSheet(""" 
             QPushButton {
@@ -213,7 +213,7 @@ class MainWindow(QMainWindow):
             }
         """)
 
-        # Agregar las dos columnas al layout principal
+        # Add the two columns to the main layout
         column_selection_layout.addLayout(left_column_layout)
         column_selection_layout.addLayout(right_column_layout)
         column_selection_layout.addWidget(self.confirm_button)
@@ -222,7 +222,7 @@ class MainWindow(QMainWindow):
         column_selection_layout.setStretchFactor(left_column_layout, 1)
         column_selection_layout.setStretchFactor(right_column_layout, 1)  
 
-        # Agregar el layout principal al grupo
+        # Add the main layout to the group
         self.column_selection_group.setLayout(column_selection_layout)
 
         # Preprocess side
@@ -261,17 +261,17 @@ class MainWindow(QMainWindow):
         # Preprocessing button
         self.apply_button = QPushButton("Apply Preprocessing ⮕")
         self.apply_button.clicked.connect(self.apply_preprocessing)
-        self.apply_button.setFixedHeight(40)  # Ajusta la altura
-        self.apply_button.setFixedWidth(200)  # Ajusta el ancho
+        self.apply_button.setFixedHeight(40)  
+        self.apply_button.setFixedWidth(200)  
         self.apply_button.setToolTip("Applies selected preprocessing options for NaN values.")
         self.apply_button.setStyleSheet(""" 
             QPushButton {
                 background-color: #0B1E3E; 
                 color: white;
                 padding: 10px;
-                border-radius: 5px;  /* Cambiado para ser similar */
-                font-weight: bold;  /* Cambiado para ser similar */
-                font-size: 12px;  /* Cambiado para ser similar */
+                border-radius: 5px;  
+                font-weight: bold;  
+                font-size: 12px;  
             }
             QPushButton:hover {
                 background-color: #F6BE00;
@@ -280,7 +280,7 @@ class MainWindow(QMainWindow):
         """)
         preprocess_layout.addWidget(self.apply_button)
 
-        # Configurar y agregar el layout de preprocesamiento a su grupo
+        # Configure and add the preprocessing layout to its group
         self.preprocess_group.setLayout(preprocess_layout)
 
         # Model side
@@ -298,17 +298,17 @@ class MainWindow(QMainWindow):
 
         # Preprocessing button
         self.model_button = QPushButton("Create model ⮕")
-        self.model_button.setFixedHeight(40)  # Ajusta la altura
-        self.model_button.setFixedWidth(200)  # Ajusta el ancho
+        self.model_button.setFixedHeight(40)  
+        self.model_button.setFixedWidth(200)  
         self.model_button.setToolTip("Create a regression model based on the data and selected columns.")
         self.model_button.setStyleSheet(""" 
             QPushButton {
                 background-color: #0B1E3E; 
                 color: white;
                 padding: 10px;
-                border-radius: 5px;  /* Cambiado para ser similar */
-                font-weight: bold;  /* Cambiado para ser similar */
-                font-size: 12px;  /* Cambiado para ser similar */
+                border-radius: 5px;  
+                font-weight: bold;  
+                font-size: 12px;  
             }
             QPushButton:hover {
                 background-color: #F6BE00;
@@ -320,20 +320,20 @@ class MainWindow(QMainWindow):
         
         self.model_group.setLayout(model_layout)
 
-        # Añadir ambos grupos (Preprocessing y Column Selection) al layout horizontal
-        horizontal_layout.addWidget(self.column_selection_group)  # Column Selection a la izquierda
-        horizontal_layout.addWidget(self.preprocess_group)  # Preprocessing Options al centro
+        # Add both groups (Preprocessing and Column Selection) to the horizontal layout
+        horizontal_layout.addWidget(self.column_selection_group)  # Column Selection on the left
+        horizontal_layout.addWidget(self.preprocess_group)  # Preprocessing Options in the center
         horizontal_layout.addWidget(self.model_group)  # Model
 
-        # Añadir el layout horizontal al layout principal
+        # Add the horizontal layout to the main layout 
         main_layout.addLayout(horizontal_layout)
 
-        # Contenedor principal
+        # Main container
         container = QWidget()
         container.setLayout(main_layout)
         self.setCentralWidget(container)
 
-        # Conectar los cambios en el tipo de regresión a la actualización del selector de entrada
+        # Connect the changes in the regression type to the input selector update.
         self.input_selector.itemSelectionChanged.connect(self.update_output_selector)
         self.data_tab.setLayout(main_layout)
 
@@ -351,12 +351,12 @@ class MainWindow(QMainWindow):
             try:
                 self.welcome_label.setText("Checking NaNs...")
                 self.file_label.setText(f"{file_path}")
-                self.data = self.data_import(file_path)  # Cargar los datos
+                self.data = self.data_import(file_path)  
                 self.welcome_label.setText("Showing Data...")
-                self.check_for_nans()  # Comprobar valores NaN
-                self.input_columns = []  # Atributo para almacenar columnas de entrada
+                self.check_for_nans()  
+                self.input_columns = []  # Attribute to store input columns.
                 self.output_column = None
-                self.show_data()  # Mostrar los datos al cargar el archivo
+                self.show_data()  # Display the data when the file is loaded
                 self.populate_columns()
                 self.table_widget.setCurrentWidget(self.table_view)
                 self.column_selection_group.setEnabled(True)
@@ -371,7 +371,7 @@ class MainWindow(QMainWindow):
             
 
     def data_import(self, file_path):
-        """ Importar los datos desde el archivo """
+        """ Import the data from the file """
         if file_path.endswith('.csv'):
             return pd.read_csv(file_path)
         elif file_path.endswith('.xlsx') or file_path.endswith('.xls'):
@@ -398,10 +398,10 @@ class MainWindow(QMainWindow):
             nan_columns = nan_summary[nan_summary > 0]
 
             if not nan_columns.empty:
-                # Construir la lista con la información de las columnas, usando <br> para saltos de línea
+                # Build the list with the column information, using <br> for line breaks
                 columns_info = '<br>'.join(f"{col}: {count}" for col, count in nan_columns.items())
                 
-                # Mostrar el mensaje con formato HTML para incluir la línea horizontal
+                # Display the message with HTML format to include the horizontal line
                 QMessageBox.warning(
                     self,
                     "Missing Data (NaN) Detected",
@@ -424,7 +424,7 @@ class MainWindow(QMainWindow):
             return
         option = self.nan_options.currentText()
 
-        # Aplicar el preprocesado seleccionado
+        # Apply the selected preprocessing
         try:
             if option == "Remove rows with NaN":
                 self.data = self.data.dropna()
@@ -440,7 +440,7 @@ class MainWindow(QMainWindow):
             else:
                 raise ValueError("Please select a valid option.")
 
-            self.show_data()  # Mostrar los datos preprocesados
+            self.show_data()  # Display the preprocessed data
             self.model_group.setEnabled(True)
             QMessageBox.information(self, "Success", "Data preprocessing completed successfully.")
         except Exception as e:
@@ -452,7 +452,7 @@ class MainWindow(QMainWindow):
             raise ValueError("Invalid statistic type.")
 
         for column in data.columns:
-            if data[column].dtype in [int, float]:  # Solo procesar columnas numéricas
+            if data[column].dtype in [int, float]:  # Only process numeric columns
                 if stat_type == "mean":
                     data[column] = data[column].fillna(data[column].mean())
                 elif stat_type == "median":
@@ -460,7 +460,7 @@ class MainWindow(QMainWindow):
         return data
 
     def confirm_selection(self):
-        """ Confirmar selección de columnas """
+        """ Confirm column selection """
         if self.data is None:
             QMessageBox.warning(self, "Warning", "No data loaded!")
             return
@@ -477,11 +477,11 @@ class MainWindow(QMainWindow):
 
         QMessageBox.information(self, "Selection Confirmed",
                                 f"Input Columns: {', '.join(self.input_columns)}\nOutput Column: {self.output_column}")
-        self.show_data()  # Mostrar la tabla después de confirmar la selección
+        self.show_data()  # Display the table after confirming the selection
         self.preprocess_group.setEnabled(True)
 
     def populate_columns(self):
-        """ Llenar los selectores de columnas con nombres de columnas numéricas """
+        """ Fill the column selectors with the names of numeric columns """
         if self.data is not None:
             numeric_columns = self.data.select_dtypes(include=["number"]).columns.tolist()
             self.input_selector.clear()
@@ -490,20 +490,20 @@ class MainWindow(QMainWindow):
             self.output_selector.addItems(numeric_columns)
 
     def show_data(self):
-        """ Mostrar los datos en la tabla """
+        """ Display the data in the table """
         model = QStandardItemModel()
         model.setHorizontalHeaderLabels(self.data.columns)
     
-        input_color = QColor("#FFDDC1")  # Color para columnas de entrada
-        output_color = QColor("#D1E8FF")  # Color para la columna de salida
+        input_color = QColor("#FFDDC1")  
+        output_color = QColor("#D1E8FF")  
     
-        # Iterar sobre las filas de los datos
+        # Iterate over the rows of the data.
         for row in self.data.itertuples(index=False):
             items = []
             for col_index, item in enumerate(row):
                 cell_item = QStandardItem(str(item))
     
-                # Verificar si la columna es de entrada o salida
+                # Check if the column is an input or output column.
                 column_name = self.data.columns[col_index]
                 if column_name in self.input_columns:
                     cell_item.setBackground(input_color)
@@ -527,21 +527,21 @@ class MainWindow(QMainWindow):
 
     def create_model(self):
         description_text = self.description.toPlainText().strip()
-        # Verificar si la descripción está vacía
+        # Check if the description is empty.
         if not description_text:
             response = QMessageBox.question(
                 self, "Empty Description",
                 "The model description is empty. Do you want to proceed without a description?",
                 QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
             )
-            # Si el usuario elige "No", detenemos el proceso para que modifique la descripción
+            # If the user selects "No", stop the process so they can modify the description.
             if response == QMessageBox.StandardButton.No:
                 return  # Salir de la función sin continuar
 
-        # Asignar la descripción final después de la decisión del usuario
+        # Assign the final description after the user's decision.
         self.model_description = description_text or "No description provided"
 
-        # Crear una instancia de ModelTrainer y llamar a su método para entrenar y mostrar los resultados
+        # Create an instance of ModelTrainer and call its method to train and display the results.
         trainer = ModelTrainer(self.data, self.input_columns, self.output_column, self.model_description)
         self.results_tab.update_tab(
                         description=self.model_description,
@@ -560,7 +560,7 @@ class MainWindow(QMainWindow):
 
 
     def load_model(self, show_window = True):
-        # Diálogo para seleccionar el archivo
+        # Dialog to select the file.
         file_path, _ = QFileDialog.getOpenFileName(
             self,
             "Cargar Modelo",
@@ -570,11 +570,11 @@ class MainWindow(QMainWindow):
 
         if file_path:
             try:
-                # Cargar el modelo guardado
+                # Load the saved model.
                 model_info = joblib.load(file_path)
 
-                # Extraer información del modelo
-                description = model_info.get('description', 'Sin descripción')
+                # Extract information from the model.
+                description = model_info.get('description', 'Without description')
                 coefficients = model_info.get('coefficients', [])
                 intercept = model_info.get('intercept', 0)
                 metrics = model_info.get('metrics', {})
@@ -584,15 +584,15 @@ class MainWindow(QMainWindow):
                 input_columns = model_info.get('input_columns', [])
                 output_column = model_info.get('output_column', '')
 
-                # Crear el modelo de regresión lineal utilizando los coeficientes e intercepto del modelo cargado
+                # Create the linear regression model using the coefficients and intercept from the loaded model.
                 model = LinearRegression()
                 model.coef_ = coefficients
                 model.intercept_ = intercept
 
-                # Preparar datos para la gráfica (esto se puede modificar según tus necesidades)
-                plot_data = None  # Aquí puedes definir datos para graficar si es necesario
+                # Prepare the data for the graph (this can be modified according to your needs).
+                plot_data = None  # Here you can define data to plot if necessary.
 
-                # Pasar los datos a ResultsWindow con los parámetros correctos
+                # Pass the data to the ResultsWindow with the correct parameters.
                 self.results_tab.update_tab(
                         description=description,
                         r2=r2,
@@ -609,13 +609,13 @@ class MainWindow(QMainWindow):
                 self.tabs.setTabEnabled(1, True)
                 self.tabs.setCurrentIndex(1)
             except Exception as e:
-                QMessageBox.critical(self, "Error", f"No se pudo cargar el modelo:\n{str(e)}")
+                QMessageBox.critical(self, "Error", f"The model could not be loaded:\n{str(e)}")
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = MainWindow()
 
-    # Aplicar el estilo CSS correctamente
+    # Apply the CSS style correctly.
     app.setStyleSheet("""
         QMainWindow {
             background-color: #0b5394;

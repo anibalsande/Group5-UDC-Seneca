@@ -27,10 +27,10 @@ class ModelTrainer(QWidget):
 
             X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-            # Entrenar el modelo de regresión lineal
+            # Train the linear regression model
             self.model.fit(X_train, y_train)
 
-            # Realizar predicciones y calcular métricas de error en el conjunto de prueba
+            # Make predictions and calculate error metrics on the test set
             y_pred = self.model.predict(X_test)
             mse = mean_squared_error(y_test, y_pred)
             r2 = r2_score(y_test, y_pred)
@@ -41,13 +41,13 @@ class ModelTrainer(QWidget):
             formula_terms = [f"{self.coef[i]:.4f} * {col}" for i, col in enumerate(self.input_columns)]
             formula = f"{self.output_column} = {self.intercept:.4f} + {' + '.join(formula_terms)}"
 
-            # Determinar el mensaje de advertencia y los datos de la gráfica
+            # Determine the warning message and the data for the graph
             if len(self.input_columns) > 1:
                 self.warning_text = "The graph is only displayed for simple linear regression."
 
             plot_data = (X_test[:, 0], y_test, y_pred) if len(self.input_columns) == 1 and X_test.shape[1] == 1 else None
 
-            # Pasar métricas, fórmula, y otros datos a ResultsWindow
+            # Pass metrics, formula, and other data to ResultsWindow
             if show_window == True:
                 self.r2 = r2
                 self.mse = mse
@@ -55,4 +55,4 @@ class ModelTrainer(QWidget):
                 self.plot_data = plot_data
 
         except Exception as e:
-            QMessageBox.critical(self, "Error", f"Error en la creación del modelo:\n{str(e)}")
+            QMessageBox.critical(self, "Error", f"Error in model creation:\n{str(e)}")
