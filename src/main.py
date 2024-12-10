@@ -8,6 +8,7 @@ import joblib
 from sklearn.linear_model import LinearRegression
 
 #Modules
+from data_table import DataTable
 from model_results import ModelTrainer
 from results import ResultsTab
 from help import HelpTab
@@ -139,22 +140,9 @@ class MainWindow(QMainWindow):
             }
         """)
 
-        self.table_view = QTableView()
+        self.table_view = DataTable()
         self.table_view.setSizeAdjustPolicy(QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
-        self.table_view.setStyleSheet(""" 
-            QTableView {
-                background-color: #f0f0f0;
-                gridline-color: #d0d0d0;
-                font-size: 12px;
-            }
-            QHeaderView::section {
-                background-color: #dcdcdc;
-                padding: 5px;
-                font-weight: bold;
-                border: 1px solid #b0b0b0;
-            }
-        """)
-        
+
         self.table_widget.addWidget(self.welcome_label)
         self.table_widget.addWidget(self.table_view)
 
@@ -356,9 +344,9 @@ class MainWindow(QMainWindow):
                 self.check_for_nans()  
                 self.input_columns = []  # Attribute to store input columns.
                 self.output_column = None
-                self.show_data()  # Display the data when the file is loaded
-                self.populate_columns()
+                self.table_view.update_table(self.data)  # Display the data when the file is loaded
                 self.table_widget.setCurrentWidget(self.table_view)
+                self.populate_columns()
                 self.column_selection_group.setEnabled(True)
                 self.preprocess_group.setEnabled(False)
                 self.model_group.setEnabled(False)
@@ -440,7 +428,7 @@ class MainWindow(QMainWindow):
             else:
                 raise ValueError("Please select a valid option.")
 
-            self.show_data()  # Display the preprocessed data
+            self.table_view.update_table(self.data, self.input_columns, self.output_column)  # Display the preprocessed data
             self.model_group.setEnabled(True)
             QMessageBox.information(self, "Success", "Data preprocessing completed successfully.")
         except Exception as e:
@@ -477,7 +465,7 @@ class MainWindow(QMainWindow):
 
         QMessageBox.information(self, "Selection Confirmed",
                                 f"Input Columns: {', '.join(self.input_columns)}\nOutput Column: {self.output_column}")
-        self.show_data()  # Display the table after confirming the selection
+        self.table_view.update_table(self.data, self.input_columns, self.output_column)  # Display the table after confirming the selection
         self.preprocess_group.setEnabled(True)
 
     def populate_columns(self):
@@ -488,34 +476,6 @@ class MainWindow(QMainWindow):
             self.input_selector.addItems(numeric_columns)
             self.output_selector.clear()
             self.output_selector.addItems(numeric_columns)
-
-    def show_data(self):
-        """ Display the data in the table """
-        model = QStandardItemModel()
-        model.setHorizontalHeaderLabels(self.data.columns)
-    
-        input_color = QColor("#FFDDC1")  
-        output_color = QColor("#D1E8FF")  
-    
-        # Iterate over the rows of the data.
-        for row in self.data.itertuples(index=False):
-            items = []
-            for col_index, item in enumerate(row):
-                cell_item = QStandardItem(str(item))
-    
-                # Check if the column is an input or output column.
-                column_name = self.data.columns[col_index]
-                if column_name in self.input_columns:
-                    cell_item.setBackground(input_color)
-                elif column_name == self.output_column:
-                    cell_item.setBackground(output_color)
-    
-                items.append(cell_item)
-            
-            model.appendRow(items)
-    
-        self.table_view.setModel(model)
-        self.table_view.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
 
     def update_output_selector(self):
         selected_inputs = [item.text() for item in self.input_selector.selectedItems()]
