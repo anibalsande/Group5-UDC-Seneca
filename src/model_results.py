@@ -9,7 +9,27 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 
 class ModelTrainer(QWidget):
+    """
+    A PyQt6-based widget for training a linear regression model and displaying the results.
+
+    Attributes:
+        data (DataFrame): The dataset used for training and testing the model.
+        input_columns (list): List of column names used as input features.
+        output_column (str): The name of the column used as the target variable.
+        description (str): An optional description of the model.
+        model (LinearRegression): The linear regression model instance.
+        warning_text (str): A message indicating any limitations, such as graph display constraints.
+    """
     def __init__(self, data, input_columns, output_column, description=""):
+        """
+        Initializes the ModelTrainer widget.
+
+        Args:
+            data (DataFrame): The dataset used for training and testing the model.
+            input_columns (list): List of column names used as input features.
+            output_column (str): The name of the column used as the target variable.
+            description (str, optional): An optional description of the model. Defaults to an empty string.
+        """
         super().__init__()
         self.data = data
         self.input_columns = input_columns
@@ -21,6 +41,15 @@ class ModelTrainer(QWidget):
         self.train_and_show_results()
     
     def train_and_show_results(self, show_window = True):
+        """
+        Trains the linear regression model and optionally displays the results in a separate window.
+
+        Args:
+            show_window (bool, optional): Whether to display the results window. Defaults to True.
+
+        Raises:
+            QMessageBox: Displays an error message if there is an issue during model training.
+        """
         try:
             X = self.data[self.input_columns].values
             y = self.data[self.output_column].values

@@ -9,13 +9,34 @@ from matplotlib.figure import Figure
 import joblib
 
 class ResultsTab(QWidget):
+    """
+    A PyQt6-based widget for displaying the results of a regression model, including metrics, graphs, and predictions.
+
+    Attributes:
+        description_text (QLabel): Label displaying the model's description.
+        save_button (QPushButton): Button to save the model to a file.
+        results_label (QLabel): Label to display model metrics like R² and MSE.
+        graph_widget (QWidget): Widget containing the regression graph.
+        warning_label (QLabel): Label to show warnings or messages when no data is available for graphing.
+        prediction_group (QGroupBox): GroupBox containing prediction-related inputs and outputs.
+        input_fields (dict): Dictionary mapping input column names to their respective QLineEdit widgets.
+        prediction_output (QLabel): Label to display the prediction output.
+        figure (Figure): Matplotlib figure for the regression graph.
+        canvas (FigureCanvas): Canvas to render the Matplotlib figure.
+        toolbar (NavigationToolbar): Toolbar for interacting with the graph.
+    """
     def __init__(self):
+        """
+        Initializes the ResultsTab widget and sets up the user interface.
+        """
         super().__init__()
         self.setContentsMargins(0, 0, 0, 0)
         self.init_ui()
 
     def init_ui(self):
-        """Set up the model UI with all the basic graphical elements"""
+        """
+        Set up the model UI with all the basic graphical elements
+        """
         self.layout = QVBoxLayout()
         self.layout.setAlignment(Qt.AlignmentFlag.AlignTop)
         self.layout.setContentsMargins(0, 0, 0, 0)
@@ -161,7 +182,12 @@ class ResultsTab(QWidget):
         main_content_layout.addLayout(self.side_layout)
 
     def create_graph_widget(self):
-        """Create interactive graph widget."""
+        """
+        Create interactive regression graph widget.
+
+        Returns:
+            QWidget: A container widget with a Matplotlib canvas and toolbar.
+        """
         container = QWidget()
         container_layout = QVBoxLayout(container)
 
@@ -174,7 +200,20 @@ class ResultsTab(QWidget):
         return container
 
     def update_tab(self, description, r2, mse, formula, plot_data, coef, intercept, input_columns, output_column, warning_text=""):
-        """Update values in the UI with provided information."""   
+        """
+        Update values in the UI with provided information.
+        Args:
+            description (str): Model description.
+            r2 (float): Coefficient of determination (R²).
+            mse (float): Mean squared error.
+            formula (str): Regression formula.
+            plot_data (tuple): Data for plotting (X_test, y_test, y_pred).
+            coef (list): Model coefficients.
+            intercept (float): Model intercept.
+            input_columns (list): List of input feature names.
+            output_column (str): Name of the target variable.
+            warning_text (str, optional): Warning message for graphing limitations. Defaults to "".
+        """   
         self.r2 = r2
         self.mse = mse
         self.formula = formula
@@ -218,7 +257,14 @@ class ResultsTab(QWidget):
 
 
     def plot_regression(self, plot_data, input, output):
-        """Generate or update the regression graph."""
+        """
+        Generate or update the regression graph.
+
+        Args:
+            plot_data (tuple): Data for plotting (X_test, y_test, y_pred).
+            input (list): List of input feature names.
+            output (str): Name of the target variable.
+        """
         self.figure.clear()
         ax = self.figure.add_subplot(111)
         X_test, y_test, y_pred = plot_data
@@ -233,7 +279,13 @@ class ResultsTab(QWidget):
         self.canvas.draw()
 
     def save_model(self):
-        """Save model to a .joblib file."""
+        """
+        Save model to a .joblib file. The method opens a file dialog for the user to specify the file path where the model
+        will be saved.
+
+        Raises:
+            QMessageBox: Displays an error message if the model cannot be saved due to any issue.
+        """
         file_path, _ = QFileDialog.getSaveFileName(self, "Save Model", "", "Joblib (*.joblib);;All Files (*)")
         if file_path:
             if not file_path.endswith('.joblib'):
@@ -257,7 +309,13 @@ class ResultsTab(QWidget):
                 QMessageBox.critical(self, "Error", f"Model couldn't be saved:\n{str(e)}")
 
     def make_prediction(self):
-        """Generate predictions based on input."""
+        """
+        Generate predictions based on input.
+
+        Raises:
+            ValueError: If any input field is empty or contains non-numeric values.
+            QMessageBox: Displays a warning or error message in case of invalid input or unexpected errors during prediction.
+        """
         try:
             # Check if all input fields are filled
             input_values = []
