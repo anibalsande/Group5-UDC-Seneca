@@ -1,12 +1,12 @@
+import sys
 from PyQt6.QtWidgets import *
 from PyQt6.QtCore import *
 from PyQt6.QtGui import *
 
 #Modules
-from data_table import DataTable
-from model_results import ModelTrainer
-from results import ResultsTab
-from help import HelpTab
+from resultstab import ResultsTab
+from helptab import HelpTab
+from style import get_main_stylesheet, get_header_stylesheet
 
 class MainView(QMainWindow):
     def __init__(self):
@@ -16,6 +16,7 @@ class MainView(QMainWindow):
         self.setGeometry(100, 100, 700, 500)
         self.setFont(QFont("Bahnschrift", 12))
         self.setWindowIcon(QIcon("src/image/icon.png"))
+        self.setStyleSheet(get_main_stylesheet())
 
         self.setup_ui()
 
@@ -52,19 +53,18 @@ class MainView(QMainWindow):
 
         # Blue Header
         header_widget = QWidget()
-        header_widget.setLayout(header_layout)
         header_widget.setFixedHeight(35)
-        header_widget.setStyleSheet("background-color: #0b5394;")
+        header_widget.setStyleSheet(get_header_stylesheet())
 
         header_layout = QHBoxLayout()
         header_layout.setContentsMargins(10, 0, 10, 0)
         header_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
+        header_widget.setLayout(header_layout)
         
         self.upload_button = QPushButton("OPEN FILE")
         self.upload_button.setFixedSize(170, 28)
 
         self.file_label = QLabel("No file selected")
-        self.file_label.setStyleSheet("color: white; font-family: 'Bahnschrift'; font-size: 16px;")
         self.file_label.setAlignment(Qt.AlignmentFlag.AlignBottom | Qt.AlignmentFlag.AlignHCenter)
         self.file_label.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
 
@@ -95,11 +95,11 @@ class MainView(QMainWindow):
             }
         """)
 
-        self.table_view = DataTable()
-        self.table_view.setSizeAdjustPolicy(QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
+        #self.table_view = DataTable()
+        #self.table_view.setSizeAdjustPolicy(QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
 
         self.table_widget.addWidget(self.welcome_label)
-        self.table_widget.addWidget(self.table_view)
+        #self.table_widget.addWidget(self.table_view)
 
         layout.addWidget(self.table_widget)
 
@@ -141,24 +141,7 @@ class MainView(QMainWindow):
         right_column_layout.addWidget(self.output_selector)
 
         self.confirm_button = QPushButton("Confirm Selection ⮕")
-        self.confirm_button.setFixedHeight(40)
-        self.confirm_button.setStyleSheet("""
-            QPushButton {
-                background-color: #0B1E3E; 
-                color: white;
-                padding: 10px;
-                border-radius: 5px;
-                font-weight: bold;
-                font-size: 12px;
-            }
-            QPushButton:hover {
-                background-color: #F6BE00;
-                color: #0B1E3E;
-            }
-        """)
-
         self.confirm_button.setToolTip("Confirms the selected columns as input and output characteristics.")
-        self.confirm_button.clicked.connect(self.confirm_selection)
 
         layout.addLayout(left_column_layout)
         layout.addLayout(right_column_layout)
@@ -207,7 +190,6 @@ class MainView(QMainWindow):
         self.constant_input.setDisabled(True)
 
         self.apply_button = QPushButton("Apply Preprocessing ⮕")
-        self.apply_button.setFixedSize(200,40)  
         self.apply_button.setToolTip("Applies selected preprocessing options for NaN values.")
 
         layout.addWidget(self.error_label)
@@ -221,7 +203,7 @@ class MainView(QMainWindow):
         group = QGroupBox("Create Model")
         layout = QVBoxLayout()
         layout.setAlignment(Qt.AlignmentFlag.AlignBottom)
-        self.model_group.setFixedWidth(300)
+        group.setFixedWidth(300)
 
         self.description = QTextEdit()
         self.description.setPlaceholderText("Create description")
@@ -235,3 +217,58 @@ class MainView(QMainWindow):
         layout.addWidget(self.model_button)
         group.setLayout(layout)
         return group
+    
+app = QApplication(sys.argv)
+window = MainView()
+
+    # Apply the CSS style correctly.
+app.setStyleSheet("""
+        QMainView {
+            background-color: #0b5394;
+        }
+
+        QTabWidget::tab-bar {
+            alignment: center;
+        }
+
+        QTabBar::tab:selected {
+            background: #073763; 
+        }
+
+        QTabBar::tab {
+            background: #0A4B85;
+            font-family: 'Bahnschrift';
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            font-size: 12px;
+            font-weight: bold;
+            color: white;
+            height: 20px;
+            width: 150px;
+            padding: 5px;
+            margin: 0px;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        QTabBar::tab:hover {
+            background: #0B1E3E;
+        }
+        
+        QTabWidget::pane {
+            border: none;
+            background: white; 
+        }
+
+        QTabBar::tab:disabled {
+            background: #d3d3d3;  
+            color: #a9a9a9; 
+        }
+                         
+        QMessageBox {
+        color: #0A4B85;  
+        }
+    """)
+
+window.show()
+sys.exit(app.exec())
