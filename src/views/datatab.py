@@ -104,7 +104,11 @@ class MainView(QMainWindow):
         layout.addWidget(self.table_widget)
 
         # Column Selection & Preprocessing
+        horizontal_widget = QWidget()
+        horizontal_widget.setFixedHeight(150)
+
         horizontal_layout = QHBoxLayout()
+        horizontal_widget.setLayout(horizontal_layout)
         horizontal_layout.setContentsMargins(10,10,10,10)
 
         self.column_selection_group = self.create_column_selection_group()
@@ -119,7 +123,7 @@ class MainView(QMainWindow):
         horizontal_layout.addWidget(self.preprocess_group)
         horizontal_layout.addWidget(self.model_group)
 
-        layout.addLayout(horizontal_layout)
+        layout.addWidget(horizontal_widget)
         self.data_tab.setLayout(layout)
 
     def create_column_selection_group(self):
@@ -220,55 +224,6 @@ class MainView(QMainWindow):
     
 app = QApplication(sys.argv)
 window = MainView()
-
-    # Apply the CSS style correctly.
-app.setStyleSheet("""
-        QMainView {
-            background-color: #0b5394;
-        }
-
-        QTabWidget::tab-bar {
-            alignment: center;
-        }
-
-        QTabBar::tab:selected {
-            background: #073763; 
-        }
-
-        QTabBar::tab {
-            background: #0A4B85;
-            font-family: 'Bahnschrift';
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
-            font-size: 12px;
-            font-weight: bold;
-            color: white;
-            height: 20px;
-            width: 150px;
-            padding: 5px;
-            margin: 0px;
-            margin-left: 10px;
-            margin-right: 10px;
-        }
-
-        QTabBar::tab:hover {
-            background: #0B1E3E;
-        }
-        
-        QTabWidget::pane {
-            border: none;
-            background: white; 
-        }
-
-        QTabBar::tab:disabled {
-            background: #d3d3d3;  
-            color: #a9a9a9; 
-        }
-                         
-        QMessageBox {
-        color: #0A4B85;  
-        }
-    """)
 
 window.show()
 sys.exit(app.exec())
