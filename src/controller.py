@@ -2,22 +2,19 @@ from PyQt6.QtWidgets import *
 
 from views.datatab import MainView
 from models.datahandler import DataHandler
-#from models.createmodel import CreateModel
-#from models.prediction import Prediction
+from models.modelhandler import ModelHandler
 
 class MainController:
     def __init__(self):
-        self.data_handler = DataHandler()
-        #self.create_model = CreateModel()
-        #self.prediction = Prediction()
         self.main_window = MainView()
+        self.data_handler = DataHandler()
+        self.model_handler = ModelHandler()
 
         self.main_window.upload_button.clicked.connect(self.action_openfile)
+        self.main_window.load_model_button.clicked.connect(self.action_openmodel)
         self.main_window.confirm_button.clicked.connect(self.action_columnselection)
         self.main_window.apply_button.clicked.connect(self.action_handlenans)
-
-        """self.main_window.load_model_button.clicked.connect(self.action_openmodel)
-        self.main_window.create_model_button.clicked.connect(self.action_createmodel)"""
+        self.main_window.model_button.clicked.connect(self.action_trainmodel)
 
         self.main_window.show()
 
@@ -108,3 +105,25 @@ class MainController:
             QMessageBox.information(self.main_window, "Success", "Data preprocessing completed successfully.")
         except Exception as e:
             QMessageBox.critical(self.main_window, "Error", f"An error occurred during preprocessing:\n{str(e)}")
+
+    def action_openmodel(self):
+        file_path = self.select_file(title="Select Model", file_filter="Admitted files (*.joblib *.pkl)")        
+        if file_path:
+            try:
+                self.model_handler.load_model(file_path)
+                model_info = self.model_handler.get_model_info()
+
+                # Actualizar la vista de resultados
+                self.main_window.results_tab.update_tab(
+                    description=model_info.get('description', 'No description'),
+                    r2=model_info['metrics'].get('R²', 'N/A'),
+                    mse=model_info['metrics'].get('MSE', 'N/A'),
+                    formula=model_info.get('formula', 'N/A'),
+                    coef=model_info.get('coefficients', []),
+                    intercept=model_info.get('intercept', 0),
+                    input_columns=model_info.get('input_columns', []),
+                    output_column=model_info.get('output_column', '')
+                )
+                QMessageBox.information(self.main_window, "Success", "Model loaded successfully.")
+            except Exception as e:
+                QMessageBox.critical(self.main_window, "Error", f"Error loading model:\n{str(e)}")

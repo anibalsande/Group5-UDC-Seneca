@@ -239,12 +239,6 @@ class MainView(QMainWindow):
             self.constant_input.setVisible(False)
             self.nan_options.setVisible(False)    
 
-
-
-
-
-
-
     def populate_selectors(self, columns):
         if columns is not None:
             self.input_selector.clear()
@@ -253,17 +247,15 @@ class MainView(QMainWindow):
             self.output_selector.addItems(columns)
 
     def update_output_selector(self):
-        # Obtener los elementos seleccionados del input_selector
         selected_inputs = {item.text() for item in self.input_selector.selectedItems()}
         
-        # Actualizar los ítems en output_selector
         for i in range(self.output_selector.count()):
             item = self.output_selector.item(i)
             
             if item.text() in selected_inputs:
-                item.setFlags(item.flags() & ~Qt.ItemFlag.ItemIsEnabled)  # Deshabilitar el item
-                item.setSelected(False)  # Asegúrate de desmarcar el item
+                item.setFlags(item.flags() & ~Qt.ItemFlag.ItemIsEnabled)
+                item.setSelected(False)
             else:
-                item.setFlags(item.flags() | Qt.ItemFlag.ItemIsEnabled)  # Habilitar el item
+                item.setFlags(item.flags() | Qt.ItemFlag.ItemIsEnabled)
 
-        self.output_selector.repaint()  # Actualizar el widget visualmente
+        self.output_selector.repaint()
