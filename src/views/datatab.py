@@ -5,6 +5,7 @@ from PyQt6.QtGui import *
 
 #Modules
 from views.resultstab import ResultsTab
+from views.datatable import DataTable
 from views.helptab import HelpTab
 from views.style import get_main_stylesheet, get_header_stylesheet
 
@@ -14,7 +15,6 @@ class MainView(QMainWindow):
 
         self.setWindowTitle("LRM APP · GROUP 5")
         self.setGeometry(100, 100, 700, 500)
-        self.setFont(QFont("Bahnschrift", 12))
         self.setWindowIcon(QIcon("src/image/icon.png"))
         self.setStyleSheet(get_main_stylesheet())
 
@@ -95,11 +95,11 @@ class MainView(QMainWindow):
             }
         """)
 
-        #self.table_view = DataTable()
-        #self.table_view.setSizeAdjustPolicy(QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
+        self.table_view = DataTable()
+        self.table_view.setSizeAdjustPolicy(QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)
 
         self.table_widget.addWidget(self.welcome_label)
-        #self.table_widget.addWidget(self.table_view)
+        self.table_widget.addWidget(self.table_view)
 
         layout.addWidget(self.table_widget)
 
@@ -135,6 +135,7 @@ class MainView(QMainWindow):
         left_column_layout = QVBoxLayout()
         self.input_selector = QListWidget()
         self.input_selector.setSelectionMode(QListWidget.SelectionMode.MultiSelection)
+        self.input_selector.selectionModel().selectionChanged.connect(self.update_output_selector)
         self.input_selector.setToolTip("Select the columns that will be used as input features for the model.")
         left_column_layout.addWidget(QLabel("Features:"))
         left_column_layout.addWidget(self.input_selector)
@@ -225,3 +226,44 @@ class MainView(QMainWindow):
         layout.addWidget(self.model_button)
         group.setLayout(layout)
         return group
+    
+    def hide_nans_widget(self, nans):
+        if nans is not None:
+            self.error_label.setVisible(False)
+            self.apply_button.setVisible(True)
+            self.constant_input.setVisible(True)
+            self.nan_options.setVisible(True)
+        else:
+            self.error_label.setVisible(True)
+            self.apply_button.setVisible(False)
+            self.constant_input.setVisible(False)
+            self.nan_options.setVisible(False)    
+
+
+
+
+
+
+
+    def populate_selectors(self, columns):
+        if columns is not None:
+            self.input_selector.clear()
+            self.input_selector.addItems(columns)
+            self.output_selector.clear()
+            self.output_selector.addItems(columns)
+
+    def update_output_selector(self):
+        # Obtener los elementos seleccionados del input_selector
+        selected_inputs = {item.text() for item in self.input_selector.selectedItems()}
+        
+        # Actualizar los ítems en output_selector
+        for i in range(self.output_selector.count()):
+            item = self.output_selector.item(i)
+            
+            if item.text() in selected_inputs:
+                item.setFlags(item.flags() & ~Qt.ItemFlag.ItemIsEnabled)  # Deshabilitar el item
+                item.setSelected(False)  # Asegúrate de desmarcar el item
+            else:
+                item.setFlags(item.flags() | Qt.ItemFlag.ItemIsEnabled)  # Habilitar el item
+
+        self.output_selector.repaint()  # Actualizar el widget visualmente

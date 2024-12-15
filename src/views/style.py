@@ -2,6 +2,13 @@ def get_main_stylesheet():
     return """
     QMainWindow {
         background-color: #0b5394;
+        font-family: 'Bahnschrift';
+    }
+
+    QGroupBox {
+        font-family: 'Bahnschrift';
+        font-size: 14px;
+        color: black;
     }
 
     QTabWidget::tab-bar {
@@ -59,6 +66,27 @@ def get_main_stylesheet():
     QMessageBox {
         color: #0A4B85;
     }
+
+    QListWidget::item {
+        background-color: white;  /* Fondo blanco para los items del QListWidget */
+    }
+
+    QListWidget::item:disabled {
+        background-color: #d0d0d0;  /* Fondo gris para los items deshabilitados */
+        color: #888888;  /* Color de texto más suave para los items deshabilitados */
+    }
+
+    QListWidget::item:selected {
+        background-color: #B0C4DE;
+        color: #0B1E3E;
+        border-left: 2px solid #0B1E3E;
+    }
+
+    QGroupBox QLabel {
+        font-family: 'Bahnschrift'; 
+        font-size: 14px; 
+    }
+
     """
 
 def get_header_stylesheet():
