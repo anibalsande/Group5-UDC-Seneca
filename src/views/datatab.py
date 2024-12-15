@@ -4,9 +4,9 @@ from PyQt6.QtCore import *
 from PyQt6.QtGui import *
 
 #Modules
-from resultstab import ResultsTab
-from helptab import HelpTab
-from style import get_main_stylesheet, get_header_stylesheet
+from views.resultstab import ResultsTab
+from views.helptab import HelpTab
+from views.style import get_main_stylesheet, get_header_stylesheet
 
 class MainView(QMainWindow):
     def __init__(self):
@@ -110,6 +110,7 @@ class MainView(QMainWindow):
         horizontal_layout = QHBoxLayout()
         horizontal_widget.setLayout(horizontal_layout)
         horizontal_layout.setContentsMargins(10,10,10,10)
+        horizontal_layout.setAlignment(Qt.AlignmentFlag.AlignBottom)
 
         self.column_selection_group = self.create_column_selection_group()
         self.preprocess_group = self.create_preprocess_group()
@@ -144,12 +145,15 @@ class MainView(QMainWindow):
         right_column_layout.addWidget(QLabel("Target:"))
         right_column_layout.addWidget(self.output_selector)
 
+        confirm_layout = QVBoxLayout()
+        confirm_layout.addStretch(1)
         self.confirm_button = QPushButton("Confirm Selection ⮕")
         self.confirm_button.setToolTip("Confirms the selected columns as input and output characteristics.")
+        confirm_layout.addWidget(self.confirm_button)
 
         layout.addLayout(left_column_layout)
         layout.addLayout(right_column_layout)
-        layout.addWidget(self.confirm_button)
+        layout.addLayout(confirm_layout)
 
         layout.setStretchFactor(left_column_layout, 1)
         layout.setStretchFactor(right_column_layout, 1)
@@ -221,9 +225,3 @@ class MainView(QMainWindow):
         layout.addWidget(self.model_button)
         group.setLayout(layout)
         return group
-    
-app = QApplication(sys.argv)
-window = MainView()
-
-window.show()
-sys.exit(app.exec())
