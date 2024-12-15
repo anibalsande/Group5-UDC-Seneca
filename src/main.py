@@ -296,7 +296,7 @@ class MainWindow(QMainWindow):
         self.description = QTextEdit()
         self.description.setPlaceholderText("Create description")
         self.description.setFixedWidth(280)
-        self.output_selector.setSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)    
+        #self.output_selector.setSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)    
         model_layout.addWidget(self.description)
 
         # Preprocessing button
