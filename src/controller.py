@@ -7,14 +7,14 @@ from models.modelhandler import ModelHandler
 class MainController:
     def __init__(self):
         self.main_window = MainView()
-        self.data_handler = DataHandler()
-        self.model_handler = ModelHandler()
+        self.data_handler = None
+        self.model_handler = None
 
         self.main_window.upload_button.clicked.connect(self.action_openfile)
         self.main_window.load_model_button.clicked.connect(self.action_openmodel)
         self.main_window.confirm_button.clicked.connect(self.action_columnselection)
         self.main_window.apply_button.clicked.connect(self.action_handlenans)
-        self.main_window.model_button.clicked.connect(self.action_trainmodel)
+        self.main_window.model_button.clicked.connect(self.action_createmodel)
 
         self.main_window.show()
 
@@ -25,6 +25,7 @@ class MainController:
         if file_path:
             try:
                 # Load data using DataHandler
+                self.data_handler = DataHandler()
                 self.data_handler.import_data(file_path)
 
                 # Update file label in the UI
@@ -110,6 +111,7 @@ class MainController:
         file_path = self.select_file(title="Select Model", file_filter="Admitted files (*.joblib *.pkl)")        
         if file_path:
             try:
+                self.model_handler = ModelHandler()
                 self.model_handler.load_model(file_path)
                 model_info = self.model_handler.get_model_info()
 
@@ -127,3 +129,21 @@ class MainController:
                 QMessageBox.information(self.main_window, "Success", "Model loaded successfully.")
             except Exception as e:
                 QMessageBox.critical(self.main_window, "Error", f"Error loading model:\n{str(e)}")
+
+    def action_createmodel(self):
+        description = self.main_window.description.toPlainText().strip()
+        if not description:
+            response = QMessageBox.question(
+                self.main_window, "Empty Description",
+                "The model description is empty. Do you want to proceed without a description?",
+                QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No
+            )
+            # If the user selects "No", stop the process so they can modify the description.
+            if response == QMessageBox.StandardButton.No:
+                return
+
+        self.model_handler = ModelHandler()
+        self.model_handler.train_model(self.data_handler.data, self.data_handler.input_columns, self.data_handler.output_column, description)
+
+    def action_predict(self):
+        print(" acabar ")
