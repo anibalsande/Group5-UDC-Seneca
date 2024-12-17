@@ -15,7 +15,8 @@ class MainController:
         self.main_window.confirm_button.clicked.connect(self.action_columnselection)
         self.main_window.apply_button.clicked.connect(self.action_handlenans)
         self.main_window.model_button.clicked.connect(self.action_createmodel)
-        #self.main_window.results_tab.predict_button.clicked.connect(self.make_prediction)
+        self.main_window.results_tab.save_button.clicked.connect(self.action_savemodel)
+        self.main_window.results_tab.predict_button.clicked.connect(self.action_prediction)
 
         self.main_window.show()
 
@@ -120,22 +121,6 @@ class MainController:
                 QMessageBox.critical(self.main_window, "Error", f"Error loading model:\n{str(e)}")
 
 
-    def showmodel(self):
-            self.main_window.tabs.setTabEnabled(1, True)
-            self.main_window.tabs.setCurrentIndex(1)
-            self.main_window.results_tab.update_tab(
-                self.model_handler.description,
-                self.model_handler.plot_data,
-                self.model_handler.metrics['R²'],
-                self.model_handler.metrics['MSE'],
-                self.model_handler.formula,
-                self.model_handler.coef,
-                self.model_handler.intercept,
-                self.model_handler.input_columns,
-                self.model_handler.output_column,
-                warning_text="")
-
-
     def action_createmodel(self):
         description = self.main_window.description.toPlainText().strip()
         if not description:
@@ -155,5 +140,30 @@ class MainController:
         except Exception as e:
             QMessageBox.critical(self.main_window, "Error", f"The model could not be loaded:\n{str(e)}")
 
-    def action_predict(self):
-        print(" acabar ")
+    def showmodel(self):
+            self.main_window.results_tab.update_tab(
+                self.model_handler.description,
+                self.model_handler.plot_data,
+                self.model_handler.metrics['R²'],
+                self.model_handler.metrics['MSE'],
+                self.model_handler.formula,
+                self.model_handler.coef,
+                self.model_handler.intercept,
+                self.model_handler.input_columns,
+                self.model_handler.output_column)
+            self.main_window.tabs.setTabEnabled(1, True)
+            self.main_window.tabs.setCurrentIndex(1)
+
+    def action_prediction(self):
+        input_fields = self.main_window.results_tab.input_fields
+        prediction = self.model_handler.make_prediction(input_fields)
+        self.main_window.results_tab.prediction_output.setText(f"{prediction[0]:.4f}")
+
+    def action_savemodel(self):
+        file_path, _ = QFileDialog.getSaveFileName(self.main_window, "Save Model", "", "Admitted files (*.joblib *.pkl)")
+        if file_path:
+            success, message = self.model_handler.save_model(file_path)
+            if success:
+                QMessageBox.information(self.main_window, "Done!", message)
+            else:
+                QMessageBox.critical(self.main_window, "Error", message)

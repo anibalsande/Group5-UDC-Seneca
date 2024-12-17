@@ -276,33 +276,3 @@ class ResultsTab(QWidget):
         ax.grid(True)
 
         self.canvas.draw()
-
-    def make_prediction(self):
-        """
-        Generate predictions based on input.
-
-        Raises:
-            ValueError: If any input field is empty or contains non-numeric values.
-            QMessageBox: Displays a warning or error message in case of invalid input or unexpected errors during prediction.
-        """
-        try:
-            # Check if all input fields are filled
-            input_values = []
-            for col in self.input_columns:
-                text = self.input_fields[col].text().strip()
-                if not text:  
-                    raise ValueError(f"Input for '{col}' is missing.")
-                try:
-                    input_values.append(float(text)) 
-                except ValueError:
-                    raise ValueError(f"Input for '{col}' must be a numeric value.")  
-
-            input_array = np.array(input_values).reshape(1, -1)
-            prediction = np.dot(input_array, self.coef) + self.intercept
-            self.prediction_output.setText(f"{prediction[0]:.4f}")
-        
-        except ValueError as ve:
-            QMessageBox.warning(self, "Input Error", str(ve))
-        except Exception as e:
-            QMessageBox.critical(self, "Prediction Error", f"Unexpected Error:\n{str(e)}") 
-

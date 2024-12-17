@@ -80,7 +80,7 @@ class ModelHandler:
         formula_terms = [f"{self.coef[i]:.4f} * {col}" for i, col in enumerate(input_columns)]
         self.formula = f"{output_column} = {self.intercept:.4f} + {' + '.join(formula_terms)}"
 
-    def save_model(self, file_path, model_info):
+    def save_model(self, file_path):
         """
         Save model to a .joblib file. The method opens a file dialog for the user to specify the file path where the model
         will be saved.
@@ -90,29 +90,29 @@ class ModelHandler:
         """
         try:
             model_info = {
-                    'description': self.description,
-                    'metrics': {
-                        'R²': self.metrics['R²'],
-                        'MSE': self.metrics['MSE'],
-                    },
-                    'formula': self.formula,
-                    'coefficients': self.coef,
-                    'intercept': self.intercept,
-                    'input_columns': self.input_columns,
-                    'output_column': self.output_column
-                }
+                'description': self.description,
+                'metrics': {
+                    'R²': self.metrics['R²'],
+                    'MSE': self.metrics['MSE'],
+                },
+                'formula': self.formula,
+                'coefficients': self.coef,
+                'intercept': self.intercept,
+                'input_columns': self.input_columns,
+                'output_column': self.output_column,
+            }
             if file_path.endswith('.joblib'):
                 joblib.dump(model_info, file_path)
             elif file_path.endswith('.pkl'):
                 with open(file_path, 'wb') as f:
                     pickle.dump(model_info, f)
             else:
-                raise ValueError("Unsupported file format. Use .joblib or .pkl.")
-            QMessageBox.information(self, "Done!", f"Model saved successfully in:\n{file_path}")
+                return False, "Unsupported file format. Use .joblib or .pkl."
+            return True, f"Model saved successfully in:\n{file_path}"
         except Exception as e:
-            QMessageBox.critical(self, "Error", f"Model couldn't be saved:\n{str(e)}")
+            return False, f"Model couldn't be saved:\n{str(e)}"
 
-    def make_prediction(self, input_values):
+    def make_prediction(self, input_fields):
         """
         Generate predictions based on input.
 
@@ -124,7 +124,7 @@ class ModelHandler:
             # Check if all input fields are filled
             input_values = []
             for col in self.input_columns:
-                text = self.input_fields[col].text().strip()
+                text = input_fields[col].text().strip()
                 if not text:  
                     raise ValueError(f"Input for '{col}' is missing.")
                 try:
