@@ -44,7 +44,7 @@ class ModelHandler:
         except Exception as e:
             raise RuntimeError(f"Failed to load model: {str(e)}")
         
-    def train_model(self, data, input_columns, output_column, description):
+    def train_model(self, data, input_columns, output_column, description = "No description provided"):
         """
         Trains the linear regression model and optionally displays the results in a separate window.
 
