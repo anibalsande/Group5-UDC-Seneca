@@ -202,15 +202,15 @@ class ResultsTab(QWidget):
         """
         Update values in the UI with provided information.
         Args:
-            description (str): Model description.
+            plot_data (tuple): Data for plotting (X_test, y_test, y_pred).
             r2 (float): Coefficient of determination (R²).
             mse (float): Mean squared error.
             formula (str): Regression formula.
-            plot_data (tuple): Data for plotting (X_test, y_test, y_pred).
             coef (list): Model coefficients.
             intercept (float): Model intercept.
             input_columns (list): List of input feature names.
             output_column (str): Name of the target variable.
+            description (str): Model description.
             warning_text (str, optional): Warning message for graphing limitations. Defaults to "".
         """   
         self.description_text.setText(description)
