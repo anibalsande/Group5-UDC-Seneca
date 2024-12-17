@@ -114,22 +114,27 @@ class MainController:
             try:
                 self.model_handler = ModelHandler()
                 self.model_handler.load_model(file_path)
-                model_info = self.model_handler.get_model_info()
-
-                # Actualizar la vista de resultados
-                self.main_window.results_tab.update_tab(
-                    description=model_info.get('description', 'No description'),
-                    r2=model_info['metrics'].get('R²', 'N/A'),
-                    mse=model_info['metrics'].get('MSE', 'N/A'),
-                    formula=model_info.get('formula', 'N/A'),
-                    coef=model_info.get('coefficients', []),
-                    intercept=model_info.get('intercept', 0),
-                    input_columns=model_info.get('input_columns', []),
-                    output_column=model_info.get('output_column', '')
-                )
+                self.showmodel()
                 QMessageBox.information(self.main_window, "Success", "Model loaded successfully.")
             except Exception as e:
                 QMessageBox.critical(self.main_window, "Error", f"Error loading model:\n{str(e)}")
+
+
+    def showmodel(self):
+            self.main_window.tabs.setTabEnabled(1, True)
+            self.main_window.tabs.setCurrentIndex(1)
+            self.main_window.results_tab.update_tab(
+                self.model_handler.description,
+                self.model_handler.plot_data,
+                self.model_handler.metrics['R²'],
+                self.model_handler.metrics['MSE'],
+                self.model_handler.formula,
+                self.model_handler.coef,
+                self.model_handler.intercept,
+                self.model_handler.input_columns,
+                self.model_handler.output_column,
+                warning_text="")
+
 
     def action_createmodel(self):
         description = self.main_window.description.toPlainText().strip()
@@ -144,21 +149,9 @@ class MainController:
                 return
         try:
             self.model_handler = ModelHandler()
-            self.model_handler.train_model(self.data_handler.data, self.data_handler.input_columns, self.data_handler.output_column, description) 
+            self.model_handler.train_model(self.data_handler.data, self.data_handler.input_columns, self.data_handler.output_column, description)
+            self.showmodel()
             QMessageBox.information(self.main_window, "Successful Load", "The model has been succesfully generated.")
-            self.main_window.tabs.setTabEnabled(1, True)
-            self.main_window.tabs.setCurrentIndex(1)
-            self.main_window.results_tab.update_tab(
-                description,
-                self.model_handler.plot_data,
-                self.model_handler.metrics['R²'],
-                self.model_handler.metrics['MSE'],
-                self.model_handler.formula,
-                self.model_handler.coef,
-                self.model_handler.intercept,
-                self.model_handler.input_columns,
-                self.model_handler.output_column,
-                warning_text="")
         except Exception as e:
             QMessageBox.critical(self.main_window, "Error", f"The model could not be loaded:\n{str(e)}")
 
