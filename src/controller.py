@@ -24,7 +24,7 @@ class MainController:
     def action_openfile(self):
         """
         Handles file selection, data import, and checks for missing values (NaN) in the dataset.
-        Updates the UI to show data or error messages as needed.
+        Updates the UI to show data or error messages as needed.      
         """
         self.main_window.welcome_label.setText("Importing data...")
         file_path = self.select_file(title="Select Dataset", file_filter="Admitted files (*.csv *.xlsx *.xls *.sqlite *.db)")
@@ -74,15 +74,33 @@ class MainController:
             self.main_window.file_label.setStyleSheet("QLabel {color: red;}")
 
     def select_file(self, title="Select Dataset", file_filter="Admitted files (*.csv *.xlsx *.xls *.sqlite *.db)"):
+        """
+        Asks the user to select a file using a file dialog.
+        
+        Args:
+            title (str): Title of the file dialog.
+            file_filter (str): Filter for acceptable file types.
+        
+        Returns:
+            str: The selected file path.
+        """
         options = QFileDialog.Option.ReadOnly
         file_path, _ = QFileDialog.getOpenFileName(self.main_window, title, "", file_filter, options=options)
         return file_path
     
     def populate_columns(self):
+        """
+        Populates the input and output column selectors with available numeric columns from the data.
+        """
         numeric_columns = self.data_handler.get_numeric_columns()
         self.main_window.populate_selectors(numeric_columns)
 
     def action_columnselection(self):
+        """
+        Handles the selection of input and output columns by the user.
+        Ensures both inputs and outputs are selected, and updates the data handler accordingly.
+        """
+
         selected_inputs = self.main_window.input_selector.selectedItems()
         selected_output = self.main_window.output_selector.selectedItems()
 
@@ -104,6 +122,9 @@ class MainController:
             self.main_window.model_group.setEnabled(True)
 
     def action_handlenans(self):
+        """
+        Applies preprocessing to handle missing values (NaN) in the dataset based on the user's selection.
+        """
         option = self.main_window.nan_options.currentText()
         constant_value = self.main_window.constant_input.text() if option == "Fill NaN with Constant" else None
         try:
@@ -111,10 +132,16 @@ class MainController:
             self.main_window.table_view.update_table(self.data, self.data_handler.input_columns, self.data_handler.output_column)
             self.main_window.model_group.setEnabled(True)
             QMessageBox.information(self.main_window, "Success", "Data preprocessing completed successfully.")
+        except ValueError as ve:
+            QMessageBox.warning(self.main_window, "Preprocessing Error", f"Input Error: {str(ve)}")
         except Exception as e:
             QMessageBox.critical(self.main_window, "Error", f"An error occurred during preprocessing:\n{str(e)}")
 
     def action_openmodel(self):
+        """
+        Handles the selection and loading of a pre-trained model file.
+        Displays a success message or an error if the model cannot be loaded.
+        """
         file_path = self.select_file(title="Select Model", file_filter="Admitted files (*.joblib *.pkl)")        
         if file_path:
             try:
@@ -127,6 +154,10 @@ class MainController:
 
 
     def action_createmodel(self):
+        """
+        Trains a new model using the selected input and output columns.
+        Displays a success or error message based on the outcome.
+        """
         description = self.main_window.description.toPlainText().strip()
         if not description:
             response = QMessageBox.question(
@@ -146,24 +177,33 @@ class MainController:
             QMessageBox.critical(self.main_window, "Error", f"The model could not be loaded:\n{str(e)}")
 
     def showmodel(self, warning_text = ""):
-            description = self.model_handler.description
-            print("Description")
-            if description == "":  # Si description es None, asigna un valor predeterminado
-                description = "No description provided"
+        """
+        Updates the UI to display model results, including metrics and any warnings.
+    
+        Args:
+            warning_text (str): Optional warning message to be displayed.
+        """
+        description = self.model_handler.description
+        print("Description")
+        if description == "":  # Si description es None, asigna un valor predeterminado
+            description = "No description provided"
 
-            self.main_window.results_tab.update_tab(
-                self.model_handler.plot_data,
-                self.model_handler.metrics['R²'],
-                self.model_handler.metrics['MSE'],
-                self.model_handler.formula,
-                self.model_handler.input_columns,
-                self.model_handler.output_column,
-                description, warning_text)
-            QApplication.processEvents()
-            self.main_window.tabs.setTabEnabled(1, True)
-            self.main_window.tabs.setCurrentIndex(1)
+        self.main_window.results_tab.update_tab(
+            self.model_handler.plot_data,
+            self.model_handler.metrics['R²'],
+            self.model_handler.metrics['MSE'],
+            self.model_handler.formula,
+            self.model_handler.input_columns,
+            self.model_handler.output_column,
+            description, warning_text)
+        self.main_window.tabs.setTabEnabled(1, True)
+        self.main_window.tabs.setCurrentIndex(1)
 
     def action_prediction(self):
+        """
+        Makes predictions using the loaded model and displays the results.
+        Handles exceptions related to input errors and unexpected errors.
+        """
         try:
             prediction = self.model_handler.make_prediction(self.main_window.results_tab.input_fields)
             self.main_window.results_tab.prediction_output.setText(f"{prediction[0]:.4f}")
@@ -173,6 +213,10 @@ class MainController:
             QMessageBox.critical(self.main_window, "Prediction Error", f"Unexpected Error:\n{str(e)}")
 
     def action_savemodel(self):
+        """
+        Asks the user to save the model to a specified location.
+        Displays a success or error message based on the result.
+        """
         file_path, _ = QFileDialog.getSaveFileName(self.main_window, "Save Model", "", "Admitted files (*.joblib *.pkl)")
         if file_path:
             success, message = self.model_handler.save_model(file_path)
