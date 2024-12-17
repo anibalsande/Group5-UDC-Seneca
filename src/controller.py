@@ -10,6 +10,7 @@ class MainController:
         self.data_handler = None
         self.model_handler = None
 
+        # Connect UI buttons to corresponding controller methods
         self.main_window.upload_button.clicked.connect(self.action_openfile)
         self.main_window.load_model_button.clicked.connect(self.action_openmodel)
         self.main_window.confirm_button.clicked.connect(self.action_columnselection)
@@ -21,6 +22,10 @@ class MainController:
         self.main_window.show()
 
     def action_openfile(self):
+        """
+        Handles file selection, data import, and checks for missing values (NaN) in the dataset.
+        Updates the UI to show data or error messages as needed.
+        """
         self.main_window.welcome_label.setText("Importing data...")
         file_path = self.select_file(title="Select Dataset", file_filter="Admitted files (*.csv *.xlsx *.xls *.sqlite *.db)")
         self.main_window.table_widget.setCurrentWidget(self.main_window.welcome_label)
@@ -115,8 +120,8 @@ class MainController:
             try:
                 self.model_handler = ModelHandler()
                 self.model_handler.load_model(file_path)
-                self.showmodel()
                 QMessageBox.information(self.main_window, "Success", "Model loaded successfully.")
+                self.showmodel("The graph is not displayed for uploaded models.")
             except Exception as e:
                 QMessageBox.critical(self.main_window, "Error", f"Error loading model:\n{str(e)}")
 
@@ -135,29 +140,37 @@ class MainController:
         try:
             self.model_handler = ModelHandler()
             self.model_handler.train_model(self.data_handler.data, self.data_handler.input_columns, self.data_handler.output_column, description)
-            self.showmodel()
             QMessageBox.information(self.main_window, "Successful Load", "The model has been succesfully generated.")
+            self.showmodel()
         except Exception as e:
             QMessageBox.critical(self.main_window, "Error", f"The model could not be loaded:\n{str(e)}")
 
-    def showmodel(self):
+    def showmodel(self, warning_text = ""):
+            description = self.model_handler.description
+            print("Description")
+            if description == "":  # Si description es None, asigna un valor predeterminado
+                description = "No description provided"
+
             self.main_window.results_tab.update_tab(
-                self.model_handler.description,
                 self.model_handler.plot_data,
                 self.model_handler.metrics['R²'],
                 self.model_handler.metrics['MSE'],
                 self.model_handler.formula,
-                self.model_handler.coef,
-                self.model_handler.intercept,
                 self.model_handler.input_columns,
-                self.model_handler.output_column)
+                self.model_handler.output_column,
+                description, warning_text)
+            QApplication.processEvents()
             self.main_window.tabs.setTabEnabled(1, True)
             self.main_window.tabs.setCurrentIndex(1)
 
     def action_prediction(self):
-        input_fields = self.main_window.results_tab.input_fields
-        prediction = self.model_handler.make_prediction(input_fields)
-        self.main_window.results_tab.prediction_output.setText(f"{prediction[0]:.4f}")
+        try:
+            prediction = self.model_handler.make_prediction(self.main_window.results_tab.input_fields)
+            self.main_window.results_tab.prediction_output.setText(f"{prediction[0]:.4f}")
+        except ValueError as ve:
+            QMessageBox.warning(self.main_window, "Input Error", str(ve))  # Display a clear message to the user
+        except Exception as e:
+            QMessageBox.critical(self.main_window, "Prediction Error", f"Unexpected Error:\n{str(e)}")
 
     def action_savemodel(self):
         file_path, _ = QFileDialog.getSaveFileName(self.main_window, "Save Model", "", "Admitted files (*.joblib *.pkl)")

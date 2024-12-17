@@ -198,7 +198,7 @@ class ResultsTab(QWidget):
         return container
     
 
-    def update_tab(self, description, plot_data, r2, mse, formula, coef, intercept, input_columns, output_column, warning_text=""):
+    def update_tab(self, plot_data, r2, mse, formula, input_columns, output_column, description, warning_text="The graph is only displayed for simple linear regression."):
         """
         Update values in the UI with provided information.
         Args:
@@ -213,13 +213,6 @@ class ResultsTab(QWidget):
             output_column (str): Name of the target variable.
             warning_text (str, optional): Warning message for graphing limitations. Defaults to "".
         """   
-        self.r2 = r2
-        self.mse = mse
-        self.formula = formula
-        self.coef = coef
-        self.intercept = intercept
-        self.input_columns = input_columns
-        self.output_column = output_column
         self.description_text.setText(description)
         metrics_text = (f"Coefficient of determination (R²): {r2:.4f}\n"
                         f"Mean Squared Error (MSE): {mse:.4f}\n\n"
@@ -241,7 +234,7 @@ class ResultsTab(QWidget):
 
         # Regenerate dynamic fields
         self.input_fields.clear()  # Reset the dictionary
-        for col in self.input_columns:
+        for col in input_columns:
             input_field = QLineEdit()
             input_field.setPlaceholderText(f"Enter value for {col}")
             input_field.setStyleSheet("font-family: Bahnschrift;")
