@@ -13,22 +13,32 @@ class ModelHandler:
     def __init__(self):
         self.model = LinearRegression()  # Modelo de regresión lineal
         self.coef = None
+        self.intercept = None
+        self.description = None
+        self.metrics = {}
+        self.formula = None
+        self.input_columns = None
+        self.output_column = None
 
     def load_model(self, file_path):
         """Upload model from a file (.joblib or .pkl)"""
         try:
             if file_path.endswith('.joblib'):
-                self.model_info = joblib.load(file_path)
+                loaded_data = joblib.load(file_path)
             elif file_path.endswith('.pkl'):
                 with open(file_path, 'rb') as f:
-                    self.model_info = pickle.load(f)
+                    loaded_data = pickle.load(f)
             else:
                 raise ValueError("Unsupported file format. Use .joblib or .pkl.")
-            
-            # Restore model for prediction
-            if 'coefficients' in self.model_info and 'intercept' in self.model_info:
-                self.model.coef_ = self.model_info['coefficients']
-                self.model.intercept_ = self.model_info['intercept']
+
+            # Asignar variables
+            self.coef = loaded_data['coefficients']
+            self.intercept = loaded_data['intercept']
+            self.description = loaded_data['description']
+            self.metrics = loaded_data['metrics']
+            self.formula = loaded_data['formula']
+            self.input_columns = loaded_data['input_columns']
+            self.output_column = loaded_data['output_column']
 
         except Exception as e:
             raise RuntimeError(f"Failed to load model: {str(e)}")
@@ -44,9 +54,6 @@ class ModelHandler:
             QMessageBox: Displays an error message if there is an issue during model training.
         """
         try:
-            self.plot_data = data
-            self.input_columns = input_columns
-            self.output_column = output_column
             X = data[input_columns].values
             y = data[output_column].values
 
@@ -63,20 +70,13 @@ class ModelHandler:
             # Calculate formula
             self.coef = self.model.coef_
             self.intercept = self.model.intercept_
-            formula_terms = [f"{self.coef[i]:.4f} * {col}" for i, col in enumerate(self.input_columns)]
-            formula = f"{self.output_column} = {self.intercept:.4f} + {' + '.join(formula_terms)}"
+            self.input_columns = input_columns
+            self.output_column = output_column
+            self.description = description
+            self.metrics = {'R²': r2, 'MSE': mse}
 
-            # Determine the warning message and the data for the graph
-            if len(self.input_columns) > 1:
-                self.warning_text = "The graph is only displayed for simple linear regression."
-
-            plot_data = (X_test[:, 0], y_test, y_pred) if len(self.input_columns) == 1 and X_test.shape[1] == 1 else None
-
-            # Pass metrics, formula, and other data to ResultsWindow
-            self.r2 = r2
-            self.mse = mse
-            self.formula = formula
-            self.plot_data = plot_data
+            formula_terms = [f"{self.coef[i]:.4f} * {col}" for i, col in enumerate(input_columns)]
+            self.formula = f"{output_column} = {self.intercept:.4f} + {' + '.join(formula_terms)}"
 
         except Exception as e:
             QMessageBox.critical(self, "Error", f"Error in model creation:\n{str(e)}")

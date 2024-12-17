@@ -141,9 +141,26 @@ class MainController:
             # If the user selects "No", stop the process so they can modify the description.
             if response == QMessageBox.StandardButton.No:
                 return
-
-        self.model_handler = ModelHandler()
-        self.model_handler.train_model(self.data_handler.data, self.data_handler.input_columns, self.data_handler.output_column, description)
+        try:
+            self.model_handler = ModelHandler()
+            self.model_handler.train_model(self.data_handler.data, self.data_handler.input_columns, self.data_handler.output_column, description) 
+            QMessageBox.information(self.main_window, "Successful Load", "The model has been succesfully generated.")
+            self.main_window.tabs.setTabEnabled(1, True)
+            self.main_window.tabs.setCurrentIndex(1)
+            data = self.data_handler.data
+            self.main_window.results_tab.update_tab(
+                description,
+                data,
+                self.model_handler.metrics['R²'],
+                self.model_handler.metrics['MSE'],
+                self.model_handler.formula,
+                self.model_handler.coef,
+                self.model_handler.intercept,
+                self.model_handler.input_columns,
+                self.model_handler.output_column,
+                warning_text="")
+        except Exception as e:
+            QMessageBox.critical(self.main_window, "Error", f"The model could not be loaded:\n{str(e)}")
 
     def action_predict(self):
         print(" acabar ")

@@ -198,8 +198,9 @@ class ResultsTab(QWidget):
         container_layout.addWidget(self.toolbar)  
         container_layout.addWidget(self.canvas)  
         return container
+    
 
-    def update_tab(self, description, r2, mse, formula, plot_data, coef, intercept, input_columns, output_column, warning_text=""):
+    def update_tab(self, description, plot_data, r2, mse, formula, coef, intercept, input_columns, output_column, warning_text=""):
         """
         Update values in the UI with provided information.
         Args:
