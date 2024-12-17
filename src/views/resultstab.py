@@ -76,7 +76,6 @@ class ResultsTab(QWidget):
                 color: white;
             }
         """)
-        self.save_button.clicked.connect(self.save_model)
         header_layout.addWidget(self.save_button)
 
         self.layout.addWidget(header_widget)
@@ -143,7 +142,6 @@ class ResultsTab(QWidget):
                 color: #0B1E3E;
             }
         """)
-        self.predict_button.clicked.connect(self.make_prediction)
 
         # Output label
         self.output_label = QLabel("Output:")
@@ -278,36 +276,6 @@ class ResultsTab(QWidget):
         ax.grid(True)
 
         self.canvas.draw()
-
-    def save_model(self):
-        """
-        Save model to a .joblib file. The method opens a file dialog for the user to specify the file path where the model
-        will be saved.
-
-        Raises:
-            QMessageBox: Displays an error message if the model cannot be saved due to any issue.
-        """
-        file_path, _ = QFileDialog.getSaveFileName(self, "Save Model", "", "Joblib (*.joblib);;All Files (*)")
-        if file_path:
-            if not file_path.endswith('.joblib'):
-                file_path += '.joblib'
-            try:
-                model_info = {
-                    'description': self.description_text.text(),
-                    'metrics': {
-                        'R²': self.r2,
-                        'MSE': self.mse,
-                    },
-                    'formula': self.formula,
-                    'coefficients': self.coef,
-                    'intercept': self.intercept,
-                    'input_columns': self.input_columns,
-                    'output_column': self.output_column
-                }
-                joblib.dump(model_info, file_path)
-                QMessageBox.information(self, "Done!", f"Model saved successfully in:\n{file_path}")
-            except Exception as e:
-                QMessageBox.critical(self, "Error", f"Model couldn't be saved:\n{str(e)}")
 
     def make_prediction(self):
         """

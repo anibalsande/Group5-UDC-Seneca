@@ -15,6 +15,7 @@ class MainController:
         self.main_window.confirm_button.clicked.connect(self.action_columnselection)
         self.main_window.apply_button.clicked.connect(self.action_handlenans)
         self.main_window.model_button.clicked.connect(self.action_createmodel)
+        #self.main_window.results_tab.predict_button.clicked.connect(self.make_prediction)
 
         self.main_window.show()
 
@@ -147,10 +148,9 @@ class MainController:
             QMessageBox.information(self.main_window, "Successful Load", "The model has been succesfully generated.")
             self.main_window.tabs.setTabEnabled(1, True)
             self.main_window.tabs.setCurrentIndex(1)
-            data = self.data_handler.data
             self.main_window.results_tab.update_tab(
                 description,
-                data,
+                self.model_handler.plot_data,
                 self.model_handler.metrics['R²'],
                 self.model_handler.metrics['MSE'],
                 self.model_handler.formula,

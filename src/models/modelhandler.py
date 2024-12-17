@@ -13,6 +13,7 @@ class ModelHandler:
     def __init__(self):
         self.model = LinearRegression()  # Modelo de regresión lineal
         self.coef = None
+        self.plot_data = None
         self.intercept = None
         self.description = None
         self.metrics = {}
@@ -53,38 +54,53 @@ class ModelHandler:
         Raises:
             QMessageBox: Displays an error message if there is an issue during model training.
         """
-        try:
-            X = data[input_columns].values
-            y = data[output_column].values
+        X = data[input_columns].values
+        y = data[output_column].values
 
-            X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-            # Train the linear regression model
-            self.model.fit(X_train, y_train)
+        # Train the linear regression model
+        self.model.fit(X_train, y_train)
 
-            # Make predictions and calculate error metrics on the test set
-            y_pred = self.model.predict(X_test)
-            mse = mean_squared_error(y_test, y_pred)
-            r2 = r2_score(y_test, y_pred)
+        # Make predictions and calculate error metrics on the test set
+        y_pred = self.model.predict(X_test)
+        mse = mean_squared_error(y_test, y_pred)
+        r2 = r2_score(y_test, y_pred)
 
-            # Calculate formula
-            self.coef = self.model.coef_
-            self.intercept = self.model.intercept_
-            self.input_columns = input_columns
-            self.output_column = output_column
-            self.description = description
-            self.metrics = {'R²': r2, 'MSE': mse}
+        # Calculate formula
+        self.coef = self.model.coef_
+        self.intercept = self.model.intercept_
+        self.input_columns = input_columns
+        self.output_column = output_column
+        self.description = description
+        self.metrics = {'R²': r2, 'MSE': mse}
 
-            formula_terms = [f"{self.coef[i]:.4f} * {col}" for i, col in enumerate(input_columns)]
-            self.formula = f"{output_column} = {self.intercept:.4f} + {' + '.join(formula_terms)}"
+        self.plot_data = (X_test[:, 0], y_test, y_pred) if len(self.input_columns) == 1 and X_test.shape[1] == 1 else None
 
-        except Exception as e:
-            QMessageBox.critical(self, "Error", f"Error in model creation:\n{str(e)}")
-
+        formula_terms = [f"{self.coef[i]:.4f} * {col}" for i, col in enumerate(input_columns)]
+        self.formula = f"{output_column} = {self.intercept:.4f} + {' + '.join(formula_terms)}"
 
     def save_model(self, file_path, model_info):
-        """Save model in an specified format."""
+        """
+        Save model to a .joblib file. The method opens a file dialog for the user to specify the file path where the model
+        will be saved.
+
+        Raises:
+            QMessageBox: Displays an error message if the model cannot be saved due to any issue.
+        """
         try:
+            model_info = {
+                    'description': self.description,
+                    'metrics': {
+                        'R²': self.metrics['R²'],
+                        'MSE': self.metrics['MSE'],
+                    },
+                    'formula': self.formula,
+                    'coefficients': self.coef,
+                    'intercept': self.intercept,
+                    'input_columns': self.input_columns,
+                    'output_column': self.output_column
+                }
             if file_path.endswith('.joblib'):
                 joblib.dump(model_info, file_path)
             elif file_path.endswith('.pkl'):
@@ -92,9 +108,10 @@ class ModelHandler:
                     pickle.dump(model_info, f)
             else:
                 raise ValueError("Unsupported file format. Use .joblib or .pkl.")
+            QMessageBox.information(self, "Done!", f"Model saved successfully in:\n{file_path}")
         except Exception as e:
-            raise RuntimeError(f"Failed to save model: {str(e)}")
-        
+            QMessageBox.critical(self, "Error", f"Model couldn't be saved:\n{str(e)}")
+
     def make_prediction(self, input_values):
         """
         Generate predictions based on input.
