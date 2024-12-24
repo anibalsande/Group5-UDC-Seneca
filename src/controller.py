@@ -148,16 +148,18 @@ class MainController:
         Handles the selection and loading of a pre-trained model file.
         Displays a success message or an error if the model cannot be loaded.
         """
-        file_path = self.select_file(title="Select Model", file_filter="Admitted files (*.joblib *.pkl)")        
-        if file_path:
-            try:
+        try:
+            file_path = self.select_file(title="Select Model", file_filter="Admitted files (*.joblib *.pkl)")        
+            if file_path:
                 self.model_handler = ModelHandler()
                 self.model_handler.load_model(file_path)
                 QMessageBox.information(self.main_window, "Success", "Model loaded successfully.")
                 self.showmodel("The graph is not displayed for uploaded models.")
-            except Exception as e:
-                QMessageBox.critical(self.main_window, "Error", f"Error loading model:\n{str(e)}")
-
+            else:
+                raise ValueError("No file selected")
+        except Exception as e:
+            QMessageBox.critical(self.main_window, "Error", f"Error loading model:\n{str(e)}")
+        
 
     def action_createmodel(self):
         """

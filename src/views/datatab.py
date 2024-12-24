@@ -219,7 +219,7 @@ class MainView(QMainWindow):
         group.setFixedWidth(300)
 
         self.description = QTextEdit()
-        self.description.setPlaceholderText("Create description")
+        self.description.setPlaceholderText("Create description (optional)")
         self.description.setFixedWidth(280)
 
         self.model_button = QPushButton("Create Model ⮕")
