@@ -36,8 +36,7 @@ class MainController:
         if file_path:
             try:
                 # Load data using DataHandler
-                self.data_handler = DataHandler()
-                self.data_handler.import_data(file_path)
+                self.data_handler = DataHandler(file_path)
 
                 # Update file label in the UI
                 self.main_window.file_label.setText(f"File selected: {file_path}")

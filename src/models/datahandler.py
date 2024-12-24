@@ -3,11 +3,12 @@ import sqlite3
 
 class DataHandler:
     "Class for importing data and managing them."
-    def __init__(self):
+    def __init__(self, file_path):
         self.data = None
         self.input_columns = []
         self.output_column = None
         self.nans = False
+        self.import_data(file_path)
 
     def import_data(self, file_path):
         """Imports data from a file and stores it in a DataFrame.
