@@ -1,4 +1,3 @@
-import numpy as np
 from PyQt6.QtWidgets import *
 from PyQt6.QtCore import *
 from PyQt6.QtGui import *
@@ -6,7 +5,8 @@ from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas, NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure
-import joblib
+
+from views.style import get_header_stylesheet, get_prediction_stylesheet
 
 class ResultsTab(QWidget):
     """
@@ -44,39 +44,27 @@ class ResultsTab(QWidget):
 
         # Header
         header_widget = QWidget()
+        header_widget.setFixedHeight(35)
+        header_widget.setStyleSheet(get_header_stylesheet())
+
         header_layout = QHBoxLayout()
         header_layout.setContentsMargins(10, 0, 10, 0)
         header_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
         header_widget.setLayout(header_layout)
-        header_widget.setStyleSheet("background-color: #0b5394;")
-        header_widget.setFixedHeight(35)
+
+        left_spacer = QSpacerItem(170, 1, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
+        header_layout.addItem(left_spacer)
 
         # Header buttons
         self.description_text = QLabel("No description available")
-        self.description_text.setStyleSheet("color: white; font-family: 'Bahnschrift'; font-size: 16px;margin-left: 170px;")
         self.description_text.setAlignment(Qt.AlignmentFlag.AlignBottom | Qt.AlignmentFlag.AlignHCenter)
         self.description_text.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
-        header_layout.addWidget(self.description_text)
-
+        
         self.save_button = QPushButton("SAVE MODEL")
         self.save_button.setFixedHeight(28)
         self.save_button.setFixedWidth(170)
         self.save_button.setToolTip("Click to save the trained model to a .joblib file.")
-        self.save_button.setStyleSheet(""" 
-            QPushButton {
-                background-color: #F6BE00; 
-                color: #0B1E3E;
-                border-radius: 5px;
-                font-weight: bold;
-                padding-left: 15px;
-                padding-right: 15px;
-            }
-            QPushButton:hover {
-                background-color: #0B1E3E;
-                color: white;
-            }
-        """)
-        self.save_button.clicked.connect(self.save_model)
+        header_layout.addWidget(self.description_text)
         header_layout.addWidget(self.save_button)
 
         self.layout.addWidget(header_widget)
@@ -129,21 +117,7 @@ class ResultsTab(QWidget):
         self.predict_button = QPushButton("Make Prediction")
         self.predict_button.setFixedHeight(28)  
         self.predict_button.setFixedWidth(170)  
-        self.predict_button.setStyleSheet("""
-            QPushButton {
-                background-color: #0B1E3E; 
-                color: white;
-                border-radius: 5px;
-                font-weight: bold;
-                font-size: 12px;
-                padding: 0px;
-            }
-            QPushButton:hover {
-                background-color: #F6BE00;
-                color: #0B1E3E;
-            }
-        """)
-        self.predict_button.clicked.connect(self.make_prediction)
+        self.predict_button.setStyleSheet(get_prediction_stylesheet())
 
         # Output label
         self.output_label = QLabel("Output:")
@@ -198,29 +172,23 @@ class ResultsTab(QWidget):
         container_layout.addWidget(self.toolbar)  
         container_layout.addWidget(self.canvas)  
         return container
+    
 
-    def update_tab(self, description, r2, mse, formula, plot_data, coef, intercept, input_columns, output_column, warning_text=""):
+    def update_tab(self, plot_data, r2, mse, formula, input_columns, output_column, description, warning_text="The graph is only displayed for simple linear regression."):
         """
         Update values in the UI with provided information.
         Args:
-            description (str): Model description.
+            plot_data (tuple): Data for plotting (X_test, y_test, y_pred).
             r2 (float): Coefficient of determination (R²).
             mse (float): Mean squared error.
             formula (str): Regression formula.
-            plot_data (tuple): Data for plotting (X_test, y_test, y_pred).
             coef (list): Model coefficients.
             intercept (float): Model intercept.
             input_columns (list): List of input feature names.
             output_column (str): Name of the target variable.
+            description (str): Model description.
             warning_text (str, optional): Warning message for graphing limitations. Defaults to "".
         """   
-        self.r2 = r2
-        self.mse = mse
-        self.formula = formula
-        self.coef = coef
-        self.intercept = intercept
-        self.input_columns = input_columns
-        self.output_column = output_column
         self.description_text.setText(description)
         metrics_text = (f"Coefficient of determination (R²): {r2:.4f}\n"
                         f"Mean Squared Error (MSE): {mse:.4f}\n\n"
@@ -242,7 +210,7 @@ class ResultsTab(QWidget):
 
         # Regenerate dynamic fields
         self.input_fields.clear()  # Reset the dictionary
-        for col in self.input_columns:
+        for col in input_columns:
             input_field = QLineEdit()
             input_field.setPlaceholderText(f"Enter value for {col}")
             input_field.setStyleSheet("font-family: Bahnschrift;")
@@ -277,63 +245,3 @@ class ResultsTab(QWidget):
         ax.grid(True)
 
         self.canvas.draw()
-
-    def save_model(self):
-        """
-        Save model to a .joblib file. The method opens a file dialog for the user to specify the file path where the model
-        will be saved.
-
-        Raises:
-            QMessageBox: Displays an error message if the model cannot be saved due to any issue.
-        """
-        file_path, _ = QFileDialog.getSaveFileName(self, "Save Model", "", "Joblib (*.joblib);;All Files (*)")
-        if file_path:
-            if not file_path.endswith('.joblib'):
-                file_path += '.joblib'
-            try:
-                model_info = {
-                    'description': self.description_text.text(),
-                    'metrics': {
-                        'R²': self.r2,
-                        'MSE': self.mse,
-                    },
-                    'formula': self.formula,
-                    'coefficients': self.coef,
-                    'intercept': self.intercept,
-                    'input_columns': self.input_columns,
-                    'output_column': self.output_column
-                }
-                joblib.dump(model_info, file_path)
-                QMessageBox.information(self, "Done!", f"Model saved successfully in:\n{file_path}")
-            except Exception as e:
-                QMessageBox.critical(self, "Error", f"Model couldn't be saved:\n{str(e)}")
-
-    def make_prediction(self):
-        """
-        Generate predictions based on input.
-
-        Raises:
-            ValueError: If any input field is empty or contains non-numeric values.
-            QMessageBox: Displays a warning or error message in case of invalid input or unexpected errors during prediction.
-        """
-        try:
-            # Check if all input fields are filled
-            input_values = []
-            for col in self.input_columns:
-                text = self.input_fields[col].text().strip()
-                if not text:  
-                    raise ValueError(f"Input for '{col}' is missing.")
-                try:
-                    input_values.append(float(text)) 
-                except ValueError:
-                    raise ValueError(f"Input for '{col}' must be a numeric value.")  
-
-            input_array = np.array(input_values).reshape(1, -1)
-            prediction = np.dot(input_array, self.coef) + self.intercept
-            self.prediction_output.setText(f"{prediction[0]:.4f}")
-        
-        except ValueError as ve:
-            QMessageBox.warning(self, "Input Error", str(ve))
-        except Exception as e:
-            QMessageBox.critical(self, "Prediction Error", f"Unexpected Error:\n{str(e)}") 
-
