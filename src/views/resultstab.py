@@ -174,7 +174,7 @@ class ResultsTab(QWidget):
         return container
     
 
-    def update_tab(self, plot_data, r2, mse, formula, input_columns, output_column, description, warning_text="The graph is only displayed for simple linear regression."):
+    def update_tab(self, plot_data, r2, mse, formula, input_columns, output_column, description, warning_text):
         """
         Update values in the UI with provided information.
         Args:

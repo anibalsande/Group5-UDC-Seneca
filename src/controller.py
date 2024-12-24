@@ -172,7 +172,10 @@ class MainController:
             self.model_handler = ModelHandler()
             self.model_handler.train_model(self.data_handler.data, self.data_handler.input_columns, self.data_handler.output_column, description)
             QMessageBox.information(self.main_window, "Successful Load", "The model has been succesfully generated.")
-            self.showmodel()
+            if len(self.model_handler.input_columns) > 1:
+                self.showmodel("The graph is only displayed for simple linear regression.")
+            else:
+                self.showmodel()
         except Exception as e:
             QMessageBox.critical(self.main_window, "Error", f"The model could not be loaded:\n{str(e)}")
 
