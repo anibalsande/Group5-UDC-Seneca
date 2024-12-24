@@ -100,6 +100,8 @@ def get_header_stylesheet():
         font-weight: bold;
         padding-left: 15px;
         padding-right: 15px;
+        height: 28px;
+        width: 170px;
     }
                                          
     QPushButton:hover {
@@ -114,3 +116,50 @@ def get_header_stylesheet():
         font-size: 16px;
     }
     """
+
+
+def get_prediction_stylesheet():
+    return """
+        QPushButton {
+            background-color: #0B1E3E; 
+            color: white;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 12px;
+            padding: 0px;
+        }
+        QPushButton:hover {
+            background-color: #F6BE00;
+            color: #0B1E3E;
+        }
+    """
+
+def get_tab_style(index, current_step):
+    """Return style for a tab based on its state."""
+    if index < current_step:
+        # Past steps (blue = completed)
+        return """
+            background-color: #0b5394;  /* Blue */
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-bottom: 2px solid #073763;
+        """
+    elif index == current_step:
+        # Current step (yellow highlight)
+        return """
+            background-color: #ffd966;  /* Yellow */
+            color: black;
+            font-weight: bold;
+            border: none;
+            border-bottom: 2px solid #f1c232;
+        """
+    else:
+        # Future steps (gray and inactive)
+        return """
+            background-color: #f0f0f0;
+            color: #b0b0b0;
+            font-weight: normal;
+            border: none;
+            border-bottom: 2px solid #d0d0d0;
+        """

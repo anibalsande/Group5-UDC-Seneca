@@ -6,6 +6,8 @@ from sklearn.model_selection import train_test_split
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas, NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure
 
+from views.style import get_header_stylesheet, get_prediction_stylesheet
+
 class ResultsTab(QWidget):
     """
     A PyQt6-based widget for displaying the results of a regression model, including metrics, graphs, and predictions.
@@ -42,38 +44,27 @@ class ResultsTab(QWidget):
 
         # Header
         header_widget = QWidget()
+        header_widget.setFixedHeight(35)
+        header_widget.setStyleSheet(get_header_stylesheet())
+
         header_layout = QHBoxLayout()
         header_layout.setContentsMargins(10, 0, 10, 0)
         header_layout.setAlignment(Qt.AlignmentFlag.AlignTop)
         header_widget.setLayout(header_layout)
-        header_widget.setStyleSheet("background-color: #0b5394;")
-        header_widget.setFixedHeight(35)
+
+        left_spacer = QSpacerItem(170, 1, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
+        header_layout.addItem(left_spacer)
 
         # Header buttons
         self.description_text = QLabel("No description available")
-        self.description_text.setStyleSheet("color: white; font-family: 'Bahnschrift'; font-size: 16px;margin-left: 170px;")
         self.description_text.setAlignment(Qt.AlignmentFlag.AlignBottom | Qt.AlignmentFlag.AlignHCenter)
         self.description_text.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
-        header_layout.addWidget(self.description_text)
-
+        
         self.save_button = QPushButton("SAVE MODEL")
         self.save_button.setFixedHeight(28)
         self.save_button.setFixedWidth(170)
         self.save_button.setToolTip("Click to save the trained model to a .joblib file.")
-        self.save_button.setStyleSheet(""" 
-            QPushButton {
-                background-color: #F6BE00; 
-                color: #0B1E3E;
-                border-radius: 5px;
-                font-weight: bold;
-                padding-left: 15px;
-                padding-right: 15px;
-            }
-            QPushButton:hover {
-                background-color: #0B1E3E;
-                color: white;
-            }
-        """)
+        header_layout.addWidget(self.description_text)
         header_layout.addWidget(self.save_button)
 
         self.layout.addWidget(header_widget)
@@ -126,20 +117,7 @@ class ResultsTab(QWidget):
         self.predict_button = QPushButton("Make Prediction")
         self.predict_button.setFixedHeight(28)  
         self.predict_button.setFixedWidth(170)  
-        self.predict_button.setStyleSheet("""
-            QPushButton {
-                background-color: #0B1E3E; 
-                color: white;
-                border-radius: 5px;
-                font-weight: bold;
-                font-size: 12px;
-                padding: 0px;
-            }
-            QPushButton:hover {
-                background-color: #F6BE00;
-                color: #0B1E3E;
-            }
-        """)
+        self.predict_button.setStyleSheet(get_prediction_stylesheet())
 
         # Output label
         self.output_label = QLabel("Output:")

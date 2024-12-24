@@ -1,6 +1,7 @@
 from PyQt6.QtWidgets import *
 from PyQt6.QtCore import *
 from PyQt6.QtGui import *
+from views.style import get_header_stylesheet, get_tab_style
 
 class HelpTab(QWidget):
     def __init__(self):
@@ -109,15 +110,14 @@ class HelpTab(QWidget):
 
         # Header with instructions title
         header_widget = QWidget()
-        header_layout = QHBoxLayout()
-        header_layout.setAlignment(Qt.AlignmentFlag.AlignHCenter)
-        header_widget.setLayout(header_layout)
-        header_widget.setStyleSheet("background-color: #0b5394; color: white;")
+        header_widget.setStyleSheet(get_header_stylesheet())
         header_widget.setFixedHeight(35)
+
+        header_layout = QHBoxLayout()
+        header_widget.setLayout(header_layout)
 
         # Title in the header
         title_label = QLabel("Follow the app usage instructions")
-        title_label.setStyleSheet("color: white; font-family: 'Bahnschrift'; font-size: 16px;")
         title_label.setAlignment(Qt.AlignmentFlag.AlignBottom | Qt.AlignmentFlag.AlignHCenter)
         title_label.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
         header_layout.addWidget(title_label)
@@ -133,7 +133,7 @@ class HelpTab(QWidget):
         for i, title in enumerate(self.steps_titles):
             button = QPushButton(title)
             button.setFixedSize(200, 40)
-            button.setStyleSheet(self.get_tab_style(i))  # Apply style based on state
+            button.setStyleSheet(get_tab_style(i, self.current_step))  # Apply style based on state
             button.clicked.connect(self.update_step(i))
             self.tab_buttons.append(button)
             tabs_layout.addWidget(button)
@@ -152,36 +152,6 @@ class HelpTab(QWidget):
         # Set the layout
         self.setLayout(layout)
 
-    def get_tab_style(self, index):
-        """Return style for a tab based on its state."""
-        if index < self.current_step:
-            # Past steps (blue = completed)
-            return """
-                background-color: #0b5394;  /* Blue */
-                color: white;
-                font-weight: bold;
-                border: none;
-                border-bottom: 2px solid #073763;
-            """
-        elif index == self.current_step:
-            # Current step (yellow highlight)
-            return """
-                background-color: #ffd966;  /* Yellow */
-                color: black;
-                font-weight: bold;
-                border: none;
-                border-bottom: 2px solid #f1c232;
-            """
-        else:
-            # Future steps (gray and inactive)
-            return """
-                background-color: #f0f0f0;
-                color: #b0b0b0;
-                font-weight: normal;
-                border: none;
-                border-bottom: 2px solid #d0d0d0;
-            """
-
     def update_step(self, step_index):
         """Return a lambda function to update the current step."""
         return lambda: self.set_current_step(step_index)
@@ -192,4 +162,4 @@ class HelpTab(QWidget):
         self.description_label.setText(self.steps_text[self.current_step])
         # Update tab styles
         for i, button in enumerate(self.tab_buttons):
-            button.setStyleSheet(self.get_tab_style(i))
+            button.setStyleSheet(get_tab_style(i, self.current_step))
