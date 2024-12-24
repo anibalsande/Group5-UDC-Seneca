@@ -9,8 +9,8 @@ class TestMainWindow(unittest.TestCase):
 
     def test_select_file_real(self):
         """ Test to check that the file loads correctly """
-        testmodel = DataHandler()
-        testmodel.import_data("datafiles/housing.csv")
+        file_path = "datafiles/housing.csv"
+        testmodel = DataHandler(file_path)
         # Verify that the data has been loaded correctly.
         self.assertEqual(testmodel.data.shape[0], 20640)  # Verify the number of rows.
         self.assertEqual(testmodel.data.shape[1], 10)     # Verify the number of columns.
@@ -21,8 +21,8 @@ class TestMainWindow(unittest.TestCase):
         # Verify that the data is correct.
         self.assertEqual(testmodel.data.loc[0, 'latitude'], 37.88)  # Verify the value of 'latitude'
         
-
-    def test_emptyvalues(self):
+    @patch.object(DataHandler, 'import_data')  # Replaces import data
+    def test_emptyvalues(self, mock_import_data):
         """ Test to check that empty values """
 
         data_with_nan = pd.DataFrame({
@@ -30,7 +30,9 @@ class TestMainWindow(unittest.TestCase):
             'col2': [5, np.nan, 7, 8],
             'col3': [10, 20, np.nan, 40]})
         
-        testmodel = DataHandler()
+        mock_import_data.return_value = None
+
+        testmodel = DataHandler("dummy_path")
         testmodel.data = data_with_nan
         testmodel.input_columns = ['col1', 'col2']
         testmodel.output_column = 'col3'
