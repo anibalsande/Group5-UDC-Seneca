@@ -1,4 +1,3 @@
-import numpy as np
 from PyQt6.QtWidgets import *
 from PyQt6.QtCore import *
 from PyQt6.QtGui import *
@@ -6,16 +5,36 @@ from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.model_selection import train_test_split
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas, NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure
-import joblib
 
 class ResultsTab(QWidget):
+    """
+    A PyQt6-based widget for displaying the results of a regression model, including metrics, graphs, and predictions.
+
+    Attributes:
+        description_text (QLabel): Label displaying the model's description.
+        save_button (QPushButton): Button to save the model to a file.
+        results_label (QLabel): Label to display model metrics like R² and MSE.
+        graph_widget (QWidget): Widget containing the regression graph.
+        warning_label (QLabel): Label to show warnings or messages when no data is available for graphing.
+        prediction_group (QGroupBox): GroupBox containing prediction-related inputs and outputs.
+        input_fields (dict): Dictionary mapping input column names to their respective QLineEdit widgets.
+        prediction_output (QLabel): Label to display the prediction output.
+        figure (Figure): Matplotlib figure for the regression graph.
+        canvas (FigureCanvas): Canvas to render the Matplotlib figure.
+        toolbar (NavigationToolbar): Toolbar for interacting with the graph.
+    """
     def __init__(self):
+        """
+        Initializes the ResultsTab widget and sets up the user interface.
+        """
         super().__init__()
         self.setContentsMargins(0, 0, 0, 0)
         self.init_ui()
 
     def init_ui(self):
-        """Configura la UI del modelo con todos los elementos gráficos básicos."""
+        """
+        Set up the model UI with all the basic graphical elements
+        """
         self.layout = QVBoxLayout()
         self.layout.setAlignment(Qt.AlignmentFlag.AlignTop)
         self.layout.setContentsMargins(0, 0, 0, 0)
@@ -55,7 +74,6 @@ class ResultsTab(QWidget):
                 color: white;
             }
         """)
-        self.save_button.clicked.connect(self.save_model)
         header_layout.addWidget(self.save_button)
 
         self.layout.addWidget(header_widget)
@@ -63,7 +81,7 @@ class ResultsTab(QWidget):
         # Main content container
         main_content_widget = QWidget()
         main_content_layout = QVBoxLayout()
-        main_content_layout.setContentsMargins(10, 0, 10, 10)  # Márgenes uniformes
+        main_content_layout.setContentsMargins(10, 0, 10, 10)  
         main_content_widget.setLayout(main_content_layout)
         self.layout.addWidget(main_content_widget)
 
@@ -91,23 +109,23 @@ class ResultsTab(QWidget):
         self.warning_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.warning_label.setStyleSheet("font-size: 16px;font-family: 'Bahnschrift';font-weight: semi-bold;color: #333;padding: 10px;background-color: #e0e0e0;border-radius: 5px;")
 
-        self.left_column_layout.addWidget(self.warning_label)  # Warning
-        self.left_column_layout.addWidget(self.graph_widget)  # Graph
+        self.left_column_layout.addWidget(self.warning_label)  
+        self.left_column_layout.addWidget(self.graph_widget)  
         self.side_layout.addWidget(self.left_column_layout)
 
         # Right column: Prediction GroupBox
         self.prediction_group = QGroupBox("Prediction")
-        self.prediction_layout = QVBoxLayout()  # Diseño principal vertical
-        self.dynamic_inputs_layout = QFormLayout()  # Diseño para entradas dinámicas
-        self.input_fields = {}  # Diccionario para almacenar campos dinámicos
+        self.prediction_layout = QVBoxLayout()  # Vertical main layout
+        self.dynamic_inputs_layout = QFormLayout()  # Layout for dynamic inputs
+        self.input_fields = {}  # Dictionary to store dynamic fields
 
-        # Agregar el diseño de entradas dinámicas al diseño principal
+        # Add the dynamic input layout to the main layout
         self.prediction_layout.addLayout(self.dynamic_inputs_layout)
 
         # Prediction button
         self.predict_button = QPushButton("Make Prediction")
-        self.predict_button.setFixedHeight(28)  # Altura fija
-        self.predict_button.setFixedWidth(170)  # Ancho fijo
+        self.predict_button.setFixedHeight(28)  
+        self.predict_button.setFixedWidth(170)  
         self.predict_button.setStyleSheet("""
             QPushButton {
                 background-color: #0B1E3E; 
@@ -122,46 +140,50 @@ class ResultsTab(QWidget):
                 color: #0B1E3E;
             }
         """)
-        self.predict_button.clicked.connect(self.make_prediction)
 
-        # Etiqueta de salida
+        # Output label
         self.output_label = QLabel("Output:")
-        self.output_label.setAlignment(Qt.AlignmentFlag.AlignCenter)  # Centrar texto
+        self.output_label.setAlignment(Qt.AlignmentFlag.AlignCenter)  
         self.output_label.setStyleSheet("font-weight: bold; font-size: 14px;")
 
-        # Campo de salida
-        self.prediction_output = QLabel("")  # Texto vacío por defecto
-        self.prediction_output.setAlignment(Qt.AlignmentFlag.AlignCenter)  # Centrar texto de salida
+        # Output field
+        self.prediction_output = QLabel("")  
+        self.prediction_output.setAlignment(Qt.AlignmentFlag.AlignCenter)  
         self.prediction_output.setStyleSheet("font-weight: bold; color: green; font-size: 14px;")
 
-        # Contenedor inferior para los widgets (botón y etiquetas de salida)
+        # Bottom container for widgets (button and output labels)
         self.bottom_container = QWidget()
         self.bottom_container.setContentsMargins(0, 0, 0, 0)
-        self.bottom_container.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)  # Ajustar solo el alto
+        self.bottom_container.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Fixed)  
         self.bottom_container.setStyleSheet("background-color: #CCE4F6; border-radius: 8px; padding: 10px;")
-        self.bottom_layout = QVBoxLayout(self.bottom_container)  # Diseño vertical para el contenedor
+        self.bottom_layout = QVBoxLayout(self.bottom_container)  
         self.bottom_layout.addWidget(self.predict_button, alignment=Qt.AlignmentFlag.AlignCenter)
         self.bottom_layout.addWidget(self.output_label, alignment=Qt.AlignmentFlag.AlignCenter)
         self.bottom_layout.addWidget(self.prediction_output, alignment=Qt.AlignmentFlag.AlignCenter)
 
-        # Agregar el contenedor inferior al diseño principal
-        self.prediction_layout.addStretch()  # Empuja widgets hacia abajo
+        # Add the bottom container to the main layout
+        self.prediction_layout.addStretch()  # Push widgets down
         self.prediction_layout.addWidget(self.bottom_container)
 
-        # Configurar el diseño en el grupo de predicción
+        # Set up the layout in the prediction group
         self.prediction_group.setLayout(self.prediction_layout)
 
-        # Agregar el grupo al diseño lateral
+        # Add the group to the side layout
         self.side_layout.addWidget(self.prediction_group)
 
-        # Ajuste de las columnas
+        # Adjust the columns
         self.side_layout.setStretch(0, 4)  # Graphic
         self.side_layout.setStretch(1, 1)  # Prediction
 
         main_content_layout.addLayout(self.side_layout)
 
     def create_graph_widget(self):
-        """Create interactive graph widget."""
+        """
+        Create interactive regression graph widget.
+
+        Returns:
+            QWidget: A container widget with a Matplotlib canvas and toolbar.
+        """
         container = QWidget()
         container_layout = QVBoxLayout(container)
 
@@ -169,15 +191,26 @@ class ResultsTab(QWidget):
         self.canvas = FigureCanvas(self.figure)
         self.toolbar = NavigationToolbar(self.canvas, self)
 
-        container_layout.addWidget(self.toolbar)  # Toolbar on top
-        container_layout.addWidget(self.canvas)  # Graph below
+        container_layout.addWidget(self.toolbar)  
+        container_layout.addWidget(self.canvas)  
         return container
+    
 
-    def update_tab(self, description, r2, mse, formula, plot_data, coef, intercept, input_columns, output_column, warning_text=""):
-        """Update values in the UI with provided information."""
-        self.input_columns = input_columns
-        self.coef = coef
-        self.intercept = intercept
+    def update_tab(self, plot_data, r2, mse, formula, input_columns, output_column, description, warning_text="The graph is only displayed for simple linear regression."):
+        """
+        Update values in the UI with provided information.
+        Args:
+            plot_data (tuple): Data for plotting (X_test, y_test, y_pred).
+            r2 (float): Coefficient of determination (R²).
+            mse (float): Mean squared error.
+            formula (str): Regression formula.
+            coef (list): Model coefficients.
+            intercept (float): Model intercept.
+            input_columns (list): List of input feature names.
+            output_column (str): Name of the target variable.
+            description (str): Model description.
+            warning_text (str, optional): Warning message for graphing limitations. Defaults to "".
+        """   
         self.description_text.setText(description)
         metrics_text = (f"Coefficient of determination (R²): {r2:.4f}\n"
                         f"Mean Squared Error (MSE): {mse:.4f}\n\n"
@@ -195,18 +228,18 @@ class ResultsTab(QWidget):
         for i in reversed(range(self.dynamic_inputs_layout.count())):
             widget = self.dynamic_inputs_layout.itemAt(i).widget()
             if widget:
-                widget.deleteLater()  # Elimina el widget de la memoria
+                widget.deleteLater()  # Remove the widget from memory
 
-        # Regenerar campos dinámicos
-        self.input_fields.clear()  # Reiniciar el diccionario
-        for col in self.input_columns:
+        # Regenerate dynamic fields
+        self.input_fields.clear()  # Reset the dictionary
+        for col in input_columns:
             input_field = QLineEdit()
             input_field.setPlaceholderText(f"Enter value for {col}")
             input_field.setStyleSheet("font-family: Bahnschrift;")
-            self.dynamic_inputs_layout.addRow(f"{col}:", input_field)  # Añadir al layout dinámico
-            self.input_fields[col] = input_field  # Guardar referencia en el diccionario
+            self.dynamic_inputs_layout.addRow(f"{col}:", input_field)  # Add to the dynamic layout
+            self.input_fields[col] = input_field  # Save reference in the dictionary
 
-        # Limpiar predicción previa
+        # Clear previous prediction
         self.prediction_output.setText("")
 
         self.output_label.setText(f"{output_column}:")
@@ -214,7 +247,14 @@ class ResultsTab(QWidget):
 
 
     def plot_regression(self, plot_data, input, output):
-        """Generate or update the regression graph."""
+        """
+        Generate or update the regression graph.
+
+        Args:
+            plot_data (tuple): Data for plotting (X_test, y_test, y_pred).
+            input (list): List of input feature names.
+            output (str): Name of the target variable.
+        """
         self.figure.clear()
         ax = self.figure.add_subplot(111)
         X_test, y_test, y_pred = plot_data
@@ -227,51 +267,3 @@ class ResultsTab(QWidget):
         ax.grid(True)
 
         self.canvas.draw()
-
-    def save_model(self):
-        """Save model to a .joblib file."""
-        file_path, _ = QFileDialog.getSaveFileName(self, "Save Model", "", "Joblib (*.joblib);;All Files (*)")
-        if file_path:
-            if not file_path.endswith('.joblib'):
-                file_path += '.joblib'
-            try:
-                model_info = {
-                    'description': self.description_text.text(),
-                    'metrics': {
-                        'R²': self.r2,
-                        'MSE': self.mse,
-                    },
-                    'formula': self.formula,
-                    'coefficients': self.coef,
-                    'intercept': self.intercept,
-                    'input_columns': self.input_columns,
-                    'output_column': self.output_column
-                }
-                joblib.dump(model_info, file_path)
-                QMessageBox.information(self, "Done!", f"Model saved successfully in:\n{file_path}")
-            except Exception as e:
-                QMessageBox.critical(self, "Error", f"Model couldn't be saved:\n{str(e)}")
-
-    def make_prediction(self):
-        """Generate predictions based on input."""
-        try:
-            # Comprobar si todos los campos de entrada están llenos
-            input_values = []
-            for col in self.input_columns:
-                text = self.input_fields[col].text().strip()
-                if not text:  # Si el campo está vacío
-                    raise ValueError(f"Input for '{col}' is missing.")
-                try:
-                    input_values.append(float(text)) 
-                except ValueError:
-                    raise ValueError(f"Input for '{col}' must be a numeric value.")  
-
-            input_array = np.array(input_values).reshape(1, -1)
-            prediction = np.dot(input_array, self.coef) + self.intercept
-            self.prediction_output.setText(f"{prediction[0]:.4f}")
-        
-        except ValueError as ve:
-            QMessageBox.warning(self, "Input Error", str(ve))
-        except Exception as e:
-            QMessageBox.critical(self, "Prediction Error", f"Unexpected Error:\n{str(e)}") 
-
