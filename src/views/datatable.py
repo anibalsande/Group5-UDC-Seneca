@@ -2,6 +2,7 @@ from PyQt6.QtWidgets import QTableView, QAbstractScrollArea, QHeaderView
 from PyQt6.QtGui import QColor, QStandardItemModel, QStandardItem
 
 class DataTable(QTableView):
+    "Widget for showing data in the table"
     def __init__(self):
         super().__init__()
         self.setSizeAdjustPolicy(QAbstractScrollArea.SizeAdjustPolicy.AdjustToContents)

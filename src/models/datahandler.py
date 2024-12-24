@@ -2,6 +2,7 @@ import pandas as pd
 import sqlite3
 
 class DataHandler:
+    "Class for importing data and managing them."
     def __init__(self):
         self.data = None
         self.input_columns = []

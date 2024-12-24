@@ -8,8 +8,8 @@ from PyQt6.QtWidgets import *
 from PyQt6.QtCore import *
 from PyQt6.QtGui import *
 
-
 class ModelHandler:
+    "Class for handling models, including creating, uploading, and managing them."
     def __init__(self):
         self.model = LinearRegression()
         self.coef = None
@@ -32,7 +32,7 @@ class ModelHandler:
             else:
                 raise ValueError("Unsupported file format. Use .joblib or .pkl.")
 
-            # Asignar variables
+            # Assign variables
             self.coef = loaded_data['coefficients']
             self.intercept = loaded_data['intercept']
             self.description = loaded_data['description']
@@ -44,7 +44,7 @@ class ModelHandler:
         except Exception as e:
             raise RuntimeError(f"Failed to load model: {str(e)}")
         
-    def train_model(self, data, input_columns, output_column, description = "No description provided"):
+    def train_model(self, data, input_columns, output_column, description = ""):
         """
         Trains the linear regression model and optionally displays the results in a separate window.
 

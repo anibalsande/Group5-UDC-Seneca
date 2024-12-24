@@ -5,6 +5,10 @@ from models.datahandler import DataHandler
 from models.modelhandler import ModelHandler
 
 class MainController:
+    """
+    The MainController class serves as the intermediary between the models and the views MVC.
+    It handles user inputs, interacts with the models to retrieve or modify data, and then passes that data to the views.
+    """
     def __init__(self):
         self.main_window = MainView()
         self.data_handler = None
@@ -70,8 +74,11 @@ class MainController:
                 self.main_window.file_label.setText(f"Error: {str(e)}")
                 self.main_window.file_label.setStyleSheet("QLabel {color: red;}")
         else:
+            self.main_window.column_selection_group.setEnabled(True)
             self.main_window.file_label.setText("No file selected")
             self.main_window.file_label.setStyleSheet("QLabel {color: red;}")
+            self.main_window.welcome_label.setText("The file could not be loaded.\nPlease import database or an existing model.")
+
 
     def select_file(self, title="Select Dataset", file_filter="Admitted files (*.csv *.xlsx *.xls *.sqlite *.db)"):
         """
@@ -187,8 +194,7 @@ class MainController:
             warning_text (str): Optional warning message to be displayed.
         """
         description = self.model_handler.description
-        print("Description")
-        if description == "":  # Si description es None, asigna un valor predeterminado
+        if description == "":  # If description is None, assign a value
             description = "No description provided"
 
         self.main_window.results_tab.update_tab(

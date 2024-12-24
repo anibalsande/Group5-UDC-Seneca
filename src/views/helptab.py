@@ -4,6 +4,7 @@ from PyQt6.QtGui import *
 from views.style import get_header_stylesheet, get_tab_style
 
 class HelpTab(QWidget):
+    "Tab that shows how to use the app to the user"
     def __init__(self):
         super().__init__()
         self.setContentsMargins(0, 0, 0, 0)  # Set margins to 0

@@ -10,6 +10,10 @@ from views.helptab import HelpTab
 from views.style import get_main_stylesheet, get_header_stylesheet
 
 class MainView(QMainWindow):
+    """
+    MainView represents the main window and main tab of the interface,
+    where data is being processed.
+    """
     def __init__(self):
         super().__init__()
 
@@ -240,6 +244,7 @@ class MainView(QMainWindow):
             self.nan_options.setVisible(False)    
 
     def populate_selectors(self, columns):
+        "Fills selector with columns."
         if columns is not None:
             self.input_selector.clear()
             self.input_selector.addItems(columns)
@@ -247,6 +252,7 @@ class MainView(QMainWindow):
             self.output_selector.addItems(columns)
 
     def update_output_selector(self):
+        "Items that have been selected for input aren't enabled ."
         selected_inputs = {item.text() for item in self.input_selector.selectedItems()}
         
         for i in range(self.output_selector.count()):
